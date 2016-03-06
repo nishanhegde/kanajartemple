@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+	<context:annotation-config />
+
+	<annotation-driven></annotation-driven>
+
+
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basename" value="classpath:localization/locale" />
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
+
+	<interceptors>
+		<beans:bean id="localeChangeInterceptor"
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="lang" />
+		</beans:bean>
+
+		<beans:bean id="webContentInterceptor"
+			class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+			<beans:property name="cacheSeconds" value="0" />
+			<beans:property name="useExpiresHeader" value="true" />
+			<beans:property name="useCacheControlHeader" value="true" />
+			<beans:property name="useCacheControlNoStore" value="true" />
+		</beans:bean>
+	</interceptors>
+
+	<beans:bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<beans:property name="defaultLocale" value="en" />
+	</beans:bean>
+
+	
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1" />
+	</beans:bean>
+
+
+	<beans:bean class="org.springframework.web.servlet.view.XmlViewResolver">
+		<beans:property name="location"
+			value="/WEB-INF/spring/appServlet/jasper-views.xml" />
+		<beans:property name="order" value="0"></beans:property>
+	</beans:bean>
+
+	<context:component-scan base-package="com.Brahmalingeshwara.kanajartemple" />
+	<context:component-scan base-package="com.Admin.controller" />
+	<!-- ************************************************************************** -->
+
+	<beans:bean class="com.Brahmalingeshwara.service.HomeService" />
+	<beans:bean class="com.Brahmalingeshwara.Dao.HomeDao" />
+
+
+	<!-- Admin part starts -->
+	<!-- ########################################################################################## -->
+
+	<!-- Validators -->
+	<beans:bean id="regValidator" class="com.Admin.validator.RegistrationValidator" />
+	<beans:bean id="poojeValidator" class="com.Admin.validator.PoojeValidator" />
+	<beans:bean id="sashwathaPoojeValidator" class="com.Admin.validator.SashwathaPoojeValidator" />
+	<beans:bean id="donationValidator" class="com.Admin.validator.DonationValidator" />
+	<beans:bean id="incomeValidator" class="com.Admin.validator.IncomeValidator" />
+	<beans:bean id="expenseValidator" class="com.Admin.validator.ExpenseValidator" />
+	<beans:bean id="changePasswordValidator" class="com.Admin.validator.ChangePasswordValidator" />
+	<beans:bean id="editProfileValidator" class="com.Admin.validator.EditProfileValidator" />
+
+	<beans:bean id="adminHomeservice" class="com.Admin.Service.Impl.AdminHomeService" />
+	<beans:bean class="com.Admin.dao.impl.AdminHomeDao" />
+
+
+	<!-- Super Admin part starts -->
+
+	<beans:bean class="com.Admin.Service.Impl.SuperAdminService" />
+	<beans:bean class="com.Admin.dao.impl.SuperAdminDao" />
+
+	<!-- Pooje part starts -->
+
+	<beans:bean class="com.Admin.Service.Impl.PoojeService" />
+	<beans:bean class="com.Admin.dao.impl.PoojeDao" />
+
+
+	<beans:bean id="defaultTempleMethods"
+		class="com.Admin.Service.Impl.kanajarTempleMethodsImpl" />
+	<beans:bean id="defaultTempleMethodsDao"
+		class="com.Admin.dao.impl.kanajarTempleMethodsDaoImpl" />
+</beans:beans>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-12-21T23:28:05 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="IncomeReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43e0c141-5909-46d5-b2d4-bd3042c6f231">
+	<property name="net.sf.jasperreports.export.html.using.images.to.align" value="false"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="TodayDate" class="java.util.Date"/>
+	<field name="FromDate" class="java.lang.String"/>
+	<field name="ToDate" class="java.lang.String"/>
+	<field name="RecNo" class="java.lang.String"/>
+	<field name="title" class="java.lang.String"/>
+	<field name="BDate" class="java.lang.String"/>
+	<field name="Amount" class="java.lang.String"/>
+	<field name="Total" class="java.lang.Double"/>
+	<field name="SI" class="java.lang.Integer"/>
+	<title>
+		<band height="147" splitType="Stretch">
+			<staticText>
+				<reportElement x="112" y="0" width="360" height="31" uuid="784a70fd-e72b-4708-8a2d-0460f305f3ab"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Shree Brahmalingeshwara Temple Income Report]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a" isBlankWhenNull="false">
+				<reportElement x="448" y="59" width="107" height="20" uuid="28ac45f6-35be-4f0c-abc9-19a93b0901da"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TodayDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="398" y="59" width="40" height="20" uuid="09c38e88-da3a-4e37-926e-62c789dd4452"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="53" y="59" width="113" height="20" uuid="c5a28df7-a92c-4b16-a4c2-12a41dfcd247"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FromDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="59" width="100" height="20" uuid="62c76691-f8d3-46ea-afda-e640bc8e4d84"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ToDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="59" width="43" height="20" uuid="bb73274d-e352-4140-9400-065bf86114fc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="209" y="59" width="33" height="20" uuid="3379b954-e17d-4c32-9788-8e618e71fb88"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="53" y="91" width="113" height="20" uuid="f072f134-b0d3-42c7-b9f2-5d97073a94a5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="91" width="43" height="20" uuid="3aa16154-95bb-4bc1-b339-124604f487f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="121" width="555" height="1" uuid="6a898828-d681-476d-984d-8c51b9fa425c"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="122" width="32" height="20" uuid="7d24ee7e-10bc-43e2-a0f6-91c1402c6f48"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[S.I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="122" width="46" height="20" uuid="ce427d00-b3ff-4b3e-a050-4790baf3387e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RecNo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="122" width="134" height="20" uuid="05e2c3bc-0e63-44ac-862a-ab939235dee5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="248" y="122" width="132" height="20" uuid="2e3ac540-905f-48f3-be0a-9f65653baa83"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Booked Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="122" width="86" height="21" uuid="98c668ca-b727-48cf-ad98-8fb36b88c933"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="144" width="553" height="1" uuid="c2162a7b-8a5a-4d9b-9d9b-96648ad9e4be"/>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="21">
+			<textField isBlankWhenNull="true">
+				<reportElement x="104" y="0" width="134" height="20" isRemoveLineWhenBlank="true" uuid="faf9b9f6-45ab-4be8-877b-0e44694cae47"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy h.mm a" isBlankWhenNull="true">
+				<reportElement x="248" y="0" width="132" height="20" isRemoveLineWhenBlank="true" uuid="9ea9a170-2e51-463e-b531-9bb305be5531"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="33" height="20" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="99a42d64-b9f8-4528-ba63-138485b98921"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SI}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="45" y="0" width="44" height="20" isRemoveLineWhenBlank="true" uuid="cf0def93-ea9a-4dca-920f-7fff74e90e91"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RecNo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="398" y="0" width="86" height="20" isRemoveLineWhenBlank="true" uuid="c462389b-0098-4f62-b5d6-327855274dd6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="17">
+			<staticText>
+				<reportElement x="0" y="0" width="115" height="17" forecolor="#999999" uuid="fb6e944a-90ba-4a76-af79-02a0ff036e2c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[www.kanajartemple.com]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="523" y="0" width="21" height="17" forecolor="#999999" uuid="5e1fe034-c684-461d-be01-34aa59a9cf1a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

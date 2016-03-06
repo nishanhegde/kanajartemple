@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-12-03T23:22:40 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PoojeReceipt" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4ffba028-ac10-4d69-87f3-5f64ff17c2ef">
+	<property name="net.sf.jasperreports.export.html.using.images.to.align" value="false"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="RecNo" class="java.lang.String"/>
+	<field name="BDate" class="java.util.Date"/>
+	<field name="Name" class="java.lang.String"/>
+	<field name="PoojeName" class="java.lang.String"/>
+	<field name="Amount" class="java.lang.String"/>
+	<field name="Signature" class="java.lang.String"/>
+	<field name="InWords" class="java.lang.String"/>
+	<field name="PDate" class="java.lang.String"/>
+	<background>
+		<band height="781">
+			<image>
+				<reportElement x="-19" y="-20" width="594" height="566" uuid="dff043eb-b2ca-4688-a5e3-60cfbab682bb"/>
+				<imageExpression><![CDATA["images\\Pooje.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="107" y="125" width="78" height="20" uuid="1d702e94-5175-4dc9-8007-e4471f0372e9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RecNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="155" width="370" height="20" uuid="986c2ec7-a866-42d3-b422-1cbb298ad818"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="187" width="370" height="20" uuid="a10b2ba1-e47b-4c73-9e11-681754d15aae"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PoojeName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="222" width="379" height="20" uuid="dec0793f-0bfe-48ac-b96c-bd585d970d29"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{InWords}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="326" width="116" height="20" uuid="c16cc1bd-3540-4fe6-a179-f5e664fec7e0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="382" y="306" width="150" height="20" uuid="f6f0cb74-1862-4808-86e0-5b2de8a4626a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Signature}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="410" y="120" width="139" height="20" uuid="311051e6-aa05-449e-b9a0-53576a119a84"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BDate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="131" y="286" width="137" height="30" uuid="a45bf01b-0eec-44c9-88fc-e51f873eafb0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+</jasperReport>
