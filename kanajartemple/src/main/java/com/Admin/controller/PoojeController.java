@@ -30,8 +30,8 @@ import com.Admin.Service.kanajarTempleMethods;
 import com.Admin.Service.Impl.PoojeService;
 import com.Admin.bean.Donation;
 import com.Admin.bean.DonationDetail;
-import com.Admin.bean.Expense;
-import com.Admin.bean.Income;
+import com.Admin.bean.ExpenseData;
+import com.Admin.bean.IncomeData;
 import com.Admin.bean.Pooje;
 import com.Admin.bean.Poojebean;
 import com.Admin.bean.Reportbean;
@@ -306,13 +306,13 @@ public class PoojeController {
 	public ModelAndView AdminAddIncome(HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/Income");
-		mv.addObject(new Income());
+		mv.addObject(new IncomeData());
 		return mv;
 	}
 
 	@RequestMapping(value = "/AddIncomeSuccess")
 	public String AdminAddIncomeSuccess(HttpServletRequest request,
-			HttpServletResponse response, @ModelAttribute Income ibean,
+			HttpServletResponse response, @ModelAttribute IncomeData ibean,
 			Model mv, BindingResult bindingResult, Locale locale) {
 
 		incomeValidator.validate(ibean, bindingResult);
@@ -321,7 +321,7 @@ public class PoojeController {
 		} else {
 			Integer RecNo = service.addincome(ibean);
 			if (RecNo == null) {
-				mv.addAttribute(new Income());
+				mv.addAttribute(new IncomeData());
 				mv.addAttribute("message",
 						messageSource.getMessage("message.error", null, locale));
 			} else {
@@ -347,12 +347,12 @@ public class PoojeController {
 
 		ModelAndView mv = new ModelAndView("admin/IncomeEdit");
 		mv.addObject("Data", defaultTempleMethods.getIncome(RecNo));
-		mv.addObject(new Income());
+		mv.addObject(new IncomeData());
 		return mv;
 	}
 
 	@RequestMapping(value = "/UpdateIncome")
-	public ModelAndView UpdateIncome(@ModelAttribute Income ibean,
+	public ModelAndView UpdateIncome(@ModelAttribute IncomeData ibean,
 			HttpServletRequest request, HttpServletResponse response,
 			BindingResult bindingResult, Locale locale) {
 
@@ -370,7 +370,7 @@ public class PoojeController {
 						"update.success", null, locale));
 				mv.addObject("Data", defaultTempleMethods.getIncome(ibean
 						.getRecNo().toString()));
-				mv.addObject(new Income());
+				mv.addObject(new IncomeData());
 				return mv;
 			}
 			return null;
@@ -534,13 +534,13 @@ public class PoojeController {
 			HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/Expenses");
-		mv.addObject(new Expense());
+		mv.addObject(new ExpenseData());
 		return mv;
 	}
 
 	@RequestMapping(value = "/ExpenditureReceipt")
 	public String AdminExpenditureReceipt(HttpServletRequest request,
-			HttpServletResponse response, @ModelAttribute Expense ebean,
+			HttpServletResponse response, @ModelAttribute ExpenseData ebean,
 			BindingResult bindingResult, Model mv) throws IOException {
 
 		expenseValidator.validate(ebean, bindingResult);
@@ -570,12 +570,12 @@ public class PoojeController {
 
 		ModelAndView mv = new ModelAndView("admin/ExpenseEdit");
 		mv.addObject("Data", defaultTempleMethods.getExpenditure(RecNo));
-		mv.addObject(new Expense());
+		mv.addObject(new ExpenseData());
 		return mv;
 	}
 
 	@RequestMapping(value = "/UpdateExpense")
-	public ModelAndView UpdateExpense(@ModelAttribute Expense ebean,
+	public ModelAndView UpdateExpense(@ModelAttribute ExpenseData ebean,
 			HttpServletRequest request, HttpServletResponse response,
 			BindingResult bindingResult, Locale locale) {
 		expenseValidator.validate(ebean, bindingResult);
@@ -592,7 +592,7 @@ public class PoojeController {
 						"update.success", null, locale));
 				mv.addObject("Data", defaultTempleMethods.getExpenditure(ebean
 						.getRecNo().toString()));
-				mv.addObject(new Expense());
+				mv.addObject(new ExpenseData());
 				return mv;
 			}
 			return null;
@@ -711,7 +711,7 @@ public class PoojeController {
 
 	public ModelAndView addExpense(HttpSession session, String RecNo,
 			ModelAndView mv) {
-		Expense expense = defaultTempleMethods.getExpenditure(RecNo);
+		ExpenseData expense = defaultTempleMethods.getExpenditure(RecNo);
 
 		mv.addObject("Expense", expense);
 
@@ -728,7 +728,7 @@ public class PoojeController {
 			ModelAndView mv) {
 
 		if (RecNo != null) {
-			Income income = defaultTempleMethods.getIncome(RecNo);
+			IncomeData income = defaultTempleMethods.getIncome(RecNo);
 			mv.addObject("Income", income);
 			int Amount = income.getAmount().intValue();
 			mv.addObject("InWords",

@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Admin.Service.SuperAdminService;
 import com.Admin.Service.kanajarTempleMethods;
-import com.Admin.Service.Impl.SuperAdminService;
+import com.Admin.Service.Impl.SuperAdminServiceImpl;
 import com.Admin.bean.Donation;
+import com.Admin.bean.Expense;
+import com.Admin.bean.Income;
+import com.Admin.bean.IncomeData;
 import com.Admin.bean.Pooje;
 
 @Controller
@@ -59,6 +63,72 @@ public class SuperAdminController {
 		}
 		return null;
 
+	}
+
+	@RequestMapping(value = "/CUDIncome")
+	public ModelAndView SuperAdminAddIncome(HttpServletRequest request,
+			HttpServletResponse response, Donation dbean) throws IOException {
+
+		ModelAndView mv = new ModelAndView("admin/DonationTemplate");
+		mv.addObject("Income", defaultTempleMethods.getIncome());
+		return mv;
+	}
+
+	@RequestMapping(value = "/CUDIncome/{Code}")
+	public String SuperAdminAddIncome(@PathVariable("Code") String code,
+			HttpServletRequest request, HttpServletResponse response,
+			Income ibean) throws IOException {
+		Integer a = service.CUDIncome (ibean, code);
+		if (a != null) {
+			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDIncome";
+		}
+		return null;
+	}
+
+	@RequestMapping(value = "/CUDIncome/{Code}/{Iid}")
+	public String SuperAdminAddIncome(@PathVariable("Code") String code,
+			@PathVariable("Iid") String Iid, HttpServletRequest request,
+			HttpServletResponse response, Income ibean) throws IOException {
+
+		ibean.setIid(Integer.parseInt(Iid));
+		Integer a = service.CUDIncome(ibean, code);
+		if (a != null) {
+			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDIncome";
+		}
+		return null;
+	}
+
+	@RequestMapping(value = "/CUDExpenditure")
+	public ModelAndView SuperAdminAddExpenditure(HttpServletRequest request,
+			HttpServletResponse response, Donation dbean) throws IOException {
+
+		ModelAndView mv = new ModelAndView("admin/DonationTemplate");
+		mv.addObject("Expenditure", defaultTempleMethods.getExpenditure());
+		return mv;
+	}
+
+	@RequestMapping(value = "/CUDExpenditure/{Code}")
+	public String SuperAdminAddExpenditure(@PathVariable("Code") String code,
+			HttpServletRequest request, HttpServletResponse response,
+			Expense ebean) throws IOException {
+		Integer a = service.CUDExpense(ebean, code);
+		if (a != null) {
+			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDExpenditure";
+		}
+		return null;
+	}
+
+	@RequestMapping(value = "/CUDExpenditure/{Code}/{Eid}")
+	public String SuperAdminAddExpenditure(@PathVariable("Code") String code,
+			@PathVariable("Eid") String Eid, HttpServletRequest request,
+			HttpServletResponse response, Expense ebean) throws IOException {
+
+		ebean.setEid(Integer.parseInt(Eid));
+		Integer a = service.CUDExpense(ebean, code);
+		if (a != null) {
+			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDExpenditure";
+		}
+		return null;
 	}
 
 	@RequestMapping(value = "/CUDDonation")

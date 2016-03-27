@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.Admin.bean.DonationDetail;
-import com.Admin.bean.Expense;
-import com.Admin.bean.Income;
+import com.Admin.bean.ExpenseData;
+import com.Admin.bean.IncomeData;
 import com.Admin.bean.Poojebean;
 import com.Admin.bean.Reportbean;
 import com.Admin.bean.SashwathaPoojebean;
@@ -181,7 +181,7 @@ public class PoojeDao<K> {
 		return report;
 	}
 
-	public Integer addincome(Income ibean) {
+	public Integer addincome(IncomeData ibean) {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(
 				dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
@@ -355,7 +355,7 @@ public class PoojeDao<K> {
 		return report;
 	}
 
-	public String getExpenditureReceipt(Expense ebean) {
+	public String getExpenditureReceipt(ExpenseData ebean) {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(
 				dataSource);
 
@@ -568,7 +568,7 @@ public class PoojeDao<K> {
 		return namedjdbc.update(str, param);
 	}
 
-	public Integer updateExpense(Expense ebean) {
+	public Integer updateExpense(ExpenseData ebean) {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(
 				dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
@@ -586,7 +586,7 @@ public class PoojeDao<K> {
 
 	}
 	
-	public Integer updateIncome(Income ibean)
+	public Integer updateIncome(IncomeData ibean)
 	{
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(
 				dataSource);

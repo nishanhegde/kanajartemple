@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 import com.Admin.Service.kanajarTempleMethods;
 import com.Admin.bean.Donation;
 import com.Admin.bean.DonationDetail;
-import com.Admin.bean.Expense;
+import com.Admin.bean.ExpenseData;
 import com.Admin.bean.Income;
+import com.Admin.bean.IncomeData;
 import com.Admin.bean.Pooje;
 import com.Admin.bean.Poojebean;
 import com.Admin.bean.SashwathaPoojebean;
@@ -78,7 +79,7 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 	}
 
 	@Override
-	public Expense getExpenditure(String Id) {
+	public ExpenseData getExpenditure(String Id) {
 		return defaultTempleMethodsDao.getExpenditure(Id);
 	}
 
@@ -88,13 +89,13 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 	}
 
 	@Override
-	public Income getIncome(String Id) {
-		return defaultTempleMethodsDao.getIncome(Id);
+	public IncomeData getIncomeData(String Id) {
+		return defaultTempleMethodsDao.getIncomeData(Id);
 	}
 
 	@Override
-	public List<Map<String, Object>> getIncome() {
-		return defaultTempleMethodsDao.getIncome();
+	public List<Map<String, Object>> getIncomeData() {
+		return defaultTempleMethodsDao.getIncomeData();
 	}
 
 	@Override
@@ -112,6 +113,16 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 	public boolean checkCurrentPassword(String username, String currentpassword) {
 	
 		return defaultTempleMethodsDao.checkCurrentPassword(username,currentpassword);
+	}
+
+	@Override
+	public Income getIncome(String Id) {
+		return defaultTempleMethodsDao.getIncome(Id);
+	}
+
+	@Override
+	public List<Map<String, Object>> getIncome() {
+		return defaultTempleMethodsDao.getIncome();
 	}
 
 }

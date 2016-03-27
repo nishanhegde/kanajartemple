@@ -7,7 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.Admin.bean.Income;
+import com.Admin.bean.IncomeData;
 import com.Admin.bean.Poojebean;
 import com.Brahmalingeshwara.kanajartemple.KanajarTempleConstants;
 
@@ -17,13 +17,13 @@ public class IncomeValidator implements Validator {
 	private Matcher matcher;
 
 	public boolean supports(Class arg0) {
-		return arg0.equals(Income.class);
+		return arg0.equals(IncomeData.class);
 	}
 
 	@Override
 	public void validate(Object obj, Errors error) {
 
-		Income ibean = (Income) obj;
+		IncomeData ibean = (IncomeData) obj;
 		if (ibean != null) {
 			
 			String edate = ibean.getEdate();

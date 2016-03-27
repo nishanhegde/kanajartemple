@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Admin.bean.DonationDetail;
-import com.Admin.bean.Expense;
-import com.Admin.bean.Income;
+import com.Admin.bean.ExpenseData;
+import com.Admin.bean.IncomeData;
 import com.Admin.bean.Poojebean;
 import com.Admin.bean.Reportbean;
 import com.Admin.bean.SashwathaPoojebean;
@@ -44,7 +44,7 @@ public class PoojeService {
 		return dao.getPoojeReport(rbean);
 	}
 	
-	public Integer addincome(Income ibean)
+	public Integer addincome(IncomeData ibean)
 	{
 		return dao.addincome(ibean);
 	}
@@ -73,7 +73,7 @@ public class PoojeService {
 		return dao.getDonationReport(rbean,DonationName);
 	}
 	
-	public String getExpenditureReceipt(Expense ebean)
+	public String getExpenditureReceipt(ExpenseData ebean)
 	{
 		return dao.getExpenditureReceipt(ebean);
 	}
@@ -104,12 +104,12 @@ public class PoojeService {
 		return dao. updateDonation(dbean);
 	}
 	
-	public Integer updateExpense(Expense ebean)
+	public Integer updateExpense(ExpenseData ebean)
 	{
 		return dao.updateExpense(ebean);
 	}
 	
-	public Integer updateIncome(Income ibean)
+	public Integer updateIncome(IncomeData ibean)
 	{
 		return dao.updateIncome(ibean);
 	}

@@ -7,8 +7,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.Admin.bean.Expense;
-import com.Admin.bean.Income;
+import com.Admin.bean.ExpenseData;
+import com.Admin.bean.IncomeData;
 import com.Admin.bean.Poojebean;
 import com.Brahmalingeshwara.kanajartemple.KanajarTempleConstants;
 
@@ -18,13 +18,13 @@ public class ExpenseValidator implements Validator {
 	private Matcher matcher;
 
 	public boolean supports(Class arg0) {
-		return arg0.equals(Expense.class);
+		return arg0.equals(ExpenseData.class);
 	}
 
 	@Override
 	public void validate(Object obj, Errors error) {
 
-		Expense ebean = (Expense) obj;
+		ExpenseData ebean = (ExpenseData) obj;
 
 		String edate = ebean.getEDate();
 		Double amount = ebean.getAmount();
