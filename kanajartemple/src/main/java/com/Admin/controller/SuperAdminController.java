@@ -25,13 +25,13 @@ import com.Admin.bean.Pooje;
 public class SuperAdminController {
 
 	@Autowired
-	private SuperAdminService service;
+	private SuperAdminService superAdminService;
 	@Autowired
 	private kanajarTempleMethods defaultTempleMethods;
 
 	@RequestMapping(value = "/CUDPooje")
-	public ModelAndView SuperAdminCUDPooje(HttpServletRequest request,
-			HttpServletResponse response, Pooje pbean) throws IOException {
+	public ModelAndView SuperAdminCUDPooje(HttpServletRequest request, HttpServletResponse response, Pooje pbean)
+			throws IOException {
 
 		ModelAndView mv = new ModelAndView("admin/PoojeTemplate");
 		mv.addObject("Poojedata", defaultTempleMethods.getAllPooje());
@@ -39,11 +39,10 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = "/CUDPooje/{Code}")
-	public String SuperAdminCUDPooje(@PathVariable("Code") String code,
-			HttpServletRequest request, HttpServletResponse response,
-			Pooje pbean) throws IOException {
+	public String SuperAdminCUDPooje(@PathVariable("Code") String code, HttpServletRequest request,
+			HttpServletResponse response, Pooje pbean) throws IOException {
 
-		Integer a = service.CUDPooje(pbean, code);
+		Integer a = superAdminService.CUDPooje(pbean, code);
 		if (a != null) {
 			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDPooje";
 		}
@@ -52,12 +51,11 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = "/CUDPooje/{Code}/{Pid}")
-	public String SuperAdminCUDPooje(@PathVariable("Code") String code,
-			@PathVariable("Pid") String Pid, HttpServletRequest request,
-			HttpServletResponse response, Pooje pbean) throws IOException {
+	public String SuperAdminCUDPooje(@PathVariable("Code") String code, @PathVariable("Pid") String Pid,
+			HttpServletRequest request, HttpServletResponse response, Pooje pbean) throws IOException {
 
 		pbean.setPid(Integer.valueOf(Pid));
-		Integer a = service.CUDPooje(pbean, code);
+		Integer a = superAdminService.CUDPooje(pbean, code);
 		if (a != null) {
 			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDPooje";
 		}
@@ -66,19 +64,18 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = "/CUDIncome")
-	public ModelAndView SuperAdminAddIncome(HttpServletRequest request,
-			HttpServletResponse response, Donation dbean) throws IOException {
+	public ModelAndView SuperAdminAddIncome(HttpServletRequest request, HttpServletResponse response, Donation dbean)
+			throws IOException {
 
-		ModelAndView mv = new ModelAndView("admin/DonationTemplate");
+		ModelAndView mv = new ModelAndView("admin/IncomeTemplate");
 		mv.addObject("Income", defaultTempleMethods.getIncome());
 		return mv;
 	}
 
 	@RequestMapping(value = "/CUDIncome/{Code}")
-	public String SuperAdminAddIncome(@PathVariable("Code") String code,
-			HttpServletRequest request, HttpServletResponse response,
-			Income ibean) throws IOException {
-		Integer a = service.CUDIncome (ibean, code);
+	public String SuperAdminAddIncome(@PathVariable("Code") String code, HttpServletRequest request,
+			HttpServletResponse response, Income ibean) throws IOException {
+		Integer a = superAdminService.CUDIncome(ibean, code);
 		if (a != null) {
 			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDIncome";
 		}
@@ -86,12 +83,11 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = "/CUDIncome/{Code}/{Iid}")
-	public String SuperAdminAddIncome(@PathVariable("Code") String code,
-			@PathVariable("Iid") String Iid, HttpServletRequest request,
-			HttpServletResponse response, Income ibean) throws IOException {
+	public String SuperAdminAddIncome(@PathVariable("Code") String code, @PathVariable("Iid") String Iid,
+			HttpServletRequest request, HttpServletResponse response, Income ibean) throws IOException {
 
 		ibean.setIid(Integer.parseInt(Iid));
-		Integer a = service.CUDIncome(ibean, code);
+		Integer a = superAdminService.CUDIncome(ibean, code);
 		if (a != null) {
 			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDIncome";
 		}
@@ -99,19 +95,18 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = "/CUDExpenditure")
-	public ModelAndView SuperAdminAddExpenditure(HttpServletRequest request,
-			HttpServletResponse response, Donation dbean) throws IOException {
+	public ModelAndView SuperAdminAddExpenditure(HttpServletRequest request, HttpServletResponse response,
+			Donation dbean) throws IOException {
 
-		ModelAndView mv = new ModelAndView("admin/DonationTemplate");
+		ModelAndView mv = new ModelAndView("admin/ExpenditureTemplate");
 		mv.addObject("Expenditure", defaultTempleMethods.getExpenditure());
 		return mv;
 	}
 
 	@RequestMapping(value = "/CUDExpenditure/{Code}")
-	public String SuperAdminAddExpenditure(@PathVariable("Code") String code,
-			HttpServletRequest request, HttpServletResponse response,
-			Expense ebean) throws IOException {
-		Integer a = service.CUDExpense(ebean, code);
+	public String SuperAdminAddExpenditure(@PathVariable("Code") String code, HttpServletRequest request,
+			HttpServletResponse response, Expense ebean) throws IOException {
+		Integer a = superAdminService.CUDExpense(ebean, code);
 		if (a != null) {
 			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDExpenditure";
 		}
@@ -119,12 +114,11 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = "/CUDExpenditure/{Code}/{Eid}")
-	public String SuperAdminAddExpenditure(@PathVariable("Code") String code,
-			@PathVariable("Eid") String Eid, HttpServletRequest request,
-			HttpServletResponse response, Expense ebean) throws IOException {
+	public String SuperAdminAddExpenditure(@PathVariable("Code") String code, @PathVariable("Eid") String Eid,
+			HttpServletRequest request, HttpServletResponse response, Expense ebean) throws IOException {
 
 		ebean.setEid(Integer.parseInt(Eid));
-		Integer a = service.CUDExpense(ebean, code);
+		Integer a = superAdminService.CUDExpense(ebean, code);
 		if (a != null) {
 			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDExpenditure";
 		}
@@ -132,8 +126,8 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = "/CUDDonation")
-	public ModelAndView SuperAdminAddDonation(HttpServletRequest request,
-			HttpServletResponse response, Donation dbean) throws IOException {
+	public ModelAndView SuperAdminAddDonation(HttpServletRequest request, HttpServletResponse response, Donation dbean)
+			throws IOException {
 
 		ModelAndView mv = new ModelAndView("admin/DonationTemplate");
 		mv.addObject("Poojedata", defaultTempleMethods.getDonation());
@@ -141,10 +135,9 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = "/CUDDonation/{Code}")
-	public String SuperAdminAddDonation(@PathVariable("Code") String code,
-			HttpServletRequest request, HttpServletResponse response,
-			Donation dbean) throws IOException {
-		Integer a = service.CUDDonation(dbean, code);
+	public String SuperAdminAddDonation(@PathVariable("Code") String code, HttpServletRequest request,
+			HttpServletResponse response, Donation dbean) throws IOException {
+		Integer a = superAdminService.CUDDonation(dbean, code);
 		if (a != null) {
 			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDDonation";
 		}
@@ -152,12 +145,11 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = "/CUDDonation/{Code}/{Did}")
-	public String SuperAdminAddDonation(@PathVariable("Code") String code,
-			@PathVariable("Did") String Did, HttpServletRequest request,
-			HttpServletResponse response, Donation dbean) throws IOException {
+	public String SuperAdminAddDonation(@PathVariable("Code") String code, @PathVariable("Did") String Did,
+			HttpServletRequest request, HttpServletResponse response, Donation dbean) throws IOException {
 
 		dbean.setDid(Integer.parseInt(Did));
-		Integer a = service.CUDDonation(dbean, code);
+		Integer a = superAdminService.CUDDonation(dbean, code);
 		if (a != null) {
 			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDDonation";
 		}
@@ -165,53 +157,50 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = "/ApproveAdmin")
-	public ModelAndView ApproveAdmin(HttpServletRequest request,
-			HttpServletResponse response, Donation dbean) throws IOException {
+	public ModelAndView ApproveAdmin(HttpServletRequest request, HttpServletResponse response, Donation dbean)
+			throws IOException {
 		ModelAndView mv = new ModelAndView("admin/ApproveAdmin");
-		mv.addObject("Admins", service.getAdmin());
+		mv.addObject("Admins", superAdminService.getAdmin());
 		return mv;
 
 	}
 
 	@RequestMapping(value = "/RejectAdmin")
-	public ModelAndView RejectAdmin(HttpServletRequest request,
-			HttpServletResponse response, Donation dbean) throws IOException {
+	public ModelAndView RejectAdmin(HttpServletRequest request, HttpServletResponse response, Donation dbean)
+			throws IOException {
 		ModelAndView mv = new ModelAndView("admin/RejectAdmin");
-		mv.addObject("Admins", service.getAdminToReject());
+		mv.addObject("Admins", superAdminService.getAdminToReject());
 		return mv;
 
 	}
 
 	@RequestMapping(value = "/Approve/{id}")
-	public ModelAndView ApproveAdmin(@PathVariable("id") String id,
-			HttpServletRequest request, HttpServletResponse response,
-			Donation dbean) throws IOException {
+	public ModelAndView ApproveAdmin(@PathVariable("id") String id, HttpServletRequest request,
+			HttpServletResponse response, Donation dbean) throws IOException {
 
-		Integer a = service.approveAdmin(id);
+		Integer a = superAdminService.approveAdmin(id);
 		ModelAndView mv = new ModelAndView("admin/ApproveAdmin");
-		mv.addObject("Admins", service.getAdmin());
+		mv.addObject("Admins", superAdminService.getAdmin());
 		return mv;
 	}
 
 	@RequestMapping(value = "/Reject/{id}")
-	public ModelAndView RejectAdmin(@PathVariable("id") String id,
-			HttpServletRequest request, HttpServletResponse response,
-			Donation dbean) throws IOException {
+	public ModelAndView RejectAdmin(@PathVariable("id") String id, HttpServletRequest request,
+			HttpServletResponse response, Donation dbean) throws IOException {
 
-		Integer a = service.rejectAdmin(id);
+		Integer a = superAdminService.rejectAdmin(id);
 		ModelAndView mv = new ModelAndView("admin/RejectAdmin");
-		mv.addObject("Admins", service.getAdminToReject());
+		mv.addObject("Admins", superAdminService.getAdminToReject());
 		return mv;
 	}
 
 	@RequestMapping(value = "/Delete/{id}")
-	public ModelAndView DeleteAdmin(@PathVariable("id") String id,
-			HttpServletRequest request, HttpServletResponse response,
-			Donation dbean) throws IOException {
+	public ModelAndView DeleteAdmin(@PathVariable("id") String id, HttpServletRequest request,
+			HttpServletResponse response, Donation dbean) throws IOException {
 
-		Integer a = service.deleteAdmin(id);
+		Integer a = superAdminService.deleteAdmin(id);
 		ModelAndView mv = new ModelAndView("admin/ApproveAdmin");
-		mv.addObject("Admins", service.getAdmin());
+		mv.addObject("Admins", superAdminService.getAdmin());
 		return mv;
 	}
 }

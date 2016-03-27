@@ -86,8 +86,8 @@
 
 	<!-- Super Admin part starts -->
 
-	<beans:bean class="com.Admin.Service.Impl.SuperAdminService" />
-	<beans:bean class="com.Admin.dao.impl.SuperAdminDao" />
+	<beans:bean id="superAdminService" class="com.Admin.Service.Impl.SuperAdminServiceImpl" />
+	<beans:bean id="superAdminDao" class="com.Admin.dao.impl.SuperAdminDaoImpl" />
 
 	<!-- Pooje part starts -->
 

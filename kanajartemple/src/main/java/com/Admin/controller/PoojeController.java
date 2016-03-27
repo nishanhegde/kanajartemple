@@ -728,7 +728,7 @@ public class PoojeController {
 			ModelAndView mv) {
 
 		if (RecNo != null) {
-			IncomeData income = defaultTempleMethods.getIncome(RecNo);
+			IncomeData income = defaultTempleMethods.getIncomeData(RecNo);
 			mv.addObject("Income", income);
 			int Amount = income.getAmount().intValue();
 			mv.addObject("InWords",

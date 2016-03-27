@@ -15,9 +15,9 @@ import com.Admin.bean.Expense;
 import com.Admin.bean.Income;
 import com.Admin.bean.Pooje;
 import com.Admin.bean.Poojebean;
-import com.Admin.controller.SuperAdminDao;
+import com.Admin.dao.SuperAdminDao;
 
-@Component("dao")
+@Component
 public class SuperAdminDaoImpl implements SuperAdminDao {
 
 	@Autowired
@@ -154,13 +154,13 @@ public class SuperAdminDaoImpl implements SuperAdminDao {
 		param.put("code", code);
 		String sql = null;
 		if (code.equalsIgnoreCase("insert")) {
-			sql = "insert into expense(ExpenseName) values(:ExpenseName)";
+			sql = "insert into expenditure(ExpenditureName) values(:ExpenseName)";
 		}
 		if (code.equalsIgnoreCase("update")) {
-			sql = "update expense set ExpenseName=:ExpenseName where Eid=:Eid";
+			sql = "update expenditure set ExpenditureName=:ExpenseName where Eid=:Eid";
 		}
 		if (code.equalsIgnoreCase("delete")) {
-			sql = "update expense set Status='Inactive' where Eid=:Eid";
+			sql = "update expenditure set Status='Inactive' where Eid=:Eid";
 		}
 		return namedjdbc.update(sql, param);
 	}

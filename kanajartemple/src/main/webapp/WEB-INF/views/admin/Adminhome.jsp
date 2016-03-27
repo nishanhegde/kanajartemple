@@ -171,6 +171,10 @@
 							code="label.superadmin.activities.add.pooje" /></li></a>
 				<a href="" data-reveal-id="Donation"><li><spring:message
 							code="label.superadmin.activities.add.donation" /></li></a>
+							<a href="" data-reveal-id="Income"><li><spring:message
+							code="label.superadmin.activities.add.income" /></li></a>
+							<a href="" data-reveal-id="Expense"><li><spring:message
+							code="label.superadmin.activities.add.expense" /></li></a>
 				<!-- <a href=""><li>Upload Photo</li></a> -->
 
 			</ul>
@@ -311,6 +315,64 @@
 						<td><input type="text" name="DonationName"
 							required="required" id="DonationName"
 							onfocus="enable('DonationName')" /></td>
+					</tr>
+
+					<tr>
+						<th></th>
+						<td><input type="submit"
+							value="<spring:message code="label.submit" />" /><input
+							type="reset" value="<spring:message code="label.clear" />" /></td>
+					</tr>
+				</table>
+			</form>
+		</center>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<!-- Adding Donation -->
+	<div id="Income" class="reveal-modal">
+		<center>
+			<p class="headingfont">
+				<spring:message code="label.add.income" />
+			</p>
+			<hr />
+			<form action="<c:url value="/SuperAdmin/CUDIncome/insert"/>"
+				id="Income" name="Income" required="required" method="post">
+				<table>
+					<tr>
+						<th><spring:message code="label.incomename" /></th>
+						<td><input type="text" name="IncomeName"
+							required="required" id="IncomeName"
+							onfocus="enable('IncomeName')" /></td>
+					</tr>
+
+					<tr>
+						<th></th>
+						<td><input type="submit"
+							value="<spring:message code="label.submit" />" /><input
+							type="reset" value="<spring:message code="label.clear" />" /></td>
+					</tr>
+				</table>
+			</form>
+		</center>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<!-- Adding Donation -->
+	<div id="Expense" class="reveal-modal">
+		<center>
+			<p class="headingfont">
+				<spring:message code="label.add.donation" />
+			</p>
+			<hr />
+			<form action="<c:url value="/SuperAdmin/CUDExpenditure/insert"/>"
+				id="Expense" name="Expense" required="required" method="post">
+				<table>
+					<tr>
+						<th><spring:message code="label.expensename" /></th>
+						<td><input type="text" name="ExpenseName"
+							required="required" id="ExpenseName"
+							onfocus="enable('ExpenseName')" /></td>
 					</tr>
 
 					<tr>
