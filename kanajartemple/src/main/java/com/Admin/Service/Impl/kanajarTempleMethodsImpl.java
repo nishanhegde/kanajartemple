@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.Admin.Service.kanajarTempleMethods;
 import com.Admin.bean.Donation;
 import com.Admin.bean.DonationDetail;
+import com.Admin.bean.Expense;
 import com.Admin.bean.ExpenseData;
 import com.Admin.bean.Income;
 import com.Admin.bean.IncomeData;
@@ -79,13 +80,23 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 	}
 
 	@Override
-	public ExpenseData getExpenditure(String Id) {
+	public Expense getExpenditure(String Id) {
 		return defaultTempleMethodsDao.getExpenditure(Id);
 	}
 
 	@Override
 	public List<Map<String, Object>> getExpenditure() {
 		return defaultTempleMethodsDao.getExpenditure();
+	}
+
+	@Override
+	public ExpenseData getExpenditureData(String Id) {
+		return defaultTempleMethodsDao.getExpenditureData(Id);
+	}
+
+	@Override
+	public List<Map<String, Object>> getExpenditureData() {
+		return defaultTempleMethodsDao.getExpenditureData();
 	}
 
 	@Override

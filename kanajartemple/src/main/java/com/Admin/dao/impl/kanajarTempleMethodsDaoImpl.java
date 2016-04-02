@@ -14,6 +14,7 @@ import org.springframework.util.CollectionUtils;
 import com.Admin.RowMapper.DonationDataRowMapper;
 import com.Admin.RowMapper.DonationRowMapper;
 import com.Admin.RowMapper.ExpenceDataRowMapper;
+import com.Admin.RowMapper.ExpenseRowMapper;
 import com.Admin.RowMapper.IncomeDataRowMapper;
 import com.Admin.RowMapper.IncomeRowMapper;
 import com.Admin.RowMapper.PoojeDataRowMapper;
@@ -21,6 +22,7 @@ import com.Admin.RowMapper.PoojeRowMapper;
 import com.Admin.RowMapper.SashwathaPoojeRowMapper;
 import com.Admin.bean.Donation;
 import com.Admin.bean.DonationDetail;
+import com.Admin.bean.Expense;
 import com.Admin.bean.ExpenseData;
 import com.Admin.bean.Income;
 import com.Admin.bean.IncomeData;
@@ -143,7 +145,24 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 	}
 
 	@Override
-	public ExpenseData getExpenditure(String Id) {
+	public Expense getExpenditure(String Id) {
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("ExpenseId", Id);
+		String str = "select * from expenditure where Eid=:ExpenseId";
+		return namedjdbc.queryForObject(str, param, new ExpenseRowMapper());
+	}
+
+	@Override
+	public List<Map<String, Object>> getExpenditure() {
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+		Map<String, Object> param = new HashMap<String, Object>();
+		String str = "select * from expenditure where Status='Active'";
+		return namedjdbc.queryForList(str, param);
+	}
+
+	@Override
+	public ExpenseData getExpenditureData(String Id) {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Id", Id);
@@ -152,19 +171,18 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 	}
 
 	@Override
-	public List<Map<String, Object>> getExpenditure() {
+	public List<Map<String, Object>> getExpenditureData() {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
 		String str = "select RecNo,Title,Description,Amount,DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,BDate from expenditure";
 		return namedjdbc.queryForList(str, param);
 	}
-
 	@Override
 	public List<Map<String, Object>> getIncome() {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
 
-		String str = "select * from donation where Status='Active'";
+		String str = "select * from income where Status='Active'";
 		return namedjdbc.queryForList(str, param);
 
 	}
@@ -174,7 +192,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("IncomeId", Id);
-		String str = "select * from donation where Did=:DonationId";
+		String str = "select * from income where Iid=:IncomeId";
 		return namedjdbc.queryForObject(str, param, new IncomeRowMapper());
 	}
 

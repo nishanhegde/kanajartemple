@@ -20,24 +20,26 @@
 			<thead>
 				<tr>
 					<th><spring:message code="label.id" /></th>
-					<th><spring:message code="label.donation.name" /></th>
+					<th><spring:message code="label.expense.name" /></th>
 					<th><spring:message code="label.edit" /></th>
-
 					<th><spring:message code="label.delete" /></th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:if test="${fun:length(Poojedata) > 0}">
-					<c:forEach items="${Poojedata}" var="app" varStatus="status">
+				<c:if test="${fun:length(Expenditure) > 0}">
+					<c:forEach items="${Expenditure}" var="app" varStatus="status">
 
-						<div id="Donation${status.count}" class="reveal-modal">
-							
-							<form action="<c:url value="/SuperAdmin/CUDDonation/update"/>"
-								id="Donation"  name="Donation" required="required" method="post"
-								>
-								<input type="hidden" name="Did" value="${app.Did}" /> <spring:message code="label.donation.name" /> <input type="text" name="DonationName" required="required"
-									id="DonationName" onfocus="enable('DonationName')" value="${app.DonationName}" /> <input
-									type="submit" value="<spring:message code="label.update" /> " />
+						<div id="Expenditure${status.count}" class="reveal-modal">
+
+							<form action="<c:url value="/SuperAdmin/CUDExpenditure/update"/>"
+								id="Expense" name="Expense" required="required"
+								method="post">
+								<input type="hidden" name="Eid" value="${app.Eid}" />
+								<spring:message code="label.expense.name" />
+								<input type="text" name="ExpenseName" required="required"
+									id="ExpenseName" onfocus="enable('ExpenseName')"
+									value="${app.ExpenditureName}" /> <input type="submit"
+									value="<spring:message code="label.update" /> " />
 
 							</form>
 
@@ -49,16 +51,17 @@
 							<!-- data -->
 							<td class="td-block">
 
-								<p class="title">${app.Did}</p>
+								<p class="title">${app.Eid}</p>
 
 							</td>
-							<td><p class="desc">${app.DonationName}</td>
+							<td><p class="desc">${app.ExpenditureName}</td>
 
 							<td class="td-block">
 
 								<p>
 									<a href="#" class="big-link"
-										data-reveal-id="Donation${status.count}"><spring:message code="label.edit" /></a>
+										data-reveal-id="Expenditure${status.count}"><spring:message
+											code="label.edit" /></a>
 								</p>
 							</td>
 
@@ -66,8 +69,9 @@
 
 								<p>
 									<a
-										href="<c:url value="../SuperAdmin/CUDDonation/delete/${app.Did}"/>"
-										onclick="return confirmDelete()"><spring:message code="label.delete" /></a>
+										href="<c:url value="../SuperAdmin/CUDExpenditure/delete/${app.Eid}"/>"
+										onclick="return confirmDelete()"><spring:message
+											code="label.delete" /></a>
 								</p>
 							</td>
 

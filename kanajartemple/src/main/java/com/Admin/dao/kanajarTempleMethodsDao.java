@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.Admin.bean.Donation;
 import com.Admin.bean.DonationDetail;
+import com.Admin.bean.Expense;
 import com.Admin.bean.ExpenseData;
 import com.Admin.bean.Income;
 import com.Admin.bean.IncomeData;
@@ -36,9 +37,13 @@ public interface kanajarTempleMethodsDao {
 
 	public List<Map<String, Object>> getDonationDataDetail(String DonationId);
 
-	public ExpenseData getExpenditure(String Id);
+	public Expense getExpenditure(String Id);
 
 	public List<Map<String, Object>> getExpenditure();
+
+	public ExpenseData getExpenditureData(String Id);
+
+	public List<Map<String, Object>> getExpenditureData();
 
 	public Income getIncome(String Id);
 

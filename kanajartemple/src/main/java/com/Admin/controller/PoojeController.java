@@ -711,7 +711,7 @@ public class PoojeController {
 
 	public ModelAndView addExpense(HttpSession session, String RecNo,
 			ModelAndView mv) {
-		ExpenseData expense = defaultTempleMethods.getExpenditure(RecNo);
+		ExpenseData expense = defaultTempleMethods.getExpenditureData(RecNo);
 
 		mv.addObject("Expense", expense);
 

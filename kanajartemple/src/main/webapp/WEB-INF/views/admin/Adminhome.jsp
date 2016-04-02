@@ -192,6 +192,10 @@
 							code="label.superadmin.activities.delete.pooje" /></li></a>
 				<a href="<c:url value="/SuperAdmin/CUDDonation"/>"><li><spring:message
 							code="label.superadmin.activities.delete.donation" /></li></a>
+							<a href="<c:url value="/SuperAdmin/CUDIncome"/>"><li><spring:message
+							code="label.superadmin.activities.delete.income" /></li></a>
+				<a href="<c:url value="/SuperAdmin/CUDExpenditure"/>"><li><spring:message
+							code="label.superadmin.activities.delete.expenditure" /></li></a>
 				<!-- <a href=""><li>Delete Photo</li></a> -->
 			</ul>
 		</div>
