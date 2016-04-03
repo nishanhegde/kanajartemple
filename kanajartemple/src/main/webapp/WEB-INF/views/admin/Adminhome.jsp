@@ -66,7 +66,7 @@
 		</div>
 		<div class="padd">
 			<ul>
-				<a href="<c:url value="/Admin/AddIncome"/>"><li><spring:message
+				<a href="<c:url value="/Admin/income"/>"><li><spring:message
 							code="label.add" /></li></a>
 				<a href="<c:url value="/Admin/IncomeList"/>"><li><spring:message
 							code="label.list" /></li></a>

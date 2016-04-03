@@ -90,23 +90,23 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 	}
 
 	@Override
-	public ExpenseData getExpenditureData(String Id) {
+	public ExpenseData getExpenditureData(String RecNo,String Id) {
+		return defaultTempleMethodsDao.getExpenditureData(RecNo,Id);
+	}
+
+	@Override
+	public List<Map<String, Object>> getExpenditureData(String Id) {
 		return defaultTempleMethodsDao.getExpenditureData(Id);
 	}
 
 	@Override
-	public List<Map<String, Object>> getExpenditureData() {
-		return defaultTempleMethodsDao.getExpenditureData();
+	public IncomeData getIncomeData(String RecNo,String Id) {
+		return defaultTempleMethodsDao.getIncomeData(RecNo,Id);
 	}
 
 	@Override
-	public IncomeData getIncomeData(String Id) {
+	public List<Map<String, Object>> getIncomeData(String Id) {
 		return defaultTempleMethodsDao.getIncomeData(Id);
-	}
-
-	@Override
-	public List<Map<String, Object>> getIncomeData() {
-		return defaultTempleMethodsDao.getIncomeData();
 	}
 
 	@Override

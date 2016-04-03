@@ -24,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Admin.Service.kanajarTempleMethods;
@@ -302,15 +303,18 @@ public class PoojeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/AddIncome")
+	@RequestMapping(value = "/income" ,method = RequestMethod.GET)
 	public ModelAndView AdminAddIncome(HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/Income");
+		mv.addObject("IncomeDetails", defaultTempleMethods.getIncome());
 		mv.addObject(new IncomeData());
 		return mv;
 	}
+	
+	
 
-	@RequestMapping(value = "/AddIncomeSuccess")
+	@RequestMapping(value = "/income",method = RequestMethod.POST)
 	public String AdminAddIncomeSuccess(HttpServletRequest request,
 			HttpServletResponse response, @ModelAttribute IncomeData ibean,
 			Model mv, BindingResult bindingResult, Locale locale) {
@@ -328,6 +332,7 @@ public class PoojeController {
 				return REDIRECTPREFIX + "/Admin/AddIncome/" + RecNo;
 			}
 		}
+		mv.addAttribute("IncomeDetails", defaultTempleMethods.getIncome());
 		return "admin/Income";
 	}
 

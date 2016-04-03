@@ -3,17 +3,23 @@ package com.Admin.bean;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-
-
 public class IncomeData {
 
+	private Integer Iid;
 	private Integer RecNo;
 	private String title;
 	private Double Amount;
 	private String Edate;
 	private Timestamp Bdate;
-	
-	
+
+	public Integer getIid() {
+		return Iid;
+	}
+
+	public void setIid(Integer iid) {
+		Iid = iid;
+	}
+
 	public String getEdate() {
 		return Edate;
 	}
@@ -22,7 +28,6 @@ public class IncomeData {
 		Edate = edate;
 	}
 
-	
 	public Integer getRecNo() {
 		return RecNo;
 	}
@@ -55,5 +60,4 @@ public class IncomeData {
 		Bdate = bdate;
 	}
 
-	
 }

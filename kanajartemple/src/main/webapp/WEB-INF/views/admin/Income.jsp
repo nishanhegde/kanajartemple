@@ -11,39 +11,50 @@
 		<h1>
 			<spring:message code="label.income" />
 		</h1>
-		<c:url value="../Admin/AddIncomeSuccess" var="url" />
-		<form:form action="${url}" commandName="income" method="post" target="_blank">
+		<form:form  commandName="incomeData" method="post"
+			target="_blank">
 			<span class="invalid">${message}</span>
-			<table >
-
+			<table>
+				<tr>
+					<th><spring:message code="label.income.name" /> *</th>
+					<td><select name="Iid">
+							<c:forEach items="${IncomeDetails}" var="income">
+								<option value="${income.Iid}">${income.IncomeName}</option>
+							</c:forEach>
+					</select>
+				</tr>
 				<tr>
 					<th><spring:message code="label.income.title" /></th>
-					<td><core:bind path="income.title">
+					<td><core:bind path="incomeData.title">
 							<div class="error">${status.errorMessage}</div>
 							<input type="text" name="title" onfocus="enable('title')"
-								id="title" required  value='${status.value}' />
+								id="title" required value='${status.value}' />
 						</core:bind></td>
 				</tr>
 				<tr>
 					<th><spring:message code="label.amount" /></th>
-					<td><core:bind path="income.Amount">
-							<div class="error">${status.errorMessage}</div><input
-						type="number" name="Amount" required  value='${status.value}' placeholder="&#8377"/></core:bind></td>
+					<td><core:bind path="incomeData.Amount">
+							<div class="error">${status.errorMessage}</div>
+							<input type="number" name="Amount" required
+								value='${status.value}' placeholder="&#8377" />
+						</core:bind></td>
 				</tr>
 
 
 				<tr>
 					<th><spring:message code="label.date" /></th>
-					<td><core:bind path="income.Edate">
-							<div class="error">${status.errorMessage}</div><input type="text" id="date"
-						name="Edate" id="date" class="tcal" required  value='${status.value}'/></core:bind></td>
+					<td><core:bind path="incomeData.Edate">
+							<div class="error">${status.errorMessage}</div>
+							<input type="text" id="date" name="Edate" id="date" class="tcal"
+								required value='${status.value}' />
+						</core:bind></td>
 				</tr>
 
 				<tr>
 					<th></th>
 					<td><input type="submit"
-						value="<spring:message code="label.submit" /> " /><input type="reset"
-						value="<spring:message code="label.clear" /> " /></td>
+						value="<spring:message code="label.submit" /> " /><input
+						type="reset" value="<spring:message code="label.clear" /> " /></td>
 				</tr>
 
 			</table>

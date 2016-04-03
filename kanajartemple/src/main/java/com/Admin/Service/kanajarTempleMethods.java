@@ -41,17 +41,17 @@ public interface kanajarTempleMethods {
 
 	public List<Map<String, Object>> getExpenditure();
 	
-	public ExpenseData getExpenditureData(String Id);
+	public ExpenseData getExpenditureData(String RecNo,String Id);
 
-	public List<Map<String, Object>> getExpenditureData();
+	public List<Map<String, Object>> getExpenditureData(String Id);
 	
 	public Income getIncome(String Id);
 
 	public List<Map<String, Object>> getIncome();
 	
-	public IncomeData getIncomeData(String Id);
+	public IncomeData getIncomeData(String RecNo,String Id);
 
-	public List<Map<String, Object>> getIncomeData();
+	public List<Map<String, Object>> getIncomeData(String Id);
 	
 	public boolean checkEmailId(String emailid,String id);
 	

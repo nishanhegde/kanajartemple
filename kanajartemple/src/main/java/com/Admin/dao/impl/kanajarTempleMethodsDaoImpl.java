@@ -162,19 +162,21 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 	}
 
 	@Override
-	public ExpenseData getExpenditureData(String Id) {
+	public ExpenseData getExpenditureData(String RecNo,String Id) {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("RecNo", RecNo);
 		param.put("Id", Id);
-		String str = "select RecNo,Title,Description,Amount,DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,BDate from expenditure where RecNo=:Id";
+		String str = "select RecNo,Title,Description,Amount,DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,BDate from allexpendituredata where RecNo=:RecNo and Eid=:Id";
 		return namedjdbc.queryForObject(str, param, new ExpenceDataRowMapper());
 	}
 
 	@Override
-	public List<Map<String, Object>> getExpenditureData() {
+	public List<Map<String, Object>> getExpenditureData(String expenseId) {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
-		String str = "select RecNo,Title,Description,Amount,DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,BDate from expenditure";
+		param.put("Eid", expenseId);
+		String str = "select RecNo,Title,Description,Amount,DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,BDate from allexpendituredata where Eid=:Eid";
 		return namedjdbc.queryForList(str, param);
 	}
 	@Override
@@ -197,19 +199,21 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 	}
 
 	@Override
-	public IncomeData getIncomeData(String Id) {
+	public IncomeData getIncomeData(String RecNo,String Id) {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("RecNo", RecNo);
 		param.put("Id", Id);
-		String str = "select RecNo,title,Amount,DATE_FORMAT(Edate, '%d-%m-%Y') as Edate,Bdate from income where RecNo=:Id";
+		String str = "select RecNo,title,Amount,DATE_FORMAT(Edate, '%d-%m-%Y') as Edate,Bdate from allincomedata where RecNo=:RecNo and Iid=:Id";
 		return namedjdbc.queryForObject(str, param, new IncomeDataRowMapper());
 	}
 
 	@Override
-	public List<Map<String, Object>> getIncomeData() {
+	public List<Map<String, Object>> getIncomeData(String incomeId) {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
-		String str = "select RecNo,title,Amount,DATE_FORMAT(Edate, '%d-%m-%Y') as Edate,Bdate from income";
+		param.put("Id", incomeId);
+		String str = "select RecNo,title,Amount,DATE_FORMAT(Edate, '%d-%m-%Y') as Edate,Bdate from income where=:Id";
 		return namedjdbc.queryForList(str, param);
 	}
 
