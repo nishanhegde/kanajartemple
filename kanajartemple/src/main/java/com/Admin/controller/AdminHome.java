@@ -156,7 +156,7 @@ public class AdminHome {
 
 			if (i == 1) {
 				invalidateSecuritySession();
-				return PoojeController.REDIRECTPREFIX + "/Admin/home";
+				return AdminController.REDIRECTPREFIX + "/Admin/home";
 			} else {
 				model.addAttribute("message",
 						messageSource.getMessage("message.error", null, locale));
@@ -189,7 +189,7 @@ public class AdminHome {
 			Integer i = service.changePassword(cpbean, getCurrentUser());
 			if (i == 1) {
 				invalidateSecuritySession();
-				return PoojeController.REDIRECTPREFIX + "/Admin/Home";
+				return AdminController.REDIRECTPREFIX + "/Admin/Home";
 			} else {
 				model.addAttribute("message",
 						messageSource.getMessage("message.error", null, locale));

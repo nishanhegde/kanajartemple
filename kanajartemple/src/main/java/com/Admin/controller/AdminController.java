@@ -47,7 +47,7 @@ import com.Brahmalingeshwara.kanajartemple.Utills;
 
 @Controller
 @RequestMapping(value = "/Admin")
-public class PoojeController {
+public class AdminController {
 
 	public static String REDIRECTPREFIX = "redirect:";
 
@@ -76,9 +76,8 @@ public class PoojeController {
 	private ExpenseValidator expenseValidator;
 
 	@RequestMapping(value = "/PoojeReceipt/{PoojeId}")
-	public ModelAndView AdminPoojeReceipt(
-			@PathVariable("PoojeId") String Poojeid,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView AdminPoojeReceipt(@PathVariable("PoojeId") String Poojeid, HttpServletRequest request,
+			HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/PoojeReciept");
 		mv.addObject("Pooje", defaultTempleMethods.getPooje(Poojeid));
@@ -87,14 +86,12 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/AddPoojeReceipt")
-	public String AdmimAddPoojeReceipt(@ModelAttribute Poojebean pbean,
-			HttpServletRequest req, HttpServletResponse response,
-			BindingResult bindingResult, Model model) throws IOException {
+	public String AdmimAddPoojeReceipt(@ModelAttribute Poojebean pbean, HttpServletRequest req,
+			HttpServletResponse response, BindingResult bindingResult, Model model) throws IOException {
 
 		poojeValidator.validate(pbean, bindingResult);
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("Pooje",
-					defaultTempleMethods.getPooje(pbean.getPid().toString()));
+			model.addAttribute("Pooje", defaultTempleMethods.getPooje(pbean.getPid().toString()));
 			model.addAttribute(pbean);
 			return "admin/PoojeReciept";
 		} else {
@@ -106,8 +103,7 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/AddPoojeReceipt/{PoojeID}/{RecNo}")
-	public ModelAndView AdminAddPoojeReceipt(
-			@PathVariable("PoojeID") String PoojeID,
+	public ModelAndView AdminAddPoojeReceipt(@PathVariable("PoojeID") String PoojeID,
 			@PathVariable("RecNo") String RecNo, HttpServletRequest req) {
 
 		HttpSession session = req.getSession();
@@ -116,8 +112,8 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/EditPooje/{PoojeID}/{RecNo}")
-	public ModelAndView EditPooje(@PathVariable("PoojeID") String PoojeID,
-			@PathVariable("RecNo") String RecNo, HttpServletRequest req) {
+	public ModelAndView EditPooje(@PathVariable("PoojeID") String PoojeID, @PathVariable("RecNo") String RecNo,
+			HttpServletRequest req) {
 
 		ModelAndView mv = new ModelAndView("admin/PoojeEdit");
 		mv.addObject(new Poojebean());
@@ -125,9 +121,8 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/UpdatePooje")
-	public ModelAndView UpdatePooje(@ModelAttribute Poojebean pbean,
-			HttpServletRequest request, HttpServletResponse response,
-			BindingResult bindingResult, Locale locale) {
+	public ModelAndView UpdatePooje(@ModelAttribute Poojebean pbean, HttpServletRequest request,
+			HttpServletResponse response, BindingResult bindingResult, Locale locale) {
 
 		poojeValidator.validate(pbean, bindingResult);
 		String PoojeID = pbean.getPid().toString();
@@ -141,8 +136,7 @@ public class PoojeController {
 		} else {
 			Integer i = service.updatePooje(pbean);
 			if (i == 1) {
-				mv.addObject("message", messageSource.getMessage(
-						"update.success", null, locale));
+				mv.addObject("message", messageSource.getMessage("update.success", null, locale));
 				mv.addObject(new Poojebean());
 				return getPoojeDetails(mv, PoojeID, RNO);
 			}
@@ -151,23 +145,18 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/PoojeReceiptList/{PoojeID}")
-	public ModelAndView AdminPoojeReceiptList(
-			@PathVariable("PoojeID") String PoojeID,
-			HttpServletRequest request, HttpServletResponse response,
-			Pooje pbean) {
+	public ModelAndView AdminPoojeReceiptList(@PathVariable("PoojeID") String PoojeID, HttpServletRequest request,
+			HttpServletResponse response, Pooje pbean) {
 
 		ModelAndView mv = new ModelAndView("admin/PoojeReceiptList");
 
-		mv.addObject("PoojeDetails",
-				defaultTempleMethods.getPoojeDataDetail(PoojeID));
-		mv.addObject("PoojeName", defaultTempleMethods.getPooje(PoojeID)
-				.getPoojeName());
+		mv.addObject("PoojeDetails", defaultTempleMethods.getPoojeDataDetail(PoojeID));
+		mv.addObject("PoojeName", defaultTempleMethods.getPooje(PoojeID).getPoojeName());
 		return mv;
 	}
 
 	@RequestMapping(value = "/PoojeReport")
-	public ModelAndView AdminPoojeReport(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView AdminPoojeReport(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/PoojeReport");
 		mv.addObject("PoojeDetails", defaultTempleMethods.getPooje());
@@ -175,8 +164,8 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/PoojeReportSuccess")
-	public ModelAndView AdminPoojeReportSuccess(HttpServletRequest request,
-			HttpServletResponse response, Reportbean rbean) {
+	public ModelAndView AdminPoojeReportSuccess(HttpServletRequest request, HttpServletResponse response,
+			Reportbean rbean) {
 
 		List<?> PoojeReceipt = service.getPoojeReport(rbean);
 
@@ -191,8 +180,7 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/SashwathaPooje")
-	public ModelAndView AdminSashwathaPooje(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView AdminSashwathaPooje(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/SashwathaPooje");
 		mv.addObject("Pooje", defaultTempleMethods.getPooje("1"));
@@ -201,29 +189,23 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/SashwathaPoojeReceipt")
-	public String AdminSashwathaPoojeReceipt(
-			@ModelAttribute SashwathaPoojebean sbean,
-			HttpServletRequest request, HttpServletResponse response,
-			BindingResult bindingResult, Model model) throws IOException {
+	public String AdminSashwathaPoojeReceipt(@ModelAttribute SashwathaPoojebean sbean, HttpServletRequest request,
+			HttpServletResponse response, BindingResult bindingResult, Model model) throws IOException {
 		sashwathaPoojeValidator.validate(sbean, bindingResult);
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("Pooje",
-					defaultTempleMethods.getPooje(sbean.getPid().toString()));
+			model.addAttribute("Pooje", defaultTempleMethods.getPooje(sbean.getPid().toString()));
 			model.addAttribute(sbean);
 			return "admin/SashwathaPooje";
 		} else {
-			String RNO = service.getSashwathaPoojedetailstoprint(sbean)
-					.toString();
+			String RNO = service.getSashwathaPoojedetailstoprint(sbean).toString();
 			String PID = sbean.getPid().toString();
-			return REDIRECTPREFIX + "/Admin/SashwathaPoojeReceipt/" + PID + "/"
-					+ RNO;
+			return REDIRECTPREFIX + "/Admin/SashwathaPoojeReceipt/" + PID + "/" + RNO;
 		}
 
 	}
 
 	@RequestMapping(value = "/EditSashwathaPooje/{RecNo}")
-	public ModelAndView EditSashwathaPooje(@PathVariable("RecNo") String RecNo,
-			HttpServletRequest req) {
+	public ModelAndView EditSashwathaPooje(@PathVariable("RecNo") String RecNo, HttpServletRequest req) {
 
 		ModelAndView mv = new ModelAndView("admin/SashwathaPoojeEdit");
 
@@ -232,10 +214,8 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/UpdateSashwathaPooje")
-	public ModelAndView UpdateSashwathaPooje(
-			@ModelAttribute SashwathaPoojebean sbean,
-			HttpServletRequest request, HttpServletResponse response,
-			BindingResult bindingResult, Locale locale) {
+	public ModelAndView UpdateSashwathaPooje(@ModelAttribute SashwathaPoojebean sbean, HttpServletRequest request,
+			HttpServletResponse response, BindingResult bindingResult, Locale locale) {
 
 		sashwathaPoojeValidator.validate(sbean, bindingResult);
 		ModelAndView mv = new ModelAndView("admin/SashwathaPoojeEdit");
@@ -247,8 +227,7 @@ public class PoojeController {
 		} else {
 			Integer i = service.updateSashwathaPooje(sbean);
 			if (i == 1) {
-				mv.addObject("message", messageSource.getMessage(
-						"update.success", null, locale));
+				mv.addObject("message", messageSource.getMessage("update.success", null, locale));
 				mv.addObject(new SashwathaPoojebean());
 				return getSashhwathaDetails(mv, RNO);
 			}
@@ -258,8 +237,7 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/SashwathaPoojeReceiptList")
-	public ModelAndView AdminSashwathaPoojeReceiptList(
-			HttpServletRequest request, HttpServletResponse response,
+	public ModelAndView AdminSashwathaPoojeReceiptList(HttpServletRequest request, HttpServletResponse response,
 			Pooje pbean) {
 
 		ModelAndView mv = new ModelAndView("admin/PoojeReceiptList");
@@ -269,10 +247,8 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/SashwathaPoojeReceipt/{PoojeID}/{RecNo}")
-	public ModelAndView AdminSashwathaPoojeReceipt(
-			@PathVariable("PoojeID") String PoojeID,
-			@PathVariable("RecNo") String RecNo, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView AdminSashwathaPoojeReceipt(@PathVariable("PoojeID") String PoojeID,
+			@PathVariable("RecNo") String RecNo, HttpServletRequest request, HttpServletResponse response) {
 
 		HttpSession session = request.getSession();
 		ModelAndView mv = new ModelAndView("admin/sashwathareciept");
@@ -280,17 +256,15 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/SashwathaPoojeReport")
-	public ModelAndView AdminSashwathaPoojeReport(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView AdminSashwathaPoojeReport(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/SashwathaPoojeReport");
 		return mv;
 	}
 
 	@RequestMapping(value = "/SashwathaPoojeReportSuccess")
-	public ModelAndView AdminSashwathaPoojeReportSuccess(
-			HttpServletRequest request, HttpServletResponse response,
+	public ModelAndView AdminSashwathaPoojeReportSuccess(HttpServletRequest request, HttpServletResponse response,
 			Reportbean rbean) {
-		
+
 		List<?> PoojeReceipt = service.getSashwathaReport(rbean);
 
 		JRDataSource datasource = new JRBeanCollectionDataSource(PoojeReceipt);
@@ -303,21 +277,17 @@ public class PoojeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/income" ,method = RequestMethod.GET)
-	public ModelAndView AdminAddIncome(HttpServletRequest request,
-			HttpServletResponse response) {
+	@RequestMapping(value = "/income", method = RequestMethod.GET)
+	public ModelAndView AdminAddIncome(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/Income");
 		mv.addObject("IncomeDetails", defaultTempleMethods.getIncome());
 		mv.addObject(new IncomeData());
 		return mv;
 	}
-	
-	
 
-	@RequestMapping(value = "/income",method = RequestMethod.POST)
-	public String AdminAddIncomeSuccess(HttpServletRequest request,
-			HttpServletResponse response, @ModelAttribute IncomeData ibean,
-			Model mv, BindingResult bindingResult, Locale locale) {
+	@RequestMapping(value = "/income", method = RequestMethod.POST)
+	public String AdminAddIncomeSuccess(HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute IncomeData ibean, Model mv, BindingResult bindingResult, Locale locale) {
 
 		incomeValidator.validate(ibean, bindingResult);
 		if (bindingResult.hasErrors()) {
@@ -326,29 +296,27 @@ public class PoojeController {
 			Integer RecNo = service.addincome(ibean);
 			if (RecNo == null) {
 				mv.addAttribute(new IncomeData());
-				mv.addAttribute("message",
-						messageSource.getMessage("message.error", null, locale));
+				mv.addAttribute("message", messageSource.getMessage("message.error", null, locale));
 			} else {
-				return REDIRECTPREFIX + "/Admin/AddIncome/" + RecNo;
+				return REDIRECTPREFIX + "/Admin/AddIncome/" + ibean.getIid() + "/" + RecNo;
 			}
 		}
 		mv.addAttribute("IncomeDetails", defaultTempleMethods.getIncome());
 		return "admin/Income";
 	}
 
-	@RequestMapping(value = "/AddIncome/{RecNo}")
-	public ModelAndView AdminAddINcome(@PathVariable("RecNo") String RecNo,
+	@RequestMapping(value = "/AddIncome/{IncomeID}/{RecNo}")
+	public ModelAndView AdminAddINcome(@PathVariable("IncomeID") String IncomeID, @PathVariable("RecNo") String RecNo,
 			HttpServletRequest request, HttpServletResponse response) {
 
 		HttpSession session = request.getSession();
 		ModelAndView mv = new ModelAndView("admin/IncomeReciept");
-		return addIncome(session, RecNo, mv);
+		return addIncome(session, IncomeID, RecNo, mv);
 
 	}
 
 	@RequestMapping(value = "/EditIncome/{RecNo}")
-	public ModelAndView EditIncome(@PathVariable("RecNo") String RecNo,
-			HttpServletRequest req) {
+	public ModelAndView EditIncome(@PathVariable("RecNo") String RecNo, HttpServletRequest req) {
 
 		ModelAndView mv = new ModelAndView("admin/IncomeEdit");
 		mv.addObject("Data", defaultTempleMethods.getIncome(RecNo));
@@ -357,24 +325,20 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/UpdateIncome")
-	public ModelAndView UpdateIncome(@ModelAttribute IncomeData ibean,
-			HttpServletRequest request, HttpServletResponse response,
-			BindingResult bindingResult, Locale locale) {
+	public ModelAndView UpdateIncome(@ModelAttribute IncomeData ibean, HttpServletRequest request,
+			HttpServletResponse response, BindingResult bindingResult, Locale locale) {
 
 		incomeValidator.validate(ibean, bindingResult);
 		ModelAndView mv = new ModelAndView("admin/IncomeEdit");
 		if (bindingResult.hasErrors()) {
-			mv.addObject("Data",
-					defaultTempleMethods.getIncome(ibean.getRecNo().toString()));
+			mv.addObject("Data", defaultTempleMethods.getIncome(ibean.getRecNo().toString()));
 			mv.addObject(ibean);
 			return mv;
 		} else {
 			Integer i = service.updateIncome(ibean);
 			if (i == 1) {
-				mv.addObject("message", messageSource.getMessage(
-						"update.success", null, locale));
-				mv.addObject("Data", defaultTempleMethods.getIncome(ibean
-						.getRecNo().toString()));
+				mv.addObject("message", messageSource.getMessage("update.success", null, locale));
+				mv.addObject("Data", defaultTempleMethods.getIncome(ibean.getRecNo().toString()));
 				mv.addObject(new IncomeData());
 				return mv;
 			}
@@ -383,27 +347,24 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/IncomeList")
-	public ModelAndView AdminIncomeList(HttpServletRequest request,
-			HttpServletResponse response, Poojebean pbean) {
+	public ModelAndView AdminIncomeList(HttpServletRequest request, HttpServletResponse response, Poojebean pbean) {
 
 		ModelAndView mv = new ModelAndView("admin/IncomeList");
-		List<Map<String, Object>> IncomeDetails = defaultTempleMethods
-				.getIncome();
+		List<Map<String, Object>> IncomeDetails = defaultTempleMethods.getIncome();
 		mv.addObject("IncomeDetails", IncomeDetails);
 
 		return mv;
 	}
 
 	@RequestMapping(value = "/IncomeReport")
-	public ModelAndView AdminIncomeReport(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView AdminIncomeReport(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/IncomeReport");
 		return mv;
 	}
 
 	@RequestMapping(value = "/IncomeReportSuccess")
-	public ModelAndView AdminIncomeReportSuccess(HttpServletRequest request,
-			HttpServletResponse response, Reportbean rbean) {
+	public ModelAndView AdminIncomeReportSuccess(HttpServletRequest request, HttpServletResponse response,
+			Reportbean rbean) {
 		List<?> PoojeReceipt = service.getIncomeReport(rbean);
 
 		JRDataSource datasource = new JRBeanCollectionDataSource(PoojeReceipt);
@@ -426,14 +387,12 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/DonationReceipt")
-	public String AdminDonationReceipt(HttpServletRequest request,
-			HttpServletResponse response, @ModelAttribute DonationDetail dbean,
-			BindingResult bindingResult, Model model) {
+	public String AdminDonationReceipt(HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute DonationDetail dbean, BindingResult bindingResult, Model model) {
 
 		donationValidator.validate(dbean, bindingResult);
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("DonationDetails",
-					defaultTempleMethods.getDonation());
+			model.addAttribute("DonationDetails", defaultTempleMethods.getDonation());
 			model.addAttribute(dbean);
 			return "admin/Donation";
 		} else {
@@ -444,9 +403,8 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/EditDonation/{DonationID}/{RecNo}")
-	public ModelAndView EditDonation(
-			@PathVariable("DonationID") String DonationID,
-			@PathVariable("RecNo") String RecNo, HttpServletRequest req) {
+	public ModelAndView EditDonation(@PathVariable("DonationID") String DonationID, @PathVariable("RecNo") String RecNo,
+			HttpServletRequest req) {
 
 		ModelAndView mv = new ModelAndView("admin/DonationEdit");
 		mv.addObject(new DonationDetail());
@@ -454,9 +412,8 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/UpdateDonation")
-	public ModelAndView UpdateDonation(@ModelAttribute DonationDetail dbean,
-			HttpServletRequest request, HttpServletResponse response,
-			BindingResult bindingResult, Locale locale) {
+	public ModelAndView UpdateDonation(@ModelAttribute DonationDetail dbean, HttpServletRequest request,
+			HttpServletResponse response, BindingResult bindingResult, Locale locale) {
 
 		donationValidator.validate(dbean, bindingResult);
 		String DonationID = dbean.getDid().toString();
@@ -470,8 +427,7 @@ public class PoojeController {
 		} else {
 			Integer i = service.updateDonation(dbean);
 			if (i == 1) {
-				mv.addObject("message", messageSource.getMessage(
-						"update.success", null, locale));
+				mv.addObject("message", messageSource.getMessage("update.success", null, locale));
 				mv.addObject(new DonationDetail());
 				return getDonationDetails(mv, DonationID, RecNo);
 			}
@@ -480,10 +436,8 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/DonationReceipt/{DonationID}/{RecNo}")
-	public ModelAndView AdminDonationReceipt(
-			@PathVariable("DonationID") String DonationID,
-			@PathVariable("RecNo") String RecNo, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView AdminDonationReceipt(@PathVariable("DonationID") String DonationID,
+			@PathVariable("RecNo") String RecNo, HttpServletRequest request, HttpServletResponse response) {
 
 		HttpSession session = request.getSession();
 		ModelAndView mv = new ModelAndView("admin/DonationReciept");
@@ -492,23 +446,18 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/DonationReceiptList/{DonationID}")
-	public ModelAndView AdminDonationReceiptList(
-			@PathVariable("DonationID") String DonationID,
-			HttpServletRequest request, HttpServletResponse response,
-			Donation dbean) {
+	public ModelAndView AdminDonationReceiptList(@PathVariable("DonationID") String DonationID,
+			HttpServletRequest request, HttpServletResponse response, Donation dbean) {
 
 		ModelAndView mv = new ModelAndView("admin/DonationList");
-		List<?> PoojeDetails = defaultTempleMethods
-				.getDonationDataDetail(DonationID);
+		List<?> PoojeDetails = defaultTempleMethods.getDonationDataDetail(DonationID);
 		mv.addObject("PoojeDetails", PoojeDetails);
-		mv.addObject("DonationName",
-				defaultTempleMethods.getDonation(DonationID).getDonationName());
+		mv.addObject("DonationName", defaultTempleMethods.getDonation(DonationID).getDonationName());
 		return mv;
 	}
 
 	@RequestMapping(value = "/DonationReport")
-	public ModelAndView AdminDonationReport(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView AdminDonationReport(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/DonationReport");
 		List<?> DonationDetails = defaultTempleMethods.getDonation();
@@ -518,11 +467,10 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/DonationReportSuccess")
-	public ModelAndView AdminDonationReportSuccess(HttpServletRequest request,
-			HttpServletResponse response, Reportbean rbean) {
+	public ModelAndView AdminDonationReportSuccess(HttpServletRequest request, HttpServletResponse response,
+			Reportbean rbean) {
 		Donation donation = defaultTempleMethods.getDonation(rbean.getDid());
-		List<?> DonationReport = service.getDonationReport(rbean,
-				donation.getDonationName());
+		List<?> DonationReport = service.getDonationReport(rbean, donation.getDonationName());
 
 		JRDataSource datasource = new JRBeanCollectionDataSource(DonationReport);
 
@@ -535,8 +483,7 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/Expenditure")
-	public ModelAndView AdminExpenditure(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView AdminExpenditure(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/Expenses");
 		mv.addObject(new ExpenseData());
@@ -544,9 +491,8 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/ExpenditureReceipt")
-	public String AdminExpenditureReceipt(HttpServletRequest request,
-			HttpServletResponse response, @ModelAttribute ExpenseData ebean,
-			BindingResult bindingResult, Model mv) throws IOException {
+	public String AdminExpenditureReceipt(HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute ExpenseData ebean, BindingResult bindingResult, Model mv) throws IOException {
 
 		expenseValidator.validate(ebean, bindingResult);
 		if (bindingResult.hasErrors()) {
@@ -559,19 +505,17 @@ public class PoojeController {
 
 	}
 
-	@RequestMapping(value = "/ExpenditureReceipt/{RecNo}")
-	public ModelAndView AdminExpenditureReceipt(
-			@PathVariable("RecNo") String RecNo, HttpServletRequest request,
+	@RequestMapping(value = "/ExpenditureReceipt/{ExpenseID}/{RecNo}")
+	public ModelAndView AdminExpenditureReceipt(@PathVariable("ExpenseID") String ExpenseID,@PathVariable("RecNo") String RecNo, HttpServletRequest request,
 			HttpServletResponse response) {
 
 		HttpSession session = request.getSession();
 		ModelAndView mv = new ModelAndView("admin/ExpenseReciept");
-		return addExpense(session, RecNo, mv);
+		return addExpense(session,ExpenseID,RecNo, mv);
 	}
 
-	@RequestMapping(value = "/EditExpense/{RecNo}")
-	public ModelAndView EditExpense(@PathVariable("RecNo") String RecNo,
-			HttpServletRequest req) {
+	@RequestMapping(value = "/EditExpense/{ExpenseID}/{RecNo}")
+	public ModelAndView EditExpense(@PathVariable("ExpenseID") String ExpenseID,@PathVariable("RecNo") String RecNo, HttpServletRequest req) {
 
 		ModelAndView mv = new ModelAndView("admin/ExpenseEdit");
 		mv.addObject("Data", defaultTempleMethods.getExpenditure(RecNo));
@@ -580,23 +524,19 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/UpdateExpense")
-	public ModelAndView UpdateExpense(@ModelAttribute ExpenseData ebean,
-			HttpServletRequest request, HttpServletResponse response,
-			BindingResult bindingResult, Locale locale) {
+	public ModelAndView UpdateExpense(@ModelAttribute ExpenseData ebean, HttpServletRequest request,
+			HttpServletResponse response, BindingResult bindingResult, Locale locale) {
 		expenseValidator.validate(ebean, bindingResult);
 		ModelAndView mv = new ModelAndView("admin/ExpenseEdit");
 		if (bindingResult.hasErrors()) {
-			mv.addObject("Data", defaultTempleMethods.getExpenditure(ebean
-					.getRecNo().toString()));
+			mv.addObject("Data", defaultTempleMethods.getExpenditure(ebean.getRecNo().toString()));
 			mv.addObject(ebean);
 			return mv;
 		} else {
 			Integer i = service.updateExpense(ebean);
 			if (i == 1) {
-				mv.addObject("message", messageSource.getMessage(
-						"update.success", null, locale));
-				mv.addObject("Data", defaultTempleMethods.getExpenditure(ebean
-						.getRecNo().toString()));
+				mv.addObject("message", messageSource.getMessage("update.success", null, locale));
+				mv.addObject("Data", defaultTempleMethods.getExpenditure(ebean.getRecNo().toString()));
 				mv.addObject(new ExpenseData());
 				return mv;
 			}
@@ -605,8 +545,8 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/ExpenditureList")
-	public ModelAndView AdminExpenditureList(HttpServletRequest request,
-			HttpServletResponse response, Poojebean pbean) {
+	public ModelAndView AdminExpenditureList(HttpServletRequest request, HttpServletResponse response,
+			Poojebean pbean) {
 
 		ModelAndView mv = new ModelAndView("admin/ExpenseList");
 		List<?> PoojeDetails = defaultTempleMethods.getExpenditure();
@@ -616,8 +556,7 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/ExpenditureReport")
-	public ModelAndView AdminExpenditureReport(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView AdminExpenditureReport(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/ExpenditureReport");
 
@@ -625,8 +564,7 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/ExpenditureReportSuccess")
-	public ModelAndView AdminExpenditureReportSuccess(
-			HttpServletRequest request, HttpServletResponse response,
+	public ModelAndView AdminExpenditureReportSuccess(HttpServletRequest request, HttpServletResponse response,
 			Reportbean rbean) {
 		List<?> DonationReport = service.getExpenditureReport(rbean);
 
@@ -641,8 +579,7 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/AllReport")
-	public ModelAndView AdminAllReport(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView AdminAllReport(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/AllReport");
 
@@ -650,8 +587,8 @@ public class PoojeController {
 	}
 
 	@RequestMapping(value = "/AllReportSuccess")
-	public ModelAndView AdminAllReportSuccess(HttpServletRequest request,
-			HttpServletResponse response, Reportbean rbean) {
+	public ModelAndView AdminAllReportSuccess(HttpServletRequest request, HttpServletResponse response,
+			Reportbean rbean) {
 		List<?> DonationReport = service.getAllReport(rbean);
 		JRDataSource datasource = new JRBeanCollectionDataSource(DonationReport);
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
@@ -661,19 +598,15 @@ public class PoojeController {
 		return mv;
 	}
 
-	public ModelAndView addPooje(HttpSession session, String RecNo,
-			String PoojeID, ModelAndView mv) {
+	public ModelAndView addPooje(HttpSession session, String RecNo, String PoojeID, ModelAndView mv) {
 
 		Pooje pooje = defaultTempleMethods.getPooje(PoojeID);
-		Poojebean poojedata = defaultTempleMethods.getPoojeDataDetail(RecNo,
-				PoojeID);
+		Poojebean poojedata = defaultTempleMethods.getPoojeDataDetail(RecNo, PoojeID);
 		mv.addObject("Pooje", pooje);
 		mv.addObject("PoojeData", poojedata);
-		
+
 		Double Amount = pooje.getAmount() * poojedata.getQuantity();
-		mv.addObject("InWords",
-				Utills.converttoword(Amount.intValue())
-						+ " only");
+		mv.addObject("InWords", Utills.converttoword(Amount.intValue()) + " only");
 		mv.addObject("Amount", Amount.intValue() + "/-");
 		mv.addObject("Signature", session.getAttribute("FullName"));
 		mv.addObject("tdate", getTdate(poojedata.getBDate()));
@@ -681,64 +614,54 @@ public class PoojeController {
 
 	}
 
-	public ModelAndView addSashwathaPooje(HttpSession session, String RecNo,
-			String PoojeID, ModelAndView mv) {
+	public ModelAndView addSashwathaPooje(HttpSession session, String RecNo, String PoojeID, ModelAndView mv) {
 		Pooje pooje = defaultTempleMethods.getPooje(PoojeID);
-		SashwathaPoojebean poojedata = defaultTempleMethods
-				.getSashwathaPooje(RecNo);
+		SashwathaPoojebean poojedata = defaultTempleMethods.getSashwathaPooje(RecNo);
 		mv.addObject("Pooje", pooje);
 		mv.addObject("PoojeData", poojedata);
 		int Amount = pooje.getAmount().intValue();
-		mv.addObject("InWords",
-				Utills.converttoword(Amount)+ " only");
-		mv.addObject("Amount", Amount+ "/-");
+		mv.addObject("InWords", Utills.converttoword(Amount) + " only");
+		mv.addObject("Amount", Amount + "/-");
 		mv.addObject("Signature", session.getAttribute("FullName"));
 		mv.addObject("tdate", getTdate(poojedata.getBdate()));
 		return mv;
 	}
 
-	public ModelAndView addDonation(HttpSession session, String RecNo,
-			String DonationID, ModelAndView mv) {
+	public ModelAndView addDonation(HttpSession session, String RecNo, String DonationID, ModelAndView mv) {
 		Donation donation = defaultTempleMethods.getDonation(DonationID);
-		DonationDetail donationdata = defaultTempleMethods
-				.getDonationDataDetail(RecNo, DonationID);
+		DonationDetail donationdata = defaultTempleMethods.getDonationDataDetail(RecNo, DonationID);
 		mv.addObject("Donation", donation);
 		mv.addObject("DonationData", donationdata);
 		int Amount = donationdata.getAmount().intValue();
-		mv.addObject("InWords",
-				Utills.converttoword(Amount)+ " only");
-		mv.addObject("Amount", Amount+ "/-");
+		mv.addObject("InWords", Utills.converttoword(Amount) + " only");
+		mv.addObject("Amount", Amount + "/-");
 		mv.addObject("Signature", session.getAttribute("FullName"));
 		mv.addObject("tdate", getTdate(donationdata.getBdate()));
 		return mv;
 
 	}
 
-	public ModelAndView addExpense(HttpSession session, String RecNo,
-			ModelAndView mv) {
-		ExpenseData expense = defaultTempleMethods.getExpenditureData(RecNo);
+	public ModelAndView addExpense(HttpSession session,String ExpenseID, String RecNo, ModelAndView mv) {
+		ExpenseData expense = defaultTempleMethods.getExpenditureData(RecNo,ExpenseID);
 
 		mv.addObject("Expense", expense);
 
 		int Amount = expense.getAmount().intValue();
-		mv.addObject("InWords",
-				Utills.converttoword(Amount)+ " only");
-		mv.addObject("Amount", Amount+ "/-");
+		mv.addObject("InWords", Utills.converttoword(Amount) + " only");
+		mv.addObject("Amount", Amount + "/-");
 		mv.addObject("Signature", session.getAttribute("FullName"));
 		mv.addObject("tdate", getTdate(expense.getBDate()));
 		return mv;
 	}
 
-	public ModelAndView addIncome(HttpSession session, String RecNo,
-			ModelAndView mv) {
+	public ModelAndView addIncome(HttpSession session, String IncomeID, String RecNo, ModelAndView mv) {
 
-		if (RecNo != null) {
-			IncomeData income = defaultTempleMethods.getIncomeData(RecNo);
+		if (RecNo != null && IncomeID != null) {
+			IncomeData income = defaultTempleMethods.getIncomeData(RecNo,IncomeID);
 			mv.addObject("Income", income);
 			int Amount = income.getAmount().intValue();
-			mv.addObject("InWords",
-					Utills.converttoword(Amount)+ " only");
-			mv.addObject("Amount", Amount+ "/-");
+			mv.addObject("InWords", Utills.converttoword(Amount) + " only");
+			mv.addObject("Amount", Amount + "/-");
 			mv.addObject("Signature", session.getAttribute("FullName"));
 			mv.addObject("tdate", getTdate(income.getBdate()));
 			return mv;
@@ -751,11 +674,9 @@ public class PoojeController {
 		return dateformat.format(timestamp);
 	}
 
-	private ModelAndView getDonationDetails(ModelAndView mv, String DID,
-			String RNO) {
+	private ModelAndView getDonationDetails(ModelAndView mv, String DID, String RNO) {
 		mv.addObject("Donation", defaultTempleMethods.getDonation(DID));
-		mv.addObject("Data",
-				defaultTempleMethods.getDonationDataDetail(RNO, DID));
+		mv.addObject("Data", defaultTempleMethods.getDonationDataDetail(RNO, DID));
 		return mv;
 	}
 
@@ -771,5 +692,4 @@ public class PoojeController {
 		return mv;
 	}
 
-	
 }

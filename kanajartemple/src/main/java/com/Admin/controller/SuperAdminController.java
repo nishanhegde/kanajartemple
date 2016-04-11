@@ -44,7 +44,7 @@ public class SuperAdminController {
 
 		Integer a = superAdminService.CUDPooje(pbean, code);
 		if (a != null) {
-			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDPooje";
+			return AdminController.REDIRECTPREFIX + "/SuperAdmin/CUDPooje";
 		}
 		return null;
 
@@ -57,7 +57,7 @@ public class SuperAdminController {
 		pbean.setPid(Integer.valueOf(Pid));
 		Integer a = superAdminService.CUDPooje(pbean, code);
 		if (a != null) {
-			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDPooje";
+			return AdminController.REDIRECTPREFIX + "/SuperAdmin/CUDPooje";
 		}
 		return null;
 
@@ -77,7 +77,7 @@ public class SuperAdminController {
 			HttpServletResponse response, Income ibean) throws IOException {
 		Integer a = superAdminService.CUDIncome(ibean, code);
 		if (a != null) {
-			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDIncome";
+			return AdminController.REDIRECTPREFIX + "/SuperAdmin/CUDIncome";
 		}
 		return null;
 	}
@@ -89,7 +89,7 @@ public class SuperAdminController {
 		ibean.setIid(Integer.parseInt(Iid));
 		Integer a = superAdminService.CUDIncome(ibean, code);
 		if (a != null) {
-			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDIncome";
+			return AdminController.REDIRECTPREFIX + "/SuperAdmin/CUDIncome";
 		}
 		return null;
 	}
@@ -108,7 +108,7 @@ public class SuperAdminController {
 			HttpServletResponse response, Expense ebean) throws IOException {
 		Integer a = superAdminService.CUDExpense(ebean, code);
 		if (a != null) {
-			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDExpenditure";
+			return AdminController.REDIRECTPREFIX + "/SuperAdmin/CUDExpenditure";
 		}
 		return null;
 	}
@@ -120,7 +120,7 @@ public class SuperAdminController {
 		ebean.setEid(Integer.parseInt(Eid));
 		Integer a = superAdminService.CUDExpense(ebean, code);
 		if (a != null) {
-			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDExpenditure";
+			return AdminController.REDIRECTPREFIX + "/SuperAdmin/CUDExpenditure";
 		}
 		return null;
 	}
@@ -139,7 +139,7 @@ public class SuperAdminController {
 			HttpServletResponse response, Donation dbean) throws IOException {
 		Integer a = superAdminService.CUDDonation(dbean, code);
 		if (a != null) {
-			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDDonation";
+			return AdminController.REDIRECTPREFIX + "/SuperAdmin/CUDDonation";
 		}
 		return null;
 	}
@@ -151,7 +151,7 @@ public class SuperAdminController {
 		dbean.setDid(Integer.parseInt(Did));
 		Integer a = superAdminService.CUDDonation(dbean, code);
 		if (a != null) {
-			return PoojeController.REDIRECTPREFIX + "/SuperAdmin/CUDDonation";
+			return AdminController.REDIRECTPREFIX + "/SuperAdmin/CUDDonation";
 		}
 		return null;
 	}
