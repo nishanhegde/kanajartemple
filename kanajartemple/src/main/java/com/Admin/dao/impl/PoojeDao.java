@@ -82,7 +82,7 @@ public class PoojeDao<K> {
 		param.put("Name", Utills.replaceWhiteSpace(pbean.getName()));
 		param.put("Quantity", pbean.getQuantity());
 		param.put("PDate", getCustomDate(pbean.getPDate()));
-		
+
 		Integer RecNo = namedjdbc.queryForObject("select MAX(RecNo)+1 as RecNo from allpoojedata where Pid=:Pid", param,
 				Integer.class);
 		if (RecNo == null) {
@@ -521,9 +521,8 @@ public class PoojeDao<K> {
 		param.put("Amount", ebean.getAmount());
 		param.put("EDate", getCustomDate(ebean.getEDate()));
 		param.put("RecNo", ebean.getRecNo());
-
-		String str = "update expenditure set Title=:Title,Description=:Description,Amount=:Amount,"
-				+ "EDate=:EDate where RecNo=:RecNo";
+			String str = "update allexpendituredata set Title=:Title,Description=:Description,Amount=:Amount,"
+				+ "EDate=:EDate where RecNo=:RecNo and Eid=:Eid";
 
 		return namedjdbc.update(str, param);
 
@@ -536,8 +535,8 @@ public class PoojeDao<K> {
 		param.put("Amount", ibean.getAmount());
 		param.put("EDate", getCustomDate(ibean.getEdate()));
 		param.put("RecNo", ibean.getRecNo());
-
-		String str = "update income set title=:title,Amount=:Amount," + "Edate=:EDate where RecNo=:RecNo";
+		param.put("Iid", ibean.getIid());
+		String str = "update allincomedata set title=:title,Amount=:Amount," + "Edate=:EDate where RecNo=:RecNo and Iid=:Iid";
 
 		return namedjdbc.update(str, param);
 	}

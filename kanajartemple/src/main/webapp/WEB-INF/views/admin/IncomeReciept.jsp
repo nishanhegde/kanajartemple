@@ -47,7 +47,7 @@
 			<tr>
 				<td id="expenseamount">${Amount}</td>
 
-				<td>&nbsp</td>
+				<td>${IncomeName}</td>
 				<td></td>
 			</tr>
 			<tr>				

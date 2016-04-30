@@ -15,7 +15,6 @@
 			<ul>
 				<li><a href="#" class="big-link" data-reveal-id="myModal"><spring:message
 							code="label.poojereceipt" /> </a></li>
-
 				<li><a href="#" class="big-link" data-reveal-id="BookedPooje"><spring:message
 							code="label.bookedpooje" /> </a></li>
 				<li><a href="<c:url value="/Admin/PoojeReport"/>"><spring:message
@@ -68,7 +67,7 @@
 			<ul>
 				<a href="<c:url value="/Admin/income"/>"><li><spring:message
 							code="label.add" /></li></a>
-				<a href="<c:url value="/Admin/IncomeList"/>"><li><spring:message
+				<a href="#" class="big-link" data-reveal-id="BookedIncome"><li><spring:message
 							code="label.list" /></li></a>
 				<a href="<c:url value="/Admin/IncomeReport"/>"><li><spring:message
 							code="label.report" /></li></a>
@@ -171,9 +170,9 @@
 							code="label.superadmin.activities.add.pooje" /></li></a>
 				<a href="" data-reveal-id="Donation"><li><spring:message
 							code="label.superadmin.activities.add.donation" /></li></a>
-							<a href="" data-reveal-id="Income"><li><spring:message
+				<a href="" data-reveal-id="Income"><li><spring:message
 							code="label.superadmin.activities.add.income" /></li></a>
-							<a href="" data-reveal-id="Expense"><li><spring:message
+				<a href="" data-reveal-id="Expense"><li><spring:message
 							code="label.superadmin.activities.add.expense" /></li></a>
 				<!-- <a href=""><li>Upload Photo</li></a> -->
 
@@ -192,7 +191,7 @@
 							code="label.superadmin.activities.delete.pooje" /></li></a>
 				<a href="<c:url value="/SuperAdmin/CUDDonation"/>"><li><spring:message
 							code="label.superadmin.activities.delete.donation" /></li></a>
-							<a href="<c:url value="/SuperAdmin/CUDIncome"/>"><li><spring:message
+				<a href="<c:url value="/SuperAdmin/CUDIncome"/>"><li><spring:message
 							code="label.superadmin.activities.delete.income" /></li></a>
 				<a href="<c:url value="/SuperAdmin/CUDExpenditure"/>"><li><spring:message
 							code="label.superadmin.activities.delete.expenditure" /></li></a>
@@ -269,6 +268,24 @@
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
 
+	<div id="BookedIncome" class="reveal-modal">
+		<center>
+			<table cellspacing="10" cellpadding="10">
+				<tr>
+					<th><spring:message code="label.income" /></th>
+				</tr>
+				<c:forEach items="${IncomeDetails}" var="income">
+					<tr>
+						<td><a
+							href="<c:url value="/Admin/IncomeList/${income.Iid}"/>">${income.IncomeName}</a></td>
+					</tr>
+				</c:forEach>
+
+			</table>
+		</center>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+
 
 	<!--Adding  Pooje  -->
 
@@ -289,8 +306,8 @@
 					</tr>
 					<tr>
 						<th><spring:message code="label.amount" /></th>
-						<td><input type="number" name="Amount" placeholder="&#8377" required="required"
-							id="Amount" /></td>
+						<td><input type="number" name="Amount" placeholder="&#8377"
+							required="required" id="Amount" /></td>
 					</tr>
 					<tr>
 						<th></th>
@@ -332,7 +349,7 @@
 		</center>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
-	
+
 	<!-- Adding Donation -->
 	<div id="Income" class="reveal-modal">
 		<center>
@@ -345,9 +362,8 @@
 				<table>
 					<tr>
 						<th><spring:message code="label.incomename" /></th>
-						<td><input type="text" name="IncomeName"
-							required="required" id="IncomeName"
-							onfocus="enable('IncomeName')" /></td>
+						<td><input type="text" name="IncomeName" required="required"
+							id="IncomeName" onfocus="enable('IncomeName')" /></td>
 					</tr>
 
 					<tr>
@@ -361,7 +377,7 @@
 		</center>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
-	
+
 	<!-- Adding Donation -->
 	<div id="Expense" class="reveal-modal">
 		<center>
@@ -374,9 +390,8 @@
 				<table>
 					<tr>
 						<th><spring:message code="label.expensename" /></th>
-						<td><input type="text" name="ExpenseName"
-							required="required" id="ExpenseName"
-							onfocus="enable('ExpenseName')" /></td>
+						<td><input type="text" name="ExpenseName" required="required"
+							id="ExpenseName" onfocus="enable('ExpenseName')" /></td>
 					</tr>
 
 					<tr>

@@ -8,23 +8,23 @@
 <jsp:include page="kannadalanguage.jsp"></jsp:include>
 <div class="mainbody">
 	<c:url value="/Admin/UpdateIncome" var="url" />
-	<form:form action="${url}" commandName="income" method="post">
-
+	<form:form action="${url}" commandName="incomeData" method="post">
 		<table>
 			<tr>
 				<th><spring:message code="label.income.title" /></th>
-				<td><div class="success">${message}</div>
-					<core:bind path="income.title">
+				<td><div class="success">${message}</div> <core:bind
+						path="incomeData.title">
 						<div class="error">${status.errorMessage}</div>
 						<input type="text" name="title" onfocus="enable('title')"
 							id="title" value="${Data.title}" required />
 						<input type="hidden" name="RecNo" value="${Data.recNo}" />
+						<input type="hidden" name="Iid" value="${Data.iid}" />
 					</core:bind></td>
 			</tr>
 			<tr>
 			<tr>
 				<th><spring:message code="label.amount" /></th>
-				<td><core:bind path="income.Amount">
+				<td><core:bind path="incomeData.Amount">
 						<div class="error">${status.errorMessage}</div>
 						<input type="text" name="Amount" value="${Data.amount}" required />
 					</core:bind></td>
@@ -32,7 +32,7 @@
 
 			<tr>
 				<th><spring:message code="label.date" /></th>
-				<td><core:bind path="income.Edate">
+				<td><core:bind path="incomeData.Edate">
 						<div class="error">${status.errorMessage}</div>
 						<input type="text" id="date" name="Edate" id="date" class="tcal"
 							value="${Data.edate}" required />

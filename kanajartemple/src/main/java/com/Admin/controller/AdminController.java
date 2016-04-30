@@ -32,6 +32,7 @@ import com.Admin.Service.Impl.PoojeService;
 import com.Admin.bean.Donation;
 import com.Admin.bean.DonationDetail;
 import com.Admin.bean.ExpenseData;
+import com.Admin.bean.Income;
 import com.Admin.bean.IncomeData;
 import com.Admin.bean.Pooje;
 import com.Admin.bean.Poojebean;
@@ -278,7 +279,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/income", method = RequestMethod.GET)
-	public ModelAndView AdminAddIncome(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView AdminAddIncome(HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/Income");
 		mv.addObject("IncomeDetails", defaultTempleMethods.getIncome());
 		mv.addObject(new IncomeData());
@@ -286,7 +287,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/income", method = RequestMethod.POST)
-	public String AdminAddIncomeSuccess(HttpServletRequest request, HttpServletResponse response,
+	public String AdminAddIncomeSuccess(HttpServletResponse response,
 			@ModelAttribute IncomeData ibean, Model mv, BindingResult bindingResult, Locale locale) {
 
 		incomeValidator.validate(ibean, bindingResult);
@@ -315,30 +316,31 @@ public class AdminController {
 
 	}
 
-	@RequestMapping(value = "/EditIncome/{RecNo}")
-	public ModelAndView EditIncome(@PathVariable("RecNo") String RecNo, HttpServletRequest req) {
+	@RequestMapping(value = "/EditIncome/{IncomeID}/{RecNo}")
+	public ModelAndView editIncome(@PathVariable("IncomeID") String IncomeID,@PathVariable("RecNo") String RecNo, HttpServletRequest req) {
 
 		ModelAndView mv = new ModelAndView("admin/IncomeEdit");
-		mv.addObject("Data", defaultTempleMethods.getIncome(RecNo));
+		mv.addObject("Data", defaultTempleMethods.getIncomeData(RecNo, IncomeID));
 		mv.addObject(new IncomeData());
 		return mv;
 	}
 
 	@RequestMapping(value = "/UpdateIncome")
-	public ModelAndView UpdateIncome(@ModelAttribute IncomeData ibean, HttpServletRequest request,
+	public ModelAndView updateIncome(@ModelAttribute IncomeData ibean, HttpServletRequest request,
 			HttpServletResponse response, BindingResult bindingResult, Locale locale) {
 
 		incomeValidator.validate(ibean, bindingResult);
 		ModelAndView mv = new ModelAndView("admin/IncomeEdit");
+		
 		if (bindingResult.hasErrors()) {
-			mv.addObject("Data", defaultTempleMethods.getIncome(ibean.getRecNo().toString()));
 			mv.addObject(ibean);
+			mv.addObject("Data", defaultTempleMethods.getIncomeData(ibean.getRecNo().toString(),ibean.getIid().toString()));
 			return mv;
 		} else {
 			Integer i = service.updateIncome(ibean);
 			if (i == 1) {
+				mv.addObject("Data", defaultTempleMethods.getIncomeData(ibean.getRecNo().toString(),ibean.getIid().toString()));
 				mv.addObject("message", messageSource.getMessage("update.success", null, locale));
-				mv.addObject("Data", defaultTempleMethods.getIncome(ibean.getRecNo().toString()));
 				mv.addObject(new IncomeData());
 				return mv;
 			}
@@ -346,12 +348,11 @@ public class AdminController {
 		}
 	}
 
-	@RequestMapping(value = "/IncomeList")
-	public ModelAndView AdminIncomeList(HttpServletRequest request, HttpServletResponse response, Poojebean pbean) {
+	@RequestMapping(value = "/IncomeList/{IncomeID}")
+	public ModelAndView AdminIncomeList(@PathVariable("IncomeID") String IncomeID, HttpServletResponse response, Poojebean pbean) {
 
 		ModelAndView mv = new ModelAndView("admin/IncomeList");
-		List<Map<String, Object>> IncomeDetails = defaultTempleMethods.getIncome();
-		mv.addObject("IncomeDetails", IncomeDetails);
+		mv.addObject("IncomeDetails", defaultTempleMethods.getIncomeData(IncomeID));
 
 		return mv;
 	}
@@ -657,13 +658,15 @@ public class AdminController {
 	public ModelAndView addIncome(HttpSession session, String IncomeID, String RecNo, ModelAndView mv) {
 
 		if (RecNo != null && IncomeID != null) {
-			IncomeData income = defaultTempleMethods.getIncomeData(RecNo,IncomeID);
-			mv.addObject("Income", income);
-			int Amount = income.getAmount().intValue();
+			Income income=defaultTempleMethods.getIncome(IncomeID);
+			IncomeData incomeData = defaultTempleMethods.getIncomeData(RecNo,IncomeID);
+			mv.addObject("Income", incomeData);
+			int Amount = incomeData.getAmount().intValue();
 			mv.addObject("InWords", Utills.converttoword(Amount) + " only");
 			mv.addObject("Amount", Amount + "/-");
+			mv.addObject("IncomeName",income.getIncomeName());
 			mv.addObject("Signature", session.getAttribute("FullName"));
-			mv.addObject("tdate", getTdate(income.getBdate()));
+			mv.addObject("tdate", getTdate(incomeData.getBdate()));
 			return mv;
 		}
 		return null;

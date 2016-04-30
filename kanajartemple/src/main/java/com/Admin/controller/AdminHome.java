@@ -105,6 +105,8 @@ public class AdminHome {
 		List<?> PoojeDetails = defaultTempleMethods.getPooje();
 		mv.addObject("PoojeDetails", PoojeDetails);
 		mv.addObject("DonationDetails", defaultTempleMethods.getDonation());
+		mv.addObject("IncomeDetails",defaultTempleMethods.getIncome());
+		mv.addObject("ExpenseDetails",defaultTempleMethods.getExpenditure());
 		return mv;
 	}
 

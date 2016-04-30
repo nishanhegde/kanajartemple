@@ -204,7 +204,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("RecNo", RecNo);
 		param.put("Id", Id);
-		String str = "select RecNo,title,Amount,DATE_FORMAT(Edate, '%d-%m-%Y') as Edate,Bdate from allincomedata where RecNo=:RecNo and Iid=:Id";
+		String str = "select RecNo,title,Amount,Iid,DATE_FORMAT(Edate, '%d-%m-%Y') as Edate,Bdate from allincomedata where RecNo=:RecNo and Iid=:Id";
 		return namedjdbc.queryForObject(str, param, new IncomeDataRowMapper());
 	}
 
@@ -213,7 +213,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Id", incomeId);
-		String str = "select RecNo,title,Amount,DATE_FORMAT(Edate, '%d-%m-%Y') as Edate,Bdate from income where=:Id";
+		String str = "select RecNo,title,Amount,Iid,DATE_FORMAT(Edate, '%d-%m-%Y') as Edate,Bdate from allincomedata where Iid=:Id";
 		return namedjdbc.queryForList(str, param);
 	}
 

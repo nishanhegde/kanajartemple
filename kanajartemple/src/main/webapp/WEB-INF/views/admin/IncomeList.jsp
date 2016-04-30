@@ -57,7 +57,7 @@
 
 								<p>
 									<a
-										onclick="popupCenter('../Admin/EditIncome/${app.RecNo}', 'Kanajar Temple',350,205);"
+										onclick="popupCenter('../../Admin/EditIncome/${app.Iid}/${app.RecNo}', 'Kanajar Temple',350,205);"
 										href="javascript:void(0);"><spring:message code="label.edit"/></a>
 								</p>
 
@@ -66,7 +66,7 @@
 
 								<p>
 									<a target="_blank"
-										href="<c:url value="../Admin/AddIncome/${app.RecNo}"/>"><spring:message code="label.print"/></a>
+										href="<c:url value="../../Admin/AddIncome/${app.Iid}/${app.RecNo}"/>"><spring:message code="label.print"/></a>
 								</p>
 							</td>
 
