@@ -11,10 +11,11 @@ public class ExpenceDataRowMapper implements RowMapper<ExpenseData> {
 
 	@Override
 	public ExpenseData mapRow(ResultSet rs, int rowNum) throws SQLException {
-		ExpenseData expense =new ExpenseData();
+		ExpenseData expense = new ExpenseData();
 		expense.setRecNo(rs.getInt("RecNo"));
 		expense.setTitle(rs.getString("Title"));
 		expense.setDescription(rs.getString("Description"));
+		expense.setEid(rs.getInt("Eid"));
 		expense.setAmount(rs.getDouble("Amount"));
 		expense.setEDate(rs.getString("EDate"));
 		expense.setBDate(rs.getTimestamp("BDate"));

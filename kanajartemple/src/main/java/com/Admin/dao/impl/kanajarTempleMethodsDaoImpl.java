@@ -149,7 +149,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("ExpenseId", Id);
-		String str = "select * from expenditure where Eid=:ExpenseId";
+		String str = "select * from expenditure where Eid=:ExpenseId and Status='Active'";
 		return namedjdbc.queryForObject(str, param, new ExpenseRowMapper());
 	}
 
@@ -162,12 +162,12 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 	}
 
 	@Override
-	public ExpenseData getExpenditureData(String RecNo,String Id) {
+	public ExpenseData getExpenditureData(String RecNo, String Id) {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("RecNo", RecNo);
 		param.put("Id", Id);
-		String str = "select RecNo,Title,Description,Amount,DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,BDate from allexpendituredata where RecNo=:RecNo and Eid=:Id";
+		String str = "select RecNo,Eid,Title,Description,Amount,DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,BDate from allexpendituredata where RecNo=:RecNo and Eid=:Id";
 		return namedjdbc.queryForObject(str, param, new ExpenceDataRowMapper());
 	}
 
@@ -176,9 +176,10 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Eid", expenseId);
-		String str = "select RecNo,Title,Description,Amount,DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,BDate from allexpendituredata where Eid=:Eid";
+		String str = "select RecNo,Eid,Title,Description,Amount,DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,BDate from allexpendituredata where Eid=:Eid";
 		return namedjdbc.queryForList(str, param);
 	}
+
 	@Override
 	public List<Map<String, Object>> getIncome() {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
@@ -194,12 +195,12 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("IncomeId", Id);
-		String str = "select * from income where Iid=:IncomeId";
+		String str = "select * from income where Iid=:IncomeId and Status='Active'";
 		return namedjdbc.queryForObject(str, param, new IncomeRowMapper());
 	}
 
 	@Override
-	public IncomeData getIncomeData(String RecNo,String Id) {
+	public IncomeData getIncomeData(String RecNo, String Id) {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("RecNo", RecNo);

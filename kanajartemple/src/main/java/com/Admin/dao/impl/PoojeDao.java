@@ -319,25 +319,29 @@ public class PoojeDao<K> {
 		return report;
 	}
 
-	public String getExpenditureReceipt(ExpenseData ebean) {
+	public Integer getExpenditureReceipt(ExpenseData ebean) {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 
 		Map<String, Object> param = new HashMap<String, Object>();
-		String RecNo = null;
+		param.put("Eid", ebean.getEid());
 		param.put("Title", Utills.replaceWhiteSpace(ebean.getTitle()));
 		param.put("Description", Utills.replaceWhiteSpace(ebean.getDescription()));
 		param.put("Amount", ebean.getAmount());
 		param.put("EDate", getCustomDate(ebean.getEDate()));
 
-		String str = "insert into expenditure(Title,Description,Amount,EDate,BDate) values(:Title,:Description,:Amount,:EDate,(select now()))";
+		Integer RecNo;
+
+		RecNo = namedjdbc.queryForObject("select MAX(RecNo)+1 as RecNo from allexpendituredata where Eid=:Eid", param,
+				Integer.class);
+		if (RecNo == null) {
+			RecNo = 1;
+		}
+		param.put("RecNo", RecNo);
+		String str = "insert into allexpendituredata(RecNo,Eid,Title,Description,Amount,EDate,BDate) values(:RecNo,:Eid,:Title,:Description,:Amount,:EDate,(select now()))";
 
 		Integer i = namedjdbc.update(str, param);
 
 		if (i == 1) {
-			String str2 = "select * from expenditure where Title=:Title and Amount=:Amount order by BDate DESC";
-			List expensereceipt = namedjdbc.queryForList(str2, param);
-			LinkedHashMap linkedList = (LinkedHashMap) expensereceipt.get(0);
-			RecNo = linkedList.get("RecNo").toString();
 			return RecNo;
 		}
 
@@ -521,7 +525,8 @@ public class PoojeDao<K> {
 		param.put("Amount", ebean.getAmount());
 		param.put("EDate", getCustomDate(ebean.getEDate()));
 		param.put("RecNo", ebean.getRecNo());
-			String str = "update allexpendituredata set Title=:Title,Description=:Description,Amount=:Amount,"
+		param.put("Eid", ebean.getEid());
+		String str = "update allexpendituredata set Title=:Title,Description=:Description,Amount=:Amount,"
 				+ "EDate=:EDate where RecNo=:RecNo and Eid=:Eid";
 
 		return namedjdbc.update(str, param);
@@ -536,7 +541,8 @@ public class PoojeDao<K> {
 		param.put("EDate", getCustomDate(ibean.getEdate()));
 		param.put("RecNo", ibean.getRecNo());
 		param.put("Iid", ibean.getIid());
-		String str = "update allincomedata set title=:title,Amount=:Amount," + "Edate=:EDate where RecNo=:RecNo and Iid=:Iid";
+		String str = "update allincomedata set title=:title,Amount=:Amount,"
+				+ "Edate=:EDate where RecNo=:RecNo and Iid=:Iid";
 
 		return namedjdbc.update(str, param);
 	}

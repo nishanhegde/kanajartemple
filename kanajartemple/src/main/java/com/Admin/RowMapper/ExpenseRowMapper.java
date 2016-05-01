@@ -15,7 +15,7 @@ public class ExpenseRowMapper implements RowMapper<Expense> {
 	public Expense mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Expense expense = new Expense();
 		expense.setEid(rs.getInt("Eid"));
-		expense.setExpenseName(rs.getString("ExpenseName"));
+		expense.setExpenseName(rs.getString("ExpenditureName"));
 		return expense;
 	}
 

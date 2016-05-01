@@ -84,7 +84,7 @@
 			<ul>
 				<a href="<c:url value="/Admin/Expenditure"/>"><li><spring:message
 							code="label.add" /></li></a>
-				<a href="<c:url value="/Admin/ExpenditureList"/>"><li><spring:message
+				<a href="#" class="big-link" data-reveal-id="BookedExpense"><li><spring:message
 							code="label.list" /></li></a>
 				<a href="<c:url value="/Admin/ExpenditureReport"/>"><li><spring:message
 							code="label.report" /></li></a>
@@ -286,6 +286,23 @@
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
 
+	<div id="BookedExpense" class="reveal-modal">
+		<center>
+			<table cellspacing="10" cellpadding="10">
+				<tr>
+					<th><spring:message code="label.expense" /></th>
+				</tr>
+				<c:forEach items="${ExpenseDetails}" var="expense">
+					<tr>
+						<td><a
+							href="<c:url value="/Admin/ExpenditureList/${expense.Eid}"/>">${expense.ExpenditureName}</a></td>
+					</tr>
+				</c:forEach>
+
+			</table>
+		</center>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
 
 	<!--Adding  Pooje  -->
 

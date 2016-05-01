@@ -31,6 +31,7 @@ import com.Admin.Service.kanajarTempleMethods;
 import com.Admin.Service.Impl.PoojeService;
 import com.Admin.bean.Donation;
 import com.Admin.bean.DonationDetail;
+import com.Admin.bean.Expense;
 import com.Admin.bean.ExpenseData;
 import com.Admin.bean.Income;
 import com.Admin.bean.IncomeData;
@@ -287,8 +288,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/income", method = RequestMethod.POST)
-	public String AdminAddIncomeSuccess(HttpServletResponse response,
-			@ModelAttribute IncomeData ibean, Model mv, BindingResult bindingResult, Locale locale) {
+	public String AdminAddIncomeSuccess(HttpServletResponse response, @ModelAttribute IncomeData ibean, Model mv,
+			BindingResult bindingResult, Locale locale) {
 
 		incomeValidator.validate(ibean, bindingResult);
 		if (bindingResult.hasErrors()) {
@@ -317,7 +318,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/EditIncome/{IncomeID}/{RecNo}")
-	public ModelAndView editIncome(@PathVariable("IncomeID") String IncomeID,@PathVariable("RecNo") String RecNo, HttpServletRequest req) {
+	public ModelAndView editIncome(@PathVariable("IncomeID") String IncomeID, @PathVariable("RecNo") String RecNo,
+			HttpServletRequest req) {
 
 		ModelAndView mv = new ModelAndView("admin/IncomeEdit");
 		mv.addObject("Data", defaultTempleMethods.getIncomeData(RecNo, IncomeID));
@@ -331,15 +333,17 @@ public class AdminController {
 
 		incomeValidator.validate(ibean, bindingResult);
 		ModelAndView mv = new ModelAndView("admin/IncomeEdit");
-		
+
 		if (bindingResult.hasErrors()) {
 			mv.addObject(ibean);
-			mv.addObject("Data", defaultTempleMethods.getIncomeData(ibean.getRecNo().toString(),ibean.getIid().toString()));
+			mv.addObject("Data",
+					defaultTempleMethods.getIncomeData(ibean.getRecNo().toString(), ibean.getIid().toString()));
 			return mv;
 		} else {
 			Integer i = service.updateIncome(ibean);
 			if (i == 1) {
-				mv.addObject("Data", defaultTempleMethods.getIncomeData(ibean.getRecNo().toString(),ibean.getIid().toString()));
+				mv.addObject("Data",
+						defaultTempleMethods.getIncomeData(ibean.getRecNo().toString(), ibean.getIid().toString()));
 				mv.addObject("message", messageSource.getMessage("update.success", null, locale));
 				mv.addObject(new IncomeData());
 				return mv;
@@ -349,9 +353,11 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/IncomeList/{IncomeID}")
-	public ModelAndView AdminIncomeList(@PathVariable("IncomeID") String IncomeID, HttpServletResponse response, Poojebean pbean) {
+	public ModelAndView AdminIncomeList(@PathVariable("IncomeID") String IncomeID, HttpServletResponse response,
+			Poojebean pbean) {
 
 		ModelAndView mv = new ModelAndView("admin/IncomeList");
+		mv.addObject("Income", defaultTempleMethods.getIncome(IncomeID));
 		mv.addObject("IncomeDetails", defaultTempleMethods.getIncomeData(IncomeID));
 
 		return mv;
@@ -483,43 +489,45 @@ public class AdminController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/Expenditure")
-	public ModelAndView AdminExpenditure(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/Expenditure", method = RequestMethod.GET)
+	public ModelAndView adminExpenditure(HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/Expenses");
+		mv.addObject("ExpenseDetails", defaultTempleMethods.getExpenditure());
 		mv.addObject(new ExpenseData());
 		return mv;
 	}
 
-	@RequestMapping(value = "/ExpenditureReceipt")
-	public String AdminExpenditureReceipt(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute ExpenseData ebean, BindingResult bindingResult, Model mv) throws IOException {
+	@RequestMapping(value = "/Expenditure", method = RequestMethod.POST)
+	public String adminExpenditureReceipt(HttpServletResponse response, @ModelAttribute ExpenseData ebean,
+			BindingResult bindingResult, Model mv) throws IOException {
 
 		expenseValidator.validate(ebean, bindingResult);
 		if (bindingResult.hasErrors()) {
 			mv.addAttribute(ebean);
 			return "admin/Expenses";
 		} else {
-			String RNO = service.getExpenditureReceipt(ebean);
-			return REDIRECTPREFIX + "/Admin/ExpenditureReceipt/" + RNO;
+			Integer RNO = service.getExpenditureReceipt(ebean);
+			return REDIRECTPREFIX + "/Admin/ExpenditureReceipt/" + ebean.getEid() + "/" + RNO;
 		}
 
 	}
 
 	@RequestMapping(value = "/ExpenditureReceipt/{ExpenseID}/{RecNo}")
-	public ModelAndView AdminExpenditureReceipt(@PathVariable("ExpenseID") String ExpenseID,@PathVariable("RecNo") String RecNo, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView AdminExpenditureReceipt(@PathVariable("ExpenseID") String ExpenseID,
+			@PathVariable("RecNo") String RecNo, HttpServletRequest request, HttpServletResponse response) {
 
 		HttpSession session = request.getSession();
 		ModelAndView mv = new ModelAndView("admin/ExpenseReciept");
-		return addExpense(session,ExpenseID,RecNo, mv);
+		return addExpense(session, ExpenseID, RecNo, mv);
 	}
 
 	@RequestMapping(value = "/EditExpense/{ExpenseID}/{RecNo}")
-	public ModelAndView EditExpense(@PathVariable("ExpenseID") String ExpenseID,@PathVariable("RecNo") String RecNo, HttpServletRequest req) {
+	public ModelAndView EditExpense(@PathVariable("ExpenseID") String ExpenseID, @PathVariable("RecNo") String RecNo,
+			HttpServletRequest req) {
 
 		ModelAndView mv = new ModelAndView("admin/ExpenseEdit");
-		mv.addObject("Data", defaultTempleMethods.getExpenditure(RecNo));
+		mv.addObject("Data", defaultTempleMethods.getExpenditureData(RecNo, ExpenseID));
 		mv.addObject(new ExpenseData());
 		return mv;
 	}
@@ -530,14 +538,16 @@ public class AdminController {
 		expenseValidator.validate(ebean, bindingResult);
 		ModelAndView mv = new ModelAndView("admin/ExpenseEdit");
 		if (bindingResult.hasErrors()) {
-			mv.addObject("Data", defaultTempleMethods.getExpenditure(ebean.getRecNo().toString()));
+			mv.addObject("Data",
+					defaultTempleMethods.getExpenditureData(ebean.getRecNo().toString(), ebean.getEid().toString()));
 			mv.addObject(ebean);
 			return mv;
 		} else {
 			Integer i = service.updateExpense(ebean);
 			if (i == 1) {
 				mv.addObject("message", messageSource.getMessage("update.success", null, locale));
-				mv.addObject("Data", defaultTempleMethods.getExpenditure(ebean.getRecNo().toString()));
+				mv.addObject("Data", defaultTempleMethods.getExpenditureData(ebean.getRecNo().toString(),
+						ebean.getEid().toString()));
 				mv.addObject(new ExpenseData());
 				return mv;
 			}
@@ -545,13 +555,13 @@ public class AdminController {
 		}
 	}
 
-	@RequestMapping(value = "/ExpenditureList")
-	public ModelAndView AdminExpenditureList(HttpServletRequest request, HttpServletResponse response,
+	@RequestMapping(value = "/ExpenditureList/{ExpenseID}")
+	public ModelAndView AdminExpenditureList(@PathVariable("ExpenseID") String ExpenseID, HttpServletResponse response,
 			Poojebean pbean) {
 
 		ModelAndView mv = new ModelAndView("admin/ExpenseList");
-		List<?> PoojeDetails = defaultTempleMethods.getExpenditure();
-		mv.addObject("PoojeDetails", PoojeDetails);
+		mv.addObject("Expense", defaultTempleMethods.getExpenditure(ExpenseID));
+		mv.addObject("ExpenseDetails", defaultTempleMethods.getExpenditureData(ExpenseID));
 
 		return mv;
 	}
@@ -642,29 +652,30 @@ public class AdminController {
 
 	}
 
-	public ModelAndView addExpense(HttpSession session,String ExpenseID, String RecNo, ModelAndView mv) {
-		ExpenseData expense = defaultTempleMethods.getExpenditureData(RecNo,ExpenseID);
+	public ModelAndView addExpense(HttpSession session, String ExpenseID, String RecNo, ModelAndView mv) {
+		Expense expense = defaultTempleMethods.getExpenditure(ExpenseID);
+		ExpenseData expenseData = defaultTempleMethods.getExpenditureData(RecNo, ExpenseID);
 
-		mv.addObject("Expense", expense);
-
-		int Amount = expense.getAmount().intValue();
+		mv.addObject("Expense", expenseData);
+		mv.addObject("ExpenseName", expense.getExpenseName());
+		int Amount = expenseData.getAmount().intValue();
 		mv.addObject("InWords", Utills.converttoword(Amount) + " only");
 		mv.addObject("Amount", Amount + "/-");
 		mv.addObject("Signature", session.getAttribute("FullName"));
-		mv.addObject("tdate", getTdate(expense.getBDate()));
+		mv.addObject("tdate", getTdate(expenseData.getBDate()));
 		return mv;
 	}
 
 	public ModelAndView addIncome(HttpSession session, String IncomeID, String RecNo, ModelAndView mv) {
 
 		if (RecNo != null && IncomeID != null) {
-			Income income=defaultTempleMethods.getIncome(IncomeID);
-			IncomeData incomeData = defaultTempleMethods.getIncomeData(RecNo,IncomeID);
+			Income income = defaultTempleMethods.getIncome(IncomeID);
+			IncomeData incomeData = defaultTempleMethods.getIncomeData(RecNo, IncomeID);
 			mv.addObject("Income", incomeData);
 			int Amount = incomeData.getAmount().intValue();
 			mv.addObject("InWords", Utills.converttoword(Amount) + " only");
 			mv.addObject("Amount", Amount + "/-");
-			mv.addObject("IncomeName",income.getIncomeName());
+			mv.addObject("IncomeName", income.getIncomeName());
 			mv.addObject("Signature", session.getAttribute("FullName"));
 			mv.addObject("tdate", getTdate(incomeData.getBdate()));
 			return mv;

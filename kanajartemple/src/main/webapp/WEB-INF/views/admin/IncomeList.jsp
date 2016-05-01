@@ -9,7 +9,7 @@
 	<br />
 
 	<center>
-		<h1><spring:message code="label.income" /></h1>
+		<h1>${Income.incomeName}</h1>
 	</center>
 
 

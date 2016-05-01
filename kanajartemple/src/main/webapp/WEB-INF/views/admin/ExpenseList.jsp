@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fun"%>
@@ -10,7 +10,7 @@
 	<br />
 
 	<center>
-		<h1><spring:message code="label.expense" /></h1>
+		<h1>${Expense.expenseName}</h1>
 	</center>
 
 
@@ -25,17 +25,17 @@
 		<table class="demo-tbl">
 			<thead>
 				<tr>
-					<th><spring:message code="label.recno"/></th>
-					<th><spring:message code="label.income.title"/></th>
+					<th><spring:message code="label.recno" /></th>
+					<th><spring:message code="label.income.title" /></th>
 
-					<th><spring:message code="label.amount"/></th>
-					<th><spring:message code="label.edit"/></th>
-					<th><spring:message code="label.duplicate"/></th>
+					<th><spring:message code="label.amount" /></th>
+					<th><spring:message code="label.edit" /></th>
+					<th><spring:message code="label.duplicate" /></th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:if test="${fun:length(PoojeDetails) > 0}">
-					<c:forEach items="${PoojeDetails}" var="app">
+				<c:if test="${fun:length(ExpenseDetails) > 0}">
+					<c:forEach items="${ExpenseDetails}" var="app">
 
 						<tr class="tbl-item">
 
@@ -50,20 +50,25 @@
 
 							<td class="td-block">
 
-								<p>
-									&#8377 ${app.Amount}</p>
+								<p>&#8377 ${app.Amount}</p>
 
 							</td>
 							<td class="td-block">
 
-								<p><a onclick="popupCenter('../Admin/EditExpense/${app.RecNo}', 'Kanajar Temple',400,270);" href="javascript:void(0);"><spring:message code="label.edit"/></a></p>
+								<p>
+									<a
+										onclick="popupCenter('../../Admin/EditExpense/${app.Eid}/${app.RecNo}', 'Kanajar Temple',400,270);"
+										href="javascript:void(0);"><spring:message
+											code="label.edit" /></a>
+								</p>
 
 							</td>
 							<td class="td-block">
 
 								<p>
 									<a target="_blank"
-										href="<c:url value="../Admin/ExpenditureReceipt/${app.RecNo}"/>"><spring:message code="label.print"/></a>
+										href="<c:url value="../../Admin/ExpenditureReceipt/${app.Eid}/${app.RecNo}"/>"><spring:message
+											code="label.print" /></a>
 								</p>
 							</td>
 

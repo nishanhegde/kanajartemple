@@ -73,7 +73,7 @@ public class PoojeService {
 		return dao.getDonationReport(rbean,DonationName);
 	}
 	
-	public String getExpenditureReceipt(ExpenseData ebean)
+	public Integer getExpenditureReceipt(ExpenseData ebean)
 	{
 		return dao.getExpenditureReceipt(ebean);
 	}

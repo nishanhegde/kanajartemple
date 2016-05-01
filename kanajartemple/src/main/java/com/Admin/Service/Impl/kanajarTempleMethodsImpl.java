@@ -111,7 +111,6 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 
 	@Override
 	public boolean checkEmailId(String emailid,String id) {
-		// TODO Auto-generated method stub
 		return defaultTempleMethodsDao.checkEmailId(emailid,id);
 	}
 
