@@ -9,8 +9,8 @@
 	<center>
 		<form action="<c:url value="../Admin/SashwathaPoojeReportSuccess"/>"
 			method="post" target="_blank">
-			<table >
-				<input type="hidden" name="pid" value="1" />
+			<table>
+				<input type="hidden" name="id" value="1" />
 				<tr>
 					<th><spring:message code="label.date" /></th>
 					<td><select name="dates">

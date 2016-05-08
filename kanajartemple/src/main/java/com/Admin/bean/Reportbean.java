@@ -2,57 +2,15 @@ package com.Admin.bean;
 
 public class Reportbean {
 	
-	private String PoojeName;
+
 	private String dates;
 	private String FromDate;
 	private String ToDate;
 	private String SaveAs;
 	private String sortby;
 	private String order;
-	private String pid;
-	private String Did;
-	private String DonationName;
-	
-	
-	
-	
-	
-	public String getDid() {
-		return Did;
-	}
-	public void setDid(String did) {
-		Did = did;
-	}
-	public String getDonationName() {
-		return DonationName;
-	}
-	public void setDonationName(String donationName) {
-		DonationName = donationName;
-	}
-	public String getPid() {
-		return pid;
-	}
-	public void setPid(String pid) {
-		this.pid = pid;
-	}
-	public String getSortby() {
-		return sortby;
-	}
-	public void setSortby(String sortby) {
-		this.sortby = sortby;
-	}
-	public String getOrder() {
-		return order;
-	}
-	public void setOrder(String order) {
-		this.order = order;
-	}
-	public String getPoojeName() {
-		return PoojeName;
-	}
-	public void setPoojeName(String poojeName) {
-		PoojeName = poojeName;
-	}
+	private String id;
+	private String name;
 	public String getDates() {
 		return dates;
 	}
@@ -77,7 +35,30 @@ public class Reportbean {
 	public void setSaveAs(String saveAs) {
 		SaveAs = saveAs;
 	}
-	
+	public String getSortby() {
+		return sortby;
+	}
+	public void setSortby(String sortby) {
+		this.sortby = sortby;
+	}
+	public String getOrder() {
+		return order;
+	}
+	public void setOrder(String order) {
+		this.order = order;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	
 }

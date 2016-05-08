@@ -363,18 +363,18 @@ public class AdminController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/IncomeReport")
+	@RequestMapping(value = "/IncomeReport", method = RequestMethod.GET)
 	public ModelAndView AdminIncomeReport(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/IncomeReport");
+		mv.addObject("IncomeDetails", defaultTempleMethods.getIncome());
 		return mv;
 	}
 
-	@RequestMapping(value = "/IncomeReportSuccess")
+	@RequestMapping(value = "/IncomeReport", method = RequestMethod.POST)
 	public ModelAndView AdminIncomeReportSuccess(HttpServletRequest request, HttpServletResponse response,
 			Reportbean rbean) {
-		List<?> PoojeReceipt = service.getIncomeReport(rbean);
-
-		JRDataSource datasource = new JRBeanCollectionDataSource(PoojeReceipt);
+		rbean.setName(defaultTempleMethods.getIncome(rbean.getId()).getIncomeName());
+		JRDataSource datasource = new JRBeanCollectionDataSource(service.getIncomeReport(rbean));
 
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", datasource);
@@ -463,20 +463,18 @@ public class AdminController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/DonationReport")
+	@RequestMapping(value = "/DonationReport", method = RequestMethod.GET)
 	public ModelAndView AdminDonationReport(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/DonationReport");
-		List<?> DonationDetails = defaultTempleMethods.getDonation();
-
-		mv.addObject("DonationDetails", DonationDetails);
+		mv.addObject("DonationDetails", defaultTempleMethods.getDonation());
 		return mv;
 	}
 
-	@RequestMapping(value = "/DonationReportSuccess")
+	@RequestMapping(value = "/DonationReport", method = RequestMethod.POST)
 	public ModelAndView AdminDonationReportSuccess(HttpServletRequest request, HttpServletResponse response,
 			Reportbean rbean) {
-		Donation donation = defaultTempleMethods.getDonation(rbean.getDid());
+		Donation donation = defaultTempleMethods.getDonation(rbean.getId());
 		List<?> DonationReport = service.getDonationReport(rbean, donation.getDonationName());
 
 		JRDataSource datasource = new JRBeanCollectionDataSource(DonationReport);
@@ -566,20 +564,18 @@ public class AdminController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/ExpenditureReport")
+	@RequestMapping(value = "/ExpenditureReport", method = RequestMethod.GET)
 	public ModelAndView AdminExpenditureReport(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/ExpenditureReport");
-
+		mv.addObject("ExpenditureDetails", defaultTempleMethods.getExpenditure());
 		return mv;
 	}
 
-	@RequestMapping(value = "/ExpenditureReportSuccess")
-	public ModelAndView AdminExpenditureReportSuccess(HttpServletRequest request, HttpServletResponse response,
-			Reportbean rbean) {
-		List<?> DonationReport = service.getExpenditureReport(rbean);
-
-		JRDataSource datasource = new JRBeanCollectionDataSource(DonationReport);
+	@RequestMapping(value = "/ExpenditureReport", method = RequestMethod.POST)
+	public ModelAndView AdminExpenditureReportSuccess(HttpServletResponse response, Reportbean rbean) {
+		rbean.setName(defaultTempleMethods.getExpenditure(rbean.getId()).getExpenseName());
+		JRDataSource datasource = new JRBeanCollectionDataSource(service.getExpenditureReport(rbean));
 
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", datasource);

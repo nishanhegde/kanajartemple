@@ -57,7 +57,7 @@ public class PoojeDao<K> {
 	private Map<String, Object> getReportParam(Reportbean rbean) {
 		Map<String, Object> param = new HashMap<String, Object>();
 
-		param.put("Pid", rbean.getPid());
+		param.put("id", rbean.getId());
 		param.put("ColumnName", rbean.getDates());
 
 		param.put("FromDate", getCustomDate(rbean.getFromDate()));
@@ -69,8 +69,6 @@ public class PoojeDao<K> {
 		} else {
 			param.put("ToDate", getCustomDate(rbean.getToDate()));
 		}
-		param.put("pid", rbean.getPid());
-		param.put("Did", rbean.getDid());
 		return param;
 	}
 
@@ -127,7 +125,7 @@ public class PoojeDao<K> {
 		Map<String, Object> param = getReportParam(rbean);
 		String PoojeName = null;
 		String BaseAmount = null;
-		String sql = "select Amount,Quantity,PoojeName from pooje p1," + "allpoojedata s1 where  p1.pid=:Pid and s1."
+		String sql = "select Amount,Quantity,PoojeName from pooje p1," + "allpoojedata s1 where  p1.pid=:id and s1."
 				+ rbean.getDates() + ">=:FromDate and s1." + rbean.getDates() + "<=:ToDate and p1.pid=s1.Pid";
 		double grandtotal = 00.0;
 		List total = namedjdbc.queryForList(sql, param);
@@ -145,7 +143,7 @@ public class PoojeDao<K> {
 
 		String str = "select  @acount:=@acount+1 SI,RecNo,Quantity,Name,Pid,DATE_FORMAT(PDate, '%d-%m-%Y') as PDate,"
 				+ "BDate from (SELECT @acount:= 0) AS acount,allpoojedata" + " where " + rbean.getDates()
-				+ ">=:FromDate and " + rbean.getDates() + "<=:ToDate and  Pid=:Pid";
+				+ ">=:FromDate and " + rbean.getDates() + "<=:ToDate and  Pid=:id";
 		List<Map<String, Object>> report = new ArrayList<Map<String, Object>>();
 		Map<String, Object> details = new HashMap<String, Object>();
 		details.put("PoojeName", PoojeName);
@@ -189,7 +187,7 @@ public class PoojeDao<K> {
 
 		Map<String, Object> param = getReportParam(rbean);
 
-		String str = "select @acount:=@acount+1 SI,RecNo,title,DATE_FORMAT(Bdate, '%d-%m-%Y %h:%i %p') as Bdate,Amount from (SELECT @acount:= 0) AS acount,income where "
+		String str = "select @acount:=@acount+1 SI,RecNo,title,DATE_FORMAT(Bdate, '%d-%m-%Y %h:%i %p') as Bdate,Amount from (SELECT @acount:= 0) AS acount,allincomedata where Iid=:id and "
 				+ rbean.getDates() + ">=:FromDate and " + rbean.getDates() + "<=:ToDate order by " + rbean.getSortby()
 				+ " " + rbean.getOrder();
 
@@ -199,6 +197,7 @@ public class PoojeDao<K> {
 		details.put("TodayDate", new Date());
 		details.put("FromDate", rbean.getFromDate());
 		details.put("ToDate", rbean.getToDate());
+		details.put("IncomeName", rbean.getName());
 		report = namedjdbc.queryForList(str, param);
 		double grandtotal = 00.0;
 
@@ -220,7 +219,7 @@ public class PoojeDao<K> {
 			param.put("FromDate", getSashwathaDate(rbean.getFromDate()));
 			param.put("ToDate", getSashwathaDate(rbean.getToDate()));
 		}
-		String sql = "select Amount from pooje p1,SashwathaPooje s1 where p1.pid=:pid and s1." + rbean.getDates()
+		String sql = "select Amount from pooje p1,SashwathaPooje s1 where p1.pid=:id and s1." + rbean.getDates()
 				+ ">=:FromDate and s1." + rbean.getDates() + "<=:ToDate and p1.pid=s1.Pid or " + rbean.getDates()
 				+ "=:ToDate ";
 		String str = "select @acount:=@acount+1 SI,RecNo,Name,Address,PDate,MobileNo,Email,BDate,Pid"
@@ -297,7 +296,7 @@ public class PoojeDao<K> {
 		Map<String, Object> param = getReportParam(rbean);
 		String str = "select @acount:=@acount+1 SI,RecNo,Name,Address,Amount,mobile,email,BDate,"
 				+ "Did from (SELECT @acount:= 0) AS acount,alldonationdata"
-				+ " where BDate>=:FromDate and BDate<=:ToDate and Did=:Did  order by " + rbean.getSortby() + " "
+				+ " where BDate>=:FromDate and BDate<=:ToDate and Did=:id  order by " + rbean.getSortby() + " "
 				+ rbean.getOrder();
 
 		double grandtotal = 00.0;
@@ -352,29 +351,26 @@ public class PoojeDao<K> {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 
 		Map<String, Object> param = getReportParam(rbean);
-		String sql = "select Amount from expenditure where " + rbean.getDates() + ">=:FromDate and " + rbean.getDates()
-				+ "<=:ToDate";
 		String str = "select @acount:=@acount+1 SI,RecNo,Title,Description,Amount,"
 				+ "DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,"
-				+ "BDate from (SELECT @acount:= 0) AS acount,expenditure where " + rbean.getDates() + ">=:FromDate and "
-				+ rbean.getDates() + "<=:ToDate  order by " + rbean.getSortby() + " " + rbean.getOrder();
+				+ "BDate from (SELECT @acount:= 0) AS acount,allexpendituredata where Eid=:id and " + rbean.getDates()
+				+ ">=:FromDate and " + rbean.getDates() + "<=:ToDate  order by " + rbean.getSortby() + " "
+				+ rbean.getOrder();
 
 		double grandtotal = 00.0;
-		List total = namedjdbc.queryForList(sql, param);
-		for (int i = 0; i < total.size(); i++) {
-			LinkedHashMap linkedList = (LinkedHashMap) total.get(i);
-
+		List report = namedjdbc.queryForList(str, param);
+		for (int i = 0; i < report.size(); i++) {
+			LinkedHashMap linkedList = (LinkedHashMap) report.get(i);
 			grandtotal += Double.parseDouble(linkedList.get("Amount").toString());
 		}
 
-		List report = new ArrayList();
 		Map<String, Object> details = new HashMap<String, Object>();
 
 		details.put("TodayDate", new Date());
 		details.put("FromDate", rbean.getFromDate());
 		details.put("ToDate", rbean.getToDate());
 		details.put("Total", grandtotal);
-		report = namedjdbc.queryForList(str, param);
+		details.put("ExpenditureName", rbean.getName());
 		report.add(0, details);
 
 		return report;
@@ -417,7 +413,7 @@ public class PoojeDao<K> {
 		}
 
 		/* Expense Total */
-		String expensesql = "select Amount from expenditure where BDate>=:FromDate and BDate<=:ToDate ";
+		String expensesql = "select Amount from allexpendituredata where BDate>=:FromDate and BDate<=:ToDate ";
 
 		double expensetotal = 00.0;
 		List total = namedjdbc.queryForList(expensesql, param);
@@ -428,7 +424,7 @@ public class PoojeDao<K> {
 		}
 
 		/* income Total */
-		String incomesql = "select Amount from income where Bdate>=:FromDate and Bdate<=:ToDate ";
+		String incomesql = "select Amount from allincomedata where Bdate>=:FromDate and Bdate<=:ToDate ";
 
 		double incometotal = 00.0;
 		List income = namedjdbc.queryForList(incomesql, param);

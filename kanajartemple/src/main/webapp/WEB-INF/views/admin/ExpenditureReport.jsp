@@ -7,10 +7,17 @@
 <div class="mainbody">
 
 	<center>
-		<form action="<c:url value="../Admin/ExpenditureReportSuccess"/>"
-			method="post" target="_blank">
-			<table >
+		<form method="post" target="_blank">
+			<table>
 
+				<tr>
+					<th><spring:message code="label.expense.name" /></th>
+					<td><select name="id" required>
+							<c:forEach items="${ExpenditureDetails}" var="expense">
+								<option value="${expense.Eid}">${expense.ExpenditureName}</option>
+							</c:forEach>
+					</select></td>
+				</tr>
 				<tr>
 					<th><spring:message code="label.date" /></th>
 					<td><select name="dates">

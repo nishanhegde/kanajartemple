@@ -7,18 +7,15 @@
 <div class="mainbody">
 
 	<center>
-		<form action="<c:url value="../Admin/DonationReportSuccess"/>"
-			method="post" target="_blank">
+		<form method="post" target="_blank">
 			<table>
 				<input type="hidden" name="dates" value="BDate" />
 
 				<tr>
 					<th><spring:message code="label.donation.name" /></th>
-					<td><select name="Did" required>
-
+					<td><select name="id" required>
 							<c:forEach items="${DonationDetails}" var="puje">
 								<option value="${puje.Did}">${puje.DonationName}</option>
-
 							</c:forEach>
 					</select></td>
 				</tr>

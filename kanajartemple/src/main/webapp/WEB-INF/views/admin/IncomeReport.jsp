@@ -7,10 +7,16 @@
 <div class="mainbody">
 
 	<center>
-		<form action="<c:url value="../Admin/IncomeReportSuccess"/>"
-			method="post" target="_blank">
+		<form method="post" target="_blank">
 			<table>
-
+				<tr>
+					<th><spring:message code="label.income.name" /></th>
+					<td><select name="id" required>
+							<c:forEach items="${IncomeDetails}" var="income">
+								<option value="${income.Iid}">${income.IncomeName}</option>
+							</c:forEach>
+					</select></td>
+				</tr>
 				<tr>
 					<th><spring:message code="label.date" /></th>
 					<td><select name="dates">

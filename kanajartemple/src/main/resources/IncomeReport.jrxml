@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-21T23:28:05 -->
+<!-- 2016-05-08T13:20:24 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="IncomeReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43e0c141-5909-46d5-b2d4-bd3042c6f231">
 	<property name="net.sf.jasperreports.export.html.using.images.to.align" value="false"/>
 	<property name="ireport.zoom" value="1.0"/>
@@ -15,6 +15,7 @@
 	<field name="Amount" class="java.lang.String"/>
 	<field name="Total" class="java.lang.Double"/>
 	<field name="SI" class="java.lang.Integer"/>
+	<field name="IncomeName" class="java.lang.String"/>
 	<title>
 		<band height="147" splitType="Stretch">
 			<staticText>
@@ -121,6 +122,20 @@
 			<line>
 				<reportElement x="2" y="144" width="553" height="1" uuid="c2162a7b-8a5a-4d9b-9d9b-96648ad9e4be"/>
 			</line>
+			<staticText>
+				<reportElement x="209" y="91" width="91" height="20" uuid="15901db1-111f-498c-899d-0e4bfb981e5c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Income Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="303" y="90" width="220" height="20" forecolor="#333333" uuid="3b68198e-d280-43b8-a107-3bb01393c226"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IncomeName}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<detail>

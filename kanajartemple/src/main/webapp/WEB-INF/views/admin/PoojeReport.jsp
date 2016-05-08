@@ -12,7 +12,7 @@
 			<table>
 				<tr>
 					<th><spring:message code="label.poojename" /></th>
-					<td><select name="pid">
+					<td><select name="id">
 
 							<c:forEach items="${PoojeDetails}" var="puje">
 								<option value="${puje.Pid}">${puje.PoojeName}</option>
