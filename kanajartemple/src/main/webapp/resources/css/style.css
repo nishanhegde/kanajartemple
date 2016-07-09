@@ -221,6 +221,26 @@ div#box {
 	font-family: arial;
     font-size: 20px;
     font-weight: bold;
-    
+   
 	
+}
+
+.header {
+	margin-bottom: 5px;
+	width: 957px;
+	height: 160px;
+	float: left;
+	background-image: url("../images/brahm.jpg");
+}
+
+h6 {
+	padding-top: 40px;
+	padding-right: 10px;
+	float: right;
+	font-weight: normal;
+	font-size: 55px;
+	font-family: Brush Script MT;
+	color: #FFFFFF;
+	text-indent: 5px;
+	letter-spacing: -1px;
 }
