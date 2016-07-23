@@ -49,17 +49,7 @@ public class HomeDao {
 		
 	}
 	
-	public Map getHomedetails()
-	{
-		NamedParameterJdbcTemplate namedjdbc=new NamedParameterJdbcTemplate(dataSource);
-		Map param=new HashMap();
-		List news=namedjdbc.queryForList("select Content from admincms where PageName='News'", param);
-		List home=namedjdbc.queryForList("select Content from admincms where PageName='Home'", param);
-		param.put("news", news);
-		param.put("home", home);
-		return param;
-	}
-	
+		
 	public List getAddress()
 	{
 		NamedParameterJdbcTemplate namedjdbc=new NamedParameterJdbcTemplate(dataSource);

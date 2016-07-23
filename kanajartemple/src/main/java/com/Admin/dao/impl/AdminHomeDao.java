@@ -6,11 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.Admin.RowMapper.CMSPageRowMapper;
+import com.Admin.RowMapper.PoojeRowMapper;
 import com.Admin.RowMapper.RegisterRowMapper;
 import com.Admin.bean.CMSbean;
 import com.Admin.bean.ChangePassword;
@@ -29,8 +32,7 @@ public class AdminHomeDao {
 		return transactionManager;
 	}
 
-	public void setTransactionManager(
-			PlatformTransactionManager transactionManager) {
+	public void setTransactionManager(PlatformTransactionManager transactionManager) {
 		this.transactionManager = transactionManager;
 	}
 
@@ -42,32 +44,31 @@ public class AdminHomeDao {
 		this.dataSource = dataSource;
 	}
 
-	public List getPageContent(String Pagename) {
+	public CMSbean getPageContent(String Pid) {
 
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(
-				dataSource);
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, String> param = new HashMap<String, String>();
-		param.put("Pagename", Pagename);
-		String str = "select Content from admincms where PageName=:Pagename";
-		return namedjdbc.queryForList(str, param);
+		param.put("Pid", Pid);
+		param.put("language", LocaleContextHolder.getLocale().toString());
+		String str = "select * from admincms where Pid=:Pid and language=:language";
+		return namedjdbc.queryForObject(str, param, new CMSPageRowMapper());
 
 	}
 
 	public Integer updatePageContent(CMSbean cbean) {
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(
-				dataSource);
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, String> param = new HashMap<String, String>();
-		param.put("Pagename", cbean.getPagename());
+		param.put("Pid", cbean.getPid().toString());
 		param.put("Content", cbean.getContent());
-		String str = "update admincms set Content=:Content  where PageName=:Pagename";
+		param.put("language", LocaleContextHolder.getLocale().toString());
+		String str = "update admincms set Content=:Content  where Pid=:Pid and language=:language";
 		return namedjdbc.update(str, param);
 	}
 
 	public Integer addAdmin(RegistrationBean regbean) {
 
 		Map<String, Object> param = new HashMap<String, Object>(2);
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(
-				dataSource);
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 
 		param.put("fullName", regbean.getFullName());
 
@@ -81,8 +82,7 @@ public class AdminHomeDao {
 	}
 
 	public RegistrationBean getAdmin(String username) {
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(
-				dataSource);
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("username", username);
 		String str = "select id,EmailId,FullName,PhoneNumber from register where EmailId=:username";
@@ -92,8 +92,7 @@ public class AdminHomeDao {
 	public Integer updateAdmin(RegistrationBean rbean, String username) {
 
 		Map<String, Object> param = new HashMap<String, Object>(2);
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(
-				dataSource);
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 
 		param.put("fullName", rbean.getFullName());
 		param.put("username", username);
@@ -106,26 +105,21 @@ public class AdminHomeDao {
 
 	public Integer changePassword(ChangePassword cpbean, String username) {
 		Map<String, Object> param = new HashMap<String, Object>(2);
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(
-				dataSource);
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 
 		param.put("currentpassword", cpbean.getCurrentpassword());
 		param.put("username", username);
-		param.put("newpassword",cpbean.getNewpassword());
+		param.put("newpassword", cpbean.getNewpassword());
 		String sql = "update register set Password=:newpassword where EmailId=:username and Password=:currentpassword";
 		return namedjdbc.update(sql, param);
 	}
 
-	public String getPassword(String id)
-	{
+	public String getPassword(String id) {
 		Map<String, Object> param = new HashMap<String, Object>(2);
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(
-				dataSource);
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		param.put("id", id);
-		
-		return namedjdbc
-		.queryForObject(
-				"select Password  from register where EmailId=:id or PhoneNumber=:id",
-				param, String.class);
+
+		return namedjdbc.queryForObject("select Password  from register where EmailId=:id or PhoneNumber=:id", param,
+				String.class);
 	}
 }

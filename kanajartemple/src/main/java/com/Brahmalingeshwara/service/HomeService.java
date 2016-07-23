@@ -33,11 +33,6 @@ public class HomeService {
 		return dao.getPageContent(Pagename);
 	}
 
-	public Map getHomedetails()
-	{
-		return dao.getHomedetails();
-	}
-	
 	public List getAddress()
 	{
 		return dao.getAddress();

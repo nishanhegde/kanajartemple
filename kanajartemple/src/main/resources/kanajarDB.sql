@@ -17,20 +17,28 @@ USE `brahmalingeshwara`;
 
 -- Dumping structure for table brahmalingeshwara.admincms
 CREATE TABLE IF NOT EXISTS `admincms` (
-  `Pid` int(11) NOT NULL AUTO_INCREMENT,
+  `Pid` int(11) NOT NULL,
   `PageName` varchar(100) NOT NULL,
-  `Content` varchar(60000) NOT NULL,
-  PRIMARY KEY (`Pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `Content` longtext NOT NULL,
+  `language` varchar(2) CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`Pid`,`language`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.admincms: ~5 rows (approximately)
+-- Dumping data for table brahmalingeshwara.admincms: ~12 rows (approximately)
 /*!40000 ALTER TABLE `admincms` DISABLE KEYS */;
-INSERT INTO `admincms` (`Pid`, `PageName`, `Content`) VALUES
-	(1, 'Home', '<p style="text-align: justify;">In the great land of Dakshina Kannada and Udupi district, where \'Nagas\'(the snake god) is religiously worshipped there exist 1600 temples as per the Government records.From the various Daivas(Bhoothas) and Devas(Gods) that exist here, the story of Kananjar Shree Brahmalingeshwara has special importance and sanctity.Kananjar is also called as Kanajar.&nbsp;</p>\r\n<p style="text-align: justify;">If one is coming to the temple from Udupi,one should take the Udupi-Hiriadka-Karkala route.At Gudde Angadi(after Hiriadka) one must take the right turn towards Kananjar village.This temple is three kilometers away from here.One can also approach the temple from the Udupi-Palli-Bailur-Karkala road.Near kananjar church one must take the left turn. From here to the temple is just three kilometers.&nbsp;</p>\r\n<p style="text-align: justify;">&nbsp;</p>\r\n<p style="text-align: justify;">The route to the temple is absolutely mesmerizing with lush green forests and breathtaking mountains untouched yet by modern civilization.Situated in the <span style="background-color: #ffffff;">midst of this scenic beauty stands the temple.Entering the temple one can\'t miss the beautiful architecture that takes you back to more than 850 years ago.&nbsp;</span></p>\r\n<p style="text-align: justify;"><span style="background-color: #ffffff;">&nbsp;</span></p>\r\n<p style="text-align: justify;"><span style="background-color: #ffffff;">The temple has been constructed in accordance with the principles of Vaastu Shastra(the ancient science of architecture) and vinyasa (layout).The \'Garbhagudi\' has been built based on the principles of chaturasra and\'Gajaya Aya\'.As per the system that exists in most temples,every deity has a \'sthana\' (an order of prominence).Similarity ,in this temple the pradhana devatha (main deity) is Shree Brahmalingeshwara, followed by Shree Veerabhadra, Shree Ganapathy , Shree Annapoorneshwari and then Shree Melbanta.</span></p>'),
-	(2, 'News', '<p><strong>Annual Festival Details</strong><br /><br /></p>\r\n<p><span style="color: #ff6600;">17-12-2013 Saturday</span><br />Muhurtha Bali</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">15-12-2013 Sunday</span><br />Dhwajarohana, Rashikai</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">16-12-2013 Monday</span> <br />Varasare</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">17-12-2013 Tuesday</span><br />Kenda seve, Rangapuje.</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">18-12-2013 Wednesday</span><br />Rathothsava</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">19-12-2013 Thursday</span> <br />Kavatodghatane, Thulabara, Katte puje</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">20-12-2013 Friday</span> <br />Melbanta puje</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">21-12-2013 Saturday</span><br />Mari santharpane<br /><br /></p>\r\n<p>Be a member of shashwatha puja seva samithi for performing&nbsp;puja on permanent basis on any of your special occasions and get the blessings of Lord Brahmalingeshwara .</p>\r\n<p style="text-align: justify;">&nbsp;</p>\r\n<p style="text-align: justify;">Annasantharpane(mass feast) is arranged daily&nbsp;during annual uthsav. Proposal is on for starting&nbsp;annasantharpane on every sankramana day. Contribute&nbsp;generously for annasantharpana nidhi.</p>\r\n<p style="text-align: justify;"><br />Payments/Donations may be credited to temples&nbsp;savings account no:01962200002816 with Syndicate&nbsp;Bank Kanajar.</p>'),
-	(3, 'Sthala Purana', '<h2 style="text-align: center;"><strong>Sthala Purana</strong></h2>'),
-	(4, 'Doddamane', 'Doddamane'),
-	(5, 'Melbanta-Daiva', 'Melbanta-Daiva');
+INSERT INTO `admincms` (`Pid`, `PageName`, `Content`, `language`) VALUES
+	(1, 'Home', '<p style="text-align: justify;">In the great land of Dakshina Kannada and Udupi district, where \'Nagas\'(the snake god) is religiously worshipped there exist 1600 temples as per the Government records.From the various Daivas(Bhoothas) and Devas(Gods) that exist here, the story of Kananjar Shree Brahmalingeshwara has special importance and sanctity.Kananjar is also called as Kanajar.&nbsp;</p>\r\n<p style="text-align: justify;">If one is coming to the temple from Udupi,one should take the Udupi-Hiriadka-Karkala route.At Gudde Angadi(after Hiriadka) one must take the right turn towards Kananjar village.This temple is three kilometers away from here.One can also approach the temple from the Udupi-Palli-Bailur-Karkala road.Near kananjar church one must take the left turn. From here to the temple is just three kilometers.&nbsp;</p>\r\n<p style="text-align: justify;">&nbsp;</p>\r\n<p style="text-align: justify;">The route to the temple is absolutely mesmerizing with lush green forests and breathtaking mountains untouched yet by modern civilization.Situated in the <span style="background-color: #ffffff;">midst of this scenic beauty stands the temple.Entering the temple one can\'t miss the beautiful architecture that takes you back to more than 850 years ago.&nbsp;</span></p>\r\n<p style="text-align: justify;"><span style="background-color: #ffffff;">&nbsp;</span></p>\r\n<p style="text-align: justify;"><span style="background-color: #ffffff;">The temple has been constructed in accordance with the principles of Vaastu Shastra(the ancient science of architecture) and vinyasa (layout).The \'Garbhagudi\' has been built based on the principles of chaturasra and\'Gajaya Aya\'.As per the system that exists in most temples,every deity has a \'sthana\' (an order of prominence).Similarity ,in this temple the pradhana devatha (main deity) is Shree Brahmalingeshwara, followed by Shree Veerabhadra, Shree Ganapathy , Shree Annapoorneshwari and then Shree Melbanta.</span></p>', 'en'),
+	(1, 'ಮುಖಪುಟ', '<p style="text-align: justify;">In the great land of Dakshina Kannada and Udupi district, where \'Nagas\'(the snake god) is religiously worshipped there exist 1600 temples as per the Government records.From the various Daivas(Bhoothas) and Devas(Gods) that exist here, the story of Kananjar Shree Brahmalingeshwara has special importance and sanctity.Kananjar is also called as Kanajar.&nbsp;</p>\r\n<p style="text-align: justify;">If one is coming to the temple from Udupi,one should take the Udupi-Hiriadka-Karkala route.At Gudde Angadi(after Hiriadka) one must take the right turn towards Kananjar village.This temple is three kilometers away from here.One can also approach the temple from the Udupi-Palli-Bailur-Karkala road.Near kananjar church one must take the left turn. From here to the temple is just three kilometers.&nbsp;</p>\r\n<p style="text-align: justify;">&nbsp;</p>\r\n<p style="text-align: justify;">The route to the temple is absolutely mesmerizing with lush green forests and breathtaking mountains untouched yet by modern civilization.Situated in the <span style="background-color: #ffffff;">midst of this scenic beauty stands the temple.Entering the temple one can\'t miss the beautiful architecture that takes you back to more than 850 years ago.&nbsp;</span></p>\r\n<p style="text-align: justify;"><span style="background-color: #ffffff;">&nbsp;</span></p>\r\n<p style="text-align: justify;"><span style="background-color: #ffffff;">The temple has been constructed in accordance with the principles of Vaastu Shastra(the ancient science of architecture) and vinyasa (layout).The \'Garbhagudi\' has been built based on the principles of chaturasra and\'Gajaya Aya\'.As per the system that exists in most temples,every deity has a \'sthana\' (an order of prominence).Similarity ,in this temple the pradhana devatha (main deity) is Shree Brahmalingeshwara, followed by Shree Veerabhadra, Shree Ganapathy , Shree Annapoorneshwari and then Shree Melbanta.</span></p>\r\n<h2>ಮುಖಪುಟ</h2>\r\n<p style="text-align: justify;"><span style="background-color: #ffffff;">&nbsp;</span></p>', 'kn'),
+	(2, 'News', '<p><strong>Annual Festival Details</strong><br /><br /></p>\r\n<p><span style="color: #ff6600;">17-12-2013 Saturday</span><br />Muhurtha Bali</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">15-12-2013 Sunday</span><br />Dhwajarohana, Rashikai</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">16-12-2013 Monday</span> <br />Varasare</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">17-12-2013 Tuesday</span><br />Kenda seve, Rangapuje.</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">18-12-2013 Wednesday</span><br />Rathothsava</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">19-12-2013 Thursday</span> <br />Kavatodghatane, Thulabara, Katte puje</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">20-12-2013 Friday</span> <br />Melbanta puje</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">21-12-2013 Saturday</span><br />Mari santharpane<br /><br /></p>\r\n<p>Be a member of shashwatha puja seva samithi for performing&nbsp;puja on permanent basis on any of your special occasions and get the blessings of Lord Brahmalingeshwara .</p>\r\n<p style="text-align: justify;">&nbsp;</p>\r\n<p style="text-align: justify;">Annasantharpane(mass feast) is arranged daily&nbsp;during annual uthsav. Proposal is on for starting&nbsp;annasantharpane on every sankramana day. Contribute&nbsp;generously for annasantharpana nidhi.</p>\r\n<p style="text-align: justify;"><br />Payments/Donations may be credited to temples&nbsp;savings account no:01962200002816 with Syndicate&nbsp;Bank Kanajar.</p>', 'en'),
+	(2, 'ಸುದ್ದಿ/ವೃತಾಂತ', '<p><strong>Annual Festival Details</strong><br /><br /></p>\r\n<p><span style="color: #ff6600;">17-12-2013 Saturday</span><br />Muhurtha Bali</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">15-12-2013 Sunday</span><br />Dhwajarohana, Rashikai</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">16-12-2013 Monday</span> <br />Varasare</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">17-12-2013 Tuesday</span><br />Kenda seve, Rangapuje.</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">18-12-2013 Wednesday</span><br />Rathothsava</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">19-12-2013 Thursday</span> <br />Kavatodghatane, Thulabara, Katte puje</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">20-12-2013 Friday</span> <br />Melbanta puje</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #ff6600;">21-12-2013 Saturday</span><br />Mari santharpane<br /><br /></p>\r\n<p>Be a member of shashwatha puja seva samithi for performing&nbsp;puja on permanent basis on any of your special occasions and get the blessings of Lord Brahmalingeshwara .</p>\r\n<p style="text-align: justify;">&nbsp;</p>\r\n<p style="text-align: justify;">Annasantharpane(mass feast) is arranged daily&nbsp;during annual uthsav. Proposal is on for starting&nbsp;annasantharpane on every sankramana day. Contribute&nbsp;generously for annasantharpana nidhi.</p>\r\n<p style="text-align: justify;"><br />Payments/Donations may be credited to temples&nbsp;savings account no:01962200002816 with Syndicate&nbsp;Bank Kanajar.</p>', 'kn'),
+	(3, 'Sthala Purana', '<h2 style="text-align: center;"><strong>Sthala Purana</strong></h2>', 'en'),
+	(3, 'ಸ್ಥಳ ಪುರಾಣ', '<h2 style="text-align: center;"><strong>Sthala Purana</strong></h2>', 'kn'),
+	(4, 'Doddamane', 'Doddamane', 'en'),
+	(4, 'ದೊಡ್ಡಮನೆ', 'Doddamane', 'kn'),
+	(5, 'Melbanta Daiva', 'Melbanta-Daiva', 'en'),
+	(5, 'ಮೆಲ್ಬಂಟ  ದೈವ', 'Melbanta-Daiva', 'kn'),
+	(6, 'Contact Us', '<h3 style="text-align: left;"><em><strong>Shree Brahmalingeshwara Temple</strong></em><br /><em><strong>Kananjar, Karkala Taluk, Udupi Dist.</strong></em><br /><em><strong>Pin:574102</strong></em><br /><em><strong>Ph: 08258 275244</strong></em><br /><em><strong>Mob: 09141502033</strong></em><br /><em><strong>Email:shreebrahmalingeshwara@kanajartemple.co</strong></em></h3>\r\n<p style="text-align: left;"><em>&nbsp;</em></p>\r\n<p style="text-align: left; padding-left: 90px;"><em><strong>OR</strong></em></p>\r\n<h3 style="text-align: left; padding-left: 90px;"><em>&nbsp;</em></h3>\r\n<h3 style="text-align: left;"><em>Nishan Hegde</em><br /><em>Dugganbail House Kananjar, </em><br /><em>Karkala Taluk, Udupi Dist.</em><br /><em>Pin:574102</em><br /><em>Ph: 09663559596</em><br /><em>Email:nishanhegde@kanajartemple.com</em></h3>', 'en'),
+	(6, 'Contact Us', 'Contact Us', 'kn');
 /*!40000 ALTER TABLE `admincms` ENABLE KEYS */;
 
 
@@ -47,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `alldonationdata` (
   PRIMARY KEY (`RecNo`,`Did`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.alldonationdata: ~427 rows (approximately)
+-- Dumping data for table brahmalingeshwara.alldonationdata: ~446 rows (approximately)
 /*!40000 ALTER TABLE `alldonationdata` DISABLE KEYS */;
 INSERT INTO `alldonationdata` (`RecNo`, `Name`, `Address`, `Amount`, `mobile`, `email`, `BDate`, `Did`) VALUES
 	(1, 'Anusuya B Hegde', 'Doddamane Family Padubidrijfhjfhewh', 501, '', '', '2015-01-03 15:13:02', 1),
@@ -511,7 +519,7 @@ CREATE TABLE IF NOT EXISTS `allexpendituredata` (
   PRIMARY KEY (`RecNo`,`Eid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.allexpendituredata: ~107 rows (approximately)
+-- Dumping data for table brahmalingeshwara.allexpendituredata: ~108 rows (approximately)
 /*!40000 ALTER TABLE `allexpendituredata` DISABLE KEYS */;
 INSERT INTO `allexpendituredata` (`RecNo`, `Eid`, `Title`, `Description`, `Amount`, `EDate`, `BDate`) VALUES
 	(1, 1, 'Sudheer Hegde', 'Description', 46000, '2015-01-07', '2015-01-04 10:36:25'),
@@ -636,7 +644,7 @@ CREATE TABLE IF NOT EXISTS `allincomedata` (
   PRIMARY KEY (`RecNo`,`Iid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.allincomedata: ~40 rows (approximately)
+-- Dumping data for table brahmalingeshwara.allincomedata: ~45 rows (approximately)
 /*!40000 ALTER TABLE `allincomedata` DISABLE KEYS */;
 INSERT INTO `allincomedata` (`RecNo`, `Iid`, `title`, `Amount`, `Edate`, `Bdate`) VALUES
 	(1, 1, 'Audio CD', 100, '2015-01-04', '2015-01-04 15:49:34'),
@@ -698,7 +706,7 @@ CREATE TABLE IF NOT EXISTS `allpoojedata` (
   PRIMARY KEY (`RecNo`,`Pid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.allpoojedata: ~762 rows (approximately)
+-- Dumping data for table brahmalingeshwara.allpoojedata: ~774 rows (approximately)
 /*!40000 ALTER TABLE `allpoojedata` DISABLE KEYS */;
 INSERT INTO `allpoojedata` (`RecNo`, `Quantity`, `Name`, `Pid`, `PDate`, `BDate`) VALUES
 	(1, 1, 'Shashikala Shetty Devashya', 2, '2015-09-13', '2015-09-13 16:28:34'),
@@ -1511,7 +1519,7 @@ CREATE TABLE IF NOT EXISTS `expenditure` (
   PRIMARY KEY (`Eid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.expenditure: ~4 rows (approximately)
+-- Dumping data for table brahmalingeshwara.expenditure: ~5 rows (approximately)
 /*!40000 ALTER TABLE `expenditure` DISABLE KEYS */;
 INSERT INTO `expenditure` (`Eid`, `ExpenditureName`, `Status`) VALUES
 	(1, 'Utsava-2015', 'Active'),
@@ -1530,7 +1538,7 @@ CREATE TABLE IF NOT EXISTS `income` (
   PRIMARY KEY (`Iid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.income: ~4 rows (approximately)
+-- Dumping data for table brahmalingeshwara.income: ~5 rows (approximately)
 /*!40000 ALTER TABLE `income` DISABLE KEYS */;
 INSERT INTO `income` (`Iid`, `IncomeName`, `Status`) VALUES
 	(1, 'Utsava-2015', 'Active'),
@@ -1550,7 +1558,7 @@ CREATE TABLE IF NOT EXISTS `pooje` (
   PRIMARY KEY (`pid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.pooje: ~8 rows (approximately)
+-- Dumping data for table brahmalingeshwara.pooje: ~9 rows (approximately)
 /*!40000 ALTER TABLE `pooje` DISABLE KEYS */;
 INSERT INTO `pooje` (`pid`, `PoojeName`, `Amount`, `Status`) VALUES
 	(1, 'ಶಾಶ್ವತ ಪೂಜೆ', 1000, 'Active'),
@@ -1602,7 +1610,7 @@ CREATE TABLE IF NOT EXISTS `sashwathapooje` (
   PRIMARY KEY (`RecNo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1039 DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.sashwathapooje: ~34 rows (approximately)
+-- Dumping data for table brahmalingeshwara.sashwathapooje: ~37 rows (approximately)
 /*!40000 ALTER TABLE `sashwathapooje` DISABLE KEYS */;
 INSERT INTO `sashwathapooje` (`RecNo`, `Name`, `Address`, `PDate`, `BDate`, `MobileNo`, `Email`, `Pid`) VALUES
 	(1001, 'Kalpana A Shetty', 'Kanajar Doddamane C/O Ashok Shetty Flat No. 404 Vallabh Vihar Sector No.20 Belapur Navi Mumbai 400614', '23-APR', '2015-09-13 17:37:48', '02265260179', '', 1),

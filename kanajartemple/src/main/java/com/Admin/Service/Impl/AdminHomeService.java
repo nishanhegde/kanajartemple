@@ -25,9 +25,9 @@ public class AdminHomeService {
 		this.dao = dao;
 	}
 	
-	public List getPageContent(String Pagename)
+	public CMSbean getPageContent(String Pid)
 	{
-		return dao.getPageContent(Pagename);
+		return dao.getPageContent(Pid);
 	}
 
 	public Integer updatePageContent(CMSbean cbean)

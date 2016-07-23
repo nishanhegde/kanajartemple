@@ -1,9 +1,11 @@
 package com.Admin.bean;
 
 public class CMSbean {
-	
+
+	private Integer Pid;
+
 	private String Pagename;
-	
+
 	private String content;
 
 	public String getPagename() {
@@ -21,6 +23,12 @@ public class CMSbean {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
+
+	public Integer getPid() {
+		return Pid;
+	}
+
+	public void setPid(Integer pid) {
+		Pid = pid;
+	}
 }

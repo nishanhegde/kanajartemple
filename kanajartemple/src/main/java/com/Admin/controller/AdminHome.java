@@ -16,7 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -55,87 +57,72 @@ public class AdminHome {
 	}
 
 	@RequestMapping(value = "/login")
-	public ModelAndView login(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/login");
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/coupon")
-	public ModelAndView coupon(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView coupon(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/Coupon");
 		return mv;
 	}
 
 	@RequestMapping(value = "/failure")
-	public ModelAndView failure(HttpServletRequest request,
-			HttpServletResponse response, Locale locale) {
+	public ModelAndView failure(HttpServletRequest request, HttpServletResponse response, Locale locale) {
 		ModelAndView mv = new ModelAndView("admin/login");
 
-		mv.addObject("invalid",
-				messageSource.getMessage("label.failure", null, locale));
+		mv.addObject("invalid", messageSource.getMessage("label.failure", null, locale));
 		return mv;
 	}
 
 	@RequestMapping(value = "/logout")
-	public ModelAndView logout(HttpServletRequest request,
-			HttpServletResponse response,Locale locale) {
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, Locale locale) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		ModelAndView mv = new ModelAndView("admin/login");
-		mv.addObject("invalid",
-				messageSource.getMessage("label.logout", null, locale));
-		
+		mv.addObject("invalid", messageSource.getMessage("label.logout", null, locale));
+
 		return mv;
 	}
 
 	@RequestMapping(value = "/A403")
-	public ModelAndView A403(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView A403(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/A403");
 		return mv;
 	}
 
 	@RequestMapping(value = "/Admin/home")
-	public ModelAndView Adminhome(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView Adminhome(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/Adminhome");
 
 		List<?> PoojeDetails = defaultTempleMethods.getPooje();
 		mv.addObject("PoojeDetails", PoojeDetails);
 		mv.addObject("DonationDetails", defaultTempleMethods.getDonation());
-		mv.addObject("IncomeDetails",defaultTempleMethods.getIncome());
-		mv.addObject("ExpenseDetails",defaultTempleMethods.getExpenditure());
+		mv.addObject("IncomeDetails", defaultTempleMethods.getIncome());
+		mv.addObject("ExpenseDetails", defaultTempleMethods.getExpenditure());
 		return mv;
 	}
 
-	@RequestMapping(value = "SuperAdmin/CMS")
-	public ModelAndView SuperAdminCMS(HttpServletRequest request,
+	@RequestMapping(value = "SuperAdmin/CMS/{Pid}", method = RequestMethod.GET)
+	public ModelAndView SuperAdminCMS(@PathVariable("Pid") String Pid, HttpServletRequest request,
 			HttpServletResponse response) {
-		String Pagename = request.getParameter("PageName");
-
 		ModelAndView mv = new ModelAndView("admin/AdminCMS");
-		List<?> content = service.getPageContent(Pagename);
-		mv.addObject("CMScontent", content);
-		mv.addObject("Pagename", Pagename);
+		mv.addObject("CMScontent", service.getPageContent(Pid));
 		return mv;
 	}
 
-	@RequestMapping(value = "/Admin/CMS_Success")
-	public ModelAndView Admin_CMS_Success(HttpServletRequest request,
-			HttpServletResponse response, CMSbean cbean) throws IOException {
-		Integer i = service.updatePageContent(cbean);
-		response.sendRedirect("../SuperAdmin/CMS?PageName="
-				+ cbean.getPagename());
+	@RequestMapping(value = "/SuperAdmin/CMS/save", method = RequestMethod.POST)
+	public String Admin_CMS_Success(HttpServletRequest request, HttpServletResponse response, CMSbean cbean)
+			throws IOException {
+		service.updatePageContent(cbean);
+		response.sendRedirect("../CMS/" + cbean.getPid());
 		return null;
 	}
 
 	@RequestMapping(value = "/Admin/EditProfile")
-	public ModelAndView AdminEditProfile(HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
-		String username = (String) request.getSession()
-				.getAttribute("Username");
+	public ModelAndView AdminEditProfile(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String username = (String) request.getSession().getAttribute("Username");
 
 		ModelAndView mv = new ModelAndView("admin/EditProfile");
 		mv.addObject("Data", service.getAdmin(username));
@@ -145,23 +132,21 @@ public class AdminHome {
 	}
 
 	@RequestMapping(value = "/Admin/EditProfileSuccess")
-	public String AdminEditProfileSuccess(
-			@ModelAttribute("Register") RegistrationBean rbean, HttpServletRequest request,
-			HttpServletResponse response, Model model,
-			BindingResult bindingResult,Locale locale) {
+	public String AdminEditProfileSuccess(@ModelAttribute("Register") RegistrationBean rbean,
+			HttpServletRequest request, HttpServletResponse response, Model model, BindingResult bindingResult,
+			Locale locale) {
 		editProfileValidator.validate(rbean, bindingResult);
-		String username=getCurrentUser();
+		String username = getCurrentUser();
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("Register",rbean);
+			model.addAttribute("Register", rbean);
 		} else {
-			Integer i = service.updateAdmin(rbean,username);
+			Integer i = service.updateAdmin(rbean, username);
 
 			if (i == 1) {
 				invalidateSecuritySession();
 				return AdminController.REDIRECTPREFIX + "/Admin/home";
 			} else {
-				model.addAttribute("message",
-						messageSource.getMessage("message.error", null, locale));
+				model.addAttribute("message", messageSource.getMessage("message.error", null, locale));
 				model.addAttribute("Register", new RegistrationBean());
 			}
 		}
@@ -170,8 +155,7 @@ public class AdminHome {
 	}
 
 	@RequestMapping(value = "Admin/ChangePassword")
-	public ModelAndView ChangePassword(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView ChangePassword(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/ChangePassword");
 		mv.addObject(new ChangePassword());
@@ -179,9 +163,8 @@ public class AdminHome {
 	}
 
 	@RequestMapping(value = "Admin/ChangePasswordSuccess")
-	public String ChangePasswordSuccess(@ModelAttribute ChangePassword cpbean,
-			HttpServletRequest request, HttpServletResponse response,
-			BindingResult bindingResult, Locale locale, Model model) {
+	public String ChangePasswordSuccess(@ModelAttribute ChangePassword cpbean, HttpServletRequest request,
+			HttpServletResponse response, BindingResult bindingResult, Locale locale, Model model) {
 
 		changePasswordValidator.validate(cpbean, bindingResult);
 		if (bindingResult.hasErrors()) {
@@ -193,8 +176,7 @@ public class AdminHome {
 				invalidateSecuritySession();
 				return AdminController.REDIRECTPREFIX + "/Admin/Home";
 			} else {
-				model.addAttribute("message",
-						messageSource.getMessage("message.error", null, locale));
+				model.addAttribute("message", messageSource.getMessage("message.error", null, locale));
 				model.addAttribute(new ChangePassword());
 
 			}
@@ -203,8 +185,8 @@ public class AdminHome {
 	}
 
 	@RequestMapping(value = "/forgotpassword")
-	public ModelAndView ForgotPassword(@RequestParam("id") String id,
-			HttpServletRequest request, HttpServletResponse response,Locale locale) {
+	public ModelAndView ForgotPassword(@RequestParam("id") String id, HttpServletRequest request,
+			HttpServletResponse response, Locale locale) {
 		ModelAndView mv = new ModelAndView("admin/login");
 		String password = null;
 		if (id != null) {
@@ -212,17 +194,15 @@ public class AdminHome {
 			if (password != null) {
 				mv.addObject("invalid", "Password:" + password);
 			} else {
-				mv.addObject("invalid",
-						messageSource.getMessage("message.invalid.field", null, locale));
-				
+				mv.addObject("invalid", messageSource.getMessage("message.invalid.field", null, locale));
+
 			}
 		}
 		return mv;
 	}
 
 	private String getCurrentUser() {
-		User user = (User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		return user.getUsername();
 	}
 

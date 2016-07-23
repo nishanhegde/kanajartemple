@@ -130,16 +130,18 @@
 		</div>
 		<div class="padd">
 			<ul>
-				<a href="<c:url value="/SuperAdmin/CMS?PageName=Home"/>"><li><spring:message
+				<a href="<c:url value="/SuperAdmin/CMS/1"/>"><li><spring:message
 							code="label.home" /></li></a>
-				<a href="<c:url value="/SuperAdmin/CMS?PageName=News"/>"><li><spring:message
+				<a href="<c:url value="/SuperAdmin/CMS/2"/>"><li><spring:message
 							code="label.news" /></li></a>
-				<a href="<c:url value="/SuperAdmin/CMS?PageName=Sthala Purana"/>"><li><spring:message
+				<a href="<c:url value="/SuperAdmin/CMS/3"/>"><li><spring:message
 							code="label.sthalapurana" /></li></a>
-				<a href="<c:url value="/SuperAdmin/CMS?PageName=Doddamane"/>"><li><spring:message
+				<a href="<c:url value="/SuperAdmin/CMS/4"/>"><li><spring:message
 							code="label.doddamane" /></li></a>
-				<a href="<c:url value="/SuperAdmin/CMS?PageName=Melbanta-Daiva"/>"><li><spring:message
+				<a href="<c:url value="/SuperAdmin/CMS/5"/>"><li><spring:message
 							code="label.melbanta-daiva" /></li></a>
+				<a href="<c:url value="/SuperAdmin/CMS/6"/>"><li><spring:message
+							code="label.contactus" /></li></a>
 			</ul>
 		</div>
 	</div>
