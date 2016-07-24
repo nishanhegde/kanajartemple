@@ -12,14 +12,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import com.Admin.bean.RegistrationBean;
 
-public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-	
 	private AdminHomeService adminHomeservice;
-	
+
 	public AdminHomeService getAdminHomeservice() {
 		return adminHomeservice;
 	}
@@ -28,20 +28,15 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		this.adminHomeservice = adminHomeservice;
 	}
 
-	
-	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-	
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request,
-			HttpServletResponse response, Authentication authentication)
-			throws IOException, ServletException {
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+			Authentication authentication) throws IOException, ServletException {
 		String username = authentication.getName();
 		HttpSession session = request.getSession();
 		RegistrationBean rbean = adminHomeservice.getAdmin(username);
 		session.setAttribute("Username", rbean.getEmailId());
 		session.setAttribute("FullName", rbean.getFullName());
-		redirectStrategy.sendRedirect(request,response,"/Admin/home");
-		
+		super.onAuthenticationSuccess(request, response, authentication);
 	}
 
 }

@@ -26,6 +26,7 @@
   <form action="<c:url value='j_spring_security_check' />" method='POST'>
     <input type="text" name="j_username" placeholder="Email Id/Phone No" required="">
     <input type="password" name="j_password" placeholder="Password" required="">
+    Remember Me: <input type="checkbox" name="remember-me" />
     <input type="submit" name="login" class="login login-submit" value="login">
   </form>
 

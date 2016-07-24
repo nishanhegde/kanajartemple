@@ -12,7 +12,7 @@
 	
 	<beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	<beans:property name="location">
-		<beans:value>/WEB-INF/database.properties</beans:value>
+		<beans:value>/WEB-INF/project.properties</beans:value>
 	</beans:property>
 </beans:bean>
 		
