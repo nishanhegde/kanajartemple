@@ -25,7 +25,7 @@
 		<logout logout-success-url="/logout" invalidate-session="true" />
 
 		<remember-me authentication-success-handler-ref="loginAuthenticationSuccessHandler" token-validity-seconds="${rememberme.expiration.time}"
-			remember-me-parameter="remember-me" data-source-ref="dataSource" />
+			remember-me-parameter="remember-me" />
 	</http>
 
 
