@@ -1,0 +1,66 @@
+
+
+
+
+.header { display: block }
+
+.left { float:left }
+.right { float:right }
+
+img { 
+	margin: 0; 
+	padding: 0;
+}
+
+.img_border { 
+	background: #3e3e3d; 
+	padding: 4px; 
+	border: 1px solid #161615; 
+}
+
+.img_frame { 
+	position: relative; 
+	display: block; 
+	padding: 7px; 
+}
+
+.img_frame span { 
+	position: absolute; 
+	top: 0; left: 0; 
+	z-index: 0; 
+}
+
+.img_frame img, .img_frame iframe { 
+	position: absolute; 
+	top: 7px; 
+	left: 7px; 
+	z-index: 100; 
+}
+
+.img_frame_13 { 
+	width: 280px; 
+	height: 157px; 
+}
+
+.img_frame_13 span { 
+	background: url(../images/templatemo_image_frame_13.png); 
+	width: 300px; 
+	height: 177px; 
+}
+
+
+.img_nom { 
+	display: block; 
+	margin-bottom: 10px; 
+}
+
+
+
+
+.col { 
+	float: left; 
+	margin: 0 5px 5px 0; 
+}
+
+
+

@@ -25,7 +25,7 @@
 					code="label.menu.nithyapooje" /></a></li>
 		<li><a href="#"><spring:message code="label.menu.gallery" /></a>
 			<ul class="subs">
-				<li><a href="#"><spring:message code="label.menu.photos" /></a></li>
+				<li><a href="<c:url value="/photos"/>"><spring:message code="label.menu.photos" /></a></li>
 				<li><a href="<c:url value="Video"/>"><spring:message
 							code="label.menu.video" /></a></li>
 

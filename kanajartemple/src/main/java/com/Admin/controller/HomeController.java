@@ -1,4 +1,4 @@
-package com.Brahmalingeshwara.kanajartemple;
+package com.Admin.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -101,4 +101,9 @@ public class HomeController {
 		return mv;
 	}
 
+	@RequestMapping(value = "/photos",method=RequestMethod.GET)
+	public ModelAndView getPhotos(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView("photos");
+		return mv;
+	}
 }
