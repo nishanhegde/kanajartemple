@@ -23,16 +23,16 @@
 			</tr>
 
 			<tr>
-				<th><spring:message code="label.name" /> *</th>
+				<th><spring:message code="label.name" /> </th>
 				<td><form:input path="name" /></td>
 			</tr>
 			<tr>
-				<th><spring:message code="label.address" /> *</th>
+				<th><spring:message code="label.address" /> </th>
 				<th><form:textarea path="address" /></th>
 
 			</tr>
 			<tr>
-				<th><spring:message code="label.poojedate" /> *</th>
+				<th><spring:message code="label.poojedate" /> </th>
 				<td><form:input path="pdate" readonly="true" /></td>
 			</tr>
 
