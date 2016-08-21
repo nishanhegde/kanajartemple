@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Admin.Service.kanajarTempleMethods;
 import com.Admin.Service.Impl.AdminHomeService;
 import com.Brahmalingeshwara.service.HomeService;
 
@@ -36,6 +37,9 @@ public class HomeController {
 
 	@Autowired
 	private AdminHomeService adminHomeService;
+
+	@Autowired
+	private kanajarTempleMethods kanajarTempleMethods;
 
 	public HomeService getService() {
 		return service;
@@ -101,9 +105,18 @@ public class HomeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/photos",method=RequestMethod.GET)
+	@RequestMapping(value = "/photos", method = RequestMethod.GET)
 	public ModelAndView getPhotos(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("photos");
 		return mv;
 	}
+
+	@RequestMapping(value = "/NithyaPooje/update/{id}")
+	public ModelAndView NithyaPoojeUpdate(@PathVariable String id, HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView("NithyaPujeUpdate");
+		mv.addObject("app", kanajarTempleMethods.getSashwathaPooje(id));
+		return mv;
+	}
+
 }
