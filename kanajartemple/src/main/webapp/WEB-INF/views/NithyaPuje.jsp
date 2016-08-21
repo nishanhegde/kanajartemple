@@ -57,7 +57,7 @@
 
 								<p>
 									<a href="<c:url value='/NithyaPooje/update/${app.RecNo}'/>"
-										id="nithyaPoojeUpdate">Edit</a>
+										id="nithyaPoojeUpdate" title="Update Nithya Pooje details">Edit</a>
 								</p>
 							</td>
 						</tr>
@@ -83,8 +83,8 @@
 		$(document).on('click', '#nithyaPoojeUpdate', function(e) {
 			e.preventDefault();
 			$.colorbox({
-				title:'Update details',
-				href : $(this).attr('href'),
+				title : $(this).attr('title'),
+				href : $(this).attr('href')
 			});
 		});
 	});

@@ -60,7 +60,7 @@
 				<th><spring:message code="label.mobileno" /></th>
 				<th><core:bind path="sashwathaPoojebean.MobileNo">
 						<div class="error">${status.errorMessage}</div>
-						<input type="text" value="${Data.mobileNo}" name="MobileNo"
+						<input type="number" value="${Data.mobileNo}" name="MobileNo"
 							id="mobile" />
 					</core:bind></th>
 			</tr>

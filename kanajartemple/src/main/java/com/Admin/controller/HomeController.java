@@ -115,7 +115,7 @@ public class HomeController {
 	public ModelAndView NithyaPoojeUpdate(@PathVariable String id, HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("NithyaPujeUpdate");
-		mv.addObject("app", kanajarTempleMethods.getSashwathaPooje(id));
+		mv.addObject(kanajarTempleMethods.getSashwathaPooje(id));
 		return mv;
 	}
 
