@@ -24,7 +24,7 @@ import com.Admin.bean.Reportbean;
 import com.Admin.bean.SashwathaPoojebean;
 import com.Brahmalingeshwara.kanajartemple.Utills;
 
-@Component("dao")
+@Component("poojeDao")
 public class PoojeDao<K> {
 
 	Logger log = Logger.getLogger(PoojeDao.class);

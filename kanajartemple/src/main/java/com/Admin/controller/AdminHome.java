@@ -34,7 +34,7 @@ import com.Admin.validator.EditProfileValidator;
 public class AdminHome {
 
 	@Autowired
-	private AdminHomeService service;
+	private AdminHomeService adminHomeservice;
 
 	@Autowired
 	private kanajarTempleMethods defaultTempleMethods;
@@ -47,14 +47,6 @@ public class AdminHome {
 
 	@Autowired
 	private EditProfileValidator editProfileValidator;
-
-	public AdminHomeService getService() {
-		return service;
-	}
-
-	public void setService(AdminHomeService service) {
-		this.service = service;
-	}
 
 	@RequestMapping(value = "/login")
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
@@ -108,14 +100,14 @@ public class AdminHome {
 	public ModelAndView SuperAdminCMS(@PathVariable("Pid") String Pid, HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/AdminCMS");
-		mv.addObject("CMScontent", service.getPageContent(Pid));
+		mv.addObject("CMScontent", adminHomeservice.getPageContent(Pid));
 		return mv;
 	}
 
 	@RequestMapping(value = "/SuperAdmin/CMS/save", method = RequestMethod.POST)
 	public String Admin_CMS_Success(HttpServletRequest request, HttpServletResponse response, CMSbean cbean)
 			throws IOException {
-		service.updatePageContent(cbean);
+		adminHomeservice.updatePageContent(cbean);
 		response.sendRedirect("../CMS/" + cbean.getPid());
 		return null;
 	}
@@ -125,7 +117,7 @@ public class AdminHome {
 		String username = (String) request.getSession().getAttribute("Username");
 
 		ModelAndView mv = new ModelAndView("admin/EditProfile");
-		mv.addObject("Data", service.getAdmin(username));
+		mv.addObject("Data", adminHomeservice.getAdmin(username));
 		mv.addObject("Register", new RegistrationBean());
 
 		return mv;
@@ -140,7 +132,7 @@ public class AdminHome {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("Register", rbean);
 		} else {
-			Integer i = service.updateAdmin(rbean, username);
+			Integer i = adminHomeservice.updateAdmin(rbean, username);
 
 			if (i == 1) {
 				invalidateSecuritySession();
@@ -150,7 +142,7 @@ public class AdminHome {
 				model.addAttribute("Register", new RegistrationBean());
 			}
 		}
-		model.addAttribute("Data", service.getAdmin(username));
+		model.addAttribute("Data", adminHomeservice.getAdmin(username));
 		return "admin/EditProfile";
 	}
 
@@ -171,7 +163,7 @@ public class AdminHome {
 			model.addAttribute(cpbean);
 
 		} else {
-			Integer i = service.changePassword(cpbean, getCurrentUser());
+			Integer i = adminHomeservice.changePassword(cpbean, getCurrentUser());
 			if (i == 1) {
 				invalidateSecuritySession();
 				return AdminController.REDIRECTPREFIX + "/Admin/Home";
@@ -190,7 +182,7 @@ public class AdminHome {
 		ModelAndView mv = new ModelAndView("admin/login");
 		String password = null;
 		if (id != null) {
-			password = service.getPassword(id);
+			password = adminHomeservice.getPassword(id);
 			if (password != null) {
 				mv.addObject("invalid", "Password:" + password);
 			} else {

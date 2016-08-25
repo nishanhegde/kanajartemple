@@ -17,7 +17,7 @@ import com.Brahmalingeshwara.service.HomeService;
 @RequestMapping("/SevaBooking")
 public class SevaBooking {
 	
-	@Autowired
+	/*@Autowired
 	HomeService service;
 	
 	public HomeService getService() {
@@ -40,7 +40,7 @@ public class SevaBooking {
 			return "SevaBooking";
 		}
 	
-	/*@RequestMapping(value = "/SevaBooking")
+	@RequestMapping(value = "/SevaBooking")
 	@Override
 	protected ModelAndView onSubmit(HttpServletRequest request,
 			HttpServletResponse response, Object command, BindException errors)
@@ -51,13 +51,13 @@ public class SevaBooking {
 		
 		return new ModelAndView("SevaBooking");
 	}
-	*/
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public String processSubmit(
 		@ModelAttribute("SevaDetails") SevaBookingBean sbb,
 		BindingResult result, SessionStatus status) {
 		
-		/*customerValidator.validate(customer, result);
+		customerValidator.validate(customer, result);
 		 
 		if (result.hasErrors()) {
 			//if validator failed
@@ -67,7 +67,7 @@ public class SevaBooking {
 			//form success
 			return "CustomerSuccess";
 		}
-		*/
+		
  
 		service.insertseva(sbb);
 		//clear the command object from the session
@@ -76,5 +76,5 @@ public class SevaBooking {
 		return "SevaBooking";
  
 	}
-
+*/
 }

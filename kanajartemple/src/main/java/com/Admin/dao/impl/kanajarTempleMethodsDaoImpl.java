@@ -31,7 +31,7 @@ import com.Admin.bean.Poojebean;
 import com.Admin.bean.SashwathaPoojebean;
 import com.Admin.dao.kanajarTempleMethodsDao;
 
-@Component
+
 public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Autowired

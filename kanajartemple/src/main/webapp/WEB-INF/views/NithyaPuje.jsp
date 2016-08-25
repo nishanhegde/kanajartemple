@@ -79,12 +79,17 @@
 
 <script src="<c:url value="/resources/js/jquery.colorbox.js"/>"></script>
 <script>
-	jQuery(document).ready(function() {
+	$(document).ready(function() {
 		$(document).on('click', '#nithyaPoojeUpdate', function(e) {
 			e.preventDefault();
 			$.colorbox({
 				title : $(this).attr('title'),
-				href : $(this).attr('href')
+				href : $(this).attr('href'),
+				iframe : true,
+				width : "415px",
+				height : "450px",
+
+				
 			});
 		});
 	});

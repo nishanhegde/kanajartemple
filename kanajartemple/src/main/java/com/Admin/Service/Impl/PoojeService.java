@@ -13,105 +13,98 @@ import com.Admin.bean.Reportbean;
 import com.Admin.bean.SashwathaPoojebean;
 import com.Admin.dao.impl.PoojeDao;
 
-@Service("service")
+@Service("poojeService")
 public class PoojeService {
 
 	@Autowired
-	private PoojeDao dao;
+	private PoojeDao poojeDao;
 
-	public PoojeDao getDao() {
-		return dao;
-	}
-
-	public void setDao(PoojeDao dao) {
-		this.dao = dao;
-	}
 	
 	
 	
 	public String getPoojedetailstoprint(Poojebean pbean) {
-		return dao.getPoojedetailstoprint(pbean);
+		return poojeDao.getPoojedetailstoprint(pbean);
 	}
 	
 	public Integer getSashwathaPoojedetailstoprint(SashwathaPoojebean sbean) {
-		return dao.getSashwathaPoojedetailstoprint(sbean);
+		return poojeDao.getSashwathaPoojedetailstoprint(sbean);
 	}
 	
 	
 	
 	public List getPoojeReport(Reportbean rbean)
 	{
-		return dao.getPoojeReport(rbean);
+		return poojeDao.getPoojeReport(rbean);
 	}
 	
 	public Integer addincome(IncomeData ibean)
 	{
-		return dao.addincome(ibean);
+		return poojeDao.addincome(ibean);
 	}
 	
 	public List getIncomeReport(Reportbean rbean)
 	{
-		return dao.getIncomeReport(rbean);
+		return poojeDao.getIncomeReport(rbean);
 	}
 	
 	public List getSashwathaReport(Reportbean rbean)
 	{
-		return dao.getSashwathaReport(rbean);
+		return poojeDao.getSashwathaReport(rbean);
 	}
 	
 	
 	
 	public String getDonationReceipt(DonationDetail dbean)
 	{
-		return dao.getDonationReceipt(dbean);
+		return poojeDao.getDonationReceipt(dbean);
 	}
 	
 	
 	
 	public List getDonationReport(Reportbean rbean,String DonationName)
 	{
-		return dao.getDonationReport(rbean,DonationName);
+		return poojeDao.getDonationReport(rbean,DonationName);
 	}
 	
 	public Integer getExpenditureReceipt(ExpenseData ebean)
 	{
-		return dao.getExpenditureReceipt(ebean);
+		return poojeDao.getExpenditureReceipt(ebean);
 	}
 	
 	
 	public List getExpenditureReport(Reportbean rbean)
 	{
-		return dao.getExpenditureReport(rbean);
+		return poojeDao.getExpenditureReport(rbean);
 	}
 	
 	public List getAllReport(Reportbean rbean)
 	{
-		return dao.getAllReport(rbean);
+		return poojeDao.getAllReport(rbean);
 	}
 	
 	public Integer updatePooje(Poojebean pbean)
 	{
-		return dao.updatePooje(pbean);
+		return poojeDao.updatePooje(pbean);
 	}
 	
 	public Integer updateSashwathaPooje(SashwathaPoojebean sbean)
 	{
-		return dao.updateSashwathaPooje(sbean);
+		return poojeDao.updateSashwathaPooje(sbean);
 	}
 	
 	public Integer updateDonation(DonationDetail dbean)
 	{
-		return dao. updateDonation(dbean);
+		return poojeDao. updateDonation(dbean);
 	}
 	
 	public Integer updateExpense(ExpenseData ebean)
 	{
-		return dao.updateExpense(ebean);
+		return poojeDao.updateExpense(ebean);
 	}
 	
 	public Integer updateIncome(IncomeData ibean)
 	{
-		return dao.updateIncome(ibean);
+		return poojeDao.updateIncome(ibean);
 	}
 	
 	

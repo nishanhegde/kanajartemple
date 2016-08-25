@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +25,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Admin.Service.kanajarTempleMethods;
 import com.Admin.Service.Impl.AdminHomeService;
-import com.Brahmalingeshwara.service.HomeService;
+import com.Admin.bean.SashwathaPoojebean;
+
+import com.Admin.validator.UserSashwathaPoojeValidator;
+
 
 /**
  * Handles requests for the application home page.
@@ -33,21 +39,13 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
-	HomeService service;
-
-	@Autowired
 	private AdminHomeService adminHomeService;
 
 	@Autowired
 	private kanajarTempleMethods kanajarTempleMethods;
 
-	public HomeService getService() {
-		return service;
-	}
-
-	public void setService(HomeService service) {
-		this.service = service;
-	}
+	@Resource
+	private UserSashwathaPoojeValidator userSashwathaPoojeValidator;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -101,7 +99,7 @@ public class HomeController {
 	@RequestMapping(value = "/NithyaPooje")
 	public ModelAndView NithyaPooje(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("NithyaPuje");
-		mv.addObject("NithyaPooje", service.getAddress());
+		mv.addObject("NithyaPooje", kanajarTempleMethods.getSashwathaPooje());
 		return mv;
 	}
 
@@ -117,6 +115,18 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("NithyaPujeUpdate");
 		mv.addObject(kanajarTempleMethods.getSashwathaPooje(id));
 		return mv;
+	}
+
+	@RequestMapping(value = "/NithyaPooje/update", method = RequestMethod.POST)
+	public String NithyaPoojeUpdate(@ModelAttribute SashwathaPoojebean sbean, Model model, HttpServletResponse response,
+			BindingResult bindingResult) {
+		userSashwathaPoojeValidator.validate(sbean, bindingResult);
+		if (bindingResult.hasErrors()) {
+			model.addAttribute(sbean);
+		} else if (adminHomeService.saveSashwathaPooje(sbean) == 1) {
+			model.addAttribute(sbean);
+		}
+		return "NithyaPujeUpdate";
 	}
 
 }

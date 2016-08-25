@@ -40,7 +40,7 @@
 		<beans:property name="defaultLocale" value="en" />
 	</beans:bean>
 
-	
+
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
@@ -59,8 +59,9 @@
 		<beans:property name="order" value="0"></beans:property>
 	</beans:bean>
 
-	<context:component-scan base-package="com.Brahmalingeshwara.kanajartemple" />
-	<context:component-scan base-package="com.Admin.controller" />
+	<context:component-scan base-package="com.Brahmalingeshwara" />
+	<context:component-scan base-package="com.Admin" />
+
 	<!-- ************************************************************************** -->
 
 	<beans:bean class="com.Brahmalingeshwara.service.HomeService" />
@@ -80,13 +81,12 @@
 	<beans:bean id="changePasswordValidator" class="com.Admin.validator.ChangePasswordValidator" />
 	<beans:bean id="editProfileValidator" class="com.Admin.validator.EditProfileValidator" />
 
-	<beans:bean id="adminHomeservice" class="com.Admin.Service.Impl.AdminHomeService" />
-	<beans:bean class="com.Admin.dao.impl.AdminHomeDao" />
 
 
 	<!-- Super Admin part starts -->
 
-	<beans:bean id="superAdminService" class="com.Admin.Service.Impl.SuperAdminServiceImpl" />
+	<beans:bean id="superAdminService"
+		class="com.Admin.Service.Impl.SuperAdminServiceImpl" />
 	<beans:bean id="superAdminDao" class="com.Admin.dao.impl.SuperAdminDaoImpl" />
 
 	<!-- Pooje part starts -->

@@ -18,8 +18,10 @@ import com.Admin.RowMapper.RegisterRowMapper;
 import com.Admin.bean.CMSbean;
 import com.Admin.bean.ChangePassword;
 import com.Admin.bean.RegistrationBean;
+import com.Admin.bean.SashwathaPoojebean;
+import com.Brahmalingeshwara.kanajartemple.Utills;
 
-@Component("dao")
+@Component("adminHomeDao")
 public class AdminHomeDao {
 
 	@Autowired
@@ -121,5 +123,24 @@ public class AdminHomeDao {
 
 		return namedjdbc.queryForObject("select Password  from register where EmailId=:id or PhoneNumber=:id", param,
 				String.class);
+	}
+	
+	public Integer saveSashwathaPooje(SashwathaPoojebean sbean)
+	{
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("RecNo", sbean.getPid());
+		param.put("Pid", sbean.getPid());
+		param.put("Name", Utills.replaceWhiteSpace(sbean.getName()));
+		param.put("PDate", sbean.getPdate());
+		param.put("Address", Utills.replaceWhiteSpace(sbean.getAddress()));
+		param.put("mobile", sbean.getMobileNo());
+		param.put("email", sbean.getEmail());
+
+		String str = "insert into UserSashwathaPooje(RecNo,Name,Address,PDate,BDate,MobileNo,Email) "
+				+ "values(:RecNo,:Name,:Address,:PDate,(select now()),:mobile,:email)";
+
+		return namedjdbc.update(str, param);		
 	}
 }

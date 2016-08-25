@@ -54,7 +54,7 @@ public class AdminController {
 	public static String REDIRECTPREFIX = "redirect:";
 
 	@Autowired
-	PoojeService service;
+	PoojeService poojeService;
 
 	@Autowired
 	private kanajarTempleMethods defaultTempleMethods;
@@ -97,7 +97,7 @@ public class AdminController {
 			model.addAttribute(pbean);
 			return "admin/PoojeReciept";
 		} else {
-			String RNO = service.getPoojedetailstoprint(pbean);
+			String RNO = poojeService.getPoojedetailstoprint(pbean);
 			String PID = pbean.getPid().toString();
 			return REDIRECTPREFIX + "/Admin/AddPoojeReceipt/" + PID + "/" + RNO;
 		}
@@ -136,7 +136,7 @@ public class AdminController {
 			return getPoojeDetails(mv, PoojeID, RNO);
 
 		} else {
-			Integer i = service.updatePooje(pbean);
+			Integer i = poojeService.updatePooje(pbean);
 			if (i == 1) {
 				mv.addObject("message", messageSource.getMessage("update.success", null, locale));
 				mv.addObject(new Poojebean());
@@ -169,7 +169,7 @@ public class AdminController {
 	public ModelAndView AdminPoojeReportSuccess(HttpServletRequest request, HttpServletResponse response,
 			Reportbean rbean) {
 
-		List<?> PoojeReceipt = service.getPoojeReport(rbean);
+		List<?> PoojeReceipt = poojeService.getPoojeReport(rbean);
 
 		JRDataSource datasource = new JRBeanCollectionDataSource(PoojeReceipt);
 
@@ -199,7 +199,7 @@ public class AdminController {
 			model.addAttribute(sbean);
 			return "admin/SashwathaPooje";
 		} else {
-			String RNO = service.getSashwathaPoojedetailstoprint(sbean).toString();
+			String RNO = poojeService.getSashwathaPoojedetailstoprint(sbean).toString();
 			String PID = sbean.getPid().toString();
 			return REDIRECTPREFIX + "/Admin/SashwathaPoojeReceipt/" + PID + "/" + RNO;
 		}
@@ -227,7 +227,7 @@ public class AdminController {
 			return getSashhwathaDetails(mv, RNO);
 
 		} else {
-			Integer i = service.updateSashwathaPooje(sbean);
+			Integer i = poojeService.updateSashwathaPooje(sbean);
 			if (i == 1) {
 				mv.addObject("message", messageSource.getMessage("update.success", null, locale));
 				mv.addObject(new SashwathaPoojebean());
@@ -267,7 +267,7 @@ public class AdminController {
 	public ModelAndView AdminSashwathaPoojeReportSuccess(HttpServletRequest request, HttpServletResponse response,
 			Reportbean rbean) {
 
-		List<?> PoojeReceipt = service.getSashwathaReport(rbean);
+		List<?> PoojeReceipt = poojeService.getSashwathaReport(rbean);
 
 		JRDataSource datasource = new JRBeanCollectionDataSource(PoojeReceipt);
 
@@ -295,7 +295,7 @@ public class AdminController {
 		if (bindingResult.hasErrors()) {
 			mv.addAttribute(ibean);
 		} else {
-			Integer RecNo = service.addincome(ibean);
+			Integer RecNo = poojeService.addincome(ibean);
 			if (RecNo == null) {
 				mv.addAttribute(new IncomeData());
 				mv.addAttribute("message", messageSource.getMessage("message.error", null, locale));
@@ -340,7 +340,7 @@ public class AdminController {
 					defaultTempleMethods.getIncomeData(ibean.getRecNo().toString(), ibean.getIid().toString()));
 			return mv;
 		} else {
-			Integer i = service.updateIncome(ibean);
+			Integer i = poojeService.updateIncome(ibean);
 			if (i == 1) {
 				mv.addObject("Data",
 						defaultTempleMethods.getIncomeData(ibean.getRecNo().toString(), ibean.getIid().toString()));
@@ -374,7 +374,7 @@ public class AdminController {
 	public ModelAndView AdminIncomeReportSuccess(HttpServletRequest request, HttpServletResponse response,
 			Reportbean rbean) {
 		rbean.setName(defaultTempleMethods.getIncome(rbean.getId()).getIncomeName());
-		JRDataSource datasource = new JRBeanCollectionDataSource(service.getIncomeReport(rbean));
+		JRDataSource datasource = new JRBeanCollectionDataSource(poojeService.getIncomeReport(rbean));
 
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", datasource);
@@ -403,7 +403,7 @@ public class AdminController {
 			model.addAttribute(dbean);
 			return "admin/Donation";
 		} else {
-			String RNO = service.getDonationReceipt(dbean);
+			String RNO = poojeService.getDonationReceipt(dbean);
 			String DID = dbean.getDid().toString();
 			return REDIRECTPREFIX + "/Admin/DonationReceipt/" + DID + "/" + RNO;
 		}
@@ -432,7 +432,7 @@ public class AdminController {
 			return getDonationDetails(mv, DonationID, RecNo);
 
 		} else {
-			Integer i = service.updateDonation(dbean);
+			Integer i = poojeService.updateDonation(dbean);
 			if (i == 1) {
 				mv.addObject("message", messageSource.getMessage("update.success", null, locale));
 				mv.addObject(new DonationDetail());
@@ -475,7 +475,7 @@ public class AdminController {
 	public ModelAndView AdminDonationReportSuccess(HttpServletRequest request, HttpServletResponse response,
 			Reportbean rbean) {
 		Donation donation = defaultTempleMethods.getDonation(rbean.getId());
-		List<?> DonationReport = service.getDonationReport(rbean, donation.getDonationName());
+		List<?> DonationReport = poojeService.getDonationReport(rbean, donation.getDonationName());
 
 		JRDataSource datasource = new JRBeanCollectionDataSource(DonationReport);
 
@@ -505,7 +505,7 @@ public class AdminController {
 			mv.addAttribute(ebean);
 			return "admin/Expenses";
 		} else {
-			Integer RNO = service.getExpenditureReceipt(ebean);
+			Integer RNO = poojeService.getExpenditureReceipt(ebean);
 			return REDIRECTPREFIX + "/Admin/ExpenditureReceipt/" + ebean.getEid() + "/" + RNO;
 		}
 
@@ -541,7 +541,7 @@ public class AdminController {
 			mv.addObject(ebean);
 			return mv;
 		} else {
-			Integer i = service.updateExpense(ebean);
+			Integer i = poojeService.updateExpense(ebean);
 			if (i == 1) {
 				mv.addObject("message", messageSource.getMessage("update.success", null, locale));
 				mv.addObject("Data", defaultTempleMethods.getExpenditureData(ebean.getRecNo().toString(),
@@ -575,7 +575,7 @@ public class AdminController {
 	@RequestMapping(value = "/ExpenditureReport", method = RequestMethod.POST)
 	public ModelAndView AdminExpenditureReportSuccess(HttpServletResponse response, Reportbean rbean) {
 		rbean.setName(defaultTempleMethods.getExpenditure(rbean.getId()).getExpenseName());
-		JRDataSource datasource = new JRBeanCollectionDataSource(service.getExpenditureReport(rbean));
+		JRDataSource datasource = new JRBeanCollectionDataSource(poojeService.getExpenditureReport(rbean));
 
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", datasource);
@@ -596,7 +596,7 @@ public class AdminController {
 	@RequestMapping(value = "/AllReportSuccess")
 	public ModelAndView AdminAllReportSuccess(HttpServletRequest request, HttpServletResponse response,
 			Reportbean rbean) {
-		List<?> DonationReport = service.getAllReport(rbean);
+		List<?> DonationReport = poojeService.getAllReport(rbean);
 		JRDataSource datasource = new JRBeanCollectionDataSource(DonationReport);
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", datasource);

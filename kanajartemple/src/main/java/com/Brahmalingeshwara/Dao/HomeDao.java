@@ -10,9 +10,11 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.Admin.bean.SashwathaPoojebean;
 import com.Brahmalingeshwara.bean.SevaBookingBean;
+import com.Brahmalingeshwara.kanajartemple.Utills;
 
-@Component("dao")
+@Component("homeDao")
 public class HomeDao {
 	
 	@Autowired
@@ -20,21 +22,6 @@ public class HomeDao {
 	@Autowired
     DriverManagerDataSource dataSource;
     
-	/*public PlatformTransactionManager getTransactionManager() {
-		return transactionManager;
-	}
-
-	public void setTransactionManager(PlatformTransactionManager transactionManager) {
-		this.transactionManager = transactionManager;
-	}
-
-	public DriverManagerDataSource getDataSource() {
-		return dataSource;
-	}
-
-	public void setDataSource(DriverManagerDataSource dataSource) {
-		this.dataSource = dataSource;
-	}*/
 	
 	public List getPageContent(String Pagename)
 	{
@@ -67,6 +54,23 @@ public class HomeDao {
 		   
 	}
 
+	public Integer saveSashwathaPooje(SashwathaPoojebean sbean)
+	{
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("RecNo", sbean.getPid());
+		param.put("Pid", sbean.getPid());
+		param.put("Name", Utills.replaceWhiteSpace(sbean.getName()));
+		param.put("PDate", sbean.getPdate());
+		param.put("Address", Utills.replaceWhiteSpace(sbean.getAddress()));
+		param.put("mobile", sbean.getMobileNo());
+		param.put("email", sbean.getEmail());
+
+		String str = "insert into UserSashwathaPooje(RecNo,Name,Address,PDate,BDate,MobileNo,Email) "
+				+ "values(:RecNo,:Name,:Address,:PDate,(select now()),:mobile,:email)";
+
+		return namedjdbc.update(str, param);		
+	}
 
 }
