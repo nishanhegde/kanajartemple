@@ -11,10 +11,12 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.Admin.RowMapper.CMSPageRowMapper;
 import com.Admin.RowMapper.PoojeRowMapper;
 import com.Admin.RowMapper.RegisterRowMapper;
+import com.Admin.RowMapper.SashwathaPoojeRowMapper;
 import com.Admin.bean.CMSbean;
 import com.Admin.bean.ChangePassword;
 import com.Admin.bean.RegistrationBean;
@@ -124,13 +126,13 @@ public class AdminHomeDao {
 		return namedjdbc.queryForObject("select Password  from register where EmailId=:id or PhoneNumber=:id", param,
 				String.class);
 	}
-	
-	public Integer saveSashwathaPooje(SashwathaPoojebean sbean)
-	{
+
+	@Transactional
+	public Integer saveSashwathaPooje(SashwathaPoojebean sbean) {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 
 		Map<String, Object> param = new HashMap<String, Object>();
-		param.put("RecNo", sbean.getPid());
+		param.put("RecNo", sbean.getRecNo());
 		param.put("Pid", sbean.getPid());
 		param.put("Name", Utills.replaceWhiteSpace(sbean.getName()));
 		param.put("PDate", sbean.getPdate());
@@ -141,6 +143,31 @@ public class AdminHomeDao {
 		String str = "insert into UserSashwathaPooje(RecNo,Name,Address,PDate,BDate,MobileNo,Email) "
 				+ "values(:RecNo,:Name,:Address,:PDate,(select now()),:mobile,:email)";
 
-		return namedjdbc.update(str, param);		
+		return namedjdbc.update(str, param);
 	}
+
+	public List<Map<String, Object>> getUserSashwathaPoojeDetails() {
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+		Map<String, Object> param = new HashMap<String, Object>();
+		String str = "select * from usersashwathapooje";
+		return namedjdbc.queryForList(str, param);
+	}
+
+	public SashwathaPoojebean getUserSashwathaPoojeDetails(String id) {
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
+		String str = "select * from usersashwathapooje where id=:id";
+		return namedjdbc.queryForObject(str, param, new SashwathaPoojeRowMapper());
+	}
+
+	public Integer deleteUserSashwathaPoojeDetails(String id) {
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
+
+		String sql = "delete from usersashwathapooje where id=:id";
+		return namedjdbc.update(sql, param);
+	}
+
 }

@@ -33,6 +33,8 @@ import com.Admin.validator.EditProfileValidator;
 @Controller
 public class AdminHome {
 
+	public static String REDIRECT_TO_APPROVE = "redirect:/Admin/address";
+
 	@Autowired
 	private AdminHomeService adminHomeservice;
 
@@ -191,6 +193,30 @@ public class AdminHome {
 			}
 		}
 		return mv;
+	}
+
+	@RequestMapping(value = "/Admin/address", method = RequestMethod.GET)
+	public String getAddress(Model model) throws IOException {
+		model.addAttribute("data", adminHomeservice.getUserSashwathaPoojeDetails());
+		return "admin/UserSashwathapooje";
+	}
+
+	@RequestMapping(value = "/Admin/address/{id}", method = RequestMethod.GET)
+	public String getAddress(@PathVariable String id, Model model) throws IOException {
+		model.addAttribute(adminHomeservice.getUserSashwathaPoojeDetails(id));
+		return "admin/usersashwathapoojefullview";
+	}
+
+	@RequestMapping(value = "/Admin/address/approve/{id}", method = RequestMethod.GET)
+	public String approveAddress(@PathVariable String id) throws IOException {
+		adminHomeservice.approveUserSashwathaPoojeDetails(id);
+		return REDIRECT_TO_APPROVE;
+	}
+
+	@RequestMapping(value = "/Admin/address/delete/{id}", method = RequestMethod.GET)
+	public String deleteAddress(@PathVariable String id) throws IOException {
+		adminHomeservice.deleteUserSashwathaPoojeDetails(id);
+		return REDIRECT_TO_APPROVE;
 	}
 
 	private String getCurrentUser() {

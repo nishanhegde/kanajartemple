@@ -7,47 +7,9 @@
 <%@ taglib prefix="core" uri="http://www.springframework.org/tags"%>
 
 
-<style>
-.colorboxbody input[type=submit] {
-	/* border: 1px solid #3079ed; */
-	border: 0px;
-	color: #fff;
-	text-shadow: 0 1px rgba(0, 0, 0, 0.1);
-	background-color: #4d90fe;
-	/* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
-}
-
-.colorboxbody input, textarea {
-	height: 36px;
-	font-size: 14px;
-	width: 100%;
-	margin-bottom: 5px;
-	-webkit-appearance: none;
-	border: 1px solid #d9d9d9;
-	border-top: 1px solid #c0c0c0;
-	/* border-radius: 2px; */
-	padding: 0 8px;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
-
-.colorboxbody {
-	width: 325px;
-	height: auto;
-	margin-top: 5px;
-	padding: 10px;
-	float: left;
-	background: #fff;
-	-moz-border-radius: 10px;
-	-khtml-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-	-khtml-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-	position: relative;
-}
-</style>
-
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/colorbox.css"/>" />
+	
 <div class="colorboxbody">
 	<c:url value="/NithyaPooje/update" var="url" />
 	<form:form action="${url}" commandName="sashwathaPoojebean"
@@ -58,25 +20,36 @@
 
 			<tr>
 				<th><spring:message code="label.recno" /></th>
-				<td><form:errors path="recNo" /> <form:input path="recNo"
-						readonly="true" /></td>
+				<td><core:bind path="sashwathaPoojebean.RecNo">
+						<div class="error">${status.errorMessage}</div>
+						<input type="text" name="RecNo" id="RecNo" value='${status.value}'
+							readonly="readonly" />
+					</core:bind></td>
 			</tr>
 
 			<tr>
-				<th><spring:message code="label.name" /></th>
-				<td><form:errors path="name" />
-					<form:input path="name" /></td>
+				<th><spring:message code="label.name" /> *</th>
+				<td><core:bind path="sashwathaPoojebean.Name">
+						<div class="error">${status.errorMessage}</div>
+						<input type="text" name="Name" id="Name" value='${status.value}'
+							required />
+					</core:bind></td>
+			</tr>
+			
+			<tr>
+				<th><spring:message code="label.address" /> *</th>
+				<th><core:bind path="sashwathaPoojebean.Address">
+						<div class="error">${status.errorMessage}</div>
+						<textarea name="Address" rows="5" cols="22" id="Address" required>${status.value}</textarea>
+					</core:bind></th>
 			</tr>
 			<tr>
-				<th><spring:message code="label.address" /></th>
-				<th><form:errors path="address" />
-					<form:textarea path="address" /></th>
-
-			</tr>
-			<tr>
-				<th><spring:message code="label.poojedate" /></th>
-				<td><form:errors path="pdate" />
-					<form:input path="pdate" readonly="true" /></td>
+				<th><spring:message code="label.poojedate" /> *</th>
+				<th><core:bind path="sashwathaPoojebean.Pdate">
+						<div class="error">${status.errorMessage}</div>
+						<input type="text" name="Pdate" id="date" value='${status.value}'
+							readonly="readonly" />
+					</core:bind></th>
 			</tr>
 
 			<tr>

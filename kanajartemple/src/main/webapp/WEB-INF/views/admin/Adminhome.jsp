@@ -102,7 +102,9 @@
 				<a href="<c:url value="/Admin/AllReport"/>"><li><spring:message
 							code="label.reportall" /></li></a>
 				<!-- 	<a href="#"><li>Bank Report</li></a> -->
-
+<a href="<c:url value="/Admin/address"/>"><li><spring:message
+							code="label.approve.address" /></li></a>
+				
 
 			</ul>
 		</div>
