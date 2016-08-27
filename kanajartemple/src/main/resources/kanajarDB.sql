@@ -1585,15 +1585,14 @@ CREATE TABLE IF NOT EXISTS `register` (
   PRIMARY KEY (`id`,`EmailId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.register: ~6 rows (approximately)
+-- Dumping data for table brahmalingeshwara.register: ~5 rows (approximately)
 /*!40000 ALTER TABLE `register` DISABLE KEYS */;
 INSERT INTO `register` (`id`, `FullName`, `Password`, `EmailId`, `PhoneNumber`, `role`, `Status`) VALUES
-	(1, 'ಶ್ರೇಯಸ್  ಹೆಗ್ದೆ', '9141502033', 'superadmin@kanajartemple.com', '9141502033', 'ROLE_SUPERADMIN', 'Active'),
-	(2, 'ನಿಶಾನ್ ಹೆಗ್ಡೆ', '123456', 'nishanhegde.hegde@gmail.com', '9663559596', 'ROLE_SUPERADMIN', 'Active'),
-	(3, 'ಚಂದನ್ ಹೆಗ್ಡೆ', 'chandan@123', 'achegde@gmail.com', '9980025918', 'ROLE_SUPERADMIN', 'Active'),
-	(4, 'Vijetha Shetty', 'vijeth@123', 'vijeth.shetty7@gmail.com', '9972721314', 'ROLE_ADMIN', 'Active'),
-	(5, 'ಶ್ರೀಶಾಂತ್ ಶೆಟ್ಟಿ', '9986209958', 'shrishanthr@gmail.com', '9986209958', 'ROLE_ADMIN', 'Active'),
-	(6, 'ಕೆ ಹರಿದಾಸ ಹೆಗ್ಡೆ', '9482033351', 'haridas.hegde54@gmail.com', '9880572271', 'ROLE_ADMIN', 'Active');
+	(1, 'Nishan Hegde', '123456', 'nishanhegde.hegde@gmail.com', '9663559596', 'ROLE_SUPERADMIN', 'Active'),
+	(2, 'ಚಂದನ್ ಹೆಗ್ಡೆ', 'chandan@123', 'achegde@gmail.com', '9980025918', 'ROLE_SUPERADMIN', 'Active'),
+	(3, 'Vijetha Shetty', 'vijeth@123', 'vijeth.shetty7@gmail.com', '9972721314', 'ROLE_ADMIN', 'Active'),
+	(4, 'ಶ್ರೀಶಾಂತ್ ಶೆಟ್ಟಿ', '9986209958', 'shrishanthr@gmail.com', '9986209958', 'ROLE_ADMIN', 'Active'),
+	(5, 'ಕೆ ಹರಿದಾಸ ಹೆಗ್ಡೆ', '9482033351', 'haridas.hegde54@gmail.com', '9880572271', 'ROLE_ADMIN', 'Active');
 /*!40000 ALTER TABLE `register` ENABLE KEYS */;
 
 
@@ -2316,6 +2315,25 @@ CREATE TABLE IF NOT EXISTS `sevabooking` (
 -- Dumping data for table brahmalingeshwara.sevabooking: ~0 rows (approximately)
 /*!40000 ALTER TABLE `sevabooking` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sevabooking` ENABLE KEYS */;
+
+
+-- Dumping structure for table brahmalingeshwara.usersashwathapooje
+CREATE TABLE IF NOT EXISTS `usersashwathapooje` (
+  `RecNo` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(2000) NOT NULL,
+  `Address` varchar(10000) NOT NULL,
+  `PDate` varchar(10) CHARACTER SET latin1 NOT NULL,
+  `BDate` datetime NOT NULL,
+  `MobileNo` varchar(15) CHARACTER SET latin1 DEFAULT NULL,
+  `Email` varchar(40) CHARACTER SET latin1 DEFAULT NULL,
+  `Pid` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table brahmalingeshwara.usersashwathapooje: ~0 rows (approximately)
+/*!40000 ALTER TABLE `usersashwathapooje` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usersashwathapooje` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
