@@ -77,7 +77,7 @@ public class SuperAdminDaoImpl implements SuperAdminDao {
 		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, Object> param = new HashMap<String, Object>();
 
-		String sql = "select * from register where id != 1 and Status='Inactive'";
+		String sql = "select * from register where Status='Inactive'";
 		return namedjdbc.queryForList(sql, param);
 
 	}

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,6 @@ import com.Admin.Service.Impl.AdminHomeService;
 import com.Admin.bean.SashwathaPoojebean;
 
 import com.Admin.validator.UserSashwathaPoojeValidator;
-
 
 /**
  * Handles requests for the application home page.
@@ -46,6 +46,9 @@ public class HomeController {
 
 	@Resource
 	private UserSashwathaPoojeValidator userSashwathaPoojeValidator;
+
+	@Autowired
+	private MessageSource messageSource;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -118,14 +121,13 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/NithyaPooje/update", method = RequestMethod.POST)
-	public String NithyaPoojeUpdate(@ModelAttribute SashwathaPoojebean sbean, Model model, HttpServletResponse response,
+	public String NithyaPoojeUpdate(@ModelAttribute SashwathaPoojebean sbean, Model model, Locale locale,
 			BindingResult bindingResult) {
 		userSashwathaPoojeValidator.validate(sbean, bindingResult);
-		if (bindingResult.hasErrors()) {
-			model.addAttribute(sbean);
-		} else if (adminHomeService.saveSashwathaPooje(sbean) == 1) {
-			model.addAttribute(sbean);
+		if (!bindingResult.hasErrors() && adminHomeService.saveSashwathaPooje(sbean) == 1) {
+			model.addAttribute("message", messageSource.getMessage("label.usersashwathapooje.success", null, locale));
 		}
+		model.addAttribute(sbean);
 		return "NithyaPujeUpdate";
 	}
 

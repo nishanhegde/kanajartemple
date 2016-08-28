@@ -9,8 +9,9 @@
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/colorbox.css"/>" />
-	
+
 <div class="colorboxbody">
+	<div class="success">${message}</div>
 	<c:url value="/NithyaPooje/update" var="url" />
 	<form:form action="${url}" commandName="sashwathaPoojebean"
 		method="post">
@@ -28,23 +29,23 @@
 			</tr>
 
 			<tr>
-				<th><spring:message code="label.name" /> *</th>
+				<th><spring:message code="label.name" /></th>
 				<td><core:bind path="sashwathaPoojebean.Name">
 						<div class="error">${status.errorMessage}</div>
 						<input type="text" name="Name" id="Name" value='${status.value}'
 							required />
 					</core:bind></td>
 			</tr>
-			
+
 			<tr>
-				<th><spring:message code="label.address" /> *</th>
+				<th><spring:message code="label.address" /></th>
 				<th><core:bind path="sashwathaPoojebean.Address">
 						<div class="error">${status.errorMessage}</div>
 						<textarea name="Address" rows="5" cols="22" id="Address" required>${status.value}</textarea>
 					</core:bind></th>
 			</tr>
 			<tr>
-				<th><spring:message code="label.poojedate" /> *</th>
+				<th><spring:message code="label.poojedate" /></th>
 				<th><core:bind path="sashwathaPoojebean.Pdate">
 						<div class="error">${status.errorMessage}</div>
 						<input type="text" name="Pdate" id="date" value='${status.value}'
@@ -78,4 +79,5 @@
 
 		</table>
 	</form:form>
+
 </div>
