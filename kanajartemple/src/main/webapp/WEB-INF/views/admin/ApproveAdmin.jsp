@@ -55,7 +55,7 @@
 							<td class="td-block">
 
 								<p>
-									<a href="<c:url value="/SuperAdmin/Delete/${app.id}"/>" onclick="confirmDelete()"><spring:message
+									<a href="<c:url value="/SuperAdmin/Delete/${app.id}"/>" onclick="return confirmDelete()"><spring:message
 											code="label.delete" /></a>
 								</p>
 							</td>

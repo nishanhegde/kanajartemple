@@ -542,4 +542,58 @@ public class PoojeDao<K> {
 
 		return namedjdbc.update(str, param);
 	}
+	
+
+	public Integer deletePooje(String poojeid,String recno){
+		
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("pid", poojeid);
+		param.put("RecNo", recno);
+
+		String sql = "delete from allpoojedata where pid=:pid and RecNo=:RecNo";
+		return namedjdbc.update(sql, param);
+	}
+	
+public Integer deleteSashwathaPooje(String recno){
+		
+		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("RecNo", recno);
+
+		String sql = "delete from sashwathapooje where RecNo=:RecNo";
+		return namedjdbc.update(sql, param);
+	}
+
+public Integer deleteDonation(String did,String recno){
+	
+	NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	Map<String, Object> param = new HashMap<String, Object>();
+	param.put("did", did);
+	param.put("RecNo", recno);
+
+	String sql = "delete from alldonationdata where Did=:did and RecNo=:RecNo";
+	return namedjdbc.update(sql, param);
+}
+
+public Integer deleteIncome(String iid,String recno){
+	
+	NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	Map<String, Object> param = new HashMap<String, Object>();
+	param.put("iid", iid);
+	param.put("RecNo", recno);
+
+	String sql = "delete from allincomedata where iid=:iid and RecNo=:RecNo";
+	return namedjdbc.update(sql, param);
+}
+public Integer deleteExpense(String eid,String recno){
+	
+	NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	Map<String, Object> param = new HashMap<String, Object>();
+	param.put("eid", eid);
+	param.put("RecNo", recno);
+
+	String sql = "delete from allexpendituredata where eid=:eid and RecNo=:RecNo";
+	return namedjdbc.update(sql, param);
+}
 }

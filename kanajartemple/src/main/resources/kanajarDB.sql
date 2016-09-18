@@ -509,15 +509,15 @@ INSERT INTO `alldonationdata` (`RecNo`, `Name`, `Address`, `Amount`, `mobile`, `
 
 -- Dumping structure for table brahmalingeshwara.allexpendituredata
 CREATE TABLE IF NOT EXISTS `allexpendituredata` (
-  `RecNo` int(11) NOT NULL AUTO_INCREMENT,
-  `Eid` int(11) NOT NULL DEFAULT '1',
+  `RecNo` int(11) NOT NULL,
+  `Eid` int(11) NOT NULL,
   `Title` varchar(2000) NOT NULL,
   `Description` varchar(10000) NOT NULL,
   `Amount` double NOT NULL,
   `EDate` date NOT NULL,
   `BDate` datetime NOT NULL,
   PRIMARY KEY (`RecNo`,`Eid`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table brahmalingeshwara.allexpendituredata: ~108 rows (approximately)
 /*!40000 ALTER TABLE `allexpendituredata` DISABLE KEYS */;
@@ -690,8 +690,7 @@ INSERT INTO `allincomedata` (`RecNo`, `Iid`, `title`, `Amount`, `Edate`, `Bdate`
 	(34, 1, 'ಮೇಲ್ಬಂಟ ದೇವರ ಹುಂಡಿಯಿಂದ', 114128, '2015-12-30', '2015-12-29 15:08:26'),
 	(35, 1, 'ಮೇಲ್ಬಂಟ ದೇವರ ಹುಂಡಿಯಿಂದ ಮೇಲ್ಬಂಟ ಪೂಜೆಯ ದಿನ', 59671, '2015-12-30', '2015-12-29 15:11:31'),
 	(36, 1, 'Guru Bhat Shashwatha Pooje 13Nos', 13000, '2015-12-29', '2015-12-29 17:16:02'),
-	(37, 1, 'Sashwatha Pooje Counter', 3000, '2015-12-30', '2015-12-30 17:59:23'),
-	(38, 1, 'wfhwjfv', 666666, '2016-04-30', '2016-04-30 12:54:26');
+	(37, 1, 'Sashwatha Pooje Counter', 3000, '2015-12-30', '2015-12-30 17:59:23');
 /*!40000 ALTER TABLE `allincomedata` ENABLE KEYS */;
 
 
@@ -1583,9 +1582,9 @@ CREATE TABLE IF NOT EXISTS `register` (
   `role` varchar(50) CHARACTER SET latin1 NOT NULL DEFAULT 'ROLE_ADMIN',
   `Status` varchar(50) CHARACTER SET latin1 NOT NULL DEFAULT 'Inactive',
   PRIMARY KEY (`id`,`EmailId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.register: ~5 rows (approximately)
+-- Dumping data for table brahmalingeshwara.register: ~4 rows (approximately)
 /*!40000 ALTER TABLE `register` DISABLE KEYS */;
 INSERT INTO `register` (`id`, `FullName`, `Password`, `EmailId`, `PhoneNumber`, `role`, `Status`) VALUES
 	(1, 'Nishan Hegde', '123456', 'nishanhegde.hegde@gmail.com', '9663559596', 'ROLE_SUPERADMIN', 'Active'),
@@ -1607,7 +1606,7 @@ CREATE TABLE IF NOT EXISTS `sashwathapooje` (
   `Email` varchar(40) CHARACTER SET latin1 DEFAULT NULL,
   `Pid` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`RecNo`)
-) ENGINE=InnoDB AUTO_INCREMENT=1039 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1041 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table brahmalingeshwara.sashwathapooje: ~683 rows (approximately)
 /*!40000 ALTER TABLE `sashwathapooje` DISABLE KEYS */;
@@ -2329,9 +2328,9 @@ CREATE TABLE IF NOT EXISTS `usersashwathapooje` (
   `Email` varchar(40) CHARACTER SET latin1 DEFAULT NULL,
   `Pid` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.usersashwathapooje: ~0 rows (approximately)
+-- Dumping data for table brahmalingeshwara.usersashwathapooje: ~1 rows (approximately)
 /*!40000 ALTER TABLE `usersashwathapooje` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usersashwathapooje` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

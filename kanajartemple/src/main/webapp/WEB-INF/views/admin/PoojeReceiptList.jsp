@@ -26,6 +26,7 @@
 					<th><spring:message code="label.poojedate"/></th>
 					<th><spring:message code="label.edit"/></th>
 					<th><spring:message code="label.duplicate"/></th>
+					<th><spring:message code="label.delete"/></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -54,6 +55,17 @@
 								<p><a onclick="popupCenter('../../Admin/EditPooje/${app.Pid}/${app.RecNo}', 'Kanajar Temple',400,290);" href="javascript:void(0);"><spring:message code="label.edit"/></a></p>
 
 							</td>
+							<td class="td-block">
+									<p>
+										<a target="_blank"
+											href="<c:url value="../../Admin/AddPoojeReceipt/${app.Pid}/${app.RecNo}"/>"><spring:message code="label.print"/></a>
+									</p>
+								</td>
+							<td class="td-block">
+									<p>
+										<a onclick="return confirmDelete()" href="<c:url value="../../Admin/deletepooje/${app.Pid}/${app.RecNo}"/>"><spring:message code="label.delete"/></a>
+									</p>
+								</td>
 							</c:if>
 							<c:if test="${PoojeName == 'SashwathaPooje'}">
 							<td class="td-block">
@@ -61,20 +73,15 @@
 								<p><a onclick="popupCenter('../Admin/EditSashwathaPooje/${app.RecNo}', 'Kanajar Temple',425,400);" href="javascript:void(0);"><spring:message code="label.edit"/></a></p>
 
 							</td>
-							</c:if>
-							<c:if test="${PoojeName != 'SashwathaPooje'}">
-								<td class="td-block">
-									<p>
-										<a target="_blank"
-											href="<c:url value="../../Admin/AddPoojeReceipt/${app.Pid}/${app.RecNo}"/>"><spring:message code="label.print"/></a>
-									</p>
-								</td>
-							</c:if>
-							<c:if test="${PoojeName == 'SashwathaPooje'}">
-								<td>
+							<td>
 									<p>
 										<a target="_blank"
 											href="<c:url value="../Admin/SashwathaPoojeReceipt/${app.Pid}/${app.RecNo}"/>"><spring:message code="label.print"/></a>
+									</p>
+								</td>
+							<td class="td-block">
+									<p>
+										<a onclick="return confirmDelete()" href="<c:url value="../Admin/deletesashwathapooje/${app.RecNo}"/>"><spring:message code="label.delete"/></a>
 									</p>
 								</td>
 							</c:if>

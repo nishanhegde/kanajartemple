@@ -30,6 +30,7 @@
 					<th><spring:message code="label.amount"/></th>
 					<th><spring:message code="label.edit"/></th>
 					<th><spring:message code="label.duplicate"/></th>
+					<th><spring:message code="label.delete"/></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -69,7 +70,12 @@
 										href="<c:url value="../../Admin/AddIncome/${app.Iid}/${app.RecNo}"/>"><spring:message code="label.print"/></a>
 								</p>
 							</td>
+							<td class="td-block">
 
+								<p>
+									<a onclick="return confirmDelete()" href="<c:url value="../../Admin/deleteincome/${app.Iid}/${app.RecNo}"/>"><spring:message code="label.delete"/></a>
+								</p>
+							</td>
 						</tr>
 
 

@@ -702,4 +702,40 @@ public class AdminController {
 		return mv;
 	}
 
+	@RequestMapping(value = "/deletepooje/{PoojeID}/{RecNo}")
+	public String deletePooje(@PathVariable("PoojeID") String PoojeID, @PathVariable("RecNo") String RecNo,
+			HttpServletRequest req) {
+
+		poojeService.deletePooje(PoojeID, RecNo);
+		return REDIRECTPREFIX + "/Admin/PoojeReceiptList/" + PoojeID;
+	}
+
+	@RequestMapping(value = "/deletesashwathapooje/{RecNo}")
+	public String deleteSashwathaPooje(@PathVariable("RecNo") String RecNo) {
+
+		poojeService.deleteSashwathaPooje(RecNo);
+		return REDIRECTPREFIX + "/Admin/SashwathaPoojeReceiptList";
+	}
+
+	@RequestMapping(value = "/deletedonation/{DonationID}/{RecNo}")
+	public String deleteDonation(@PathVariable("DonationID") String DonationID, @PathVariable("RecNo") String RecNo) {
+
+		poojeService.deleteDonation(DonationID, RecNo);
+		return REDIRECTPREFIX + "/Admin/DonationReceiptList/" + DonationID;
+	}
+	
+	@RequestMapping(value = "/deleteincome/{IncomeID}/{RecNo}")
+	public String deleteIncome(@PathVariable("IncomeID") String IncomeID, @PathVariable("RecNo") String RecNo) {
+
+		poojeService.deleteIncome(IncomeID, RecNo);
+		return REDIRECTPREFIX + "/Admin/IncomeList/" + IncomeID;
+	}
+
+	@RequestMapping(value = "/deleteexpense/{ExpenseID}/{RecNo}")
+	public String deleteExpense(@PathVariable("ExpenseID") String ExpenseID, @PathVariable("RecNo") String RecNo) {
+
+		poojeService.deleteExpense(ExpenseID, RecNo);
+		return REDIRECTPREFIX + "/Admin/ExpenditureList/" + ExpenseID;
+	}
+	
 }
