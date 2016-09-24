@@ -245,4 +245,39 @@ h6 {
 	letter-spacing: -1px;
 }
 
+
+#fixmenu {
+	color: #FFFFFF;
+	position : fixed;
+	right: 0;
+	top: 50%;
+	width: 5em;
+	margin: -2.5em 0 0 0;
+	z-index: 5;
+	background: black;
+	color: white;
+	font-weight: bold;
+	font-size: large;
+	text-align: left;
+	border: solid #00B4FF;
+	border-right: none;
+	padding: 0.5em 0.5em 0.5em 2.5em;
+	box-shadow: 0 1px 3px black;
+	border-radius: 3em 0.5em 0.5em 3em;
+	position: fixed;
+}
+#fixmenu span{
+ color: grey;
+}
+#fixmenu a {
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-weight: normal;
+   
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #000000;
+}
+#fixmenu a:hover  {
+    color: #00B4FF;
 }

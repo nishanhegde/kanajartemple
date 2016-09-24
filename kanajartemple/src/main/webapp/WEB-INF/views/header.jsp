@@ -20,9 +20,13 @@
 		<spring:message code="label.title" />
 	</h6>
 </div>
-<div class="welname">
-	<spring:message code="label.language" />
-	:<span class="lang"> <a href="?lang=en"
-		onclick="changeLang(':english');">English</a> | <a href="?lang=kn"
-		onclick="changeLang('pramukhindic:kannada');">ಕನ್ನಡ</a></span>
+
+
+<div id="fixmenu">
+	<span><spring:message code="label.language" /></span><br/>
+
+	<a href="?lang=en" onclick="changeLang(':english');">English</a> <br/>
+	<a href="?lang=kn" onclick="changeLang('pramukhindic:kannada');">ಕನ್ನಡ</a>
+
 </div>
+
