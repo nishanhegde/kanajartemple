@@ -125,13 +125,13 @@
     left: 265px;
 }
 #nav li:nth-of-type(4):hover ~ #lavalamp {
-    left: 390px;
+    left: 420px;
 }
 #nav li:nth-of-type(5):hover ~ #lavalamp {
-    left: 530px;
+    left: 545px;
 }
 #nav li:nth-of-type(6):hover ~ #lavalamp {
-    left: 655px;
+    left: 640px;
 }
 #nav li:nth-of-type(7):hover ~ #lavalamp {
     left: 755px;
