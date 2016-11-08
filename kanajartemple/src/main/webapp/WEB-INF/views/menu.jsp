@@ -69,6 +69,12 @@ function stickIt() {
 					code="label.menu.contactus" />
 		</a></li>
 
+<li><a href="#"><spring:message code="label.language" /></span></a>
+			<ul class="subs">
+				<li><a href="?lang=en" onclick="changeLang(':english');">English</a></li>
+				<li><a href="?lang=kn" onclick="changeLang('pramukhindic:kannada');">ಕನ್ನಡ</a></li>
+
+			</ul></li>
 		<div id="lavalamp"></div>
 
 	</ul>

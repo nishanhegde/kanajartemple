@@ -1606,7 +1606,7 @@ CREATE TABLE IF NOT EXISTS `sashwathapooje` (
   `Email` varchar(40) CHARACTER SET latin1 DEFAULT NULL,
   `Pid` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`RecNo`)
-) ENGINE=InnoDB AUTO_INCREMENT=1041 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1039 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table brahmalingeshwara.sashwathapooje: ~683 rows (approximately)
 /*!40000 ALTER TABLE `sashwathapooje` DISABLE KEYS */;
