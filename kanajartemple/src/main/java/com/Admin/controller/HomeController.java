@@ -67,13 +67,13 @@ public class HomeController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/Video")
+	@RequestMapping(value = "/video")
 	public ModelAndView Video(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("Video");
 		return mv;
 	}
 
-	@RequestMapping(value = "/Home")
+	@RequestMapping(value = "/home")
 	public ModelAndView Home(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("Home");
 
@@ -82,14 +82,14 @@ public class HomeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/ContactUs")
+	@RequestMapping(value = "/contactus")
 	public ModelAndView ContactUs(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("ContactUs");
 		mv.addObject(adminHomeService.getPageContent("6"));
 		return mv;
 	}
 
-	@RequestMapping(value = "/UserCMS/{Pid}")
+	@RequestMapping(value = "/usercms/{Pid}")
 	public ModelAndView UserCMS(@PathVariable("Pid") String Pid, HttpServletRequest request,
 			HttpServletResponse response) {
 		String Pagename = request.getParameter("PageName");
@@ -99,7 +99,7 @@ public class HomeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/NithyaPooje")
+	@RequestMapping(value = "/nithyapooje")
 	public ModelAndView NithyaPooje(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("NithyaPuje");
 		mv.addObject("NithyaPooje", kanajarTempleMethods.getSashwathaPooje());
