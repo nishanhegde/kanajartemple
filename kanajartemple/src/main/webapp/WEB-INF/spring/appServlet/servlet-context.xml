@@ -99,4 +99,7 @@
 		class="com.Admin.Service.Impl.kanajarTempleMethodsImpl" />
 	<beans:bean id="defaultTempleMethodsDao"
 		class="com.Admin.dao.impl.kanajarTempleMethodsDaoImpl" />
+
+	
+	
 </beans:beans>

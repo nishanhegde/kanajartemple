@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Admin.Service.EmailService;
 import com.Admin.Service.kanajarTempleMethods;
 import com.Admin.Service.Impl.AdminHomeService;
 import com.Admin.bean.SashwathaPoojebean;
@@ -38,6 +39,8 @@ public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+	public static String REDIRECTPREFIX = "redirect:";
+	
 	@Autowired
 	private AdminHomeService adminHomeService;
 
@@ -49,6 +52,9 @@ public class HomeController {
 
 	@Autowired
 	private MessageSource messageSource;
+	
+	@Autowired
+	private EmailService emailService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -131,4 +137,11 @@ public class HomeController {
 		return "NithyaPujeUpdate";
 	}
 
+	@RequestMapping(value = "/query", method = RequestMethod.POST)
+	public String query(HttpServletRequest request, Model model) {
+		
+		emailService.sendEmail("nishan@kanjartemple.com", "nishan@kanjartemple.com", "User Query", "body");
+		return REDIRECTPREFIX+"/contactus";
+	}
+	
 }

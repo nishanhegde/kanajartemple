@@ -1,14 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>${CMSbean.pagename}</title>
- <link rel="icon" href="<c:url value="/resources/images/templeicon.png"/>"" type="image/x-icon">
-	  <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet" type="text/css" />
-</head>
-<body>
+
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/colorbox.css"/>" />
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="menu.jsp"></jsp:include>
 <div class="mainbody"> 
@@ -22,25 +16,23 @@ ${CMSbean.content}
 </div>
 
 
-<div class="floatingleft">
-<form action="?" method="post">
+<div class="floatingleft colorboxbody">
+<form action="<c:url value="/query"/>" method="post">
 <table cellspacing="25">
 <tr>
 	<th>Name</th>
-	<th><input type="text" name="name" id="name"/></th>
+	<th><input type="text" name="name" id="name" required/></th>
 </tr>
 
 <tr>
 	<th>Email</th>
-	<th ><input name="email" type="text" onchange="return checkmail(this.form.email)" id="email1" /></th>
+	<th><input name="email" type="text" required onchange="return checkmail(this.form.email)" id="email1" /></th>
 	
-</tr>
-	
+</tr>	
 
 <tr>
-
 	<th>Your Query</th>
-	<th><textarea  name="message" rows="3" cols="22" id="message" ></textarea></th>
+	<th><textarea  name="message" rows="3" cols="22" id="message" required ></textarea></th>
 </tr>
 <tr>
 	<th></th>
@@ -53,5 +45,3 @@ ${CMSbean.content}
 </div>
 
 <jsp:include page="footer.jsp"></jsp:include>
-</body>
-</html>
