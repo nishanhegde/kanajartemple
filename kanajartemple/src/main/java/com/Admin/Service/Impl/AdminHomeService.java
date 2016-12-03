@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
@@ -12,17 +13,25 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import com.Admin.Service.EmailService;
 import com.Admin.Service.kanajarTempleMethods;
 import com.Admin.bean.CMSbean;
 import com.Admin.bean.ChangePassword;
 import com.Admin.bean.RegistrationBean;
 import com.Admin.bean.SashwathaPoojebean;
+import com.Admin.controller.HomeController;
 import com.Admin.dao.impl.AdminHomeDao;
 
 @Service("adminHomeservice")
 public class AdminHomeService {
 
-	private static final Logger LOG = Logger.getLogger(AdminHomeService.class);
+	private static final Logger logger = Logger.getLogger(AdminHomeService.class);
+
+	@Value("${email.query.to}")
+	private String queryTo;
+
+	@Value("${website.url}")
+	private String website;
 
 	@Autowired
 	private AdminHomeDao adminHomeDao;
@@ -31,7 +40,7 @@ public class AdminHomeService {
 	PoojeService poojeService;
 
 	@Autowired
-	PlatformTransactionManager transactionManager;
+	private EmailService emailService;
 
 	public CMSbean getPageContent(String Pid) {
 		return adminHomeDao.getPageContent(Pid);
@@ -62,7 +71,28 @@ public class AdminHomeService {
 	}
 
 	public Integer saveSashwathaPooje(SashwathaPoojebean sbean) {
-		return adminHomeDao.saveSashwathaPooje(sbean);
+		Integer result = adminHomeDao.saveSashwathaPooje(sbean);
+		if (result == 1) {
+			try {
+				String lineBreak = System.getProperty("line.separator");
+				StringBuilder body = new StringBuilder();
+				body.append("Dear Admin,");
+				body.append(lineBreak + lineBreak);
+				body.append("There is a new request to approve the nithya pooje details.");
+				body.append(lineBreak);
+				body.append("Please follow the below link to approve  ");
+				body.append(lineBreak);
+				body.append(website + "/Admin/address");
+
+				emailService.sendEmail(queryTo, sbean.getEmail(), "Request to update nithya pooje details",
+						body.toString());
+			} catch (Exception ex) {
+				logger.error(ex);
+
+			}
+		}
+		return result;
+
 	}
 
 	public List<Map<String, Object>> getUserSashwathaPoojeDetails() {
