@@ -10,11 +10,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.jmx.export.annotation.ManagedNotification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Admin.Service.EmailService;
 import com.Admin.Service.kanajarTempleMethods;
@@ -31,16 +34,20 @@ import com.Admin.bean.SashwathaPoojebean;
 
 import com.Admin.validator.UserSashwathaPoojeValidator;
 
+import net.sf.jasperreports.data.empty.EmptyDataAdapterImpl;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
+	private static final Logger logger = Logger.getLogger(HomeController.class);
 	public static String REDIRECTPREFIX = "redirect:";
-	
+
+	@Value("${email.query.to}")
+	private String queryTo;
+
 	@Autowired
 	private AdminHomeService adminHomeService;
 
@@ -52,7 +59,7 @@ public class HomeController {
 
 	@Autowired
 	private MessageSource messageSource;
-	
+
 	@Autowired
 	private EmailService emailService;
 
@@ -61,8 +68,6 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
@@ -138,10 +143,30 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/query", method = RequestMethod.POST)
-	public String query(HttpServletRequest request, Model model) {
-		
-		emailService.sendEmail("nishan@kanjartemple.com", "nishan@kanjartemple.com", "User Query", "body");
-		return REDIRECTPREFIX+"/contactus";
+	public String query(@RequestParam("name") String name, @RequestParam("email") String email,
+			@RequestParam("query") String query, HttpServletRequest request, final RedirectAttributes redirectModel,
+			Locale locale) {
+
+		try {
+			if (name != null && email != null && query != null) {
+				String lineBreak = System.getProperty("line.separator");
+				StringBuilder body = new StringBuilder();
+				body.append("Name   : " + name.trim());
+				body.append(lineBreak);
+				body.append("Email : " + email);
+				body.append(lineBreak);
+				body.append("Query : " + query.trim());
+
+				emailService.sendEmail(email, queryTo, "User Query", body.toString());
+				redirectModel.addFlashAttribute("message",
+						messageSource.getMessage("label.query.success", null, locale));
+			}
+		} catch (Exception ex) {
+			logger.error(ex);
+			redirectModel.addFlashAttribute("message", messageSource.getMessage("label.query.failure", null, locale));
+		}
+
+		return REDIRECTPREFIX + "/contactus";
 	}
-	
+
 }

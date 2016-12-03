@@ -10,11 +10,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 	
-	<beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-	<beans:property name="location">
-		<beans:value>/WEB-INF/project.properties</beans:value>
-	</beans:property>
-</beans:bean>
+
 		
 
 <beans:bean id="dataSource" 

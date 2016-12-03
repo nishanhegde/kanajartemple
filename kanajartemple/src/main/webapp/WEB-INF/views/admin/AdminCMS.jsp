@@ -36,12 +36,12 @@
 	</center>
 	<form method="post" action="<c:url value="/SuperAdmin/CMS/save"/>">
 		<input type="hidden" name="Pid" value="${CMScontent.pid}" />
-		<textarea name="content" style="width: 960px; height: 400px;">${CMScontent.content}</textarea>
+		<textarea name="content" onfocus="enable('content')" id ="content" style="width: 960px; height: 400px;">${CMScontent.content}</textarea>
 		<center>
 			<input type="submit" value="Submit" />
 		</center>
 	</form>
-
-
+	
 </div>
+
 <jsp:include page="Adminfooter.jsp"></jsp:include>

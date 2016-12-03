@@ -93,7 +93,8 @@
     background-color: #121212;
     color: #00B4FF;
 }
-#lavalamp {
+
+/* #lavalamp {
     background: url('../images/menuimg/lavalamp.png') no-repeat scroll 0 0 transparent;
     height: 16px;
     left: 13px;
@@ -119,20 +120,21 @@
     left: 13px;
 }
 #nav li:nth-of-type(2):hover ~ #lavalamp {
-    left: 125px;
+    left: 140px;
 }
 #nav li:nth-of-type(3):hover ~ #lavalamp {
-    left: 265px;
+    left: 300px;
 }
 #nav li:nth-of-type(4):hover ~ #lavalamp {
-    left: 420px;
+    left: 460px;
 }
 #nav li:nth-of-type(5):hover ~ #lavalamp {
-    left: 545px;
+    left: 600px;
 }
 #nav li:nth-of-type(6):hover ~ #lavalamp {
-    left: 640px;
+    left: 700px;
 }
 #nav li:nth-of-type(7):hover ~ #lavalamp {
     left: 755px;
 }
+ */

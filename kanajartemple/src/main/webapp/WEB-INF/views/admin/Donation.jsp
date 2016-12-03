@@ -81,7 +81,8 @@
 
 
 
-
+	<textarea name="content" onfocus="enable('content')" id ="content" style="width: 960px; height: 400px;"></textarea>
+	
 
 	</center>
 </div>

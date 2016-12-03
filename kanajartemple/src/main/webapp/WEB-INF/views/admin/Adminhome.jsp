@@ -31,12 +31,12 @@
 		</div>
 		<div class="padd">
 			<ul>
-				<a href="<c:url value="/Admin/SashwathaPooje"/>"><li><spring:message
-							code="label.poojereceipt" /></li></a>
-				<a href="<c:url value="/Admin/SashwathaPoojeReceiptList"/>"><li><spring:message
-							code="label.bookedpooje" /></li></a>
-				<a href="<c:url value="/Admin/SashwathaPoojeReport"/>"><li><spring:message
-							code="label.report" /></li></a>
+				<li><a href="<c:url value="/Admin/SashwathaPooje"/>"><spring:message
+							code="label.poojereceipt" /></a></li>
+				<li><a href="<c:url value="/Admin/SashwathaPoojeReceiptList"/>"><spring:message
+							code="label.bookedpooje" /></a></li>
+				<li><a href="<c:url value="/Admin/SashwathaPoojeReport"/>"><spring:message
+							code="label.report" /></a></li>
 
 			</ul>
 		</div>
@@ -48,12 +48,13 @@
 		</div>
 		<div class="padd">
 			<ul>
-				<a href="<c:url value="/Admin/Donation"/>"><li><spring:message
-							code="label.donationreceipt" /></li></a>
-				<a href="#" class="big-link" data-reveal-id="DonationReceipt"><li><spring:message
-							code="label.list" /></li></a>
-				<a href="<c:url value="/Admin/DonationReport"/>"><li><spring:message
-							code="label.report" /></li></a>
+				<li><a href="<c:url value="/Admin/Donation"/> "><spring:message
+							code="label.donationreceipt" /></a></li>
+				<li><a href="#" class="big-link"
+					data-reveal-id="DonationReceipt"><spring:message
+							code="label.list" /></a></li>
+				<li><a href="<c:url value="/Admin/DonationReport"/>"><spring:message
+							code="label.report" /></a></li>
 
 			</ul>
 		</div>
@@ -65,12 +66,12 @@
 		</div>
 		<div class="padd">
 			<ul>
-				<a href="<c:url value="/Admin/income"/>"><li><spring:message
-							code="label.add" /></li></a>
-				<a href="#" class="big-link" data-reveal-id="BookedIncome"><li><spring:message
-							code="label.list" /></li></a>
-				<a href="<c:url value="/Admin/IncomeReport"/>"><li><spring:message
-							code="label.report" /></li></a>
+				<li><a href="<c:url value="/Admin/income"/>"><spring:message
+							code="label.add" /></a></li>
+				<li><a href="#" class="big-link" data-reveal-id="BookedIncome"><spring:message
+							code="label.list" /></a></li>
+				<li><a href="<c:url value="/Admin/IncomeReport"/>"><spring:message
+							code="label.report" /></a></li>
 
 			</ul>
 		</div>
@@ -82,12 +83,12 @@
 		</div>
 		<div class="padd">
 			<ul>
-				<a href="<c:url value="/Admin/Expenditure"/>"><li><spring:message
-							code="label.add" /></li></a>
-				<a href="#" class="big-link" data-reveal-id="BookedExpense"><li><spring:message
-							code="label.list" /></li></a>
-				<a href="<c:url value="/Admin/ExpenditureReport"/>"><li><spring:message
-							code="label.report" /></li></a>
+				<li><a href="<c:url value="/Admin/Expenditure"/>"><spring:message
+							code="label.add" /></a></li>
+				<li><a href="#" class="big-link" data-reveal-id="BookedExpense"><spring:message
+							code="label.list" /></a></li>
+				<li><a href="<c:url value="/Admin/ExpenditureReport"/>"><spring:message
+							code="label.report" /></a></li>
 
 			</ul>
 		</div>
@@ -99,12 +100,12 @@
 		</div>
 		<div class="padd">
 			<ul>
-				<a href="<c:url value="/Admin/AllReport"/>"><li><spring:message
-							code="label.reportall" /></li></a>
+				<li><a href="<c:url value="/Admin/AllReport"/>"><spring:message
+							code="label.reportall" /></a></li>
 				<!-- 	<a href="#"><li>Bank Report</li></a> -->
-<a href="<c:url value="/Admin/address"/>"><li><spring:message
-							code="label.approve.address" /></li></a>
-				
+				<li><a href="<c:url value="/Admin/address"/>"><spring:message
+							code="label.approve.address" /></a></li>
+
 
 			</ul>
 		</div>
@@ -117,10 +118,10 @@
 		</div>
 		<div class="padd">
 			<ul>
-				<a href="<c:url value="../Admin/ChangePassword"/>"><li><spring:message
-							code="label.changepassword" /></li></a>
-				<a href="<c:url value="../Admin/EditProfile"/>"><li><spring:message
-							code="label.editprofile" /></li></a>
+				<li><a href="<c:url value="../Admin/ChangePassword"/>"><spring:message
+							code="label.changepassword" /></a></li>
+				<li><a href="<c:url value="../Admin/EditProfile"/>"><spring:message
+							code="label.editprofile" /></a></li>
 
 			</ul>
 		</div>
@@ -132,18 +133,18 @@
 		</div>
 		<div class="padd">
 			<ul>
-				<a href="<c:url value="/SuperAdmin/CMS/1"/>"><li><spring:message
-							code="label.home" /></li></a>
-				<a href="<c:url value="/SuperAdmin/CMS/2"/>"><li><spring:message
-							code="label.news" /></li></a>
-				<a href="<c:url value="/SuperAdmin/CMS/3"/>"><li><spring:message
-							code="label.sthalapurana" /></li></a>
-				<a href="<c:url value="/SuperAdmin/CMS/4"/>"><li><spring:message
-							code="label.doddamane" /></li></a>
-				<a href="<c:url value="/SuperAdmin/CMS/5"/>"><li><spring:message
-							code="label.melbanta-daiva" /></li></a>
-				<a href="<c:url value="/SuperAdmin/CMS/6"/>"><li><spring:message
-							code="label.contactus" /></li></a>
+				<li><a href="<c:url value="/SuperAdmin/CMS/1"/>"><spring:message
+							code="label.home" /></a></li>
+				<li><a href="<c:url value="/SuperAdmin/CMS/2"/>"><spring:message
+								code="label.news" /></a></li>
+				<li><a href="<c:url value="/SuperAdmin/CMS/3"/>"><spring:message
+							code="label.sthalapurana" /></a></li>
+				<li><a href="<c:url value="/SuperAdmin/CMS/4"/>"><spring:message
+							code="label.doddamane" /></a></li>
+				<li><a href="<c:url value="/SuperAdmin/CMS/5"/>"><spring:message
+							code="label.melbanta-daiva" /></a></li>
+				<li><a href="<c:url value="/SuperAdmin/CMS/6"/>"><spring:message
+							code="label.contactus" /></a></li>
 			</ul>
 		</div>
 	</div>
@@ -154,12 +155,12 @@
 		</div>
 		<div class="padd">
 			<ul>
-				<a href="<c:url value="/SuperAdmin/ApproveAdmin"/>"><li><spring:message
-							code="label.approve.admin" /></li></a>
-				<a href="<c:url value="/SuperAdmin/RejectAdmin"/>"><li><spring:message
-							code="label.reject.admin" /></li></a>
-				<a href="<c:url value="/SuperAdmin/ApproveAdmin"/>"><li><spring:message
-							code="label.delete.admin" /></li></a>
+				<li><a href="<c:url value="/SuperAdmin/ApproveAdmin"/>"><spring:message
+							code="label.approve.admin" /></a></li>
+				<li><a href="<c:url value="/SuperAdmin/RejectAdmin"/>"><spring:message
+							code="label.reject.admin" /></a></li>
+				<li><a href="<c:url value="/SuperAdmin/ApproveAdmin"/>"><spring:message
+							code="label.delete.admin" /></a></li>
 			</ul>
 		</div>
 	</div>
@@ -170,14 +171,14 @@
 		</div>
 		<div class="padd">
 			<ul>
-				<a href="" data-reveal-id="Pooje"><li><spring:message
-							code="label.superadmin.activities.add.pooje" /></li></a>
-				<a href="" data-reveal-id="Donation"><li><spring:message
-							code="label.superadmin.activities.add.donation" /></li></a>
-				<a href="" data-reveal-id="Income"><li><spring:message
-							code="label.superadmin.activities.add.income" /></li></a>
-				<a href="" data-reveal-id="Expense"><li><spring:message
-							code="label.superadmin.activities.add.expense" /></li></a>
+				<li><a href="" data-reveal-id="Pooje"><spring:message
+							code="label.superadmin.activities.add.pooje" /></a></li>
+				<li><a href="" data-reveal-id="Donation"><spring:message
+							code="label.superadmin.activities.add.donation" /></a></li>
+				<li><a href="" data-reveal-id="Income"><spring:message
+							code="label.superadmin.activities.add.income" /></a></li>
+				<li><a href="" data-reveal-id="Expense"><spring:message
+							code="label.superadmin.activities.add.expense" /></a></li>
 				<!-- <a href=""><li>Upload Photo</li></a> -->
 
 			</ul>
@@ -191,14 +192,14 @@
 		<div class="padd">
 			<ul>
 
-				<a href="<c:url value="/SuperAdmin/CUDPooje"/>"><li><spring:message
-							code="label.superadmin.activities.delete.pooje" /></li></a>
-				<a href="<c:url value="/SuperAdmin/CUDDonation"/>"><li><spring:message
-							code="label.superadmin.activities.delete.donation" /></li></a>
-				<a href="<c:url value="/SuperAdmin/CUDIncome"/>"><li><spring:message
-							code="label.superadmin.activities.delete.income" /></li></a>
-				<a href="<c:url value="/SuperAdmin/CUDExpenditure"/>"><li><spring:message
-							code="label.superadmin.activities.delete.expenditure" /></li></a>
+				<li><a href="<c:url value="/SuperAdmin/CUDPooje"/>"><spring:message
+							code="label.superadmin.activities.delete.pooje" /></a></li>
+				<li><a href="<c:url value="/SuperAdmin/CUDDonation"/>"><spring:message
+							code="label.superadmin.activities.delete.donation" /></a></li>
+				<li><a href="<c:url value="/SuperAdmin/CUDIncome"/>"><spring:message
+							code="label.superadmin.activities.delete.income" /></a></li>
+				<li><a href="<c:url value="/SuperAdmin/CUDExpenditure"/>"><spring:message
+							code="label.superadmin.activities.delete.expenditure" /></a></li>
 				<!-- <a href=""><li>Delete Photo</li></a> -->
 			</ul>
 		</div>

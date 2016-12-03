@@ -1,11 +1,15 @@
 * {
 	margin: 0;
 	padding: 0;
+	font-size: 16px;
+	font-style: normal;
 }
+
 html {
-  overflow-x: hidden;
-  overflow-y: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
+
 body {
 	width: 980px;
 	margin: auto;
@@ -20,16 +24,18 @@ body {
 	font-size: 14px;
 	color: #c60300;
 }
+
 .success {
 	font-size: 16px;
 	color: green;
 }
+
 h6 {
 	padding-top: 40px;
 	padding-right: 10px;
 	float: right;
 	font-weight: normal;
-	font-size: 55px;
+	font-size: 50px;
 	font-family: Brush Script MT;
 	color: #FFFFFF;
 	text-indent: 5px;
@@ -112,7 +118,7 @@ h6 {
 	-moz-box-sizing: border-box;
 }
 
-.login-card input[type=text],input[type=password] {
+.login-card input[type=text], input[type=password] {
 	height: 44px;
 	font-size: 16px;
 	width: 100%;
@@ -127,7 +133,7 @@ h6 {
 	-moz-box-sizing: border-box;
 }
 
-.login-card input[type=text]:hover,input[type=password]:hover {
+.login-card input[type=text]:hover, input[type=password]:hover {
 	border: 1px solid #b9b9b9;
 	border-top: 1px solid #a0a0a0;
 	-moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -304,6 +310,6 @@ h6 {
 	text-decoration: underline;
 }
 
-th,td {
+th, td {
 	padding: 0px 10px 0px 10px;
 }
