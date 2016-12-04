@@ -16,7 +16,6 @@ import com.Admin.event.NithyaPoojeRejectEvent;
 public class NithyaPoojeRejectListener implements ApplicationListener<NithyaPoojeRejectEvent> {
 
 	@Autowired
-<<<<<<< HEAD
 	private EmailService emailService;
 
 	@Autowired
@@ -26,20 +25,7 @@ public class NithyaPoojeRejectListener implements ApplicationListener<NithyaPooj
 	public void onApplicationEvent(NithyaPoojeRejectEvent paramE) {
 		
 		if (applicationContext.getParent()!=null) {
-=======
-	private kanajarTempleMethods defaultTempleMethods;
 
-	@Autowired
-	private EmailService emailService;
-
-	@Autowired
-	private ApplicationContext applicationContext;
-
-	@Override
-	public void onApplicationEvent(NithyaPoojeRejectEvent paramE) {
-
-		if (defaultTempleMethods.isChildApplicationContext(applicationContext)) {
->>>>>>> branch 'master' of https://github.com/nishanhegde/kanajartemple.git
 			System.out.println("Reject event");
 		}
 	}

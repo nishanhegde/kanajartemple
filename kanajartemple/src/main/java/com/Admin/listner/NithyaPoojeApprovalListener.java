@@ -14,7 +14,7 @@ import com.Admin.Service.kanajarTempleMethods;
 import com.Admin.event.NithyaPoojeApprovalEvent;
 
 @Component
-<<<<<<< HEAD
+
 public class NithyaPoojeApprovalListener implements ApplicationListener<NithyaPoojeApprovalEvent> {
 
 	@Autowired
@@ -32,31 +32,5 @@ public class NithyaPoojeApprovalListener implements ApplicationListener<NithyaPo
 
 		}
 	}
-=======
-public class NithyaPoojeApprovalListener
-		implements ApplicationListener<NithyaPoojeApprovalEvent> {
-
-	  
-	@Autowired
-	private EmailService emailService;
-
-	@Autowired
-	private ApplicationContext applicationContext;
-	
-	@Autowired
-	private kanajarTempleMethods defaultTempleMethods;
-
-	@Override
-	public void onApplicationEvent(NithyaPoojeApprovalEvent event) {
-
-		if(defaultTempleMethods.isChildApplicationContext(applicationContext))
-		{
-		System.out.println("Approve event" + event.getSource() + "=" + event.getClass());
-
-		}
-	}
-
-	
->>>>>>> branch 'master' of https://github.com/nishanhegde/kanajartemple.git
 
 }

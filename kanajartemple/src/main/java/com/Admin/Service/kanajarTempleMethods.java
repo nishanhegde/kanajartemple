@@ -60,10 +60,4 @@ public interface kanajarTempleMethods {
 	public boolean checkMobileNo(String mobileno,String id);
 	
 	public boolean checkCurrentPassword(String username,String currentpassword);
-	
-<<<<<<< HEAD
-	
-=======
-	public boolean isChildApplicationContext(ApplicationContext ctx);
->>>>>>> branch 'master' of https://github.com/nishanhegde/kanajartemple.git
 }
