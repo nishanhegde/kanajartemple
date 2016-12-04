@@ -100,10 +100,18 @@
 	<beans:bean id="defaultTempleMethodsDao"
 		class="com.Admin.dao.impl.kanajarTempleMethodsDaoImpl" />
 
-		<beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-	<beans:property name="location">
-		<beans:value>/WEB-INF/project.properties</beans:value>
-	</beans:property>
-</beans:bean>
-	
+	<beans:bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<beans:property name="location">
+			<beans:value>/WEB-INF/project.properties</beans:value>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="applicationEventMulticaster"
+		class="org.springframework.context.event.SimpleApplicationEventMulticaster">
+		<beans:property name="taskExecutor">
+			<beans:bean
+				class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" />
+		</beans:property>
+	</beans:bean>
 </beans:beans>

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
@@ -21,6 +22,8 @@ import com.Admin.bean.RegistrationBean;
 import com.Admin.bean.SashwathaPoojebean;
 import com.Admin.controller.HomeController;
 import com.Admin.dao.impl.AdminHomeDao;
+import com.Admin.event.NithyaPoojeApprovalEvent;
+import com.Admin.event.NithyaPoojeRejectEvent;
 
 @Service("adminHomeservice")
 public class AdminHomeService {
@@ -41,6 +44,12 @@ public class AdminHomeService {
 
 	@Autowired
 	private EmailService emailService;
+
+	@Autowired
+	private ApplicationEventPublisher eventPublisher;
+
+	@Autowired
+	private kanajarTempleMethods defaultTempleMethods;
 
 	public CMSbean getPageContent(String Pid) {
 		return adminHomeDao.getPageContent(Pid);
@@ -104,11 +113,23 @@ public class AdminHomeService {
 	}
 
 	public Integer deleteUserSashwathaPoojeDetails(String id) {
-		return adminHomeDao.deleteUserSashwathaPoojeDetails(id);
+		SashwathaPoojebean poojeBean = getUserSashwathaPoojeDetails(id);
+		Integer result = adminHomeDao.deleteUserSashwathaPoojeDetails(id);
+		if (result == 1) {
+			eventPublisher.publishEvent(new NithyaPoojeRejectEvent(this,
+					defaultTempleMethods.getSashwathaPooje(poojeBean.getRecNo().toString())));
+		}
+		return result;
 	}
 
 	public void approveUserSashwathaPoojeDetails(String id) {
-		poojeService.updateSashwathaPooje(getUserSashwathaPoojeDetails(id));
-		deleteUserSashwathaPoojeDetails(id);
+
+		SashwathaPoojebean poojeBean = getUserSashwathaPoojeDetails(id);
+		if (poojeService.updateSashwathaPooje(getUserSashwathaPoojeDetails(id)) == 1) {
+			if (adminHomeDao.deleteUserSashwathaPoojeDetails(id) == 1) {
+				eventPublisher.publishEvent(new NithyaPoojeApprovalEvent(this,
+						defaultTempleMethods.getSashwathaPooje(poojeBean.getRecNo().toString())));
+			}
+		}
 	}
 }

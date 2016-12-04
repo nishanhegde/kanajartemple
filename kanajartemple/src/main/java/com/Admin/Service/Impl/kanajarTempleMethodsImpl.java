@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.Admin.Service.kanajarTempleMethods;
@@ -20,6 +22,7 @@ import com.Admin.dao.kanajarTempleMethodsDao;
 
 
 public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
+
 
 	@Autowired
 	private kanajarTempleMethodsDao defaultTempleMethodsDao;
@@ -134,5 +137,5 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 	public List<Map<String, Object>> getIncome() {
 		return defaultTempleMethodsDao.getIncome();
 	}
-
+	
 }
