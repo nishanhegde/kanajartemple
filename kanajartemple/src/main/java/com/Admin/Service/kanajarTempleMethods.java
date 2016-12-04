@@ -61,5 +61,9 @@ public interface kanajarTempleMethods {
 	
 	public boolean checkCurrentPassword(String username,String currentpassword);
 	
+<<<<<<< HEAD
 	
+=======
+	public boolean isChildApplicationContext(ApplicationContext ctx);
+>>>>>>> branch 'master' of https://github.com/nishanhegde/kanajartemple.git
 }

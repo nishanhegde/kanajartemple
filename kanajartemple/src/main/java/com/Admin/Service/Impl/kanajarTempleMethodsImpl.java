@@ -24,6 +24,9 @@ import com.Admin.dao.kanajarTempleMethodsDao;
 public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 
 
+	@Value("${applicationcontext.name}")
+	private String childContext;
+	  
 	@Autowired
 	private kanajarTempleMethodsDao defaultTempleMethodsDao;
 
@@ -138,4 +141,14 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 		return defaultTempleMethodsDao.getIncome();
 	}
 	
+<<<<<<< HEAD
+=======
+	@Override
+	public boolean isChildApplicationContext(ApplicationContext ctx)
+	{
+		return ctx.getId().contains(childContext);
+		
+	}
+
+>>>>>>> branch 'master' of https://github.com/nishanhegde/kanajartemple.git
 }
