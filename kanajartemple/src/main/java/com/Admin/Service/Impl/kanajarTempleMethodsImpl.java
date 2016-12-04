@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.Admin.Service.kanajarTempleMethods;
@@ -21,6 +23,9 @@ import com.Admin.dao.kanajarTempleMethodsDao;
 
 public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 
+	@Value("${applicationcontext.name}")
+	private String childContext;
+	  
 	@Autowired
 	private kanajarTempleMethodsDao defaultTempleMethodsDao;
 
@@ -133,6 +138,13 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 	@Override
 	public List<Map<String, Object>> getIncome() {
 		return defaultTempleMethodsDao.getIncome();
+	}
+	
+	@Override
+	public boolean isChildApplicationContext(ApplicationContext ctx)
+	{
+		return ctx.getId().contains(childContext);
+		
 	}
 
 }

@@ -3,6 +3,8 @@ package com.Admin.Service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.context.ApplicationContext;
+
 import com.Admin.bean.Donation;
 import com.Admin.bean.DonationDetail;
 import com.Admin.bean.Expense;
@@ -58,4 +60,6 @@ public interface kanajarTempleMethods {
 	public boolean checkMobileNo(String mobileno,String id);
 	
 	public boolean checkCurrentPassword(String username,String currentpassword);
+	
+	public boolean isChildApplicationContext(ApplicationContext ctx);
 }
