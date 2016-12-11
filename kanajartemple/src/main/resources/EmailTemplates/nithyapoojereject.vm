@@ -47,7 +47,7 @@
 			<div class="content">
 				<p class="greeting">Dear ${pooje.name},</p>
 				<p>
-				   Your nithya pooje details are rejected by admin.<br/>
+				   Your request to update nithya pooje details are rejected by admin.<br/>
 				   Please contact admin for more information.				   
 				</p>
 				<p> Need Help?

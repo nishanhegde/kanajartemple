@@ -5,7 +5,7 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-	<beans:import resource="servlet-context.xml" />
+	<!-- <beans:import resource="servlet-context.xml" /> -->
 	<!-- enable use-expressions -->
 	<http auto-config="true" use-expressions="true"
 		access-denied-page="/A403">

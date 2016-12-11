@@ -47,9 +47,9 @@
 			<div class="content">
 				<p class="greeting">Dear ${pooje.name},</p>
 				<p>
-				   Your nithya pooje details are approved by admin.<br/>
+				   Your request to update nithya pooje details are approved by admin.<br/>
 				   Please click the below link to verify.<br/>
-				   ${url}
+				   <a href="${url}">kanajar temple nithya pooje</a>
 				</p>
 				<p> Need Help?
 				    <br/>Please contact admin (+91-9980025918 or +91-9663559596) .

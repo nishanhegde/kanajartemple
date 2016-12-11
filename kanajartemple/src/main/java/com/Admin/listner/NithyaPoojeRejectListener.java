@@ -31,42 +31,36 @@ public class NithyaPoojeRejectListener implements ApplicationListener<NithyaPooj
 
 	@Value("${email.from}")
 	private String from;
-	
+
 	@Autowired
 	private JavaMailSender mailSender;
-	
-	@Autowired
-	private ApplicationContext applicationContext;
 
 	@Autowired
 	private VelocityEngine velocityEngine;
 
-
 	@Override
 	public void onApplicationEvent(NithyaPoojeRejectEvent event) {
-		
-		if (applicationContext.getParent()!=null) {
 
-			try {
-				final SashwathaPoojebean sashwathaPooje = event.getSashwathaPoojebean();
-			
-				 MimeMessagePreparator preparator = new MimeMessagePreparator() {
-                     public void prepare(MimeMessage mimeMessage) throws Exception {
-                             MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
-                             message.setTo(sashwathaPooje.getEmail());
-                             message.setFrom(from); 
-                             message.setSubject("Nithya Pooje Information");
-                             Map model = new HashMap();
-                             model.put("pooje", sashwathaPooje);
-                             String text = VelocityEngineUtils.mergeTemplateIntoString(
-                                             velocityEngine, "./EmailTemplates/nithyapoojereject.vm", model);
-                             message.setText(text, true);
-                     }
-             };
-             mailSender.send( preparator);
-			} catch (Exception e) {
-				logger.error(e);
-			}
+		try {
+			final SashwathaPoojebean sashwathaPooje = event.getSashwathaPoojebean();
+
+			MimeMessagePreparator preparator = new MimeMessagePreparator() {
+				public void prepare(MimeMessage mimeMessage) throws Exception {
+					MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
+					message.setTo(sashwathaPooje.getEmail());
+					message.setFrom(from);
+					message.setSubject("Nithya Pooje Information");
+					Map model = new HashMap();
+					model.put("pooje", sashwathaPooje);
+					String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine,
+							"./EmailTemplates/nithyapoojereject.vm", model);
+					message.setText(text, true);
+				}
+			};
+			mailSender.send(preparator);
+		} catch (Exception e) {
+			logger.error(e);
 		}
 	}
+
 }
