@@ -1,6 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ page session="false"%>
+<%@include file="/WEB-INF/views/tagdefinition.jsp"%>
 
 
 <jsp:include page="header.jsp"></jsp:include>

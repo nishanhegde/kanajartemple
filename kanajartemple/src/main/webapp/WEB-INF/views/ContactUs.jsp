@@ -1,5 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@include file="/WEB-INF/views/tagdefinition.jsp"%>
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/colorbox.css"/>" />
@@ -21,24 +20,24 @@
 
 				<tr>
 					<div class="error">${message}</div>
-					<th>Name</th>
+					<th><spring:message code="label.query.name"/></th>
 					<th><input type="text" name="name" id="name" required /></th>
 				</tr>
 
 				<tr>
-					<th>Email</th>
+					<th><spring:message code="label.query.email"/></th>
 					<th><input name="email" type="text" required id="email1" /></th>
 
 				</tr>
 
 				<tr>
-					<th>Your Query</th>
+					<th><spring:message code="label.query.yourquery"/></th>
 					<th><textarea name="query" rows="3" cols="22" id="query"
 							required></textarea></th>
 				</tr>
 				<tr>
 					<th></th>
-					<th><input type="submit" name="Register" value="Submit"
+					<th><input type="submit" name="Register" value='<spring:message code="label.submit"/>'
 						style="width: 100px" /></th>
 				</tr>
 			</table>

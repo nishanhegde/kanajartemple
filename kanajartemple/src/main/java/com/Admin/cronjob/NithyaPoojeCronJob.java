@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.Admin.Service.Impl.PoojeService;
-import com.Admin.listner.NithyaPoojeApprovalListener;
 
 @Service
 public class NithyaPoojeCronJob {

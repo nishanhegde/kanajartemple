@@ -1,6 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fun"%>
-
+<%@include file="/WEB-INF/views/tagdefinition.jsp"%>
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/admin/reveal.css"/>" type="text/css" />
@@ -16,7 +14,7 @@
 <div class="mainbody">
 	<br />
 	<center>
-		<h1>Nithya Pooje Address</h1>
+		<h1><spring:message code="label.nithyapooje.header" /></h1>
 	</center>
 
 	<!--Pagination Header  -->
@@ -29,10 +27,10 @@
 		<table class="demo-tbl">
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Puja Date</th>
-					<th>Full View / Edit</th>
+					<th><spring:message code="label.recno"/></th>
+					<th><spring:message code="label.name"/></th>
+					<th><spring:message code="label.poojedate"/></th>
+					<th><spring:message code="label.edit"/></th>
 
 				</tr>
 			</thead>
@@ -57,7 +55,7 @@
 
 								<p>
 									<a href="<c:url value='/NithyaPooje/update/${app.RecNo}'/>"
-										id="nithyaPoojeUpdate" title="Update Nithya Pooje details">Edit</a>
+										id="nithyaPoojeUpdate" title="<spring:message code="label.nithyapooje.update"/>">Edit</a>
 								</p>
 							</td>
 						</tr>

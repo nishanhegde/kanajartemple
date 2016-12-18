@@ -113,7 +113,7 @@ public class PoojeService {
 	{
 		for(SashwathaPoojebean pooje:poojeDao.getNithyaPooje())
 		{
-			if(pooje.getEmail()!=null)
+			if(pooje.getEmail()!=null && !pooje.getEmail().isEmpty() )
 			{
 				eventPublisher.publishEvent(new NithyaPoojeEvent(this, pooje));
 			}
