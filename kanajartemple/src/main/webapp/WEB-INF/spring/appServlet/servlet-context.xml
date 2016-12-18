@@ -17,8 +17,8 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 	<annotation-driven></annotation-driven>
 	<task:annotation-driven />
 
-	
-		<beans:bean id="dataSource"
+
+	<beans:bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="${jdbc.driverClassName}" />
 		<beans:property name="url" value="${jdbc.url}" />
@@ -140,9 +140,10 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
 	<!-- Pooje part starts -->
 
-	<beans:bean class="com.Admin.Service.Impl.PoojeService" />
-	<beans:bean class="com.Admin.dao.impl.PoojeDao" />
-
+	<beans:bean id="namedParameterJdbcTemplate"
+		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<beans:constructor-arg ref="dataSource" />
+	</beans:bean>
 
 	<beans:bean id="defaultTempleMethods"
 		class="com.Admin.Service.Impl.kanajarTempleMethodsImpl" />

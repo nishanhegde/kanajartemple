@@ -1,0 +1,64 @@
+
+<html>
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Email</title>
+		<style type="text/css">
+		body, div, p, ul, li, h1, h2, h3, h4, h5, h6, form, input{ margin:0px; padding:0px;}
+		body{font-family:Arial, Helvetica, sans-serif; font-size:11px; color:#666666; }
+		*{ outline:none; }
+		a, a:active, a:link, a:visited{text-decoration:none; cursor:pointer; color:#208ee3; outline:none; border:0px none;}
+		a:hover{text-decoration:underline;}
+		div.mainWrapper{ height:auto; width:600px; background:#ffffff; margin:0 auto; background:url(../images/bottomBg.png) bottom left no-repeat; padding:0 5px 33px 5px;}
+		.header {color:white;}
+		div.header{border-bottom:1px solid white; clear:both; height:90px;background-color: #00539B;padding:25px 0 0 20px;}
+		div.header h1{font-size:32px;}
+		div.header h4{font-size:14px;font-weight:normal;}
+		h2.title{color:white; font-size:14px;background-color:#444a50;padding: 5px 0 5px 20px;font-weight:normal;}
+		h1.abcLogo{float:right; height:44px; width:166px;margin:4px 0 0 0;}
+		.clear{clear:both;}
+		div.content{border:1px solid #d3d3d3;padding: 10px 20px;font-size:14px;}
+		.greeting{font-size:18px;}
+		div.content p{margin:28px 0 0 0;}
+		div.content p.details{width:235px; height:100px;margin:-99px 0 0 23px;padding:30px 0 0 25px; font-size:12px; line-height:19px;}
+		div.content p.details span{color:#343434;}
+		div.content a{display:block;}
+		div.content .myphar-link{color:#000000;}
+		div.content .go-to-myphar-button{width:140px;height:36px;border-radius:4px;background-color:#00539B;color:white;margin-top:20px;line-height:34px;text-align: center;text-decoration: none;}
+		div.content p span.title{display:block;color:#f60404; font-size:14px;}
+		.bold{font-weight:bold;}
+		@-moz-document url-prefix(){div.content{padding:1px 83px 41px 144px;}}
+		img.details{display:block; margin:32px 0 0 23px;}
+		img.bg{display:block; margin:-20px 0 0 -5px;}
+		.footer{;height:90px;background-color: #e2e3e6;position:relative;}
+		.footer img{height: 60px;position: absolute;bottom: 10px;right: 10px;}
+		</style>
+	</head>
+	<body>
+		<div class="mainWrapper">
+			<div class="header">
+				<h1>
+				Kanajar Temple
+				</h1>
+			</div>
+			
+			<h2 class="title"><span>Nithya Pooje Information</span></h2>
+			
+			<div class="content">
+				<p class="greeting">Dear ${pooje.name},</p>
+				<p>
+				   Your request to update nithya pooje details are rejected by admin.<br/>
+				   Please contact admin for more information.				   
+				</p>
+				<p> Need Help?
+				    <br/>Please contact admin (+91-9980025918 or +91-9663559596) .
+				    <br/>or email at <a style="display:inline" href="mailto:shreebrahmalingeshwara@kanajartemple.com">shreebrahmalingeshwara@kanajartemple.com</a>
+				</p>
+			
+			</div>
+			<div class="footer">
+				
+			</div>
+		</div>
+	</body>
+</html>

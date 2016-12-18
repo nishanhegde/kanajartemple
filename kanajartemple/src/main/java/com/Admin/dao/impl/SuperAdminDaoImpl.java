@@ -21,14 +21,11 @@ import com.Admin.dao.SuperAdminDao;
 public class SuperAdminDaoImpl implements SuperAdminDao {
 
 	@Autowired
-	PlatformTransactionManager transactionManager;
-
-	@Autowired
-	DriverManagerDataSource dataSource;
-
+	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
 	@Override
 	public Integer CUDPooje(Pooje pbean, String code) {
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("pid", pbean.getPid());
 		param.put("PoojeName", pbean.getPoojeName());
@@ -45,13 +42,13 @@ public class SuperAdminDaoImpl implements SuperAdminDao {
 		if (code.equalsIgnoreCase("delete")) {
 			sql = "update pooje set Status='Inactive' where pid=:pid";
 		}
-		return namedjdbc.update(sql, param);
+		return namedParameterJdbcTemplate.update(sql, param);
 
 	}
 
 	@Override
 	public Integer CUDDonation(Donation dbean, String code) {
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Did", dbean.getDid());
 		param.put("DonationName", dbean.getDonationName());
@@ -69,65 +66,65 @@ public class SuperAdminDaoImpl implements SuperAdminDao {
 		if (code.equalsIgnoreCase("delete")) {
 			sql = "update donation set Status='Inactive' where Did=:Did";
 		}
-		return namedjdbc.update(sql, param);
+		return namedParameterJdbcTemplate.update(sql, param);
 	}
 
 	@Override
 	public List<Map<String, Object>> getAdmin() {
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	
 		Map<String, Object> param = new HashMap<String, Object>();
 
 		String sql = "select * from register where Status='Inactive'";
-		return namedjdbc.queryForList(sql, param);
+		return namedParameterJdbcTemplate.queryForList(sql, param);
 
 	}
 
 	@Override
 	public List<Map<String, Object>> getAdminToReject() {
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	
 		Map<String, Object> param = new HashMap<String, Object>();
 
 		String sql = "select * from register where Status='Active'";
-		return namedjdbc.queryForList(sql, param);
+		return namedParameterJdbcTemplate.queryForList(sql, param);
 
 	}
 
 	@Override
 	public Integer approveAdmin(String id) {
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("id", id);
 
 		String sql = "update register set Status='Active' where id=:id";
 
-		return namedjdbc.update(sql, param);
+		return namedParameterJdbcTemplate.update(sql, param);
 
 	}
 
 	@Override
 	public Integer deleteAdmin(String id) {
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("id", id);
 
 		String sql = "delete from register where id=:id";
-		return namedjdbc.update(sql, param);
+		return namedParameterJdbcTemplate.update(sql, param);
 
 	}
 
 	@Override
 	public Integer rejectAdmin(String id) {
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("id", id);
 		String sql = "update register set Status='Inactive' where id=:id";
-		return namedjdbc.update(sql, param);
+		return namedParameterJdbcTemplate.update(sql, param);
 
 	}
 
 	@Override
 	public Integer CUDIncome(Income ibean, String code) {
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Iid", ibean.getIid());
 		param.put("IncomeName", ibean.getIncomeName());
@@ -142,12 +139,12 @@ public class SuperAdminDaoImpl implements SuperAdminDao {
 		if (code.equalsIgnoreCase("delete")) {
 			sql = "update income set Status='Inactive' where Iid=:Iid";
 		}
-		return namedjdbc.update(sql, param);
+		return namedParameterJdbcTemplate.update(sql, param);
 	}
 
 	@Override
 	public Integer CUDExpense(Expense ebean, String code) {
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Eid", ebean.getEid());
 		param.put("ExpenseName", ebean.getExpenseName());
@@ -162,7 +159,7 @@ public class SuperAdminDaoImpl implements SuperAdminDao {
 		if (code.equalsIgnoreCase("delete")) {
 			sql = "update expenditure set Status='Inactive' where Eid=:Eid";
 		}
-		return namedjdbc.update(sql, param);
+		return namedParameterJdbcTemplate.update(sql, param);
 	}
 
 }

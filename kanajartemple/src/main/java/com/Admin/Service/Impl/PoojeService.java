@@ -3,6 +3,8 @@ package com.Admin.Service.Impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Service;
 
 import com.Admin.bean.DonationDetail;
@@ -12,12 +14,16 @@ import com.Admin.bean.Poojebean;
 import com.Admin.bean.Reportbean;
 import com.Admin.bean.SashwathaPoojebean;
 import com.Admin.dao.impl.PoojeDao;
+import com.Admin.event.NithyaPoojeEvent;
 
 @Service("poojeService")
 public class PoojeService {
 
 	@Autowired
 	private PoojeDao poojeDao;
+	
+	@Autowired
+	private ApplicationEventPublisher eventPublisher;
 
 	public String getPoojedetailstoprint(Poojebean pbean) {
 		return poojeDao.getPoojedetailstoprint(pbean);
@@ -101,5 +107,17 @@ public class PoojeService {
 
 	public Integer deleteExpense(String eid, String recno) {
 		return poojeDao.deleteExpense(eid, recno);
+	}
+	
+	public void sendNithyaPoojeEmail()
+	{
+		for(SashwathaPoojebean pooje:poojeDao.getNithyaPooje())
+		{
+			if(pooje.getEmail()!=null)
+			{
+				eventPublisher.publishEvent(new NithyaPoojeEvent(this, pooje));
+			}
+		}
+		
 	}
 }
