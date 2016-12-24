@@ -17,10 +17,7 @@ import com.Brahmalingeshwara.kanajartemple.KanajarTempleConstants;
 
 public class ChangePasswordValidator implements Validator {
 
-	@Autowired
-	private kanajarTempleMethods defaultTempleMethods;
-	private Pattern pattern;
-	private Matcher matcher;
+
 
 	public boolean supports(Class arg0) {
 		return arg0.equals(ChangePassword.class);
@@ -30,11 +27,9 @@ public class ChangePasswordValidator implements Validator {
 	public void validate(Object obj, Errors error) {
 
 		ChangePassword cbean = (ChangePassword) obj;
-		String currentpassword = cbean.getCurrentpassword().trim();
 		String password = cbean.getNewpassword();
 		String confirmpassword = cbean.getConfirmpassword();
 		
-		ValidationUtils.rejectIfEmpty(error, "currentpassword", "currentpassword.required");
 		ValidationUtils.rejectIfEmpty(error, "newpassword", "password.required");
 		ValidationUtils.rejectIfEmpty(error, "confirmpassword",
 				"confirmpassword.required");
@@ -48,14 +43,6 @@ public class ChangePasswordValidator implements Validator {
 			error.rejectValue("newpassword", "password.identical");
 		}
 
-		User user = (User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-	
-		if(!defaultTempleMethods.checkCurrentPassword(user.getUsername(),currentpassword))
-		{
-			error.rejectValue("currentpassword", "currentpassword.exists");
-		}
-
-		
+				
 	}
 }

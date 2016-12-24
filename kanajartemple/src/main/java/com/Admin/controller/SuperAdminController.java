@@ -1,33 +1,52 @@
 package com.Admin.controller;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Admin.Service.SuperAdminService;
 import com.Admin.Service.kanajarTempleMethods;
+import com.Admin.Service.Impl.AdminHomeService;
 import com.Admin.Service.Impl.SuperAdminServiceImpl;
+import com.Admin.bean.CMSbean;
+import com.Admin.bean.ChangePassword;
 import com.Admin.bean.Donation;
 import com.Admin.bean.Expense;
 import com.Admin.bean.Income;
 import com.Admin.bean.IncomeData;
 import com.Admin.bean.Pooje;
+import com.Admin.validator.ChangePasswordValidator;
 
 @Controller
 @RequestMapping(value = "/SuperAdmin")
 public class SuperAdminController {
 
+	public static String REDIRECT_TO_APPROVE = "redirect:/SuperAdmin/address";
+
+	@Autowired
+	private AdminHomeService adminHomeservice;
 	@Autowired
 	private SuperAdminService superAdminService;
 	@Autowired
 	private kanajarTempleMethods defaultTempleMethods;
+	@Autowired
+	private ChangePasswordValidator changePasswordValidator;
+	@Autowired
+	private MessageSource messageSource;
 
 	@RequestMapping(value = "/CUDPooje")
 	public ModelAndView SuperAdminCUDPooje(HttpServletRequest request, HttpServletResponse response, Pooje pbean)
@@ -203,4 +222,80 @@ public class SuperAdminController {
 		mv.addObject("Admins", superAdminService.getAdmin());
 		return mv;
 	}
+
+	@RequestMapping(value = "/CMS/{Pid}", method = RequestMethod.GET)
+	public ModelAndView SuperAdminCMS(@PathVariable("Pid") String Pid, HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView("admin/AdminCMS");
+		mv.addObject("CMScontent", adminHomeservice.getPageContent(Pid));
+		return mv;
+	}
+
+	@RequestMapping(value = "/CMS/save", method = RequestMethod.POST)
+	public String Admin_CMS_Success(HttpServletRequest request, HttpServletResponse response, CMSbean cbean)
+			throws IOException {
+		adminHomeservice.updatePageContent(cbean);
+		response.sendRedirect("../CMS/" + cbean.getPid());
+		return null;
+	}
+
+	@RequestMapping(value = "/address", method = RequestMethod.GET)
+	public String getAddress(Model model) throws IOException {
+		model.addAttribute("data", adminHomeservice.getUserSashwathaPoojeDetails());
+		return "admin/UserSashwathapooje";
+	}
+
+	@RequestMapping(value = "/address/{id}", method = RequestMethod.GET)
+	public String getAddress(@PathVariable String id, Model model) throws IOException {
+		model.addAttribute(adminHomeservice.getUserSashwathaPoojeDetails(id));
+		return "admin/usersashwathapoojefullview";
+	}
+
+	@RequestMapping(value = "/address/approve/{id}", method = RequestMethod.GET)
+	public String approveAddress(@PathVariable String id) throws IOException {
+		adminHomeservice.approveUserSashwathaPoojeDetails(id);
+		return REDIRECT_TO_APPROVE;
+	}
+
+	@RequestMapping(value = "/address/delete/{id}", method = RequestMethod.GET)
+	public String deleteAddress(@PathVariable String id) throws IOException {
+		adminHomeservice.deleteUserSashwathaPoojeDetails(id);
+		return REDIRECT_TO_APPROVE;
+	}
+
+	@RequestMapping(value = "/resetadminpassword", method = RequestMethod.GET)
+	public String getresetPassword(Model model) {
+
+		model.addAttribute("admins", superAdminService.getAdminToReject());
+		model.addAttribute(new ChangePassword());
+		return "admin/resetAdminPassword";
+	}
+
+	@RequestMapping(value = "/resetadminpassword", method = RequestMethod.POST)
+	public String setResetPassword(@ModelAttribute ChangePassword cpbean, BindingResult bindingResult, Locale locale,
+			Model model) {
+
+		changePasswordValidator.validate(cpbean, bindingResult);
+		if (bindingResult.hasErrors()) {
+			model.addAttribute(cpbean);
+
+		} else {
+			Integer i = adminHomeservice.resetPassword(cpbean);
+			String message;
+			if (i == 1) {
+				message = messageSource.getMessage("message.reset.success", null, locale);
+
+			} else {
+
+				message = messageSource.getMessage("message.error", null, locale);
+			}
+			model.addAttribute("message", message);
+			model.addAttribute(new ChangePassword());
+
+		}
+		model.addAttribute("admins", superAdminService.getAdminToReject());
+		return "admin/resetAdminPassword";
+
+	}
+
 }

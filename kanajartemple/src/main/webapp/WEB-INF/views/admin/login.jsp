@@ -31,7 +31,7 @@
   </form>
 
   <div class="login-help">
-    <a href="Registration">Register</a> | <a href="#" class="big-link" data-reveal-id="myModal">Forgot Password</a>
+    <a href="Registration">Register</a> <!-- | <a href="#" class="big-link" data-reveal-id="myModal">Forgot Password</a> -->
   </div>
 </div>
 

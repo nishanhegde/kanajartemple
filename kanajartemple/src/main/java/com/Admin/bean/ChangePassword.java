@@ -1,15 +1,11 @@
 package com.Admin.bean;
 
 public class ChangePassword {
-	private String currentpassword;
+
+	private String admin;
 	private String newpassword;
 	private String confirmpassword;
-	public String getCurrentpassword() {
-		return currentpassword;
-	}
-	public void setCurrentpassword(String currentpassword) {
-		this.currentpassword = currentpassword;
-	}
+	
 	public String getNewpassword() {
 		return newpassword;
 	}
@@ -22,7 +18,12 @@ public class ChangePassword {
 	public void setConfirmpassword(String confirmpassword) {
 		this.confirmpassword = confirmpassword;
 	}
+	public String getAdmin() {
+		return admin;
+	}
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
 	
 	
-
 }

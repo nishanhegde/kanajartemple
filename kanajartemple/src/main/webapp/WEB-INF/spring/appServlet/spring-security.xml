@@ -24,7 +24,8 @@
 			authentication-failure-url="/failure" />
 		<logout logout-success-url="/logout" invalidate-session="true" />
 
-		<remember-me authentication-success-handler-ref="loginAuthenticationSuccessHandler" token-validity-seconds="${rememberme.expiration.time}"
+		<remember-me authentication-success-handler-ref="loginAuthenticationSuccessHandler"
+			token-validity-seconds="${rememberme.expiration.time}"
 			remember-me-parameter="remember-me" />
 	</http>
 
@@ -32,9 +33,15 @@
 
 	<!-- Select users and user_roles from database -->
 
-	<authentication-manager>
-		<authentication-provider user-service-ref='myUserDetailsService' />
+	<authentication-manager  >
+		<authentication-provider ref="authProvider" />
 	</authentication-manager>
+
+	<beans:bean id="authProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="myUserDetailsService" />
+		<beans:property name="passwordEncoder" ref="passwordEncoder" />
+	</beans:bean>
 
 	<beans:bean id="myUserDetailsService" class="com.Admin.Service.Impl.CustomSpringSecurity">
 		<beans:property name="dataSource" ref="dataSource" />
@@ -42,8 +49,8 @@
 
 	<beans:bean id="loginAuthenticationSuccessHandler"
 		class="com.Admin.Service.Impl.CustomAuthenticationSuccessHandler">
-		<beans:property name="defaultTargetUrl" value="${kanajar.default.targeturl}"/>
+		<beans:property name="defaultTargetUrl" value="${kanajar.default.targeturl}" />
 		<beans:property name="adminHomeservice" ref="adminHomeservice" />
 	</beans:bean>
-	
+
 </beans:beans>

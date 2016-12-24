@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
@@ -50,6 +51,9 @@ public class AdminHomeService {
 
 	@Autowired
 	private kanajarTempleMethods defaultTempleMethods;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public CMSbean getPageContent(String Pid) {
 		return adminHomeDao.getPageContent(Pid);
@@ -60,6 +64,7 @@ public class AdminHomeService {
 	}
 
 	public Integer addAdmin(RegistrationBean regbean) {
+		regbean.setPassword(passwordEncoder.encode(regbean.getPassword()));
 		return adminHomeDao.addAdmin(regbean);
 	}
 
@@ -72,7 +77,13 @@ public class AdminHomeService {
 	}
 
 	public Integer changePassword(ChangePassword cpbean, String username) {
+		cpbean.setNewpassword(passwordEncoder.encode(cpbean.getNewpassword()));
 		return adminHomeDao.changePassword(cpbean, username);
+	}
+	
+	public Integer resetPassword(ChangePassword cpbean) {
+		cpbean.setNewpassword(passwordEncoder.encode(cpbean.getNewpassword()));
+		return adminHomeDao.resetPassword(cpbean);
 	}
 
 	public String getPassword(String id) {

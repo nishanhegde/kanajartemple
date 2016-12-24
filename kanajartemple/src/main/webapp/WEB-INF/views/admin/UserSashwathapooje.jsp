@@ -44,21 +44,21 @@
 
 							<td class="td-block">
 								<p>
-									<a href="<c:url value="/Admin/address/${app.id}"/>"
+									<a href="<c:url value="/SuperAdmin/address/${app.id}"/>"
 										id="fullview"><spring:message code="label.view" /></a>
 								</p>
 							</td>
 
 							<td class="td-block">
 								<p>
-									<a href="<c:url value="/Admin/address/approve/${app.id}"/>"><spring:message
+									<a href="<c:url value="/SuperAdmin/address/approve/${app.id}"/>"><spring:message
 											code="label.approve" /></a>
 								</p>
 							</td>
 							<td class="td-block">
 
 								<p>
-									<a href="<c:url value="/Admin/address/delete/${app.id}"/>"
+									<a href="<c:url value="/SuperAdmin/address/delete/${app.id}"/>"
 										onclick="return confirmDelete()"><spring:message
 											code="label.delete" /></a>
 								</p>

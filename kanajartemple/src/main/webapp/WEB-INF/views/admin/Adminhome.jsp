@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib prefix="fun" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
+<%@include file="/WEB-INF/views/tagdefinition.jsp"%>
 <jsp:include page="Adminheader.jsp"></jsp:include>
 <div class="mainbody">
 
@@ -103,9 +101,10 @@
 				<li><a href="<c:url value="/Admin/AllReport"/>"><spring:message
 							code="label.reportall" /></a></li>
 				<!-- 	<a href="#"><li>Bank Report</li></a> -->
-				<li><a href="<c:url value="/Admin/address"/>"><spring:message
-							code="label.approve.address" /></a></li>
-
+				<sec:authorize ifAnyGranted="ROLE_SUPERADMIN">
+					<li><a href="<c:url value="/SuperAdmin/address"/>"><spring:message
+								code="label.approve.address" /></a></li>
+				</sec:authorize>
 
 			</ul>
 		</div>
@@ -127,84 +126,88 @@
 		</div>
 	</div>
 
-	<div class="boxbody">
-		<div class="boxheader">
-			<spring:message code="label.cms" />
-		</div>
-		<div class="padd">
-			<ul>
-				<li><a href="<c:url value="/SuperAdmin/CMS/1"/>"><spring:message
-							code="label.home" /></a></li>
-				<li><a href="<c:url value="/SuperAdmin/CMS/2"/>"><spring:message
+	<sec:authorize ifAnyGranted="ROLE_SUPERADMIN">
+		<div class="boxbody">
+			<div class="boxheader">
+				<spring:message code="label.cms" />
+			</div>
+			<div class="padd">
+				<ul>
+					<li><a href="<c:url value="/SuperAdmin/CMS/1"/>"><spring:message
+								code="label.home" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/CMS/2"/>"><spring:message
 								code="label.news" /></a></li>
-				<li><a href="<c:url value="/SuperAdmin/CMS/3"/>"><spring:message
-							code="label.sthalapurana" /></a></li>
-				<li><a href="<c:url value="/SuperAdmin/CMS/4"/>"><spring:message
-							code="label.doddamane" /></a></li>
-				<li><a href="<c:url value="/SuperAdmin/CMS/5"/>"><spring:message
-							code="label.melbanta-daiva" /></a></li>
-				<li><a href="<c:url value="/SuperAdmin/CMS/6"/>"><spring:message
-							code="label.contactus" /></a></li>
-			</ul>
+					<li><a href="<c:url value="/SuperAdmin/CMS/3"/>"><spring:message
+								code="label.sthalapurana" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/CMS/4"/>"><spring:message
+								code="label.doddamane" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/CMS/5"/>"><spring:message
+								code="label.melbanta-daiva" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/CMS/6"/>"><spring:message
+								code="label.contactus" /></a></li>
+				</ul>
+			</div>
 		</div>
-	</div>
 
-	<div class="boxbody">
-		<div class="boxheader">
-			<spring:message code="label.admin.account.activities" />
+		<div class="boxbody">
+			<div class="boxheader">
+				<spring:message code="label.admin.account.activities" />
+			</div>
+			<div class="padd">
+				<ul>
+					<li><a href="<c:url value="/SuperAdmin/ApproveAdmin"/>"><spring:message
+								code="label.approve.admin" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/RejectAdmin"/>"><spring:message
+								code="label.reject.admin" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/ApproveAdmin"/>"><spring:message
+								code="label.delete.admin" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/resetadminpassword"/>"><spring:message
+								code="label.reset.admin.password" /></a></li>			
+								
+				</ul>
+			</div>
 		</div>
-		<div class="padd">
-			<ul>
-				<li><a href="<c:url value="/SuperAdmin/ApproveAdmin"/>"><spring:message
-							code="label.approve.admin" /></a></li>
-				<li><a href="<c:url value="/SuperAdmin/RejectAdmin"/>"><spring:message
-							code="label.reject.admin" /></a></li>
-				<li><a href="<c:url value="/SuperAdmin/ApproveAdmin"/>"><spring:message
-							code="label.delete.admin" /></a></li>
-			</ul>
-		</div>
-	</div>
 
-	<div class="boxbody">
-		<div class="boxheader">
-			<spring:message code="label.superadmin.activities.add" />
-		</div>
-		<div class="padd">
-			<ul>
-				<li><a href="" data-reveal-id="Pooje"><spring:message
-							code="label.superadmin.activities.add.pooje" /></a></li>
-				<li><a href="" data-reveal-id="Donation"><spring:message
-							code="label.superadmin.activities.add.donation" /></a></li>
-				<li><a href="" data-reveal-id="Income"><spring:message
-							code="label.superadmin.activities.add.income" /></a></li>
-				<li><a href="" data-reveal-id="Expense"><spring:message
-							code="label.superadmin.activities.add.expense" /></a></li>
-				<!-- <a href=""><li>Upload Photo</li></a> -->
+		<div class="boxbody">
+			<div class="boxheader">
+				<spring:message code="label.superadmin.activities.add" />
+			</div>
+			<div class="padd">
+				<ul>
+					<li><a href="" data-reveal-id="Pooje"><spring:message
+								code="label.superadmin.activities.add.pooje" /></a></li>
+					<li><a href="" data-reveal-id="Donation"><spring:message
+								code="label.superadmin.activities.add.donation" /></a></li>
+					<li><a href="" data-reveal-id="Income"><spring:message
+								code="label.superadmin.activities.add.income" /></a></li>
+					<li><a href="" data-reveal-id="Expense"><spring:message
+								code="label.superadmin.activities.add.expense" /></a></li>
+					<!-- <a href=""><li>Upload Photo</li></a> -->
 
-			</ul>
+				</ul>
+			</div>
 		</div>
-	</div>
 
-	<div class="boxbody">
-		<div class="boxheader">
-			<spring:message code="label.superadmin.activities.delete" />
+		<div class="boxbody">
+			<div class="boxheader">
+				<spring:message code="label.superadmin.activities.delete" />
+			</div>
+			<div class="padd">
+				<ul>
+
+					<li><a href="<c:url value="/SuperAdmin/CUDPooje"/>"><spring:message
+								code="label.superadmin.activities.delete.pooje" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/CUDDonation"/>"><spring:message
+								code="label.superadmin.activities.delete.donation" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/CUDIncome"/>"><spring:message
+								code="label.superadmin.activities.delete.income" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/CUDExpenditure"/>"><spring:message
+								code="label.superadmin.activities.delete.expenditure" /></a></li>
+					<!-- <a href=""><li>Delete Photo</li></a> -->
+				</ul>
+			</div>
 		</div>
-		<div class="padd">
-			<ul>
-
-				<li><a href="<c:url value="/SuperAdmin/CUDPooje"/>"><spring:message
-							code="label.superadmin.activities.delete.pooje" /></a></li>
-				<li><a href="<c:url value="/SuperAdmin/CUDDonation"/>"><spring:message
-							code="label.superadmin.activities.delete.donation" /></a></li>
-				<li><a href="<c:url value="/SuperAdmin/CUDIncome"/>"><spring:message
-							code="label.superadmin.activities.delete.income" /></a></li>
-				<li><a href="<c:url value="/SuperAdmin/CUDExpenditure"/>"><spring:message
-							code="label.superadmin.activities.delete.expenditure" /></a></li>
-				<!-- <a href=""><li>Delete Photo</li></a> -->
-			</ul>
-		</div>
-	</div>
-
+	</sec:authorize>
 
 
 	<div id="myModal" class="reveal-modal">

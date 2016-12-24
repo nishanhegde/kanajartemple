@@ -9,16 +9,26 @@
 <jsp:include page="Adminheader.jsp"></jsp:include>
 <div class="mainbody">
 	<center>
-		<c:url value="/Admin/ChangePasswordSuccess" var="url" />
+		<c:url value="/SuperAdmin/resetadminpassword" var="url" />
 		${message}
 		<form:form action="${url}" commandName="changePassword" method="post">
 			<table cellspacing="10" cellpadding="10">
+				<tr>
+					<th><spring:message code="label.admin" /> *</th>
+					<td><select name="admin">
+
+							<c:forEach items="${admins}" var="admin">
+								<option value="${admin.id}">${admin.fullname}</option>
+							</c:forEach>
+					</select>
+				</tr>
 				<tr>
 					<th><spring:message code="label.new.password" /></th>
 					<th><core:bind path="changePassword.newpassword">
 							<div class="error">${status.errorMessage}</div>
 							<input type="password" class="textbox" required
-						name="newpassword" /></core:bind></th>
+								name="newpassword" />
+						</core:bind></th>
 
 				</tr>
 
@@ -27,14 +37,15 @@
 					<td><core:bind path="changePassword.confirmpassword">
 							<div class="error">${status.errorMessage}</div>
 							<input type="password" class="textbox" required
-						name="confirmpassword" /></core:bind></td>
+								name="confirmpassword" />
+						</core:bind></td>
 				</tr>
 
 
 				<tr>
 					<th></th>
 					<td><input type="submit"
-						value="<spring:message code="label.change" />" class="button" /></td>
+						value="<spring:message code="label.reset" />" class="button" /></td>
 				</tr>
 
 			</table>

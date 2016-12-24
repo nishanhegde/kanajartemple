@@ -90,15 +90,22 @@ public class AdminHomeDao {
 
 	public Integer changePassword(ChangePassword cpbean, String username) {
 		Map<String, Object> param = new HashMap<String, Object>(2);
-	
-
-		param.put("currentpassword", cpbean.getCurrentpassword());
+		
 		param.put("username", username);
 		param.put("newpassword", cpbean.getNewpassword());
-		String sql = "update register set Password=:newpassword where EmailId=:username and Password=:currentpassword";
+		String sql = "update register set Password=:newpassword where EmailId=:username ";
 		return namedParameterJdbcTemplate.update(sql, param);
 	}
 
+	public Integer resetPassword(ChangePassword cpbean) {
+		Map<String, Object> param = new HashMap<String, Object>(2);
+		
+		param.put("id", cpbean.getAdmin());
+		param.put("newpassword", cpbean.getNewpassword());
+		String sql = "update register set Password=:newpassword where id=:id ";
+		return namedParameterJdbcTemplate.update(sql, param);
+	}
+	
 	public String getPassword(String id) {
 		Map<String, Object> param = new HashMap<String, Object>(2);
 	
