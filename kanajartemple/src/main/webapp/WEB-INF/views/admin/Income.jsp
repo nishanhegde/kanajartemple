@@ -11,8 +11,7 @@
 		<h1>
 			<spring:message code="label.income" />
 		</h1>
-		<form:form  commandName="incomeData" method="post"
-			target="_blank">
+		<form:form commandName="incomeData" method="post" target="_blank">
 			<span class="invalid">${message}</span>
 			<table>
 				<tr>

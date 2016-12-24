@@ -81,9 +81,6 @@
 
 
 
-	<textarea name="content" onfocus="enable('content')" id ="content" style="width: 960px; height: 400px;"></textarea>
-	
-
-	</center>
+</center>
 </div>
 <jsp:include page="Adminfooter.jsp"></jsp:include>

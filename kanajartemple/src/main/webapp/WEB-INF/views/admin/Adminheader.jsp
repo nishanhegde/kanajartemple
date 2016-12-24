@@ -11,12 +11,6 @@
 
 <script type="text/javascript"
 	src="<c:url value="/resources/js/admin/admin.js"/>"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/js/admin/jquery-1.9.1.min.js"/>"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/js/admin/additional-methods.js"/>"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/js/admin/jquery.validate.min.js"/>"></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/admin/reveal.css"/>" type="text/css" />
 
@@ -37,26 +31,26 @@
 		</h6>
 	</div>
 
-  
+
 
 	<div class="adminmenu">
-	<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')">
-		<c:url value="/Admin/home" var="homeurl" />
-		<div class="homeicon">
-			<a href="${homeurl}"><img
-				src="<c:url value="/resources/images/home.png"/>" /></a>
-		</div>
+		<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')">
+			<c:url value="/Admin/home" var="homeurl" />
+			<div class="homeicon">
+				<a href="${homeurl}"><img
+					src="<c:url value="/resources/images/home.png"/>" /></a>
+			</div>
 
-		<div class="logout">
-			<a href="<c:url value="/j_spring_security_logout" />"><img
-				src="<c:url value="/resources/images/logout.jpg"/>" /></a>
-		</div>
+			<div class="logout">
+				<a href="<c:url value="/j_spring_security_logout" />"><img
+					src="<c:url value="/resources/images/logout.jpg"/>" /></a>
+			</div>
 
-		<div class="welname">
-			<spring:message code="label.welcome" />
-			: <span style="color: white;"><%=session.getAttribute("FullName")%></span>
-		</div>
-</sec:authorize>
+			<div class="welname">
+				<spring:message code="label.welcome" />
+				: <span style="color: white;"><%=session.getAttribute("FullName")%></span>
+			</div>
+		</sec:authorize>
 
 		<div class="welname">
 			<spring:message code="label.language" />
