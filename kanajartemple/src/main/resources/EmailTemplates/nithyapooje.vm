@@ -38,7 +38,7 @@
 		<div class="mainWrapper">
 			<div class="header">
 				<h1>
-				Kanajar Temple 
+				SHREE BRAHMALINGESHWARA TEMPLE, KANANJAR
 				</h1>
 			</div>
 			
@@ -47,8 +47,15 @@
 			<div class="content">
 				<p class="greeting">Dear ${pooje.name},</p>
 				<p>
-				   Your request to update nithya pooje details are rejected by admin.<br/>
-				   Please contact admin for more information.				   
+				   We have performed <b>POOJA</b> on ${date} for the fulfilment of your wishes.
+				   We wish you and your family will be blessed with happiness, peace
+				   and prosperity by Lord Shree Brahmalingeshwara, Shree Veerabhadra and
+				   Shree Melbanta.				   
+				</p>
+
+				<p>Prasadam will be sent to registered address, if you want to update
+				   address, please follow the link below<br/>
+				   <a href="${url}">update address</a>
 				</p>
 				<p> Need Help?
 				    <br/>Please contact admin (+91-9980025918 or +91-9663559596) .

@@ -1,5 +1,7 @@
 package com.Admin.listner;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +34,9 @@ public class NithyaPoojeListener implements ApplicationListener<NithyaPoojeEvent
 
 	@Value("${email.from}")
 	private String from;
+	
+	@Value("${website.url}")
+	private String website;
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -53,6 +58,8 @@ public class NithyaPoojeListener implements ApplicationListener<NithyaPoojeEvent
 					message.setSubject("Nithya Pooje Information");
 					Map model = new HashMap();
 					model.put("pooje", sashwathaPooje);
+					model.put("date", getConvertedDate(new Date()));
+					model.put("url", website + "/nithyapooje");
 					String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine,
 							"./EmailTemplates/nithyapooje.vm", model);
 					message.setText(text, true);
@@ -63,5 +70,13 @@ public class NithyaPoojeListener implements ApplicationListener<NithyaPoojeEvent
 			logger.error(e);
 		}
 	}
+	
+	private String getConvertedDate(final Date date)
+	{
+		final String pattern = "dd-MM-YYYY";
+		final SimpleDateFormat format = new SimpleDateFormat(pattern);
+		return format.format(date);
+	}
+
 
 }

@@ -20,11 +20,11 @@
 </div>
 
 
-<div id="fixmenu">
+<%-- <div id="fixmenu">
 	<span><spring:message code="label.language" /></span><br/>
 
 	<a href="?lang=en" onclick="changeLang(':english');">English</a> <br/>
 	<a href="?lang=kn" onclick="changeLang('pramukhindic:kannada');">ಕನ್ನಡ</a>
 
-</div>
+</div> --%>
 
