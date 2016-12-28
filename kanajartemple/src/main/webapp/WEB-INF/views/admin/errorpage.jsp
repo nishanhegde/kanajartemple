@@ -1,11 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/views/tagdefinition.jsp"%>
 
+<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')">
 <jsp:include page="Adminheader.jsp" ></jsp:include>
-      
+</sec:authorize>
+<sec:authorize  access="!hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')">
+<jsp:include page="../header.jsp" ></jsp:include>
+ <jsp:include page="../menu.jsp"></jsp:include>  
+</sec:authorize>
+ 
     <div class="mainbody">
     <br/>
-    <h1>Please contact your application developer</h1>
+    <h1>Please try again. We apologize for any inconvenience this may cause</h1>
     <br/>
     Error:${errMsg}
     </div>

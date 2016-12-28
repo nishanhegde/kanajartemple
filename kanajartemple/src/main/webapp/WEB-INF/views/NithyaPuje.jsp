@@ -85,9 +85,7 @@
 				href : $(this).attr('href'),
 				iframe : true,
 				width : "415px",
-				height : "450px",
-
-				
+				height : "450px",				
 			});
 		});
 	});
