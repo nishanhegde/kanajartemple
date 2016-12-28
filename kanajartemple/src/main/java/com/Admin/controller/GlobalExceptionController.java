@@ -17,7 +17,7 @@ public class GlobalExceptionController {
 	private static final Logger logger = Logger.getLogger(GlobalExceptionController.class);
 	
 	@ExceptionHandler(Exception.class)
-	public ModelAndView handleAllException(Exception ex,HttpServletRequest req) {
+	public ModelAndView handleAllException(Exception ex) {
 
 		logger.error(ex);
 				
@@ -27,4 +27,5 @@ public class GlobalExceptionController {
 		return model;
 
 	}
+		
 }

@@ -121,6 +121,8 @@
 							code="label.changepassword" /></a></li>
 				<li><a href="<c:url value="../Admin/EditProfile"/>"><spring:message
 							code="label.editprofile" /></a></li>
+				<li><a href="https://kanajartemple.com:2096" target="_blank"><spring:message
+							code="label.webmail" /></a></li>
 
 			</ul>
 		</div>
@@ -162,8 +164,8 @@
 					<li><a href="<c:url value="/SuperAdmin/ApproveAdmin"/>"><spring:message
 								code="label.delete.admin" /></a></li>
 					<li><a href="<c:url value="/SuperAdmin/resetadminpassword"/>"><spring:message
-								code="label.reset.admin.password" /></a></li>			
-								
+								code="label.reset.admin.password" /></a></li>
+
 				</ul>
 			</div>
 		</div>
