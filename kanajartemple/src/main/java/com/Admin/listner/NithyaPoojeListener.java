@@ -52,7 +52,8 @@ public class NithyaPoojeListener implements ApplicationListener<NithyaPoojeEvent
 
 			MimeMessagePreparator preparator = new MimeMessagePreparator() {
 				public void prepare(MimeMessage mimeMessage) throws Exception {
-					MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
+					MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+					
 					message.setTo(sashwathaPooje.getEmail());
 					message.setFrom(from);
 					message.setSubject("Nithya Pooje Information");
@@ -61,7 +62,7 @@ public class NithyaPoojeListener implements ApplicationListener<NithyaPoojeEvent
 					model.put("date", getConvertedDate(new Date()));
 					model.put("url", website + "/nithyapooje");
 					String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine,
-							"./EmailTemplates/nithyapooje.vm", model);
+							"./EmailTemplates/nithyapooje.vm","utf-8", model);
 					message.setText(text, true);
 				}
 			};

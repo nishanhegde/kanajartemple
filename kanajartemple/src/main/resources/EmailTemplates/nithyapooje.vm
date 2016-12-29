@@ -47,6 +47,10 @@
 			<div class="content">
 				<p class="greeting">Dear ${pooje.name},</p>
 				<p>
+				ದಿನಾಂಕ   ${date} ರಂದು ನಿಮ್ಮ ಇಷ್ಟಾರ್ಥ ಸಿದ್ದಿಗಾಗಿ ಶ್ರೀ ದೇವರಿಗೆ ಪೂಜೆಯನ್ನು ಸಲ್ಲಿಸಲಾಗಿದೆ.
+				ಶ್ರೀ ದೇವರು ತಮಗೆ ಹಾಗೂ ತಮ್ಮ ಪರಿವಾರಕ್ಕೆ ಸುಖಃ, ಸಮೃದ್ಧಿ ಮತ್ತು ಶಾಂತಿಯನ್ನು ದಯಪಾಲಿಸಲಿ ಎಂದು ಪ್ರಾರ್ಥಿಸುತ್ತೇವೆ.
+				</p>
+				<p>
 				   We have performed <b>POOJA</b> on ${date} for the fulfilment of your wishes.
 				   We wish you and your family will be blessed with happiness, peace
 				   and prosperity by Lord Shree Brahmalingeshwara, Shree Veerabhadra and
