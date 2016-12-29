@@ -85,6 +85,12 @@ public class AdminHome {
 		ModelAndView mv = new ModelAndView("admin/A403");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/404")
+	public ModelAndView pageNotFound404() {
+		ModelAndView mv = new ModelAndView("admin/404");
+		return mv;
+	}
 
 	@RequestMapping(value = "/Admin/home")
 	public ModelAndView Adminhome(HttpServletRequest request, HttpServletResponse response) {
