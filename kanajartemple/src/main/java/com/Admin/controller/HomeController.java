@@ -157,7 +157,7 @@ public class HomeController {
 				body.append(lineBreak);
 				body.append("Query : " + query.trim());
 
-				emailService.sendEmail(email, queryTo, "User Query", body.toString());
+				emailService.sendEmail(queryTo, email, "User Query", body.toString());
 				redirectModel.addFlashAttribute("message",
 						messageSource.getMessage("label.query.success", null, locale));
 			}
