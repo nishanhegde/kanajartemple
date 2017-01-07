@@ -56,7 +56,7 @@ public class SuperAdminDaoImpl implements SuperAdminDao {
 		param.put("code", code);
 		String sql = null;
 		if (code.equalsIgnoreCase("insert")) {
-			sql = "insert into Donation(DonationName) values(:DonationName)";
+			sql = "insert into donation(DonationName) values(:DonationName)";
 
 		}
 		if (code.equalsIgnoreCase("update")) {

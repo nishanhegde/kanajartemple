@@ -128,7 +128,7 @@ public class AdminHomeDao {
 		param.put("mobile", sbean.getMobileNo());
 		param.put("email", sbean.getEmail());
 
-		String str = "insert into UserSashwathaPooje(RecNo,Name,Address,PDate,BDate,MobileNo,Email) "
+		String str = "insert into usersashwathapooje(RecNo,Name,Address,PDate,BDate,MobileNo,Email) "
 				+ "values(:RecNo,:Name,:Address,:PDate,(select now()),:mobile,:email)";
 
 		return namedParameterJdbcTemplate.update(str, param);

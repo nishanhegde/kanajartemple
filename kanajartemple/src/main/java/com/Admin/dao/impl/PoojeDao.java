@@ -113,13 +113,13 @@ public class PoojeDao {
 		param.put("mobile", sbean.getMobileNo());
 		param.put("email", sbean.getEmail());
 
-		String str = "insert into SashwathaPooje(Name,Address,PDate,BDate,MobileNo,Email) "
+		String str = "insert into sashwathapooje(Name,Address,PDate,BDate,MobileNo,Email) "
 				+ "values(:Name,:Address,:PDate,(select now()),:mobile,:email)";
 
 		Integer i = namedParameterJdbcTemplate.update(str, param);
 		Integer RecNo = null;
 		if (i == 1) {
-			String str2 = "select RecNo from SashwathaPooje where Name=:Name and PDate=:PDate order by BDate DESC";
+			String str2 = "select RecNo from sashwathapooje where Name=:Name and PDate=:PDate order by BDate DESC";
 			LinkedHashMap linkedList = (LinkedHashMap) namedParameterJdbcTemplate.queryForList(str2, param).get(0);
 			RecNo = Integer.valueOf(linkedList.get("RecNo").toString());
 		}
@@ -225,11 +225,11 @@ public class PoojeDao {
 			param.put("FromDate", getSashwathaDate(rbean.getFromDate()));
 			param.put("ToDate", getSashwathaDate(rbean.getToDate()));
 		}
-		String sql = "select Amount from pooje p1,SashwathaPooje s1 where p1.pid=:id and s1." + rbean.getDates()
+		String sql = "select Amount from pooje p1,sashwathapooje s1 where p1.pid=:id and s1." + rbean.getDates()
 				+ ">=:FromDate and s1." + rbean.getDates() + "<=:ToDate and p1.pid=s1.Pid or " + rbean.getDates()
 				+ "=:ToDate ";
 		String str = "select @acount:=@acount+1 SI,RecNo,Name,Address,PDate,MobileNo,Email,BDate,Pid"
-				+ " from (SELECT @acount:= 0) AS acount,SashwathaPooje where " + rbean.getDates() + ">=:FromDate and "
+				+ " from (SELECT @acount:= 0) AS acount,sashwathapooje where " + rbean.getDates() + ">=:FromDate and "
 				+ rbean.getDates() + "<=:ToDate or " + rbean.getDates() + " LIKE '%:ToDate%' ";
 
 		double grandtotal = 00.0;
@@ -496,7 +496,7 @@ public class PoojeDao {
 		param.put("email", sbean.getEmail());
 		param.put("RecNo", sbean.getRecNo());
 
-		String str = "update SashwathaPooje set Name=:Name,Address=:Address,PDate=:PDate,"
+		String str = "update sashwathapooje set Name=:Name,Address=:Address,PDate=:PDate,"
 				+ "MobileNo=:mobile,Email=:email where RecNo=:RecNo";
 
 		return namedParameterJdbcTemplate.update(str, param);
