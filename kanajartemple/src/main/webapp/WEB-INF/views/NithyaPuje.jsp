@@ -11,7 +11,11 @@
 
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="menu.jsp"></jsp:include>
+
 <div class="mainbody">
+<h1> This page is under construction .Sorry for any inconvenience this may cause</h1>
+</div>
+<%-- <div class="mainbody">
 	<br />
 	<center>
 		<h1><spring:message code="label.nithyapooje.header" /></h1>
@@ -69,7 +73,7 @@
 	</div>
 
 	<jsp:include page="admin/AdminPaginationfooter.jsp"></jsp:include>
-</div>
+</div> --%>
 <jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
