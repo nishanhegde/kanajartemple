@@ -131,27 +131,7 @@
 	</div>
 
 	<sec:authorize ifAnyGranted="ROLE_SUPERADMIN">
-		<div class="boxbody">
-			<div class="boxheader">
-				<spring:message code="label.cms" />
-			</div>
-			<div class="padd">
-				<ul>
-					<li><a href="<c:url value="/SuperAdmin/CMS/1"/>"><spring:message
-								code="label.home" /></a></li>
-					<li><a href="<c:url value="/SuperAdmin/CMS/2"/>"><spring:message
-								code="label.news" /></a></li>
-					<li><a href="<c:url value="/SuperAdmin/CMS/3"/>"><spring:message
-								code="label.sthalapurana" /></a></li>
-					<li><a href="<c:url value="/SuperAdmin/CMS/4"/>"><spring:message
-								code="label.doddamane" /></a></li>
-					<li><a href="<c:url value="/SuperAdmin/CMS/5"/>"><spring:message
-								code="label.melbanta-daiva" /></a></li>
-					<li><a href="<c:url value="/SuperAdmin/CMS/6"/>"><spring:message
-								code="label.contactus" /></a></li>
-				</ul>
-			</div>
-		</div>
+		
 
 		<div class="boxbody">
 			<div class="boxheader">
@@ -208,6 +188,28 @@
 					<li><a href="<c:url value="/SuperAdmin/CUDExpenditure"/>"><spring:message
 								code="label.superadmin.activities.delete.expenditure" /></a></li>
 					<!-- <a href=""><li>Delete Photo</li></a> -->
+				</ul>
+			</div>
+		</div>
+		
+		<div class="boxbody">
+			<div class="boxheader">
+				<spring:message code="label.cms" />
+			</div>
+			<div class="padd">
+				<ul>
+					<li><a href="<c:url value="/SuperAdmin/CMS/1"/>"><spring:message
+								code="label.home" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/CMS/2"/>"><spring:message
+								code="label.news" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/CMS/3"/>"><spring:message
+								code="label.sthalapurana" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/CMS/4"/>"><spring:message
+								code="label.doddamane" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/CMS/5"/>"><spring:message
+								code="label.melbanta-daiva" /></a></li>
+					<li><a href="<c:url value="/SuperAdmin/CMS/6"/>"><spring:message
+								code="label.contactus" /></a></li>
 				</ul>
 			</div>
 		</div>
