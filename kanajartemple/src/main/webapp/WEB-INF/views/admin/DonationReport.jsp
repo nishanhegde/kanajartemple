@@ -20,6 +20,11 @@
 					</select></td>
 				</tr>
 				<tr>
+					<th><spring:message code="label.amount" /> </th>
+					<td><input type="number" name="Amount" value="0" placeholder="&#8377" />
+						</td>
+				</tr>
+				<tr>
 					<th><spring:message code="label.datefrom" /></th>
 					<td><input type="text" id="date" name="FromDate" id="date"
 						class="tcal" required /></td>

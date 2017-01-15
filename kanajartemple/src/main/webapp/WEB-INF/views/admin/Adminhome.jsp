@@ -100,6 +100,8 @@
 			<ul>
 				<li><a href="<c:url value="/Admin/AllReport"/>"><spring:message
 							code="label.reportall" /></a></li>
+				<li><a href="<c:url value="/Admin/coupon"/>"><spring:message
+							code="label.coupon" /></a></li>
 				<!-- 	<a href="#"><li>Bank Report</li></a> -->
 				<sec:authorize ifAnyGranted="ROLE_SUPERADMIN">
 					<li><a href="<c:url value="/SuperAdmin/address"/>"><spring:message

@@ -42,7 +42,7 @@
 				</h1>
 			</div>
 			
-			<h2 class="title"><span>Nithya Pooje Information</span></h2>
+			<h2 class="title"><span>Shashwatha Pooja Information</span></h2>
 			
 			<div class="content">
 				<p class="greeting">Dear ${pooje.name},</p>

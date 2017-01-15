@@ -49,7 +49,7 @@ public class NithyaPoojeRejectListener implements ApplicationListener<NithyaPooj
 					MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
 					message.setTo(sashwathaPooje.getEmail());
 					message.setFrom(from);
-					message.setSubject("Nithya Pooje Information");
+					message.setSubject("Shashwatha Pooja Information");
 					Map model = new HashMap();
 					model.put("pooje", sashwathaPooje);
 					String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine,

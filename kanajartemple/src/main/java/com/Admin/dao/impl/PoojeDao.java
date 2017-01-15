@@ -31,15 +31,14 @@ import com.Admin.bean.Reportbean;
 import com.Admin.bean.SashwathaPoojebean;
 import com.Brahmalingeshwara.kanajartemple.Utills;
 
-
 @Component("poojeDao")
 public class PoojeDao {
 
 	Logger log = Logger.getLogger(PoojeDao.class);
-	
+
 	@Autowired
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	
+
 	private String month[] = { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
 
 	private java.sql.Date getCustomDate(String formdate) {
@@ -79,7 +78,6 @@ public class PoojeDao {
 	}
 
 	public String getPoojedetailstoprint(Poojebean pbean) {
-		
 
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Pid", pbean.getPid());
@@ -87,8 +85,8 @@ public class PoojeDao {
 		param.put("Quantity", pbean.getQuantity());
 		param.put("PDate", getCustomDate(pbean.getPDate()));
 
-		Integer RecNo = namedParameterJdbcTemplate.queryForObject("select MAX(RecNo)+1 as RecNo from allpoojedata where Pid=:Pid", param,
-				Integer.class);
+		Integer RecNo = namedParameterJdbcTemplate
+				.queryForObject("select MAX(RecNo)+1 as RecNo from allpoojedata where Pid=:Pid", param, Integer.class);
 		if (RecNo == null) {
 			RecNo = 1;
 		}
@@ -103,7 +101,6 @@ public class PoojeDao {
 	}
 
 	public Integer getSashwathaPoojedetailstoprint(SashwathaPoojebean sbean) {
-		
 
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Pid", sbean.getPid());
@@ -127,7 +124,7 @@ public class PoojeDao {
 	}
 
 	public List<Map<String, Object>> getPoojeReport(Reportbean rbean) {
-		
+
 		Map<String, Object> param = getReportParam(rbean);
 		String PoojeName = null;
 		String BaseAmount = null;
@@ -164,7 +161,7 @@ public class PoojeDao {
 	}
 
 	public Integer addincome(IncomeData ibean) {
-		
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Iid", ibean.getIid());
 		param.put("title", Utills.replaceWhiteSpace(ibean.getTitle()));
@@ -172,8 +169,8 @@ public class PoojeDao {
 		param.put("EDate", getCustomDate(ibean.getEdate()));
 		Integer RecNo;
 
-		RecNo = namedParameterJdbcTemplate.queryForObject("select MAX(RecNo)+1 as RecNo from allincomedata where Iid=:Iid", param,
-				Integer.class);
+		RecNo = namedParameterJdbcTemplate
+				.queryForObject("select MAX(RecNo)+1 as RecNo from allincomedata where Iid=:Iid", param, Integer.class);
 		if (RecNo == null) {
 			RecNo = 1;
 		}
@@ -189,7 +186,6 @@ public class PoojeDao {
 	}
 
 	public List<Map<String, Object>> getIncomeReport(Reportbean rbean) {
-		
 
 		Map<String, Object> param = getReportParam(rbean);
 
@@ -219,7 +215,7 @@ public class PoojeDao {
 	}
 
 	public List getSashwathaReport(Reportbean rbean) {
-		
+
 		Map<String, Object> param = getReportParam(rbean);
 		if (rbean.getDates().equalsIgnoreCase("PDate")) {
 			param.put("FromDate", getSashwathaDate(rbean.getFromDate()));
@@ -260,7 +256,6 @@ public class PoojeDao {
 	/* Donation */
 
 	public String getDonationReceipt(DonationDetail dbean) {
-		
 
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Did", dbean.getDid());
@@ -272,8 +267,8 @@ public class PoojeDao {
 		Integer RecNo = null;
 
 		try {
-			RecNo = namedParameterJdbcTemplate.queryForObject("select MAX(RecNo)+1 as RecNo from alldonationdata where Did=:Did", param,
-					Integer.class);
+			RecNo = namedParameterJdbcTemplate.queryForObject(
+					"select MAX(RecNo)+1 as RecNo from alldonationdata where Did=:Did", param, Integer.class);
 
 			param.put("RecNo", RecNo);
 
@@ -298,12 +293,13 @@ public class PoojeDao {
 	}
 
 	public List<Map<String, Object>> getDonationReport(Reportbean rbean, String DonationName) {
-		
+
 		Map<String, Object> param = getReportParam(rbean);
+		param.put("amount", rbean.getAmount());
 		String str = "select @acount:=@acount+1 SI,RecNo,Name,Address,Amount,mobile,email,BDate,"
 				+ "Did from (SELECT @acount:= 0) AS acount,alldonationdata"
-				+ " where BDate>=:FromDate and BDate<=:ToDate and Did=:id  order by " + rbean.getSortby() + " "
-				+ rbean.getOrder();
+				+ " where BDate>=:FromDate and BDate<=:ToDate and Amount>=:amount and Did=:id  order by "
+				+ rbean.getSortby() + " " + rbean.getOrder();
 
 		double grandtotal = 00.0;
 		List report = namedParameterJdbcTemplate.queryForList(str, param);
@@ -325,7 +321,6 @@ public class PoojeDao {
 	}
 
 	public Integer getExpenditureReceipt(ExpenseData ebean) {
-		
 
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Eid", ebean.getEid());
@@ -336,8 +331,8 @@ public class PoojeDao {
 
 		Integer RecNo;
 
-		RecNo = namedParameterJdbcTemplate.queryForObject("select MAX(RecNo)+1 as RecNo from allexpendituredata where Eid=:Eid", param,
-				Integer.class);
+		RecNo = namedParameterJdbcTemplate.queryForObject(
+				"select MAX(RecNo)+1 as RecNo from allexpendituredata where Eid=:Eid", param, Integer.class);
 		if (RecNo == null) {
 			RecNo = 1;
 		}
@@ -354,7 +349,6 @@ public class PoojeDao {
 	}
 
 	public List getExpenditureReport(Reportbean rbean) {
-		
 
 		Map<String, Object> param = getReportParam(rbean);
 		String str = "select @acount:=@acount+1 SI,RecNo,Title,Description,Amount,"
@@ -383,7 +377,7 @@ public class PoojeDao {
 	}
 
 	public List getAllReport(Reportbean rbean) {
-		
+
 		Map<String, Object> param = getReportParam(rbean);
 
 		/* calculating all pooje amount total */
@@ -462,7 +456,6 @@ public class PoojeDao {
 	}
 
 	public Integer updatePooje(Poojebean pbean) {
-		
 
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Pid", pbean.getPid());
@@ -477,8 +470,6 @@ public class PoojeDao {
 	}
 
 	public Integer updateSashwathaPooje(SashwathaPoojebean sbean) {
-
-		
 
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Pid", sbean.getPid());
@@ -504,7 +495,6 @@ public class PoojeDao {
 
 	public Integer updateDonation(DonationDetail dbean) {
 
-		
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Did", dbean.getDid());
 		param.put("Name", Utills.replaceWhiteSpace(dbean.getName()));
@@ -520,7 +510,7 @@ public class PoojeDao {
 	}
 
 	public Integer updateExpense(ExpenseData ebean) {
-		
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Title", Utills.replaceWhiteSpace(ebean.getTitle()));
 		param.put("Description", Utills.replaceWhiteSpace(ebean.getDescription()));
@@ -536,7 +526,7 @@ public class PoojeDao {
 	}
 
 	public Integer updateIncome(IncomeData ibean) {
-		
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("title", Utills.replaceWhiteSpace(ibean.getTitle()));
 		param.put("Amount", ibean.getAmount());
@@ -551,7 +541,6 @@ public class PoojeDao {
 
 	public Integer deletePooje(String poojeid, String recno) {
 
-		
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("pid", poojeid);
 		param.put("RecNo", recno);
@@ -562,7 +551,6 @@ public class PoojeDao {
 
 	public Integer deleteSashwathaPooje(String recno) {
 
-		
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("RecNo", recno);
 
@@ -572,7 +560,6 @@ public class PoojeDao {
 
 	public Integer deleteDonation(String did, String recno) {
 
-		
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("did", did);
 		param.put("RecNo", recno);
@@ -583,7 +570,6 @@ public class PoojeDao {
 
 	public Integer deleteIncome(String iid, String recno) {
 
-		
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("iid", iid);
 		param.put("RecNo", recno);
@@ -601,18 +587,16 @@ public class PoojeDao {
 		String sql = "delete from allexpendituredata where eid=:eid and RecNo=:RecNo";
 		return namedParameterJdbcTemplate.update(sql, param);
 	}
-	
-	//Returns list of nithya pooje ,whose pooje date is current system date
-	public List<SashwathaPoojebean> getNithyaPooje()
-	{
+
+	// Returns list of nithya pooje ,whose pooje date is current system date
+	public List<SashwathaPoojebean> getNithyaPooje() {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("poojeDate", getSashwathaDate(getConvertedDate(new Date())));
 		String str = "select * from sashwathapooje where PDate=:poojeDate";
-		return namedParameterJdbcTemplate.query(str, param,new SashwathaPoojeRowMapper());
+		return namedParameterJdbcTemplate.query(str, param, new SashwathaPoojeRowMapper());
 	}
-	
-	private String getConvertedDate(final Date date)
-	{
+
+	private String getConvertedDate(final Date date) {
 		final String pattern = "dd-MM-yyyy";
 		final SimpleDateFormat format = new SimpleDateFormat(pattern);
 		return format.format(date);

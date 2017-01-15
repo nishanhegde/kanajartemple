@@ -56,7 +56,7 @@ public class NithyaPoojeListener implements ApplicationListener<NithyaPoojeEvent
 					
 					message.setTo(sashwathaPooje.getEmail());
 					message.setFrom(from);
-					message.setSubject("Nithya Pooje Information");
+					message.setSubject("Shashwatha Pooja Information");
 					Map model = new HashMap();
 					model.put("pooje", sashwathaPooje);
 					model.put("date", getConvertedDate(new Date()));

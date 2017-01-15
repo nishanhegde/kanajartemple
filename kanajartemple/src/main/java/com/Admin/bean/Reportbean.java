@@ -11,6 +11,8 @@ public class Reportbean {
 	private String order;
 	private String id;
 	private String name;
+	private Double Amount;
+	
 	public String getDates() {
 		return dates;
 	}
@@ -59,6 +61,10 @@ public class Reportbean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+	public Double getAmount() {
+		return Amount;
+	}
+	public void setAmount(Double amount) {
+		Amount = amount;
+	}	
 }

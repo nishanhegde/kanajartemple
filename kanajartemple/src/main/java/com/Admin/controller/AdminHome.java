@@ -29,6 +29,7 @@ import com.Admin.Service.Impl.AdminHomeService;
 import com.Admin.bean.CMSbean;
 import com.Admin.bean.RegistrationBean;
 import com.Admin.bean.ChangePassword;
+import com.Admin.bean.Coupon;
 import com.Admin.validator.ChangePasswordValidator;
 import com.Admin.validator.EditProfileValidator;
 
@@ -58,10 +59,17 @@ public class AdminHome {
 		return mv;
 	}
 
-	@RequestMapping(value = "/coupon")
-	public ModelAndView coupon(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView("admin/Coupon");
-		return mv;
+	@RequestMapping(value = "Admin/coupon", method = RequestMethod.GET)
+	public String getCoupon(Model model) {
+		model.addAttribute(new Coupon());
+		return "admin/couponGenerator";
+	}
+
+	@RequestMapping(value = "Admin/coupon",method = RequestMethod.POST)
+	public String setCoupon(@ModelAttribute Coupon coupon,Model model) {
+		
+		model.addAttribute("coupon",coupon);
+		return "admin/Coupon";
 	}
 
 	@RequestMapping(value = "/failure")
@@ -76,7 +84,7 @@ public class AdminHome {
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, Locale locale) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		
+
 		return new ModelAndView("admin/login");
 	}
 
@@ -85,7 +93,7 @@ public class AdminHome {
 		ModelAndView mv = new ModelAndView("admin/A403");
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/404")
 	public ModelAndView pageNotFound404() {
 		ModelAndView mv = new ModelAndView("admin/404");
@@ -184,7 +192,6 @@ public class AdminHome {
 		}
 		return mv;
 	}
-
 
 	private String getCurrentUser() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
