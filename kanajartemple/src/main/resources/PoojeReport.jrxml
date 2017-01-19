@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-12T13:15:58 -->
+<!-- 2017-01-19T12:32:39 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PoojeReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="99fd6200-3d19-41f1-a263-233cce5381f7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -50,91 +50,91 @@
 			<staticText>
 				<reportElement x="72" y="0" width="406" height="28" uuid="8b171bf2-bbc1-4a33-9c07-eba2ebfea5ee"/>
 				<textElement textAlignment="Center">
-					<font fontName="Arial" size="20" isBold="true"/>
+					<font fontName="Nirmala UI" size="20" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Shree Brahmalingeshwara Temple]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="59" width="83" height="20" uuid="a23f40dd-bfa4-4fd8-abcc-462c7e75deba"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Pooje Name :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="395" y="59" width="55" height="20" uuid="bbb752a5-3dc2-4a29-8b39-239f5800287e"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Date:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="83" y="59" width="119" height="20" forecolor="#333333" uuid="3e6b2b1b-10ab-4674-abc2-6eee45827e4d"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PoojeName}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy h.mm a">
 				<reportElement x="450" y="59" width="105" height="20" forecolor="#333333" uuid="fe00cc19-a2df-4052-9d4e-05724e0f4dff"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TodayDate}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="83" y="85" width="119" height="20" forecolor="#333333" uuid="a6d57722-9513-46b8-b864-3522e603bff5"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="85" width="82" height="20" uuid="2418bf61-bf60-4591-8ffe-3729c03ea357"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="295" y="85" width="86" height="20" forecolor="#333333" uuid="27a7de9f-5308-405f-92cf-aacaf693de06"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{FromDate}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="204" y="85" width="87" height="20" uuid="e989e3c7-87dd-49a7-9f80-4d02cba7e0fb"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[From Date :]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="450" y="85" width="105" height="20" forecolor="#333333" uuid="530d51b8-ace8-4cbf-a2a9-8eac9fbfb195"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ToDate}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="395" y="85" width="55" height="20" uuid="a7787c3c-ddb0-4eea-9c08-38349276dffa"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[To Date :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="204" y="59" width="87" height="20" uuid="38f86229-d390-42e9-b593-bc450bb4c02d"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Amount:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="295" y="59" width="86" height="20" forecolor="#333333" uuid="995c28db-e9a1-4c25-85a0-6554bb25dfd0"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{BaseAmount}]]></textFieldExpression>
 			</textField>
@@ -142,9 +142,9 @@
 				<reportElement x="0" y="115" width="555" height="1" uuid="9d4308a8-ad24-4d4c-9004-a4e675354617"/>
 			</line>
 			<staticText>
-				<reportElement x="273" y="116" width="50" height="20" uuid="9f63a9c2-782b-4b00-aede-f43fd9b8ac2c"/>
+				<reportElement x="273" y="116" width="60" height="20" uuid="9f63a9c2-782b-4b00-aede-f43fd9b8ac2c"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Quantity]]></text>
 			</staticText>
@@ -158,21 +158,21 @@
 			<staticText>
 				<reportElement x="48" y="116" width="53" height="20" uuid="2b8cdef5-1a97-4a1e-9f1a-512d6cef9cd4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RecNo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="333" y="116" width="92" height="20" uuid="bbbfd44c-1ed3-4bb9-b538-4c8020ca0ac3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Pooje Date]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="10" y="116" width="32" height="20" uuid="e59eec0e-ce13-4d42-9dbf-c933e08a37c4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[S.I]]></text>
 			</staticText>
@@ -193,25 +193,29 @@
 			<textField isBlankWhenNull="true">
 				<reportElement x="48" y="0" width="53" height="20" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="7dd0bd7c-df51-48ce-872c-1354d23e57d1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="10"/>
+					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{RecNo}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd-MM-yyyy" isBlankWhenNull="true">
 				<reportElement x="333" y="0" width="92" height="20" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="61d16293-8ecb-429d-ae4f-7b16c7e64769"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="10"/>
+					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PDate}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="10" y="0" width="32" height="20" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="cfd0f0af-3ea7-434d-988d-9a9c663f312a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{SI}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="273" y="0" width="50" height="20" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="8677b66f-bf94-41b7-a2dc-948d0c8ff214"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{Quantity}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -221,14 +225,14 @@
 			<staticText>
 				<reportElement x="0" y="0" width="115" height="17" forecolor="#999999" uuid="54846491-b2e3-4a40-829c-082c23794c2b"/>
 				<textElement verticalAlignment="Middle">
-					<font size="10"/>
+					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
 				<text><![CDATA[www.kanajartemple.com]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="524" y="0" width="21" height="17" forecolor="#999999" uuid="4d0305c9-c827-402e-abff-289bbf795cc7"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isStrikeThrough="false"/>
+					<font fontName="Nirmala UI" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-23T12:24:53 -->
+<!-- 2017-01-19T12:23:44 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="IncomeReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43e0c141-5909-46d5-b2d4-bd3042c6f231">
 	<property name="net.sf.jasperreports.export.html.using.images.to.align" value="false"/>
 	<property name="ireport.zoom" value="1.0"/>
@@ -19,49 +19,49 @@
 			<textField pattern="dd/MM/yyyy h.mm a">
 				<reportElement x="438" y="59" width="117" height="20" forecolor="#333333" uuid="28ac45f6-35be-4f0c-abc9-19a93b0901da"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TodayDate}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="398" y="59" width="40" height="20" uuid="09c38e88-da3a-4e37-926e-62c789dd4452"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Date:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="66" y="59" width="100" height="20" forecolor="#333333" uuid="c5a28df7-a92c-4b16-a4c2-12a41dfcd247"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{FromDate}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="257" y="59" width="100" height="20" forecolor="#333333" uuid="62c76691-f8d3-46ea-afda-e640bc8e4d84"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ToDate}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="59" width="66" height="20" uuid="bb73274d-e352-4140-9400-065bf86114fc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[From:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="205" y="59" width="52" height="20" uuid="3379b954-e17d-4c32-9788-8e618e71fb88"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[To:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="131" y="0" width="367" height="31" uuid="784a70fd-e72b-4708-8a2d-0460f305f3ab"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Arial" size="14" isBold="true"/>
+					<font fontName="Nirmala UI" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Shree Brahmalingeshwara Temple Report]]></text>
 			</staticText>
@@ -75,70 +75,70 @@
 			<staticText>
 				<reportElement x="205" y="14" width="150" height="20" uuid="84328fd7-37cd-465e-97ce-3544d5235a4c"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[All Pooje Total]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="398" y="14" width="140" height="20" forecolor="#333333" uuid="567a6411-f714-4f7f-befd-04ebe465608f"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="10"/>
+					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PoojeTotal}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="205" y="57" width="150" height="20" uuid="d57ee8a9-d8e4-4aa5-b20d-230a3571cd80"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[All Donation Total]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="398" y="57" width="140" height="20" forecolor="#333333" uuid="8c440380-4ede-4651-bda0-9fbd9c61927e"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="10"/>
+					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DonationTotal}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="205" y="150" width="150" height="20" uuid="ce307122-bf72-4734-970a-7e827cee4ae7"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Expenditure Total]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="398" y="150" width="140" height="20" forecolor="#333333" uuid="0ba8b4f7-5c49-48b4-89dd-0632f09fd79f"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="10"/>
+					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Expenditure}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="205" y="207" width="150" height="20" uuid="21f516b8-b9d9-429f-ba5f-f2e868c1df68"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Grand Total]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="398" y="207" width="140" height="20" forecolor="#333333" uuid="5e78870e-a824-4408-995b-403dd454666f"/>
 				<textElement verticalAlignment="Middle">
-					<font size="10"/>
+					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GrandTotal}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="398" y="102" width="140" height="20" forecolor="#333333" uuid="8d5c089b-e0b4-46ad-a3d7-e9f71f4e09b5"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{IncomeTotal}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="205" y="102" width="150" height="20" uuid="746c4e55-e571-4293-89b7-fc956a51a55f"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Income Total]]></text>
 			</staticText>
@@ -158,14 +158,14 @@
 			<textField>
 				<reportElement x="517" y="0" width="21" height="17" forecolor="#999999" uuid="b9e35dfe-0116-4b0d-bb96-6c6422768629"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isStrikeThrough="false"/>
+					<font fontName="Nirmala UI" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="0" width="115" height="17" forecolor="#999999" uuid="40af700d-b201-4bcc-a653-455895a584fb"/>
 				<textElement verticalAlignment="Middle">
-					<font size="10"/>
+					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
 				<text><![CDATA[www.kanajartemple.com]]></text>
 			</staticText>
