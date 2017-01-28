@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/Admin/Service/Impl/DefaultEmailService.java=UTF-8
+encoding//src/main/java/com/Admin/controller/HomeController.java=UTF-8
 encoding//src/main/resources/EmailTemplates/nithyapooje.vm=UTF-8
 encoding//src/main/resources/localization/locale_kn.properties=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/Adminheader.jsp=UTF-8

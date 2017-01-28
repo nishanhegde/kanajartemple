@@ -1,29 +1,38 @@
 package com.Admin.Service.Impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Service;
 
+import com.Admin.Service.EmailService;
 import com.Admin.bean.DonationDetail;
 import com.Admin.bean.ExpenseData;
 import com.Admin.bean.IncomeData;
 import com.Admin.bean.Poojebean;
 import com.Admin.bean.Reportbean;
 import com.Admin.bean.SashwathaPoojebean;
+import com.Admin.cronjob.NithyaPoojeCronJob;
 import com.Admin.dao.impl.PoojeDao;
 import com.Admin.event.NithyaPoojeEvent;
 
 @Service("poojeService")
 public class PoojeService {
+	private static final Logger logger = Logger.getLogger(PoojeService.class);
 
 	@Autowired
 	private PoojeDao poojeDao;
-	
+
 	@Autowired
 	private ApplicationEventPublisher eventPublisher;
+
+	@Autowired
+	private EmailService emailService;
 
 	public String getPoojedetailstoprint(Poojebean pbean) {
 		return poojeDao.getPoojedetailstoprint(pbean);
@@ -108,16 +117,42 @@ public class PoojeService {
 	public Integer deleteExpense(String eid, String recno) {
 		return poojeDao.deleteExpense(eid, recno);
 	}
-	
-	public void sendNithyaPoojeEmail()
-	{
-		for(SashwathaPoojebean pooje:poojeDao.getNithyaPooje())
-		{
-			if(pooje.getEmail()!=null && !pooje.getEmail().isEmpty() )
-			{
+
+	public void sendNithyaPoojeEmail() {
+		for (SashwathaPoojebean pooje : poojeDao.getNithyaPooje()) {
+			if (pooje.getEmail() != null && !pooje.getEmail().isEmpty()) {
 				eventPublisher.publishEvent(new NithyaPoojeEvent(this, pooje));
 			}
 		}
-		
+
+	}
+
+	public void sendNithyaPoojeSMS() {
+		try {
+			StringBuilder numbers = new StringBuilder();
+			for (SashwathaPoojebean pooje : poojeDao.getNithyaPooje()) {
+				if (pooje.getMobileNo() != null
+						&& !pooje.getMobileNo().isEmpty() & pooje.getMobileNo().trim().length() == 10) {
+					if (numbers.length() > 0) {
+						numbers.append(",");
+					}
+					numbers.append("91" + pooje.getMobileNo());
+				}
+			}
+
+			if (numbers.length() > 0) {
+				emailService.sendSMS(numbers.toString(), "We have performed POOJA on " + getConvertedDate(new Date())
+						+ " for the fulfilment of your wishes.We wish you and your family will be blessed with happiness, peace and prosperity by Lord Shree Brahmalingeshwara, Shree Veerabhadra and Shree Melbanta.");
+			}
+		} catch (Exception e) {
+			logger.error(e);
+		}
+
+	}
+
+	private String getConvertedDate(final Date date) {
+		final String pattern = "dd-MM-YYYY";
+		final SimpleDateFormat format = new SimpleDateFormat(pattern);
+		return format.format(date);
 	}
 }

@@ -87,7 +87,7 @@ public class HomeController {
 	@RequestMapping(value = "/home")
 	public ModelAndView Home(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("Home");
-
+		emailService.sendSMS("919663559596,917053836803", "testing ");
 		mv.addObject("Home", adminHomeService.getPageContent("1"));
 		mv.addObject("News", adminHomeService.getPageContent("2"));
 		return mv;

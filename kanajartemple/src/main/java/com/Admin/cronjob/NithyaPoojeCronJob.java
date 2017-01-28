@@ -13,16 +13,17 @@ import com.Admin.Service.Impl.PoojeService;
 public class NithyaPoojeCronJob {
 
 	private static final Logger logger = Logger.getLogger(NithyaPoojeCronJob.class);
-	
+
 	@Autowired
 	private PoojeService poojeService;
 
 	@Scheduled(cron = "${nithyapooje.cronjob.expression}")
 	public void triggerJob() {
-		
-			logger.info("Nithya Pooje cron job triggered at :: " + new Date());
-			
-			poojeService.sendNithyaPoojeEmail();
+
+		logger.info("Nithya Pooje cron job triggered at :: " + new Date());
+
+		poojeService.sendNithyaPoojeSMS();
+		poojeService.sendNithyaPoojeEmail();
 	}
 
 }
