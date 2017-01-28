@@ -475,7 +475,7 @@ public class PoojeDao {
 		param.put("Pid", sbean.getPid());
 		param.put("Name", Utills.replaceWhiteSpace(sbean.getName()));
 		String PDate = sbean.getPdate();
-		if (PDate.length() == 6) {
+		if (PDate.trim().length() == 6) {
 			param.put("PDate", sbean.getPdate());
 		} else {
 			param.put("PDate", getSashwathaDate(PDate));

@@ -15,7 +15,6 @@ import com.Brahmalingeshwara.kanajartemple.KanajarTempleConstants;
 
 public class SashwathaPoojeValidator implements Validator {
 
-	
 	private Pattern pattern;
 	private Matcher matcher;
 
@@ -28,7 +27,7 @@ public class SashwathaPoojeValidator implements Validator {
 
 		SashwathaPoojebean sbean = (SashwathaPoojebean) obj;
 		String name = sbean.getName().trim();
-	
+
 		String pdate = sbean.getPdate().trim();
 		String emailId = sbean.getEmail().trim();
 		String phoneNumber = sbean.getMobileNo().trim();
@@ -36,8 +35,7 @@ public class SashwathaPoojeValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(error, "Name", "fullname.required");
 		ValidationUtils.rejectIfEmpty(error, "Address", "address.required");
 		ValidationUtils.rejectIfEmpty(error, "Pdate", "pdate.required");
-		
-		
+
 		// email validation in spring
 		if (!(emailId != null && emailId.isEmpty())) {
 			pattern = Pattern.compile(KanajarTempleConstants.EMAIL_PATTERN);
@@ -48,20 +46,20 @@ public class SashwathaPoojeValidator implements Validator {
 		}
 
 		// phone number validation
-		if (!(phoneNumber != null && phoneNumber.isEmpty())) {
+		if (phoneNumber != null && !phoneNumber.isEmpty()) {
 			pattern = Pattern.compile(KanajarTempleConstants.MOBILE_PATTERN);
 			matcher = pattern.matcher(phoneNumber);
 			if (!matcher.matches()) {
 				error.rejectValue("MobileNo", "phoneNumber.incorrect");
 			}
 		}
-		
-		if (!(pdate != null && pdate.isEmpty())) {
+
+		if (pdate != null && !pdate.isEmpty() && pdate.trim().length() > 6) {
 			pattern = Pattern.compile(KanajarTempleConstants.DATE_PATTERN);
 			matcher = pattern.matcher(pdate);
 			if (!matcher.matches()) {
 				error.rejectValue("Pdate", "pdate.incorrect");
 			}
 		}
-		}
+	}
 }

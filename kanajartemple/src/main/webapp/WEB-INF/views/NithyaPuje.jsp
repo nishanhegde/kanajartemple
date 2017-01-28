@@ -14,6 +14,13 @@
 
 <div class="mainbody">
 <h1> This page is under construction .Sorry for any inconvenience this may cause</h1>
+<p>If you want to update address ,please send the information in below format to shreebrahmalingeshwara@kanajartemple.com<br/>
+Name 				:<br/>
+Address to Update 	:<br/>
+Pooje Date			:<br/>
+Email				:<br/>
+Mobile No 			:<br/>
+<p>
 </div>
 <%-- <div class="mainbody">
 	<br />

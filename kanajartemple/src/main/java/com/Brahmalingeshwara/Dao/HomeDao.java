@@ -16,47 +16,24 @@ import com.Brahmalingeshwara.kanajartemple.Utills;
 
 @Component("homeDao")
 public class HomeDao {
-	
+
 	@Autowired
-	PlatformTransactionManager transactionManager;
-	@Autowired
-    DriverManagerDataSource dataSource;
-    
-	
-	public List getPageContent(String Pagename)
-	{
-		
-		NamedParameterJdbcTemplate namedjdbc=new NamedParameterJdbcTemplate(dataSource);
-		Map param=new HashMap();
-		param.put("Pagename",Pagename);
-		String str="select Content from admincms where PageName=:Pagename";
-		
-		return namedjdbc.queryForList(str, param);
-		
-		
-	}
-	
-		
-	public List getAddress()
-	{
-		NamedParameterJdbcTemplate namedjdbc=new NamedParameterJdbcTemplate(dataSource);
-		Map param=new HashMap();
-		String str="select * from sashwathapooje";
-		
-		return namedjdbc.queryForList(str, param);
-	}
-	
-	public void insertseva(SevaBookingBean sbb)
-	{
-		NamedParameterJdbcTemplate namedjdbc=new NamedParameterJdbcTemplate(dataSource);
-	       Map param=new HashMap();
-	       
-		   
+	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	public List getAddress() {
+
+		Map param = new HashMap();
+		String str = "select * from sashwathapooje";
+
+		return namedParameterJdbcTemplate.queryForList(str, param);
 	}
 
-	public Integer saveSashwathaPooje(SashwathaPoojebean sbean)
-	{
-		NamedParameterJdbcTemplate namedjdbc = new NamedParameterJdbcTemplate(dataSource);
+	public void insertseva(SevaBookingBean sbb) {
+		Map param = new HashMap();
+
+	}
+
+	public Integer saveSashwathaPooje(SashwathaPoojebean sbean) {
 
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("RecNo", sbean.getPid());
@@ -70,7 +47,7 @@ public class HomeDao {
 		String str = "insert into UserSashwathaPooje(RecNo,Name,Address,PDate,BDate,MobileNo,Email) "
 				+ "values(:RecNo,:Name,:Address,:PDate,(select now()),:mobile,:email)";
 
-		return namedjdbc.update(str, param);		
+		return namedParameterJdbcTemplate.update(str, param);
 	}
 
 }
