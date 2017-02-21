@@ -2,7 +2,6 @@ package com.Admin.Service.Impl;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -14,7 +13,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import com.Admin.Service.EmailService;
-import com.Admin.listner.NithyaPoojeApprovalListener;
 
 @Service("emailService")
 public class DefaultEmailService implements EmailService {
@@ -23,8 +21,11 @@ public class DefaultEmailService implements EmailService {
 	@Value("${sms.endpoint}")
 	private String url;
 
-	@Value("${sms.apikey}")
-	private String apiKey;
+	@Value("${sms.hashkey}")
+	private String hashKey;
+
+	@Value("${sms.username}")
+	private String userName;
 
 	@Autowired
 	private MailSender mailSender;
@@ -43,14 +44,15 @@ public class DefaultEmailService implements EmailService {
 	public void sendSMS(String numbers, String messages) {
 
 		try {
-			// Construct data
-			String user = "apiKey=" + apiKey;
+			String user = "username=" + userName;
+			String hash = "&hash=" + hashKey;
 			String message = "&message=" + messages;
 			String number = "&numbers=" + numbers;
+			//String test = "&test=" + true;
 
 			// Send data
 			HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-			String data = user + number + message;
+			String data = user + hash + number + message ;//+ test;
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
