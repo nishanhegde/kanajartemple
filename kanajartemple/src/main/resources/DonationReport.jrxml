@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2017-01-19T11:57:32 -->
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-11-27T11:06:19 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="IncomeReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43e0c141-5909-46d5-b2d4-bd3042c6f231">
 	<property name="net.sf.jasperreports.export.html.using.images.to.align" value="false"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<field name="TodayDate" class="java.util.Date"/>
 	<field name="FromDate" class="java.lang.String"/>
 	<field name="ToDate" class="java.lang.String"/>
 	<field name="RecNo" class="java.lang.String"/>
 	<field name="Name" class="java.lang.String"/>
 	<field name="Address" class="java.lang.String"/>
-	<field name="Amount" class="java.lang.String"/>
+	<field name="Amount" class="java.lang.Double"/>
 	<field name="Total" class="java.lang.Double"/>
 	<field name="DonationName" class="java.lang.String"/>
 	<field name="SI" class="java.lang.Integer"/>
