@@ -13,6 +13,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.Admin.RowMapper.DonationDataRowMapper;
 import com.Admin.RowMapper.DonationRowMapper;
+import com.Admin.RowMapper.EmailRowMapper;
 import com.Admin.RowMapper.ExpenceDataRowMapper;
 import com.Admin.RowMapper.ExpenseRowMapper;
 import com.Admin.RowMapper.IncomeDataRowMapper;
@@ -267,6 +268,13 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 		} else {
 			return true;
 		}
+	}
+
+	@Override
+	public List<String> getEmails() {
+		Map<String, Object> param = new HashMap<String, Object>();
+		String str = "select email from alldonationdata  where email IS NOT NULL AND email != ''  UNION select email from sashwathapooje where email IS NOT NULL AND email != '' ";
+		return namedParameterJdbcTemplate.query(str, param, new EmailRowMapper());
 	}
 
 }

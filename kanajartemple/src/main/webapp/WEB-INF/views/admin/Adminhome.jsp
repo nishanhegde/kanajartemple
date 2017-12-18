@@ -112,7 +112,7 @@
 		</div>
 	</div>
 
-
+sssss
 	<div class="boxbody">
 		<div class="boxheader">
 			<spring:message code="label.adminactivities" />
@@ -123,9 +123,6 @@
 							code="label.changepassword" /></a></li>
 				<li><a href="<c:url value="../Admin/EditProfile"/>"><spring:message
 							code="label.editprofile" /></a></li>
-				<li><a href="https://kanajartemple.com:2096" target="_blank"><spring:message
-							code="label.webmail" /></a></li>
-
 			</ul>
 		</div>
 	</div>
@@ -192,6 +189,21 @@
 			</div>
 		</div>
 		
+		<div class="boxbody">
+		<div class="boxheader">
+			<spring:message code="label.emailservice" />
+		</div>
+		<div class="padd">
+			<ul>
+				<li><a href="<c:url value="../Admin/getemail"/>"><spring:message
+							code="label.getemail" /></a></li>
+				<li><a href="https://kanajartemple.com:2096" target="_blank"><spring:message
+							code="label.sendemail" /></a></li>
+
+			</ul>
+		</div>
+	</div>
+	
 		<div class="boxbody">
 			<div class="boxheader">
 				<spring:message code="label.cms" />

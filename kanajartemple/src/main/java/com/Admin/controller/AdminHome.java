@@ -202,4 +202,12 @@ public class AdminHome {
 		SecurityContextHolder.getContext().setAuthentication(null);
 		SecurityContextHolder.clearContext();
 	}
+	
+	@RequestMapping(value = "Admin/getemail")
+	public ModelAndView getemail(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView mv = new ModelAndView("admin/getemail");
+		mv.addObject("emails", defaultTempleMethods.getEmails());
+		return mv;
+	}
 }

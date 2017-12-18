@@ -2,6 +2,7 @@ package com.Admin.Service.Impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -138,5 +139,11 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 	public List<Map<String, Object>> getIncome() {
 		return defaultTempleMethodsDao.getIncome();
 	}
+
+	@Override
+	public String getEmails() {
+		return defaultTempleMethodsDao.getEmails().stream().collect(Collectors.joining(";"));
+	}
+	
 
 }

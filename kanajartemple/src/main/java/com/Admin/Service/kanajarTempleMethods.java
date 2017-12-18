@@ -60,4 +60,6 @@ public interface kanajarTempleMethods {
 	public boolean checkMobileNo(String mobileno,String id);
 	
 	public boolean checkCurrentPassword(String username,String currentpassword);
+	
+	public String getEmails();
 }

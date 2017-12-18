@@ -58,5 +58,7 @@ public interface kanajarTempleMethodsDao {
 	public boolean checkMobileNo(String mobileno,String id);
 	
 	public boolean checkCurrentPassword(String username,String currentpassword);
+	
+	public List<String> getEmails();
 
 }
