@@ -18,17 +18,16 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 	<task:annotation-driven />
 
 
-	<beans:bean id="dataSource"
-		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+	<beans:bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<beans:property name="driverClass" value="${jdbc.driverClassName}" />
 		<beans:property name="jdbcUrl" value="${jdbc.url}" />
 		<beans:property name="user" value="${jdbc.username}" />
 		<beans:property name="password" value="${jdbc.password}" />
 		<beans:property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
-        <beans:property name="minPoolSize" value="${jdbc.minPoolSize}" />
-        <beans:property name="maxStatements" value="${jdbc.maxStatements}" />
-        <beans:property name="testConnectionOnCheckout" value="${jdbc.testConnection}" />
-		
+		<beans:property name="minPoolSize" value="${jdbc.minPoolSize}" />
+		<beans:property name="maxStatements" value="${jdbc.maxStatements}" />
+		<beans:property name="testConnectionOnCheckout" value="${jdbc.testConnection}" />
+
 	</beans:bean>
 	<beans:bean
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
@@ -176,4 +175,11 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 		<beans:constructor-arg name="strength" value="11" />
 	</beans:bean>
+
+	<beans:alias name="defaultBankAccountService" alias="bankAccountService" />
+	<beans:bean id="defaultBankAccountService"
+		class="com.Admin.Service.Impl.DefaultBankAccountService" />
+
+	<beans:alias name="defaultBankAccountDao" alias="bankAccountDao" />
+	<beans:bean id="defaultBankAccountDao" class="com.Admin.dao.impl.DefaultBankAccountDao" />
 </beans:beans>

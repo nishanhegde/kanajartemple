@@ -10,5 +10,8 @@ public class KanajarTempleConstants {
 	 public static String STRING_PATTERN = "[a-zA-Z\\s]+";  
 	 public static String MOBILE_PATTERN = "[0-9]{10}";  
 	 public static String DATE_PATTERN="[0-9]{2}\\-[0-9]{2}\\-[0-9]{4}";
+	 
+	 public static String REDIRECT_PRIFIX = "redirect:";
+	 public static String BANK_ACC_VIEW = "admin/bankaccount";
 
 }
