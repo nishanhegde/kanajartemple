@@ -153,7 +153,7 @@
 								code="label.bankaccounts.add" /></a></li>
 					<li><a href="<c:url value="../Admin/viewaccount"/>"><spring:message
 								code="label.bankaccounts.editordelete" /></a></li>
-					<li><a href="<c:url value="../Admin/getemail"/>"><spring:message
+					<li><a href="<c:url value="../Admin/addaccountentry"/>"><spring:message
 								code="label.bankaccounts.addentry" /></a></li>
 					<li><a href="<c:url value="../Admin/getemail"/>"><spring:message
 								code="label.bankaccounts.editordeleteentry" /></a></li>

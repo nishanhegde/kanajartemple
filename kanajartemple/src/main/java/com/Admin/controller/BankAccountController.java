@@ -29,6 +29,7 @@ import com.Admin.Service.BankAccountService;
 import com.Admin.Service.kanajarTempleMethods;
 import com.Admin.Service.Impl.AdminHomeService;
 import com.Admin.bean.BankAccount;
+import com.Admin.bean.BankAccountEntry;
 import com.Admin.bean.CMSbean;
 import com.Admin.bean.RegistrationBean;
 
@@ -37,6 +38,8 @@ import com.Admin.bean.Coupon;
 import com.Admin.validator.ChangePasswordValidator;
 import com.Admin.validator.EditProfileValidator;
 import com.Brahmalingeshwara.kanajartemple.KanajarTempleConstants;
+import com.Brahmalingeshwara.kanajartemple.TransactionEnum;
+import com.Brahmalingeshwara.kanajartemple.TypeEnum;
 
 @Controller
 @RequestMapping(value = "/Admin")
@@ -94,5 +97,15 @@ public class BankAccountController {
 		bankAccountService.delete(id);
 		return REDIRECT_VIEW_ACCOUNT;
 	}
+	
+	@RequestMapping(value = "/addaccountentry", method = RequestMethod.GET)
+	public String addAccountEntry(Model model) {
+		model.addAttribute(new BankAccountEntry());
+		model.addAttribute("transactions", TransactionEnum.values());
+		model.addAttribute("types", TypeEnum.values());
+		model.addAttribute("bankAccounts", bankAccountService.getBankAccounts());
+		return KanajarTempleConstants.BANK_ACC_VIEW + "/addaccountentry";
+	}
+
 
 }
