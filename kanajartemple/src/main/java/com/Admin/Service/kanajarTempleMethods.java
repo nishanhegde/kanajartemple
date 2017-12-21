@@ -62,4 +62,7 @@ public interface kanajarTempleMethods {
 	public boolean checkCurrentPassword(String username,String currentpassword);
 	
 	public String getEmails();
+	
+	public java.sql.Date getCustomDate(String formdate);
+	
 }

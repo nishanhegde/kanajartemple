@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.Admin.Service.BankAccountService;
 import com.Admin.Service.kanajarTempleMethods;
 import com.Admin.Service.Impl.AdminHomeService;
 import com.Admin.bean.CMSbean;
@@ -52,6 +54,9 @@ public class AdminHome {
 
 	@Autowired
 	private EditProfileValidator editProfileValidator;
+	
+	@Resource
+	private BankAccountService bankAccountService;
 
 	@RequestMapping(value = "/login")
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
@@ -109,6 +114,7 @@ public class AdminHome {
 		mv.addObject("DonationDetails", defaultTempleMethods.getDonation());
 		mv.addObject("IncomeDetails", defaultTempleMethods.getIncome());
 		mv.addObject("ExpenseDetails", defaultTempleMethods.getExpenditure());
+		mv.addObject("BankAccounts", bankAccountService.getBankAccounts());
 		return mv;
 	}
 

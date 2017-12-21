@@ -13,6 +13,7 @@ public class BankAccountEntry {
 	private TransactionEnum transaction;
 	private String chequeOrRefNo;
 	private String transactionDate;
+	private String description;
 	
 	public Integer getId() {
 		return id;
@@ -62,4 +63,11 @@ public class BankAccountEntry {
 	public void setTransactionDate(String transactionDate) {
 		this.transactionDate = transactionDate;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 }

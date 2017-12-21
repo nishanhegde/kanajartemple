@@ -1,9 +1,13 @@
 package com.Admin.Service.Impl;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -19,11 +23,13 @@ import com.Admin.bean.IncomeData;
 import com.Admin.bean.Pooje;
 import com.Admin.bean.Poojebean;
 import com.Admin.bean.SashwathaPoojebean;
+import com.Admin.controller.GlobalExceptionController;
 import com.Admin.dao.kanajarTempleMethodsDao;
 
 
 public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 
+	private static final Logger logger = Logger.getLogger(kanajarTempleMethodsImpl.class);
 
 	  
 	@Autowired
@@ -144,6 +150,21 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 	public String getEmails() {
 		return defaultTempleMethodsDao.getEmails().stream().collect(Collectors.joining(";"));
 	}
+
+	@Override
+	public Date getCustomDate(String formdate) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		java.util.Date date = null;
+		try {
+			date = formatter.parse(formdate);
+		} catch (ParseException e) {
+			logger.error(e);
+		}
+		java.sql.Date PDate = new java.sql.Date(date.getTime());
+
+		return PDate;
+	}
+	
 	
 
 }

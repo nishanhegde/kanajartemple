@@ -107,5 +107,16 @@ public class BankAccountController {
 		return KanajarTempleConstants.BANK_ACC_VIEW + "/addaccountentry";
 	}
 
-
+	@RequestMapping(value = "/addaccountentry", method = RequestMethod.POST)
+	public String saveAccountEntry(@ModelAttribute BankAccountEntry bae,Model model) {
+		bankAccountService.save(bae);
+		return KanajarTempleConstants.REDIRECT_PRIFIX + "/Admin/viewaccountentry/"+bae.getBankAccountId();
+	}
+	
+	@RequestMapping(value = "/viewaccountentry/{bankId}", method = RequestMethod.GET)
+	public String viewAccountEntry(@PathVariable String bankId,Model model) {
+		model.addAttribute("bankAccountEntry", bankAccountService.getBankAccountEntries(bankId));
+		model.addAttribute(bankAccountService.getBankAccount(bankId));
+		return KanajarTempleConstants.BANK_ACC_VIEW + "/viewaccountentry";
+	}
 }

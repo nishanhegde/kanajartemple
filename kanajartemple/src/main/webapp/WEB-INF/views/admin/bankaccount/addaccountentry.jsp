@@ -29,6 +29,12 @@
 						required="required" /></td>
 				</tr>
 
+<tr>
+					<th><spring:message code="label.bankaccountentry.description" /> </th>
+					<td><textarea name="description" rows="5" cols="22" id="description"
+							></textarea>
+				</tr>
+				
 				<tr>
 					<th><spring:message code="label.bankaccountentry.transaction" />
 						*</th>
@@ -48,9 +54,9 @@
 
 				<tr>
 					<th><spring:message
-							code="label.bankaccountentry.chequeorrefno" /> *</th>
+							code="label.bankaccountentry.chequeorrefno" /> </th>
 					<td><input type="text" name="chequeOrRefNo" id="chequeOrRefNo"
-						required="required" /></td>
+						 /></td>
 				</tr>
 
 				<tr>

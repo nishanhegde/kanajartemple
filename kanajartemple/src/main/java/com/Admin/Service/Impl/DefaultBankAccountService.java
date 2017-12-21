@@ -6,21 +6,22 @@ import javax.annotation.Resource;
 
 import com.Admin.Service.BankAccountService;
 import com.Admin.bean.BankAccount;
+import com.Admin.bean.BankAccountEntry;
 import com.Admin.dao.BankAccountDao;
 
 public class DefaultBankAccountService implements BankAccountService {
 
 	@Resource
-	private  BankAccountDao bankAccountDao;
-	
+	private BankAccountDao bankAccountDao;
+
 	@Override
 	public void save(BankAccount ba) {
-		bankAccountDao.save(ba);		
+		bankAccountDao.save(ba);
 	}
 
 	@Override
 	public List<BankAccount> getBankAccounts() {
-			return bankAccountDao.getBankAccounts();
+		return bankAccountDao.getBankAccounts();
 	}
 
 	@Override
@@ -29,12 +30,23 @@ public class DefaultBankAccountService implements BankAccountService {
 	}
 
 	@Override
-	public Integer update(BankAccount ba) {		
+	public Integer update(BankAccount ba) {
 		return bankAccountDao.update(ba);
 	}
 
 	@Override
 	public void delete(String id) {
-		bankAccountDao.delete(id);		
-	}		
+		bankAccountDao.delete(id);
+	}
+
+	@Override
+	public void save(BankAccountEntry bae) {
+		bankAccountDao.save(bae);
+	}
+
+	@Override
+	public List<BankAccountEntry> getBankAccountEntries(String bankId) {
+		return bankAccountDao.getBankAccountEntries(bankId);
+	}
+
 }

@@ -155,7 +155,7 @@
 								code="label.bankaccounts.editordelete" /></a></li>
 					<li><a href="<c:url value="../Admin/addaccountentry"/>"><spring:message
 								code="label.bankaccounts.addentry" /></a></li>
-					<li><a href="<c:url value="../Admin/getemail"/>"><spring:message
+					<li><a href="#" class="big-link" data-reveal-id="BankAccount"><spring:message
 								code="label.bankaccounts.editordeleteentry" /></a></li>
 					<li><a href="<c:url value="../Admin/getemail"/>"><spring:message
 								code="label.report" /></a></li>
@@ -466,6 +466,25 @@
 					</tr>
 				</table>
 			</form>
+		</center>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<!-- Bank Account Entry -->
+	<div id="BankAccount" class="reveal-modal">
+		<center>
+			<table cellspacing="10" cellpadding="10">
+				<tr>
+					<th><spring:message code="label.bankaccounts" /></th>
+				</tr>
+				<c:forEach items="${BankAccounts}" var="bank">
+					<tr>
+						<td><a
+							href="<c:url value="/Admin/viewaccountentry/${bank.id}"/>">${bank.bankName} (${bank.accountNo})</a></td>
+					</tr>
+				</c:forEach>
+
+			</table>
 		</center>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>

@@ -3,6 +3,7 @@ package com.Admin.Service;
 import java.util.List;
 
 import com.Admin.bean.BankAccount;
+import com.Admin.bean.BankAccountEntry;
 
 public interface BankAccountService {
 	
@@ -15,4 +16,8 @@ public interface BankAccountService {
 	public Integer update(BankAccount ba);
 	
 	public void delete(String id);
+	
+	public void save(BankAccountEntry bae);
+	
+	public List<BankAccountEntry> getBankAccountEntries(String bankId);
 }
