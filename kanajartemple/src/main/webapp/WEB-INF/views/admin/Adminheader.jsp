@@ -19,6 +19,13 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/js/admin/jquery.reveal.js"/>"></script>
 
+<script>
+$(document).ready(function () {
+	$('.adminmenu').addClass('original').clone().insertAfter('.adminmenu').addClass('cloned').css('position','fixed').css('top','0').css('margin-top','0').css('z-index','500').removeClass('original').hide();
+	scrollIntervalID = setInterval(stickIt, 10);
+	stickIt()
+});
+</script>
 
 </head>
 <body>

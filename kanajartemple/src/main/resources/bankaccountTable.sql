@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `bankaccountentry` (
   `bankaccountentry_id` int(11) DEFAULT '0',
   `amount` double DEFAULT '0',
   `type` varchar(50) DEFAULT '0',
+  `description` varchar(2000) DEFAULT NULL,
   `transaction` varchar(50) DEFAULT '0',
   `transaction_date` date NOT NULL,
   `chequeorrefno` varchar(50) NOT NULL,
@@ -50,10 +51,18 @@ CREATE TABLE IF NOT EXISTS `bankaccountentry` (
   KEY `bankaccountentry_id` (`bankaccountentry_id`),
   KEY `bankaccount_id` (`bankaccount_id`),
   CONSTRAINT `FK_bankaccountentry_bankaccount` FOREIGN KEY (`bankaccount_id`) REFERENCES `bankaccount` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Dumping data for table brahmalingeshwara.bankaccountentry: ~0 rows (approximately)
+-- Dumping data for table brahmalingeshwara.bankaccountentry: ~6 rows (approximately)
 /*!40000 ALTER TABLE `bankaccountentry` DISABLE KEYS */;
+INSERT INTO `bankaccountentry` (`id`, `bankaccount_id`, `bankaccountentry_id`, `amount`, `type`, `description`, `transaction`, `transaction_date`, `chequeorrefno`, `creation_date`) VALUES
+	(1, 1, 1, 500, 'CASH', '0', 'DEPOSIT', '2017-12-21', '', '2017-12-21 13:35:01'),
+	(2, 1, 2, 600, 'CASH', '0', 'DEPOSIT', '2017-12-21', '', '2017-12-21 13:35:14'),
+	(3, 3, 1, 200, 'CASH', '0', 'DEPOSIT', '2017-12-21', '', '2017-12-21 13:35:30'),
+	(4, 1, 3, 500, 'CASH', '0', 'DEPOSIT', '2017-12-21', '', '2017-12-21 15:46:57'),
+	(5, 1, 4, 1001, 'CHEQUE', '0', 'DEPOSIT', '2017-12-14', '48948944', '2017-12-21 16:03:59'),
+	(6, 3, 2, 454, 'CHEQUE', '0', 'WITHDRAW', '2017-12-21', '', '2017-12-21 16:11:07'),
+	(7, 1, 5, 400, 'CHEQUE', 'ewrerewrewrew', 'DEPOSIT', '2017-12-05', '48948944', '2017-12-21 16:30:24');
 /*!40000 ALTER TABLE `bankaccountentry` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
