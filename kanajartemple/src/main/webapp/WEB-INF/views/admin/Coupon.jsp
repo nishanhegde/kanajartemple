@@ -10,34 +10,40 @@
 	href='<c:url value="/resources/css/admin/reciept.css"/>' />
 
 <style type="text/css">
-
 .coupon {
-	font: 16px/1.4 Georgia, serif;
-	height: 1.8in;
+	height: 1.6in;
 	text-align: center;
 	border: 2px;
 	border-style: solid;
 	width: 1.8in;
-	flOat:left;
-	margin:5px;
-	
-}
-.text
-{
-margin-top: 60px;
+	float: left;
+	margin: 5px;
 }
 
+.coupon .number {
+	font: 22px/1.4 Georgia, serif;
+	font-weight: bold;
+}
+
+.coupon .title {
+	font: 14px/1.4 Georgia, serif;
+}
+
+.text {
+	margin-top: 50px;
+}
 </style>
 </head>
-<body >
-<div id="page-wrap">
-<c:forEach var="i" begin="${coupon.noFrom}" end="${coupon.noTo}">
-	<div class="coupon">
-	<div class="text">${i}<br/>
-	${coupon.title}</div>
+<body>
+	<div id="page-wrap">
+		<c:forEach var="i" begin="${coupon.noFrom}" end="${coupon.noTo}">
+			<div class="coupon">
+				<div class="text">
+					<span class="number">${i}</span><br /> <span class="title">${coupon.title}</span>
+				</div>
+			</div>
+		</c:forEach>
+
 	</div>
-</c:forEach>
-	
-</div>
 </body>
 </html>
