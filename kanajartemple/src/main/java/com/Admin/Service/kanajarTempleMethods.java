@@ -65,4 +65,6 @@ public interface kanajarTempleMethods {
 	
 	public java.sql.Date getCustomDate(String formdate);
 	
+	public List<Map<String, Object>> getSashwathaPoojeAddress(String month);
+	
 }

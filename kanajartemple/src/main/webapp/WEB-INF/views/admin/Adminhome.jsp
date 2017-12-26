@@ -35,7 +35,6 @@
 							code="label.bookedpooje" /></a></li>
 				<li><a href="<c:url value="/Admin/SashwathaPoojeReport"/>"><spring:message
 							code="label.report" /></a></li>
-
 			</ul>
 		</div>
 	</div>
@@ -107,6 +106,9 @@
 					<li><a href="<c:url value="/SuperAdmin/address"/>"><spring:message
 								code="label.approve.address" /></a></li>
 				</sec:authorize>
+				<li><a href="#" class="big-link"
+					data-reveal-id="nithyapoojeaddress"><spring:message
+							code="label.nithyapooje.address" /></a></li>
 
 			</ul>
 		</div>
@@ -159,7 +161,7 @@
 								code="label.bankaccounts.editordeleteentry" /></a></li>
 					<li><a href="<c:url value="../Admin/getemail"/>"><spring:message
 								code="label.report" /></a></li>
-								
+
 
 				</ul>
 			</div>
@@ -469,7 +471,7 @@
 		</center>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>
-	
+
 	<!-- Bank Account Entry -->
 	<div id="BankAccount" class="reveal-modal">
 		<center>
@@ -480,11 +482,52 @@
 				<c:forEach items="${BankAccounts}" var="bank">
 					<tr>
 						<td><a
-							href="<c:url value="/Admin/viewaccountentry/${bank.id}"/>">${bank.bankName} (${bank.accountNo})</a></td>
+							href="<c:url value="/Admin/viewaccountentry/${bank.id}"/>">${bank.bankName}
+								(${bank.accountNo})</a></td>
 					</tr>
 				</c:forEach>
 
 			</table>
+		</center>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+
+	<!-- Nithya Pooje Address -->
+	<div id="nithyapoojeaddress" class="reveal-modal">
+		<center>
+			<p class="headingfont">
+				<spring:message code="label.nithyapooje.address" />
+			</p>
+			<hr />
+			<form action="<c:url value="/Admin/nithyapoojeaddress"/>"
+				id="nithyapoojeaddress" name="nithyapoojeaddress"
+				required="required" method="get" target="_blank">
+				<table>
+					<tr>
+						<th><spring:message code="label.nithyapooje.month" /> *</th>
+						<td><select id='month' name="month">
+								<option selected value='JAN'>Janaury</option>
+								<option value='FEB'>February</option>
+								<option value='MAR'>March</option>
+								<option value='APR'>April</option>
+								<option value='MAY'>May</option>
+								<option value='JUN'>June</option>
+								<option value='JUL'>July</option>
+								<option value='AUG'>August</option>
+								<option value='SEP'>September</option>
+								<option value='OCT'>October</option>
+								<option value='NOV'>November</option>
+								<option value='DEC'>December</option>
+						</select></td>
+					</tr>
+
+					<tr>
+						<th></th>
+						<td><input type="submit"
+							value="<spring:message code="label.submit" />" /></td>
+					</tr>
+				</table>
+			</form>
 		</center>
 		<a class="close-reveal-modal">&#215;</a>
 	</div>

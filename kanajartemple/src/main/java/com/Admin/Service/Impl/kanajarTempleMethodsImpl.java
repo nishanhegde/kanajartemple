@@ -164,7 +164,9 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 
 		return PDate;
 	}
-	
-	
 
+	@Override
+	public List<Map<String, Object>> getSashwathaPoojeAddress(String month) {
+		return defaultTempleMethodsDao.getSashwathaPoojeAddress(month);
+	}
 }

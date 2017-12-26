@@ -32,15 +32,14 @@ import com.Admin.bean.Poojebean;
 import com.Admin.bean.SashwathaPoojebean;
 import com.Admin.dao.kanajarTempleMethodsDao;
 
-
 public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Autowired
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	
+
 	@Override
 	public Pooje getPooje(String PoojeId) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Poojeid", PoojeId);
 		String str = "select * from pooje where pid=:Poojeid";
@@ -50,7 +49,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public List<Map<String, Object>> getPooje() {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 
 		String str = "select * from pooje where pid !=1 and Status='Active'";
@@ -60,7 +59,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public List<Map<String, Object>> getAllPooje() {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 
 		String str = "select * from pooje where Status='Active'";
@@ -70,7 +69,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public Poojebean getPoojeDataDetail(String RecNo, String PoojeId) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Poojeid", PoojeId);
 		param.put("RecNo", RecNo);
@@ -80,7 +79,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public List<Map<String, Object>> getPoojeDataDetail(String PoojeId) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Poojeid", PoojeId);
 		String str = "select RecNo,Quantity,Name,Pid,DATE_FORMAT(PDate, '%d-%m-%Y') as PDate,BDate from allpoojedata where Pid=:Poojeid";
@@ -89,7 +88,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public List<Map<String, Object>> getSashwathaPooje() {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		String str = "select * from sashwathapooje";
 		return namedParameterJdbcTemplate.queryForList(str, param);
@@ -97,7 +96,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public SashwathaPoojebean getSashwathaPooje(String RecNo) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("RecNo", RecNo);
 		String str = "select * from sashwathapooje where RecNo=:RecNo";
@@ -106,7 +105,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public Donation getDonation(String DonationId) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("DonationId", DonationId);
 		String str = "select * from donation where Did=:DonationId";
@@ -115,7 +114,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public List<Map<String, Object>> getDonation() {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 
 		String str = "select * from donation where Status='Active'";
@@ -124,7 +123,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public DonationDetail getDonationDataDetail(String RecNo, String DonationId) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("DonationId", DonationId);
 		param.put("RecNo", RecNo);
@@ -134,7 +133,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public List<Map<String, Object>> getDonationDataDetail(String DonationId) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("DonationId", DonationId);
 
@@ -144,7 +143,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public Expense getExpenditure(String Id) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("ExpenseId", Id);
 		String str = "select * from expenditure where Eid=:ExpenseId and Status='Active'";
@@ -153,7 +152,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public List<Map<String, Object>> getExpenditure() {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		String str = "select * from expenditure where Status='Active'";
 		return namedParameterJdbcTemplate.queryForList(str, param);
@@ -161,7 +160,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public ExpenseData getExpenditureData(String RecNo, String Id) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("RecNo", RecNo);
 		param.put("Id", Id);
@@ -171,7 +170,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public List<Map<String, Object>> getExpenditureData(String expenseId) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Eid", expenseId);
 		String str = "select RecNo,Eid,Title,Description,Amount,DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,BDate from allexpendituredata where Eid=:Eid";
@@ -180,7 +179,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public List<Map<String, Object>> getIncome() {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 
 		String str = "select * from income where Status='Active'";
@@ -190,7 +189,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public Income getIncome(String Id) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("IncomeId", Id);
 		String str = "select * from income where Iid=:IncomeId and Status='Active'";
@@ -199,7 +198,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public IncomeData getIncomeData(String RecNo, String Id) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("RecNo", RecNo);
 		param.put("Id", Id);
@@ -209,7 +208,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public List<Map<String, Object>> getIncomeData(String incomeId) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("Id", incomeId);
 		String str = "select RecNo,title,Amount,Iid,DATE_FORMAT(Edate, '%d-%m-%Y') as Edate,Bdate from allincomedata where Iid=:Id";
@@ -218,7 +217,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public boolean checkEmailId(String emailid, String id) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("emailid", emailid);
 		param.put("id", id);
@@ -238,7 +237,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Override
 	public boolean checkMobileNo(String mobileno, String id) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("mobileno", mobileno);
 		param.put("id", id);
@@ -258,7 +257,6 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 	@Override
 	public boolean checkCurrentPassword(String username, String currentpassword) {
 
-	
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("username", username);
 		param.put("currentpassword", currentpassword);
@@ -275,6 +273,14 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 		Map<String, Object> param = new HashMap<String, Object>();
 		String str = "select email from alldonationdata  where email IS NOT NULL AND email != ''  UNION select email from sashwathapooje where email IS NOT NULL AND email != '' ";
 		return namedParameterJdbcTemplate.query(str, param, new EmailRowMapper());
+	}
+
+	@Override
+	public List<Map<String, Object>> getSashwathaPoojeAddress(String month) {
+
+		Map<String, Object> param = new HashMap<String, Object>();
+		String str = "select * from sashwathapooje where Pdate LIKE '%" + month + "'";
+		return namedParameterJdbcTemplate.queryForList(str, param);
 	}
 
 }
