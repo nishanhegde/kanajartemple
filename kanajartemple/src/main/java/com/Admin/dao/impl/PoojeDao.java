@@ -1,5 +1,9 @@
 package com.Admin.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,11 +18,17 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -102,64 +112,30 @@ public class PoojeDao {
 
 	public Integer getSashwathaPoojedetailstoprint(SashwathaPoojebean sbean) {
 
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put("Pid", sbean.getPid());
-		param.put("Name", Utills.replaceWhiteSpace(sbean.getName()));
-		param.put("PDate", getSashwathaDate(sbean.getPdate()));
-		param.put("Address", Utills.replaceWhiteSpace(sbean.getAddress()));
-		param.put("mobile", sbean.getMobileNo());
-		param.put("email", sbean.getEmail());
+		StringBuilder sql = new StringBuilder(
+				"insert into sashwathapooje(Name,Address,PDate,BDate,MobileNo,Email) values(");
+		sql.append("\"" + Utills.replaceWhiteSpace(sbean.getName()) + "\",");
+		sql.append("\"" + Utills.replaceWhiteSpace(sbean.getAddress()) + "\",");
+		sql.append("\"" + getSashwathaDate(sbean.getPdate()) + "\",");
+		sql.append("(select now()),:MobileNo,:Email)");
 
-		String str = "insert into sashwathapooje(Name,Address,PDate,BDate,MobileNo,Email) "
-				+ "values(:Name,:Address,:PDate,(select now()),:mobile,:email)";
+		SqlParameterSource fileParameters = new BeanPropertySqlParameterSource(sbean);
 
-		Integer i = namedParameterJdbcTemplate.update(str, param);
-		Integer RecNo = null;
-		if (i == 1) {
-			String str2 = "select RecNo from sashwathapooje where Name=:Name and PDate=:PDate order by BDate DESC";
-			LinkedHashMap linkedList = (LinkedHashMap) namedParameterJdbcTemplate.queryForList(str2, param).get(0);
-			RecNo = Integer.valueOf(linkedList.get("RecNo").toString());
-		}
-		return RecNo;
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		namedParameterJdbcTemplate.update(sql.toString(), fileParameters, keyHolder);
+		return keyHolder.getKey().intValue();
 	}
 
 	public List<Map<String, Object>> getPoojeReport(Reportbean rbean) {
 
 		Map<String, Object> param = getReportParam(rbean);
-		String PoojeName = null;
-		String BaseAmount = null;
-		String sql = "select Amount,Quantity,PoojeName from pooje p1," + "allpoojedata s1 where  p1.pid=:id and s1."
-				+ rbean.getDates() + ">=:FromDate and s1." + rbean.getDates() + "<=:ToDate and p1.pid=s1.Pid";
-		double grandtotal = 00.0;
-		List total = namedParameterJdbcTemplate.queryForList(sql, param);
-		for (int i = 0; i < total.size(); i++) {
-			LinkedHashMap linkedList = (LinkedHashMap) total.get(i);
-			if (i == 0) {
-				PoojeName = linkedList.get("PoojeName").toString();
-				BaseAmount = linkedList.get("Amount").toString();
-			}
-			Double Amount = (Double) linkedList.get("Amount");
-			Integer quantity = (Integer) linkedList.get("Quantity");
-			grandtotal += Amount * quantity;
+		String str = "select  RecNo,Quantity,Name,Pid,DATE_FORMAT(PDate, '%d-%m-%Y') as PDate,"
+				+ "BDate from allpoojedata" + " where " + rbean.getDates() + ">=:FromDate and " + rbean.getDates()
+				+ "<=:ToDate and  Pid=:id";
 
-		}
-
-		String str = "select  @acount:=@acount+1 SI,RecNo,Quantity,Name,Pid,DATE_FORMAT(PDate, '%d-%m-%Y') as PDate,"
-				+ "BDate from (SELECT @acount:= 0) AS acount,allpoojedata" + " where " + rbean.getDates()
-				+ ">=:FromDate and " + rbean.getDates() + "<=:ToDate and  Pid=:id";
-		List<Map<String, Object>> report = new ArrayList<Map<String, Object>>();
-		Map<String, Object> details = new HashMap<String, Object>();
-		details.put("PoojeName", PoojeName);
-		details.put("TodayDate", new Date());
-		details.put("FromDate", rbean.getFromDate());
-		details.put("ToDate", rbean.getToDate());
-		details.put("BaseAmount", BaseAmount);
-		details.put("Total", grandtotal);
-		report = namedParameterJdbcTemplate.queryForList(str, param);
-		report.add(0, details);
-		return report;
+		return namedParameterJdbcTemplate.queryForList(str, param);
 	}
-	
+
 	public Integer addincome(IncomeData ibean) {
 
 		Map<String, Object> param = new HashMap<String, Object>();
@@ -189,29 +165,11 @@ public class PoojeDao {
 
 		Map<String, Object> param = getReportParam(rbean);
 
-		String str = "select @acount:=@acount+1 SI,RecNo,title,DATE_FORMAT(Bdate, '%d-%m-%Y %h:%i %p') as Bdate,Amount from (SELECT @acount:= 0) AS acount,allincomedata where Iid=:id and "
+		String str = "select RecNo,title,DATE_FORMAT(Bdate, '%d-%m-%Y %h:%i %p') as Bdate,Amount from allincomedata where Iid=:id and "
 				+ rbean.getDates() + ">=:FromDate and " + rbean.getDates() + "<=:ToDate order by " + rbean.getSortby()
 				+ " " + rbean.getOrder();
 
-		List report = new ArrayList();
-		Map<String, Object> details = new HashMap<String, Object>();
-
-		details.put("TodayDate", new Date());
-		details.put("FromDate", rbean.getFromDate());
-		details.put("ToDate", rbean.getToDate());
-		details.put("IncomeName", rbean.getName());
-		report = namedParameterJdbcTemplate.queryForList(str, param);
-		double grandtotal = 00.0;
-
-		for (int i = 0; i < report.size(); i++) {
-			LinkedHashMap linkedList = (LinkedHashMap) report.get(i);
-
-			grandtotal += Double.parseDouble(linkedList.get("Amount").toString());
-		}
-		details.put("Total", grandtotal);
-		report.add(0, details);
-
-		return report;
+		return namedParameterJdbcTemplate.queryForList(str, param);
 	}
 
 	public List getSashwathaReport(Reportbean rbean) {
@@ -221,36 +179,12 @@ public class PoojeDao {
 			param.put("FromDate", getSashwathaDate(rbean.getFromDate()));
 			param.put("ToDate", getSashwathaDate(rbean.getToDate()));
 		}
-		String sql = "select Amount from pooje p1,sashwathapooje s1 where p1.pid=:id and s1." + rbean.getDates()
-				+ ">=:FromDate and s1." + rbean.getDates() + "<=:ToDate and p1.pid=s1.Pid or " + rbean.getDates()
-				+ "=:ToDate ";
-		String str = "select @acount:=@acount+1 SI,RecNo,Name,Address,PDate,MobileNo,Email,BDate,Pid"
-				+ " from (SELECT @acount:= 0) AS acount,sashwathapooje where " + rbean.getDates() + ">=:FromDate and "
-				+ rbean.getDates() + "<=:ToDate or " + rbean.getDates() + " LIKE '%:ToDate%' ";
 
-		double grandtotal = 00.0;
-		String BaseAmount = null;
-		List total = namedParameterJdbcTemplate.queryForList(sql, param);
-		for (int i = 0; i < total.size(); i++) {
-			LinkedHashMap<String, Object> linkedList = (LinkedHashMap) total.get(i);
-			if (i == 0) {
-				BaseAmount = linkedList.get("Amount").toString();
-			}
-			grandtotal += Double.parseDouble(linkedList.get("Amount").toString());
-		}
+		String str = "select RecNo,Name,Address,PDate,MobileNo,Email,BDate,Pid" + " from sashwathapooje where "
+				+ rbean.getDates() + ">=:FromDate and " + rbean.getDates() + "<=:ToDate or " + rbean.getDates()
+				+ " LIKE '%:ToDate%' ";
 
-		List<Map<String, Object>> report = new ArrayList<Map<String, Object>>();
-		Map<String, Object> details = new HashMap<String, Object>();
-
-		details.put("TodayDate", new Date());
-		details.put("FromDate", rbean.getFromDate());
-		details.put("ToDate", rbean.getToDate());
-		details.put("BaseAmount", BaseAmount);
-		details.put("Total", grandtotal);
-		report = namedParameterJdbcTemplate.queryForList(str, param);
-		report.add(0, details);
-
-		return report;
+		return namedParameterJdbcTemplate.queryForList(str, param);
 	}
 
 	/* Donation */
@@ -264,24 +198,11 @@ public class PoojeDao {
 		param.put("mobile", dbean.getMobileNO());
 		param.put("email", dbean.getEmail());
 		param.put("Amount", dbean.getAmount());
-		Integer RecNo = null;
+		Integer RecNo = namedParameterJdbcTemplate.queryForObject(
+				"select IFNULL(MAX(RecNo), 0) + 1 as RecNo from alldonationdata where Did=:Did", param, Integer.class);
+		param.put("RecNo", RecNo);
 
-		try {
-			RecNo = namedParameterJdbcTemplate.queryForObject(
-					"select MAX(RecNo)+1 as RecNo from alldonationdata where Did=:Did", param, Integer.class);
-
-			param.put("RecNo", RecNo);
-
-		} catch (Exception e) {
-			RecNo = 1;
-			param.put("RecNo", RecNo);
-		}
-		if (RecNo == null) {
-			RecNo = 1;
-			param.put("RecNo", RecNo);
-		}
 		String str = "insert into alldonationdata "
-
 				+ "(RecNo,Name,Address,Amount,mobile,email,BDate,Did) values(:RecNo,:Name,:Address,:Amount,:mobile,:email,(select now()),:Did)";
 
 		Integer i = namedParameterJdbcTemplate.update(str, param);
@@ -296,28 +217,11 @@ public class PoojeDao {
 
 		Map<String, Object> param = getReportParam(rbean);
 		param.put("amount", rbean.getAmount());
-		String str = "select @acount:=@acount+1 SI,RecNo,Name,Address,Amount,mobile,email,BDate,"
-				+ "Did from (SELECT @acount:= 0) AS acount,alldonationdata"
+		String str = "select RecNo,Name,Address,Amount,mobile,email,BDate," + "Did from alldonationdata"
 				+ " where BDate>=:FromDate and BDate<=:ToDate and Amount>=:amount and Did=:id  order by "
 				+ rbean.getSortby() + " " + rbean.getOrder();
 
-		double grandtotal = 00.0;
-		List report = namedParameterJdbcTemplate.queryForList(str, param);
-		for (int i = 0; i < report.size(); i++) {
-			LinkedHashMap linkedList = (LinkedHashMap) report.get(i);
-
-			grandtotal += Double.parseDouble(linkedList.get("Amount").toString());
-		}
-
-		Map<String, Object> details = new HashMap<String, Object>();
-		details.put("DonationName", DonationName);
-		details.put("TodayDate", new Date());
-		details.put("FromDate", rbean.getFromDate());
-		details.put("ToDate", rbean.getToDate());
-		details.put("Total", grandtotal);
-		report.add(0, details);
-
-		return report;
+		return namedParameterJdbcTemplate.queryForList(str, param);
 	}
 
 	public Integer getExpenditureReceipt(ExpenseData ebean) {
@@ -351,29 +255,11 @@ public class PoojeDao {
 	public List getExpenditureReport(Reportbean rbean) {
 
 		Map<String, Object> param = getReportParam(rbean);
-		String str = "select @acount:=@acount+1 SI,RecNo,Title,Description,Amount,"
-				+ "DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,"
-				+ "BDate from (SELECT @acount:= 0) AS acount,allexpendituredata where Eid=:id and " + rbean.getDates()
-				+ ">=:FromDate and " + rbean.getDates() + "<=:ToDate  order by " + rbean.getSortby() + " "
-				+ rbean.getOrder();
+		String str = "select RecNo,Title,Description,Amount," + "DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,"
+				+ "BDate from allexpendituredata where Eid=:id and " + rbean.getDates() + ">=:FromDate and "
+				+ rbean.getDates() + "<=:ToDate  order by " + rbean.getSortby() + " " + rbean.getOrder();
 
-		double grandtotal = 00.0;
-		List report = namedParameterJdbcTemplate.queryForList(str, param);
-		for (int i = 0; i < report.size(); i++) {
-			LinkedHashMap linkedList = (LinkedHashMap) report.get(i);
-			grandtotal += Double.parseDouble(linkedList.get("Amount").toString());
-		}
-
-		Map<String, Object> details = new HashMap<String, Object>();
-
-		details.put("TodayDate", new Date());
-		details.put("FromDate", rbean.getFromDate());
-		details.put("ToDate", rbean.getToDate());
-		details.put("Total", grandtotal);
-		details.put("ExpenditureName", rbean.getName());
-		report.add(0, details);
-
-		return report;
+		return namedParameterJdbcTemplate.queryForList(str, param);
 	}
 
 	public List getAllReport(Reportbean rbean) {

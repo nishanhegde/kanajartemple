@@ -83,15 +83,15 @@
 				<text><![CDATA[Total:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="110" y="95" width="210" height="20" forecolor="#333333" uuid="d6c8c96d-a4cb-480c-bb64-0ae0ade5748e"/>
+				<reportElement x="100" y="95" width="210" height="20" forecolor="#333333" uuid="d6c8c96d-a4cb-480c-bb64-0ae0ade5748e"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DonationName}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="95" width="110" height="20" uuid="3c140c35-cef8-4325-9aaf-09dda28a72a5"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="0" y="95" width="100" height="20" uuid="3c140c35-cef8-4325-9aaf-09dda28a72a5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Donation Name:]]></text>
@@ -174,7 +174,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Nirmala UI"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{SI}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

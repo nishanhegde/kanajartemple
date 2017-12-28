@@ -15,7 +15,7 @@ public class DefaultBankAccountService implements BankAccountService {
 	private BankAccountDao bankAccountDao;
 
 	@Override
-	public void save(BankAccount ba) {
+	public synchronized  void save(BankAccount ba) {
 		bankAccountDao.save(ba);
 	}
 
@@ -40,7 +40,7 @@ public class DefaultBankAccountService implements BankAccountService {
 	}
 
 	@Override
-	public void save(BankAccountEntry bae) {
+	public synchronized void save(BankAccountEntry bae) {
 		bankAccountDao.save(bae);
 	}
 
