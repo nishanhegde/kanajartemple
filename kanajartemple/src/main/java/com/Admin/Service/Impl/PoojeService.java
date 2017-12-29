@@ -141,7 +141,7 @@ public class PoojeService {
 		
 	}
 
-	private double calculateGrandTotal(List<Map<String, Object>> report) {
+	public double calculateGrandTotal(List<Map<String, Object>> report) {
 		return report.stream().mapToDouble(rept -> (Double) ((LinkedHashMap) rept).get("Amount")).sum();
 	}
 
