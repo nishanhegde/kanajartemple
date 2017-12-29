@@ -7,8 +7,7 @@ public class BankAccount {
 	private String bankName;
 	private String address;
 	private String ifscCode;
-	
-	
+		
 	public int getId() {
 		return id;
 	}
