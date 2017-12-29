@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2017-01-19T12:32:39 -->
+<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PoojeReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="99fd6200-3d19-41f1-a263-233cce5381f7">
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -30,7 +30,7 @@
 	<subDataset name="Table Dataset 1" uuid="628a5a29-b97b-457d-9068-d753d7765d60"/>
 	<field name="PoojeName" class="java.lang.String"/>
 	<field name="TodayDate" class="java.util.Date"/>
-	<field name="RecNo" class="java.lang.String"/>
+	<field name="RecNo" class="java.lang.Integer"/>
 	<field name="Name" class="java.lang.String"/>
 	<field name="PDate" class="java.lang.String"/>
 	<field name="Total" class="java.lang.Double"/>
@@ -209,7 +209,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Nirmala UI"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{SI}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="273" y="0" width="50" height="20" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="8677b66f-bf94-41b7-a2dc-948d0c8ff214"/>

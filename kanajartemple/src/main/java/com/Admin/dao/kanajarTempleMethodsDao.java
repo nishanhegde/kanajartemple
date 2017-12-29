@@ -60,5 +60,7 @@ public interface kanajarTempleMethodsDao {
 	public boolean checkCurrentPassword(String username,String currentpassword);
 	
 	public List<String> getEmails();
+	
+	public List<Map<String, Object>> getSashwathaPoojeAddress(String month);
 
 }

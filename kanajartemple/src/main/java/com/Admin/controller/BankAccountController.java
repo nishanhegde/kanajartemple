@@ -1,8 +1,10 @@
 package com.Admin.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +34,7 @@ import com.Admin.bean.BankAccount;
 import com.Admin.bean.BankAccountEntry;
 import com.Admin.bean.CMSbean;
 import com.Admin.bean.RegistrationBean;
-
+import com.Admin.bean.Reportbean;
 import com.Admin.bean.ChangePassword;
 import com.Admin.bean.Coupon;
 import com.Admin.validator.ChangePasswordValidator;
@@ -40,6 +42,9 @@ import com.Admin.validator.EditProfileValidator;
 import com.Brahmalingeshwara.kanajartemple.KanajarTempleConstants;
 import com.Brahmalingeshwara.kanajartemple.TransactionEnum;
 import com.Brahmalingeshwara.kanajartemple.TypeEnum;
+
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 @RequestMapping(value = "/Admin")
@@ -76,8 +81,6 @@ public class BankAccountController {
 		return getEditAccountView(bankAccountService.getBankAccount(id), model);
 	}
 
-	
-
 	@RequestMapping(value = "/editaccount", method = RequestMethod.POST)
 	public String updateAccount(@ModelAttribute BankAccount ba, Model model, Locale locale) {
 
@@ -86,18 +89,18 @@ public class BankAccountController {
 		}
 		return getEditAccountView(ba, model);
 	}
-	
+
 	private String getEditAccountView(BankAccount ba, Model model) {
 		model.addAttribute(ba);
 		return KanajarTempleConstants.BANK_ACC_VIEW + "/editaccount";
 	}
-	
+
 	@RequestMapping(value = "/deleteaccount/{id}", method = RequestMethod.GET)
 	public String deleteAccount(@PathVariable String id, Model model) {
 		bankAccountService.delete(id);
 		return REDIRECT_VIEW_ACCOUNT;
 	}
-	
+
 	@RequestMapping(value = "/addaccountentry", method = RequestMethod.GET)
 	public String addAccountEntry(Model model) {
 		model.addAttribute(new BankAccountEntry());
@@ -108,15 +111,29 @@ public class BankAccountController {
 	}
 
 	@RequestMapping(value = "/addaccountentry", method = RequestMethod.POST)
-	public String saveAccountEntry(@ModelAttribute BankAccountEntry bae,Model model) {
+	public String saveAccountEntry(@ModelAttribute BankAccountEntry bae, Model model) {
 		bankAccountService.save(bae);
-		return KanajarTempleConstants.REDIRECT_PRIFIX + "/Admin/viewaccountentry/"+bae.getBankAccountId();
+		return KanajarTempleConstants.REDIRECT_PRIFIX + "/Admin/viewaccountentry/" + bae.getBankAccountId();
 	}
-	
+
 	@RequestMapping(value = "/viewaccountentry/{bankId}", method = RequestMethod.GET)
-	public String viewAccountEntry(@PathVariable String bankId,Model model) {
+	public String viewAccountEntry(@PathVariable String bankId, Model model) {
 		model.addAttribute("bankAccountEntry", bankAccountService.getBankAccountEntries(bankId));
 		model.addAttribute(bankAccountService.getBankAccount(bankId));
 		return KanajarTempleConstants.BANK_ACC_VIEW + "/viewaccountentry";
+	}
+
+	@RequestMapping(value = "/bankentryreport", method = RequestMethod.GET)
+	public String bankEntryReport(Model model) {
+		model.addAttribute("bankAccounts", bankAccountService.getBankAccounts());
+		return KanajarTempleConstants.BANK_ACC_VIEW + "/bankentryreport";
+	}
+
+	@RequestMapping(value = "/bankentryreport", method = RequestMethod.POST)
+	public ModelAndView bankEntryReport(Model model, Reportbean rbean) {
+
+		ModelAndView mv = new ModelAndView("BankEntryReport", bankAccountService.getBankEntryReport(rbean));
+		mv.addObject("format", rbean.getSaveAs());
+		return mv;
 	}
 }

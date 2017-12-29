@@ -54,7 +54,7 @@ public class AdminHome {
 
 	@Autowired
 	private EditProfileValidator editProfileValidator;
-	
+
 	@Resource
 	private BankAccountService bankAccountService;
 
@@ -70,10 +70,10 @@ public class AdminHome {
 		return "admin/couponGenerator";
 	}
 
-	@RequestMapping(value = "Admin/coupon",method = RequestMethod.POST)
-	public String setCoupon(@ModelAttribute Coupon coupon,Model model) {
-		
-		model.addAttribute("coupon",coupon);
+	@RequestMapping(value = "Admin/coupon", method = RequestMethod.POST)
+	public String setCoupon(@ModelAttribute Coupon coupon, Model model) {
+
+		model.addAttribute("coupon", coupon);
 		return "admin/Coupon";
 	}
 
@@ -208,12 +208,19 @@ public class AdminHome {
 		SecurityContextHolder.getContext().setAuthentication(null);
 		SecurityContextHolder.clearContext();
 	}
-	
+
 	@RequestMapping(value = "Admin/getemail")
 	public ModelAndView getemail(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView mv = new ModelAndView("admin/getemail");
 		mv.addObject("emails", defaultTempleMethods.getEmails());
 		return mv;
+	}
+
+	@RequestMapping(value = "/Admin/nithyapoojeaddress")
+	public String getAddressList(@RequestParam String month,Model model) {
+
+		model.addAttribute("PoojeDetails", defaultTempleMethods.getSashwathaPoojeAddress(month));
+		return "admin/nithyapoojeaddress";
 	}
 }

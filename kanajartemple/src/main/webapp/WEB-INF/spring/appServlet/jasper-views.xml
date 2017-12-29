@@ -11,32 +11,93 @@
 	<!-- Pooje Report -->
 	<bean id="PoojeReport"
 		class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
-		p:url="classpath:PoojeReport.jrxml" p:reportDataKey="datasource" />
+		p:url="classpath:PoojeReport.jrxml" p:reportDataKey="datasource">
+		<property name="contentDispositionMappings">
+			<props>
+				<prop key="pdf">attachment; filename=PoojeReport.pdf</prop>
+				<prop key="xls">attachment; filename=PoojeReport.xls</prop>
+				<prop key="csv">attachment; filename=PoojeReport.csv</prop>
+			</props>
+		</property>
+	</bean>
+
 
 	<!-- income Report -->
 	<bean id="IncomeReport"
 		class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
-		p:url="classpath:IncomeReport.jrxml" p:reportDataKey="datasource" />
+		p:url="classpath:IncomeReport.jrxml" p:reportDataKey="datasource">
+		<property name="contentDispositionMappings">
+			<props>
+				<prop key="pdf">attachment; filename=IncomeReport.pdf</prop>
+				<prop key="xls">attachment; filename=IncomeReport.xls</prop>
+				<prop key="csv">attachment; filename=IncomeReport.csv</prop>
+			</props>
+		</property>
+	</bean>
 
 	<!-- Sashwatha Report -->
 	<bean id="SashwathaReport"
 		class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
-		p:url="classpath:SashwathaReport.jrxml" p:reportDataKey="datasource" />
+		p:url="classpath:SashwathaReport.jrxml" p:reportDataKey="datasource">
+		<property name="contentDispositionMappings">
+			<props>
+				<prop key="pdf">attachment; filename=SashwarthaPoojeReport.pdf</prop>
+				<prop key="xls">attachment; filename=SashwarthaPoojeReport.xls</prop>
+				<prop key="csv">attachment; filename=SashwarthaPoojeReport.csv</prop>
+			</props>
+		</property>
+	</bean>
 
 
 	<!-- Donation Report -->
 	<bean id="DonationReport"
 		class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
-		p:url="classpath:DonationReport.jrxml" p:reportDataKey="datasource" />
+		p:url="classpath:DonationReport.jrxml" p:reportDataKey="datasource">
+		<property name="contentDispositionMappings">
+			<props>
+				<prop key="pdf">attachment; filename=DonationReport.pdf</prop>
+				<prop key="xls">attachment; filename=DonationReport.xls</prop>
+				<prop key="csv">attachment; filename=DonationReport.csv</prop>
+			</props>
+		</property>
+	</bean>
 
 	<!-- Expense Report -->
 	<bean id="ExpenditureReport"
 		class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
-		p:url="classpath:ExpenditureReport.jrxml" p:reportDataKey="datasource" />
+		p:url="classpath:ExpenditureReport.jrxml" p:reportDataKey="datasource">
+		<property name="contentDispositionMappings">
+			<props>
+				<prop key="pdf">attachment; filename=ExpenditureReport.pdf</prop>
+				<prop key="xls">attachment; filename=ExpenditureReport.xls</prop>
+				<prop key="csv">attachment; filename=ExpenditureReport.csv</prop>
+			</props>
+		</property>
+	</bean>
 
 	<!-- All Report -->
 	<bean id="AllReport"
 		class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
-		p:url="classpath:AllReport.jrxml" p:reportDataKey="datasource" />
+		p:url="classpath:AllReport.jrxml" p:reportDataKey="datasource">
+		<property name="contentDispositionMappings">
+			<props>
+				<prop key="pdf">attachment; filename=AllReport.pdf</prop>
+				<prop key="xls">attachment; filename=AllReport.xls</prop>
+				<prop key="csv">attachment; filename=AllReport.csv</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="BankEntryReport"
+		class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+		p:url="classpath:BankEntryReport.jrxml" p:reportDataKey="datasource">
+		<property name="contentDispositionMappings">
+			<props>
+				<prop key="pdf">attachment; filename=BankReport.pdf</prop>
+				<prop key="xls">attachment; filename=BankReport.xls</prop>
+				<prop key="csv">attachment; filename=BankReport.csv</prop>
+			</props>
+		</property>
+	</bean>
 
 </beans>
