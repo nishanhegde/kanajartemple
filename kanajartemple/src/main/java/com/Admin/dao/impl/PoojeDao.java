@@ -31,7 +31,7 @@ import com.Admin.bean.SashwathaPoojebean;
 import com.Brahmalingeshwara.kanajartemple.Utills;
 
 @Component("poojeDao")
-public class PoojeDao {
+public class PoojeDao extends AbstractDao {
 
 	Logger log = Logger.getLogger(PoojeDao.class);
 
@@ -43,41 +43,13 @@ public class PoojeDao {
 
 	private String month[] = { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
 
-	private java.sql.Date getCustomDate(String formdate) {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-		Date date = null;
-		try {
-			date = formatter.parse(formdate);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		java.sql.Date PDate = new java.sql.Date(date.getTime());
-
-		return PDate;
-	}
-
+	
 	private String getSashwathaDate(String date) {
 		return (date.substring(0, 3) + month[Integer.parseInt(date.substring(3, 5)) - 1]);
 
 	}
 
-	private Map<String, Object> getReportParam(Reportbean rbean) {
-		Map<String, Object> param = new HashMap<String, Object>();
 
-		param.put("id", rbean.getId());
-		param.put("ColumnName", rbean.getDates());
-
-		param.put("FromDate", getCustomDate(rbean.getFromDate()));
-		if (rbean.getDates() != null && rbean.getDates().equalsIgnoreCase("BDate")) {
-			Integer dd = Integer.parseInt(rbean.getToDate().substring(0, 2));
-			dd++;
-			String todate = dd + rbean.getToDate().substring(2);
-			param.put("ToDate", getCustomDate(todate));
-		} else {
-			param.put("ToDate", getCustomDate(rbean.getToDate()));
-		}
-		return param;
-	}
 
 	public String getPoojedetailstoprint(Poojebean pbean) {
 

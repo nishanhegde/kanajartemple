@@ -14,6 +14,9 @@ public class BankAccountEntry {
 	private String chequeOrRefNo;
 	private String transactionDate;
 	private String description;
+	private Double credit;
+	private Double debit;
+	private Double balance;
 	
 	public Integer getId() {
 		return id;
@@ -69,5 +72,23 @@ public class BankAccountEntry {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public Double getCredit() {
+		return credit;
+	}
+	public void setCredit(Double credit) {
+		this.credit = credit;
+	}
+	public Double getDebit() {
+		return debit;
+	}
+	public void setDebit(Double debit) {
+		this.debit = debit;
+	}
+	public Double getBalance() {
+		return balance;
+	}
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}	
 	
 }

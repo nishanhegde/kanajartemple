@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.Admin.bean.BankAccount;
 import com.Admin.bean.BankAccountEntry;
+import com.Admin.bean.Reportbean;
 
 public interface BankAccountDao {
 
@@ -20,4 +21,8 @@ public interface BankAccountDao {
 	public void save(BankAccountEntry bae);
 	
 	public List<BankAccountEntry> getBankAccountEntries(String bankId);
+	
+	public Double getBalance(Integer bankAccountId);
+	
+	public List<BankAccountEntry> getBankEntryReport(Reportbean rbean);
 }

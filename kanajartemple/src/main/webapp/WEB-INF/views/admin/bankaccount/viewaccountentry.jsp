@@ -20,12 +20,13 @@
 			<thead>
 				<tr>
 					<th><spring:message code="label.bankaccount.id" /></th>
-					<th><spring:message code="label.bankaccountentry.description" /></th>
-					<th><spring:message code="label.bankaccountentry.transaction" /></th>
-					<th><spring:message code="label.bankaccountentry.type" /></th>
 					<th><spring:message
 							code="label.bankaccountentry.transactiondate" /></th>
-					<th><spring:message code="label.bankaccountentry.amount" /></th>
+					<th><spring:message code="label.bankaccountentry.description" /></th>
+					<th><spring:message code="label.bankaccountentry.credit" /></th>
+				
+					<th><spring:message code="label.bankaccountentry.debit" /></th>
+					<th><spring:message code="label.bankaccountentry.balance" /></th>
 					<%-- <th><spring:message code="label.edit" /></th>
 					<th><spring:message code="label.delete" /></th> --%>
 				</tr>
@@ -43,16 +44,17 @@
 								<p class="title">${app.bankAccountEntryId}</p>
 
 							</td>
-							<td >
-								<p class="desc">${app.description}</p>
-							</td>
-							<td><p>${app.transaction}</td>
-
-							<td><p>${app.type}
-									<c:if test="${not empty app.chequeOrRefNo}">
-										<br />(${app.chequeOrRefNo})</c:if></td>
 							<td><p>${app.transactionDate}</td>
-							<td><p>${app.amount}</td>
+							<td >
+								<p class="desc">${app.description}
+								<c:if test="${not empty app.chequeOrRefNo}">
+										<br />(${app.chequeOrRefNo})</c:if></p>
+							</td>
+							<td><p>${app.credit}</p></td>
+
+							<td><p>${app.debit}</p></td>
+							
+							<td><p>${app.balance}</p></td>
 
 
 							<%-- <td class="td-block">

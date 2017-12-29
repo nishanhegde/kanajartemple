@@ -1,13 +1,20 @@
 package com.Admin.Service.Impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import com.Admin.Service.BankAccountService;
 import com.Admin.bean.BankAccount;
 import com.Admin.bean.BankAccountEntry;
+import com.Admin.bean.Reportbean;
 import com.Admin.dao.BankAccountDao;
+import com.Brahmalingeshwara.kanajartemple.TransactionEnum;
+
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class DefaultBankAccountService implements BankAccountService {
 
@@ -15,7 +22,7 @@ public class DefaultBankAccountService implements BankAccountService {
 	private BankAccountDao bankAccountDao;
 
 	@Override
-	public synchronized  void save(BankAccount ba) {
+	public synchronized void save(BankAccount ba) {
 		bankAccountDao.save(ba);
 	}
 
@@ -41,6 +48,15 @@ public class DefaultBankAccountService implements BankAccountService {
 
 	@Override
 	public synchronized void save(BankAccountEntry bae) {
+
+		Double openingBalance = bankAccountDao.getBalance(bae.getBankAccountId());
+		if (openingBalance == null) {
+			openingBalance = getBankAccount(bae.getBankAccountId().toString()).getOpeningBalance();
+		}
+		double balance = openingBalance.doubleValue();
+		double amount = bae.getAmount().doubleValue();
+		balance = bae.getTransaction().equals(TransactionEnum.DEPOSIT) ? balance + amount : balance - amount;
+		bae.setBalance(balance);
 		bankAccountDao.save(bae);
 	}
 
@@ -49,4 +65,21 @@ public class DefaultBankAccountService implements BankAccountService {
 		return bankAccountDao.getBankAccountEntries(bankId);
 	}
 
+	@Override
+	public Map<String, Object> getBankEntryReport(Reportbean rbean) {
+		JRDataSource datasource = new JRBeanCollectionDataSource(bankAccountDao.getBankEntryReport(rbean));
+
+		BankAccount bankAccount=getBankAccount(rbean.getId());
+		Map<String, Object> parameterMap = new HashMap<String, Object>();
+		parameterMap.put("datasource", datasource);
+		parameterMap.put("bankName", bankAccount.getBankName());
+		parameterMap.put("ifscCode", bankAccount.getIfscCode());
+		parameterMap.put("accountNo",bankAccount.getAccountNo());
+		parameterMap.put("FromDate", rbean.getFromDate());
+		parameterMap.put("ToDate", rbean.getToDate());
+	
+		return parameterMap;
+	}
+
+	
 }

@@ -159,7 +159,7 @@
 								code="label.bankaccounts.addentry" /></a></li>
 					<li><a href="#" class="big-link" data-reveal-id="BankAccount"><spring:message
 								code="label.bankaccounts.editordeleteentry" /></a></li>
-					<li><a href="<c:url value="../Admin/getemail"/>"><spring:message
+					<li><a href="<c:url value="../Admin/bankentryreport"/>"><spring:message
 								code="label.report" /></a></li>
 
 

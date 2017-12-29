@@ -25,7 +25,7 @@
 
 				<tr>
 					<th><spring:message code="label.bankaccountentry.amount" /> *</th>
-					<td><input type="number" name="amount" id="amount"
+					<td><input type="number" name="amount" id="amount" placeholder="&#8377"
 						required="required" /></td>
 				</tr>
 
@@ -44,13 +44,13 @@
 							</c:forEach></select></td>
 				</tr>
 
-				<tr>
+				<%-- <tr>
 					<th><spring:message code="label.bankaccountentry.type" /> *</th>
 					<td><select name="type"><c:forEach var="type"
 								items="${types}">
 								<option value="${type}">${type}</option>
 							</c:forEach></select></td>
-				</tr>
+				</tr> --%>
 
 				<tr>
 					<th><spring:message

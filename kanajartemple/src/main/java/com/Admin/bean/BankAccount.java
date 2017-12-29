@@ -7,6 +7,7 @@ public class BankAccount {
 	private String bankName;
 	private String address;
 	private String ifscCode;
+	private Double openingBalance;
 		
 	public int getId() {
 		return id;
@@ -39,4 +40,10 @@ public class BankAccount {
 	public void setIfscCode(String ifscCode) {
 		this.ifscCode = ifscCode;
 	}
+	public Double getOpeningBalance() {
+		return openingBalance;
+	}
+	public void setOpeningBalance(Double openingBalance) {
+		this.openingBalance = openingBalance;
+	}	
 }

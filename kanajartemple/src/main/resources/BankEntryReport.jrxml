@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="IncomeReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43e0c141-5909-46d5-b2d4-bd3042c6f231">
+	<property name="net.sf.jasperreports.export.html.using.images.to.align" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="bankName" class="java.lang.String"/>
+	<parameter name="accountNo" class="java.lang.String"/>
+	<parameter name="ifscCode" class="java.lang.String"/>
+	<parameter name="FromDate" class="java.lang.String"/>
+	<parameter name="ToDate" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="transactionDate" class="java.lang.String"/>
+	<field name="balance" class="java.lang.Double"/>
+	<field name="chequeOrRefNo" class="java.lang.String"/>
+	<field name="credit" class="java.lang.Double"/>
+	<field name="debit" class="java.lang.Double"/>
+	<title>
+		<band height="147" splitType="Stretch">
+			<staticText>
+				<reportElement x="112" y="0" width="360" height="31" uuid="784a70fd-e72b-4708-8a2d-0460f305f3ab"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Shree Brahmalingeshwara Temple Bank Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="59" width="40" height="20" uuid="09c38e88-da3a-4e37-926e-62c789dd4452"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="53" y="59" width="113" height="20" uuid="c5a28df7-a92c-4b16-a4c2-12a41dfcd247"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FromDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="59" width="100" height="20" uuid="62c76691-f8d3-46ea-afda-e640bc8e4d84"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ToDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="59" width="43" height="20" uuid="bb73274d-e352-4140-9400-065bf86114fc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="209" y="59" width="33" height="20" uuid="3379b954-e17d-4c32-9788-8e618e71fb88"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="91" width="96" height="20" uuid="f072f134-b0d3-42c7-b9f2-5d97073a94a5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bankName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="91" width="70" height="20" uuid="3aa16154-95bb-4bc1-b339-124604f487f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bank Name:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="121" width="555" height="1" uuid="6a898828-d681-476d-984d-8c51b9fa425c"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="122" width="32" height="20" uuid="7d24ee7e-10bc-43e2-a0f6-91c1402c6f48"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[S.I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="122" width="64" height="20" uuid="ce427d00-b3ff-4b3e-a050-4790baf3387e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trans Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="103" y="122" width="123" height="20" uuid="05e2c3bc-0e63-44ac-862a-ab939235dee5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="122" width="65" height="20" uuid="2e3ac540-905f-48f3-be0a-9f65653baa83"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Credit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="122" width="67" height="21" uuid="98c668ca-b727-48cf-ad98-8fb36b88c933"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="144" width="553" height="1" uuid="c2162a7b-8a5a-4d9b-9d9b-96648ad9e4be"/>
+			</line>
+			<staticText>
+				<reportElement x="209" y="91" width="39" height="20" uuid="15901db1-111f-498c-899d-0e4bfb981e5c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Acc :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="252" y="90" width="128" height="20" forecolor="#333333" uuid="3b68198e-d280-43b8-a107-3bb01393c226"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{accountNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="398" y="91" width="40" height="20" uuid="bceb1806-8d1c-4ca5-b06d-81abef73f8fc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IFSC :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="91" width="110" height="19" uuid="5254ded8-7796-4317-9412-bbda50db641b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ifscCode}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="438" y="59" width="110" height="20" uuid="1ede5422-8ba5-4b49-805e-66f5f476fde6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="407" y="122" width="69" height="20" uuid="d23c4546-5d03-4a91-85d2-a7ad11a7b44c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Debit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="122" width="80" height="20" uuid="700df6b2-3677-4aa2-8aaa-42fb014f70ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cq No]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="22">
+			<textField isBlankWhenNull="true">
+				<reportElement x="103" y="0" width="148" height="20" isRemoveLineWhenBlank="true" uuid="faf9b9f6-45ab-4be8-877b-0e44694cae47"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy h.mm a" isBlankWhenNull="true">
+				<reportElement x="35" y="0" width="63" height="20" isRemoveLineWhenBlank="true" uuid="9ea9a170-2e51-463e-b531-9bb305be5531"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transactionDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="33" height="20" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="99a42d64-b9f8-4528-ba63-138485b98921"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="0" width="67" height="20" isRemoveLineWhenBlank="true" uuid="c462389b-0098-4f62-b5d6-327855274dd6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{balance}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="407" y="2" width="69" height="18" isRemoveLineWhenBlank="true" uuid="f927af9c-90e5-41e4-84a5-e2c8b5df7e5e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{debit}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="340" y="2" width="65" height="18" isRemoveLineWhenBlank="true" uuid="07ebef1a-5b3a-4726-abeb-e1494be15e70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{credit}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="260" y="2" width="80" height="18" isRemoveLineWhenBlank="true" uuid="f92bffa3-1b41-40b1-b6e6-6c0a9da07b78"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{chequeOrRefNo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="17">
+			<staticText>
+				<reportElement x="0" y="0" width="115" height="17" forecolor="#999999" uuid="fb6e944a-90ba-4a76-af79-02a0ff036e2c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="10"/>
+				</textElement>
+				<text><![CDATA[www.kanajartemple.com]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="523" y="0" width="21" height="17" forecolor="#999999" uuid="5e1fe034-c684-461d-be01-34aa59a9cf1a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

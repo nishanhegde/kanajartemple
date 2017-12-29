@@ -20,10 +20,19 @@ public class BankAccountEntryRowMapper implements RowMapper<BankAccountEntry> {
 		ba.setId(rs.getInt("id"));
 		ba.setBankAccountId(rs.getInt("bankaccount_id"));
 		ba.setBankAccountEntryId(rs.getInt("bankaccountentry_id"));
-		ba.setAmount(rs.getDouble("amount"));
-		ba.setType(TypeEnum.valueOf(rs.getString("type")));
-		ba.setTransaction(TransactionEnum.valueOf(rs.getString("transaction")));
+		Double amount = rs.getDouble("amount");
+		ba.setAmount(amount);
 
+		TransactionEnum transaction = TransactionEnum.valueOf(rs.getString("transaction"));
+		// ba.setType(TypeEnum.valueOf(rs.getString("type")));
+		ba.setTransaction(transaction);
+
+		if (transaction.equals(TransactionEnum.DEPOSIT)) {
+			ba.setCredit(amount);
+		} else {
+			ba.setDebit(amount);
+		}
+		ba.setBalance(rs.getDouble("balance"));
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		ba.setTransactionDate(formatter.format(rs.getDate("transaction_date")));
 

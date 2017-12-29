@@ -20,6 +20,7 @@
 					<th><spring:message code="label.bankaccount.id" /></th>
 					<th><spring:message code="label.bankaccount.name" /></th>
 					<th><spring:message code="label.bankaccount.accountno" /></th>
+					<th><spring:message code="label.bankaccount.openingbalance" /></th>
 					<th><spring:message code="label.edit" /></th>
 					<th><spring:message code="label.delete" /></th>
 				</tr>
@@ -40,6 +41,8 @@
 							<td><p class="desc">${app.bankName}</td>
 							
 							<td><p >${app.accountNo}</td>
+							
+							<td><p >&#8377 ${app.openingBalance}</td>
 
 
 							<td class="td-block">

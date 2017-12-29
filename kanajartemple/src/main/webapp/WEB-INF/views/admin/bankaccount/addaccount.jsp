@@ -34,6 +34,12 @@
 					<td><input type="text" name="ifscCode" id="ifscCode"
 						required="required" /></td>
 				</tr>
+				
+				<tr>
+					<th><spring:message code="label.bankaccount.openingbalance" /> *</th>
+					<td><input type="number" name="openingBalance" id="openingBalance"
+						required="required" placeholder="&#8377" /></td>
+				</tr>
 
 				<tr>
 					<th></th>
