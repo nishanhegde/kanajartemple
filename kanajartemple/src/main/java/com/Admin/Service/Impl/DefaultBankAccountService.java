@@ -67,8 +67,9 @@ public class DefaultBankAccountService implements BankAccountService {
 
 	@Override
 	public Map<String, Object> getBankEntryReport(Reportbean rbean) {
-		JRDataSource datasource = new JRBeanCollectionDataSource(bankAccountDao.getBankEntryReport(rbean));
-
+		List<BankAccountEntry> entryList=bankAccountDao.getBankEntryReport(rbean);
+		JRDataSource datasource = new JRBeanCollectionDataSource(entryList);
+		
 		BankAccount bankAccount=getBankAccount(rbean.getId());
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("datasource", datasource);
@@ -77,8 +78,18 @@ public class DefaultBankAccountService implements BankAccountService {
 		parameterMap.put("accountNo",bankAccount.getAccountNo());
 		parameterMap.put("FromDate", rbean.getFromDate());
 		parameterMap.put("ToDate", rbean.getToDate());
+		parameterMap.put("openingBalance", getOpeningBalance(entryList));
 	
 		return parameterMap;
+	}
+
+	private double getOpeningBalance(List<BankAccountEntry> entryList) {
+		BankAccountEntry firstEntry=entryList.get(0);
+
+		double balance=firstEntry.getBalance().doubleValue();
+		double amount = firstEntry.getAmount().doubleValue();
+		double openingBalance=firstEntry.getTransaction().equals(TransactionEnum.DEPOSIT) ? balance - amount : balance + amount;
+		return openingBalance;
 	}
 
 	

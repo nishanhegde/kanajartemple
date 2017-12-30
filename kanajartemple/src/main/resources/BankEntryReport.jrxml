@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2017-12-30T19:14:16 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="IncomeReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43e0c141-5909-46d5-b2d4-bd3042c6f231">
 	<property name="net.sf.jasperreports.export.html.using.images.to.align" value="false"/>
 	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
@@ -12,6 +13,7 @@
 	<parameter name="ifscCode" class="java.lang.String"/>
 	<parameter name="FromDate" class="java.lang.String"/>
 	<parameter name="ToDate" class="java.lang.String"/>
+	<parameter name="openingBalance" class="java.lang.Double"/>
 	<field name="description" class="java.lang.String"/>
 	<field name="transactionDate" class="java.lang.String"/>
 	<field name="balance" class="java.lang.Double"/>
@@ -28,49 +30,49 @@
 				<text><![CDATA[Shree Brahmalingeshwara Temple Bank Report]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="398" y="59" width="40" height="20" uuid="09c38e88-da3a-4e37-926e-62c789dd4452"/>
+				<reportElement x="398" y="44" width="40" height="20" uuid="09c38e88-da3a-4e37-926e-62c789dd4452"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Date:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="53" y="59" width="113" height="20" uuid="c5a28df7-a92c-4b16-a4c2-12a41dfcd247"/>
+				<reportElement x="53" y="44" width="113" height="20" uuid="c5a28df7-a92c-4b16-a4c2-12a41dfcd247"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{FromDate}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="248" y="59" width="100" height="20" uuid="62c76691-f8d3-46ea-afda-e640bc8e4d84"/>
+				<reportElement x="248" y="44" width="100" height="20" uuid="62c76691-f8d3-46ea-afda-e640bc8e4d84"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{ToDate}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="59" width="43" height="20" uuid="bb73274d-e352-4140-9400-065bf86114fc"/>
+				<reportElement x="0" y="44" width="43" height="20" uuid="bb73274d-e352-4140-9400-065bf86114fc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[From:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="209" y="59" width="33" height="20" uuid="3379b954-e17d-4c32-9788-8e618e71fb88"/>
+				<reportElement x="209" y="44" width="33" height="20" uuid="3379b954-e17d-4c32-9788-8e618e71fb88"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[To:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="70" y="91" width="96" height="20" uuid="f072f134-b0d3-42c7-b9f2-5d97073a94a5"/>
+				<reportElement x="70" y="75" width="96" height="20" uuid="f072f134-b0d3-42c7-b9f2-5d97073a94a5"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{bankName}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="91" width="70" height="20" uuid="3aa16154-95bb-4bc1-b339-124604f487f1"/>
+				<reportElement x="0" y="75" width="70" height="20" uuid="3aa16154-95bb-4bc1-b339-124604f487f1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
@@ -118,33 +120,33 @@
 				<reportElement x="2" y="144" width="553" height="1" uuid="c2162a7b-8a5a-4d9b-9d9b-96648ad9e4be"/>
 			</line>
 			<staticText>
-				<reportElement x="209" y="91" width="39" height="20" uuid="15901db1-111f-498c-899d-0e4bfb981e5c"/>
+				<reportElement x="209" y="76" width="39" height="20" uuid="15901db1-111f-498c-899d-0e4bfb981e5c"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Acc :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="252" y="90" width="128" height="20" forecolor="#333333" uuid="3b68198e-d280-43b8-a107-3bb01393c226"/>
+				<reportElement x="252" y="76" width="128" height="20" forecolor="#333333" uuid="3b68198e-d280-43b8-a107-3bb01393c226"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{accountNo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="398" y="91" width="40" height="20" uuid="bceb1806-8d1c-4ca5-b06d-81abef73f8fc"/>
+				<reportElement x="290" y="99" width="150" height="19" uuid="bceb1806-8d1c-4ca5-b06d-81abef73f8fc"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[IFSC :]]></text>
+				<text><![CDATA[Opening Balance:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="440" y="91" width="110" height="19" uuid="5254ded8-7796-4317-9412-bbda50db641b"/>
+				<reportElement x="442" y="99" width="110" height="19" uuid="5254ded8-7796-4317-9412-bbda50db641b"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$P{ifscCode}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{openingBalance}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy h.mm a">
-				<reportElement x="438" y="59" width="110" height="20" uuid="1ede5422-8ba5-4b49-805e-66f5f476fde6"/>
+				<reportElement x="438" y="44" width="110" height="20" uuid="1ede5422-8ba5-4b49-805e-66f5f476fde6"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
@@ -162,6 +164,18 @@
 				</textElement>
 				<text><![CDATA[Cq No]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="400" y="76" width="40" height="20" uuid="68104fb1-9f81-4007-9781-111a3f43f980"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IFSC :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="443" y="76" width="110" height="19" uuid="e1c89e2a-bbda-4f59-bfe4-57118f79ba53"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ifscCode}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<detail>
