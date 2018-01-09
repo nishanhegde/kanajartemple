@@ -2,6 +2,7 @@ package com.Admin.Service.Impl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -57,9 +59,11 @@ public class PoojeService {
 		Pooje pooje = defaultTempleMethods.getPooje(rbean.getId());
 
 		List<Map<String, Object>> report = poojeDao.getPoojeReport(rbean);
-		int quantity = report.stream().mapToInt(rept -> (Integer) ((LinkedHashMap) rept).get("Quantity")).sum();
 
-		setHeaderData(rbean, pooje, report, quantity);
+		if (CollectionUtils.isNotEmpty(report)) {
+			int quantity = report.stream().mapToInt(rept -> (Integer) ((LinkedHashMap) rept).get("Quantity")).sum();
+			setHeaderData(rbean, pooje, report, quantity);
+		}
 
 		return report;
 	}
@@ -77,16 +81,18 @@ public class PoojeService {
 	}
 
 	public List getIncomeReport(Reportbean rbean) {
-		
+
 		List<Map<String, Object>> report = poojeDao.getIncomeReport(rbean);
 
 		Double grandtotal = calculateGrandTotal(report);
 
-		Map<String, Object> details = report.get(0);
+		if (CollectionUtils.isNotEmpty(report)) {
+			Map<String, Object> details = report.get(0);
 
-		setDates(rbean, details);
-		details.put("Total", grandtotal);
-		details.put("IncomeName", rbean.getName());
+			setDates(rbean, details);
+			details.put("Total", grandtotal);
+			details.put("IncomeName", rbean.getName());
+		}
 		return report;
 	}
 
@@ -95,7 +101,9 @@ public class PoojeService {
 		Pooje pooje = defaultTempleMethods.getPooje(rbean.getId());
 
 		List<Map<String, Object>> report = poojeDao.getSashwathaReport(rbean);
-		setHeaderData(rbean, pooje, report, report.size());
+		if (CollectionUtils.isNotEmpty(report)) {
+			setHeaderData(rbean, pooje, report, report.size());
+		}
 		return report;
 	}
 
@@ -107,12 +115,14 @@ public class PoojeService {
 
 		List<Map<String, Object>> report = poojeDao.getDonationReport(rbean, DonationName);
 
-		Double grandtotal = calculateGrandTotal(report);
+		if (CollectionUtils.isNotEmpty(report)) {
+			Double grandtotal = calculateGrandTotal(report);
 
-		Map<String, Object> details = report.get(0);
-		details.put("DonationName", DonationName);
-		setDates(rbean, details);
-		details.put("Total", grandtotal);
+			Map<String, Object> details = report.get(0);
+			details.put("DonationName", DonationName);
+			setDates(rbean, details);
+			details.put("Total", grandtotal);
+		}
 		return report;
 	}
 
@@ -132,13 +142,14 @@ public class PoojeService {
 
 		Double grandtotal = calculateGrandTotal(report);
 
-		Map<String, Object> details = report.get(0);
+		if (CollectionUtils.isNotEmpty(report)) {
+			Map<String, Object> details = report.get(0);
 
-		setDates(rbean, details);
-		details.put("Total", grandtotal);
-		details.put("ExpenditureName", rbean.getName());
+			setDates(rbean, details);
+			details.put("Total", grandtotal);
+			details.put("ExpenditureName", rbean.getName());
+		}
 		return report;
-		
 	}
 
 	public double calculateGrandTotal(List<Map<String, Object>> report) {
