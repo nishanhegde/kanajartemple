@@ -279,7 +279,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 	public List<Map<String, Object>> getSashwathaPoojeAddress(String month) {
 
 		Map<String, Object> param = new HashMap<String, Object>();
-		String str = "select * from sashwathapooje where Pdate LIKE '%" + month + "'";
+		String str = "select * from sashwathapooje where Pdate LIKE '%" + month + "' order by Pdate";
 		return namedParameterJdbcTemplate.queryForList(str, param);
 	}
 

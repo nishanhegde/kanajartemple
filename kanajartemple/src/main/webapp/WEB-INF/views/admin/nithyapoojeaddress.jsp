@@ -31,12 +31,14 @@
 }
 </style>
 </head>
-<body>
+<body onload="window.print()">
 	<div id="page-wrap">
 		<c:forEach items="${PoojeDetails}" var="pooje">
 			<div class="addressbox">
 
-				<span class="name">${pooje.name}</span><br /> <span class="address">${pooje.address}</span>
+				<span class="name">${pooje.name}</span><br />
+				<span class="address">${pooje.address}</span> <br/>
+				<span>${pooje.PDate}/${pooje.RecNo}</span>
 
 			</div>
 		</c:forEach>
