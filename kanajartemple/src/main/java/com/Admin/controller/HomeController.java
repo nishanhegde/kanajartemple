@@ -2,9 +2,7 @@ package com.Admin.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +12,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.jmx.export.annotation.ManagedNotification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,8 +29,6 @@ import com.Admin.Service.Impl.AdminHomeService;
 import com.Admin.bean.SashwathaPoojebean;
 
 import com.Admin.validator.UserSashwathaPoojeValidator;
-
-import net.sf.jasperreports.data.empty.EmptyDataAdapterImpl;
 
 /**
  * Handles requests for the application home page.

@@ -1,20 +1,17 @@
 package com.Admin.dao.impl;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.Admin.RowMapper.CMSPageRowMapper;
-import com.Admin.RowMapper.PoojeRowMapper;
+
 import com.Admin.RowMapper.RegisterRowMapper;
 import com.Admin.RowMapper.SashwathaPoojeRowMapper;
 import com.Admin.bean.CMSbean;
@@ -31,7 +28,6 @@ public class AdminHomeDao {
 
 	public CMSbean getPageContent(String Pid) {
 
-	
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("Pid", Pid);
 		param.put("language", LocaleContextHolder.getLocale().toString());
@@ -41,7 +37,7 @@ public class AdminHomeDao {
 	}
 
 	public Integer updatePageContent(CMSbean cbean) {
-	
+
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("Pid", cbean.getPid().toString());
 		param.put("Content", cbean.getContent());
@@ -53,7 +49,6 @@ public class AdminHomeDao {
 	public Integer addAdmin(RegistrationBean regbean) {
 
 		Map<String, Object> param = new HashMap<String, Object>(2);
-	
 
 		param.put("fullName", regbean.getFullName());
 
@@ -67,7 +62,7 @@ public class AdminHomeDao {
 	}
 
 	public RegistrationBean getAdmin(String username) {
-	
+
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("username", username);
 		String str = "select id,EmailId,FullName,PhoneNumber from register where EmailId=:username";
@@ -77,7 +72,6 @@ public class AdminHomeDao {
 	public Integer updateAdmin(RegistrationBean rbean, String username) {
 
 		Map<String, Object> param = new HashMap<String, Object>(2);
-	
 
 		param.put("fullName", rbean.getFullName());
 		param.put("username", username);
@@ -90,7 +84,7 @@ public class AdminHomeDao {
 
 	public Integer changePassword(ChangePassword cpbean, String username) {
 		Map<String, Object> param = new HashMap<String, Object>(2);
-		
+
 		param.put("username", username);
 		param.put("newpassword", cpbean.getNewpassword());
 		String sql = "update register set Password=:newpassword where EmailId=:username ";
@@ -99,25 +93,24 @@ public class AdminHomeDao {
 
 	public Integer resetPassword(ChangePassword cpbean) {
 		Map<String, Object> param = new HashMap<String, Object>(2);
-		
+
 		param.put("id", cpbean.getAdmin());
 		param.put("newpassword", cpbean.getNewpassword());
 		String sql = "update register set Password=:newpassword where id=:id ";
 		return namedParameterJdbcTemplate.update(sql, param);
 	}
-	
+
 	public String getPassword(String id) {
 		Map<String, Object> param = new HashMap<String, Object>(2);
-	
+
 		param.put("id", id);
 
-		return namedParameterJdbcTemplate.queryForObject("select Password  from register where EmailId=:id or PhoneNumber=:id", param,
-				String.class);
+		return namedParameterJdbcTemplate.queryForObject(
+				"select Password  from register where EmailId=:id or PhoneNumber=:id", param, String.class);
 	}
 
 	@Transactional
 	public Integer saveSashwathaPooje(SashwathaPoojebean sbean) {
-	
 
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("RecNo", sbean.getRecNo());
@@ -135,14 +128,14 @@ public class AdminHomeDao {
 	}
 
 	public List<Map<String, Object>> getUserSashwathaPoojeDetails() {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		String str = "select * from usersashwathapooje";
 		return namedParameterJdbcTemplate.queryForList(str, param);
 	}
 
 	public SashwathaPoojebean getUserSashwathaPoojeDetails(String id) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("id", id);
 		String str = "select * from usersashwathapooje where id=:id";
@@ -150,7 +143,7 @@ public class AdminHomeDao {
 	}
 
 	public Integer deleteUserSashwathaPoojeDetails(String id) {
-	
+
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("id", id);
 

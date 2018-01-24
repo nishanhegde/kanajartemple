@@ -1,7 +1,6 @@
 package com.Admin.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -43,7 +42,6 @@ import com.Admin.validator.DonationValidator;
 import com.Admin.validator.ExpenseValidator;
 import com.Admin.validator.IncomeValidator;
 import com.Admin.validator.PoojeValidator;
-import com.Admin.validator.RegistrationValidator;
 import com.Admin.validator.SashwathaPoojeValidator;
 import com.Brahmalingeshwara.kanajartemple.Utills;
 
@@ -723,7 +721,7 @@ public class AdminController {
 		poojeService.deleteDonation(DonationID, RecNo);
 		return REDIRECTPREFIX + "/Admin/DonationReceiptList/" + DonationID;
 	}
-	
+
 	@RequestMapping(value = "/deleteincome/{IncomeID}/{RecNo}")
 	public String deleteIncome(@PathVariable("IncomeID") String IncomeID, @PathVariable("RecNo") String RecNo) {
 
@@ -737,5 +735,5 @@ public class AdminController {
 		poojeService.deleteExpense(ExpenseID, RecNo);
 		return REDIRECTPREFIX + "/Admin/ExpenditureList/" + ExpenseID;
 	}
-	
+
 }

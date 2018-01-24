@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.context.MessageSource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -18,17 +17,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Admin.Service.BankAccountService;
 import com.Admin.Service.kanajarTempleMethods;
 import com.Admin.Service.Impl.AdminHomeService;
-import com.Admin.bean.CMSbean;
 import com.Admin.bean.RegistrationBean;
 import com.Admin.bean.ChangePassword;
 import com.Admin.bean.Coupon;
@@ -218,7 +214,7 @@ public class AdminHome {
 	}
 
 	@RequestMapping(value = "/Admin/nithyapoojeaddress")
-	public String getAddressList(@RequestParam String month,Model model) {
+	public String getAddressList(@RequestParam String month, Model model) {
 
 		model.addAttribute("PoojeDetails", defaultTempleMethods.getSashwathaPoojeAddress(month));
 		return "admin/nithyapoojeaddress";
