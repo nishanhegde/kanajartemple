@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.annotation.Resource;
 
@@ -28,6 +29,7 @@ import com.Admin.bean.IncomeData;
 import com.Admin.bean.Poojebean;
 import com.Admin.bean.Reportbean;
 import com.Admin.bean.SashwathaPoojebean;
+import com.Admin.enums.AmountType;
 import com.Brahmalingeshwara.kanajartemple.Utills;
 
 @Component("poojeDao")
@@ -171,7 +173,7 @@ public class PoojeDao extends AbstractDao {
 		param.put("RecNo", RecNo);
 
 		String str = "insert into alldonationdata "
-				+ "(RecNo,Name,Address,Amount,mobile,email,BDate,Did) values(:RecNo,:Name,:Address,:Amount,:mobile,:email,(select now()),:Did)";
+				+ "(RecNo,Name,Address,Amount,mobile,email,BDate,Did,bankentryid) values(:RecNo,:Name,:Address,:Amount,:mobile,:email,(select now()),:Did,:bankentryid)";
 
 		Integer i = namedParameterJdbcTemplate.update(str, param);
 
@@ -189,6 +191,7 @@ public class PoojeDao extends AbstractDao {
 		param.put("mobile", dbean.getMobileNO());
 		param.put("email", dbean.getEmail());
 		param.put("Amount", dbean.getAmount());
+		param.put("bankentryid", dbean.getBankentryid());
 		return param;
 	}
 
@@ -196,11 +199,22 @@ public class PoojeDao extends AbstractDao {
 
 		Map<String, Object> param = getReportParam(rbean);
 		param.put("amount", rbean.getAmount());
-		String str = "select RecNo,Name,Address,Amount,mobile,email,BDate," + "Did from alldonationdata"
-				+ " where BDate>=:FromDate and BDate<=:ToDate and Amount>=:amount and Did=:id  order by "
-				+ rbean.getSortby() + " " + rbean.getOrder();
+		StringBuilder query=new StringBuilder();
+		query.append("select RecNo,Name,Address,Amount,mobile,email,BDate," + "Did from alldonationdata"
+				+ " where BDate>=:FromDate and BDate<=:ToDate and Amount>=:amount and Did=:id ");
+		
+		if(!Objects.equals(AmountType.ALL, rbean.getAmountType()))
+		{
+			query.append("AND bankentryid IS ");
+			query.append(Objects.equals(AmountType.BANK, rbean.getAmountType())?"NOT ":"");
+			query.append("NULL ");
+		}
+		
+		query.append("order by "
+				+ rbean.getSortby() + " " + rbean.getOrder());
+		
 
-		return namedParameterJdbcTemplate.queryForList(str, param);
+		return namedParameterJdbcTemplate.queryForList(query.toString(), param);
 	}
 
 	public Integer getExpenditureReceipt(ExpenseData ebean) {

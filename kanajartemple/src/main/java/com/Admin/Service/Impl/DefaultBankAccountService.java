@@ -64,6 +64,11 @@ public class DefaultBankAccountService implements BankAccountService {
 	public List<BankAccountEntry> getBankAccountEntries(String bankId) {
 		return bankAccountDao.getBankAccountEntries(bankId);
 	}
+	
+	@Override
+	public List<BankAccountEntry> getBankAccountEntries() {
+		return bankAccountDao.getBankAccountEntries();
+	}
 
 	@Override
 	public Map<String, Object> getBankEntryReport(Reportbean rbean) {

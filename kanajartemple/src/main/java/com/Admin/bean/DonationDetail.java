@@ -13,6 +13,7 @@ public class DonationDetail {
 	private String Email;
 	private Timestamp Bdate;
 	private Integer Did;
+	private Integer bankentryid;
 	public Integer getSI() {
 		return SI;
 	}
@@ -67,6 +68,13 @@ public class DonationDetail {
 	public void setDid(Integer did) {
 		Did = did;
 	}
+	public Integer getBankentryid() {
+		return bankentryid;
+	}
+	public void setBankentryid(Integer bankentryid) {
+		this.bankentryid = bankentryid;
+	}
+	
 	
 
 }

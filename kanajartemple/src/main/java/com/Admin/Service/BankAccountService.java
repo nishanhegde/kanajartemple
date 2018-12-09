@@ -23,5 +23,7 @@ public interface BankAccountService {
 	
 	public List<BankAccountEntry> getBankAccountEntries(String bankId);
 	
+	public List<BankAccountEntry> getBankAccountEntries();
+	
 	public Map<String, Object> getBankEntryReport(Reportbean rbean);
 }

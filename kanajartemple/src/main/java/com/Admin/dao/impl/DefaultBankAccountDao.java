@@ -109,6 +109,13 @@ public class DefaultBankAccountDao extends AbstractDao implements BankAccountDao
 		String str = "select * from bankaccountentry  where bankaccount_id=:bankaccount_id";
 		return namedParameterJdbcTemplate.query(str, param, new BankAccountEntryRowMapper());
 	}
+	
+	@Override
+	public List<BankAccountEntry> getBankAccountEntries() {
+		Map<String, Object> param = new HashMap<String, Object>();
+		String str = "select * from bankaccountentry where transaction='DEPOSIT'";
+		return namedParameterJdbcTemplate.query(str, param, new BankAccountEntryRowMapper());
+	}
 
 	@Override
 	public Double getBalance(Integer bankAccountId) {

@@ -94,6 +94,13 @@ public class BankAccountController {
 		model.addAttribute(bankAccountService.getBankAccount(bankId));
 		return KanajarTempleConstants.BANK_ACC_VIEW + "/viewaccountentry";
 	}
+	
+	@RequestMapping(value = "/searchbankentry", method = RequestMethod.GET)
+	public String viewAccountEntry( Model model) {
+		model.addAttribute("bankEntries", bankAccountService.getBankAccountEntries());
+		
+		return KanajarTempleConstants.BANK_ACC_VIEW + "/searchbankentry";
+	}
 
 	@RequestMapping(value = "/bankentryreport", method = RequestMethod.GET)
 	public String bankEntryReport(Model model) {

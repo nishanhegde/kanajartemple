@@ -1,5 +1,7 @@
 package com.Admin.bean;
 
+import com.Admin.enums.AmountType;
+
 public class Reportbean {
 	
 
@@ -12,6 +14,7 @@ public class Reportbean {
 	private String id;
 	private String name;
 	private Double Amount;
+	private AmountType amountType;
 	
 	public String getDates() {
 		return dates;
@@ -66,5 +69,12 @@ public class Reportbean {
 	}
 	public void setAmount(Double amount) {
 		Amount = amount;
+	}
+	public AmountType getAmountType() {
+		return amountType;
+	}
+	public void setAmountType(AmountType amountType) {
+		this.amountType = amountType;
 	}	
+	
 }

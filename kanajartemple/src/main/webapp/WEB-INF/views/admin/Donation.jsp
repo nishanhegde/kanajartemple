@@ -5,6 +5,29 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="core" uri="http://www.springframework.org/tags"%>
 
+<c:url var="searchbankentry" value="/Admin/searchbankentry" />
+
+<script type="text/javascript"
+	src="<c:url value="/resources/js/admin/jquery-1.6.min.js"/>"></script>	
+	
+<script type="text/javascript">
+
+$(document).ready(function () {
+	$('#bankentry').hide();
+	  $('#amounttype').change(function(){
+		$('#bankentry').hide();
+	    if($(this).val()== 'BANK'){
+	    	
+	    	 $.ajax({url: "${searchbankentry}", success: function(result){
+	    	        $("#bankentry").replaceWith(result);
+	    	    }});
+	    	$('#bankentry').show();
+	    }
+	  });
+	});
+</script>
+
+
 <jsp:include page="Adminheader.jsp"></jsp:include>
 <div class="mainbody">
 	<center>
@@ -26,14 +49,26 @@
 					</select>
 				</tr>
 				<tr>
-					<th><spring:message code="label.amount" /> * </th>
+					<th><spring:message code="label.amount" /> *</th>
 					<td><core:bind path="donationDetail.Amount">
 							<div class="error">${status.errorMessage}</div>
-							 <input type="number" name="Amount" required placeholder="&#8377"
-								value='${status.value}'/>
+							<input type="number" name="Amount" required placeholder="&#8377"
+								value='${status.value}' />
 						</core:bind></td>
 				</tr>
+				<tr>
+					<th><spring:message code="label.amounttype" /></th>
+					<td><select name="amountType" id="amounttype">
+							<option value="CASH">CASH</option>
+							<option value="BANK">BANK</option>
 
+					</select></td>
+				</tr>
+				
+				<tr id="bankentry" class="bankentry">
+					
+				</tr>
+			
 				<tr>
 					<th><spring:message code="label.name" /> *</th>
 					<td><core:bind path="donationDetail.Name">
@@ -81,6 +116,6 @@
 
 
 
-</center>
+	</center>
 </div>
 <jsp:include page="Adminfooter.jsp"></jsp:include>

@@ -73,6 +73,7 @@ public class PoojeService {
 		details.put("PoojeName", pooje.getPoojeName());
 		setDates(rbean, details);
 		details.put("BaseAmount", pooje.getAmount());
+		details.put("TotalQuantity", quantity);
 		details.put("Total", quantity * pooje.getAmount());
 	}
 
