@@ -13,5 +13,6 @@ public class KanajarTempleConstants {
 	 
 	 public static String REDIRECT_PRIFIX = "redirect:";
 	 public static String BANK_ACC_VIEW = "admin/bankaccount";
+	 public static String ADDRESS_VIEW="admin/address";
 
 }

@@ -93,15 +93,12 @@
 
 	<div class="boxbody">
 		<div class="boxheader">
-			<spring:message code="label.others" />
+			<spring:message code="label.address" />
 		</div>
 		<div class="padd">
 			<ul>
-				<li><a href="<c:url value="/Admin/AllReport"/>"><spring:message
-							code="label.reportall" /></a></li>
-				<li><a href="<c:url value="/Admin/coupon"/>"><spring:message
-							code="label.coupon" /></a></li>
-				<!-- 	<a href="#"><li>Bank Report</li></a> -->
+				<li><a href="<c:url value="/address/view"/>"><spring:message
+							code="label.address" /></a></li>
 				<sec:authorize ifAnyGranted="ROLE_SUPERADMIN">
 					<li><a href="<c:url value="/SuperAdmin/address"/>"><spring:message
 								code="label.approve.address" /></a></li>
@@ -116,17 +113,21 @@
 
 	<div class="boxbody">
 		<div class="boxheader">
-			<spring:message code="label.adminactivities" />
+			<spring:message code="label.others" />
 		</div>
 		<div class="padd">
 			<ul>
-				<li><a href="<c:url value="../Admin/ChangePassword"/>"><spring:message
-							code="label.changepassword" /></a></li>
-				<li><a href="<c:url value="../Admin/EditProfile"/>"><spring:message
-							code="label.editprofile" /></a></li>
+				<li><a href="<c:url value="/Admin/AllReport"/>"><spring:message
+							code="label.reportall" /></a></li>
+				<li><a href="<c:url value="/Admin/coupon"/>"><spring:message
+							code="label.coupon" /></a></li>
+
 			</ul>
 		</div>
 	</div>
+
+
+
 
 	<div class="boxbody">
 		<div class="boxheader">
@@ -163,6 +164,21 @@
 								code="label.report" /></a></li>
 
 
+				</ul>
+			</div>
+		</div>
+
+
+		<div class="boxbody">
+			<div class="boxheader">
+				<spring:message code="label.adminactivities" />
+			</div>
+			<div class="padd">
+				<ul>
+					<li><a href="<c:url value="../Admin/ChangePassword"/>"><spring:message
+								code="label.changepassword" /></a></li>
+					<li><a href="<c:url value="../Admin/EditProfile"/>"><spring:message
+								code="label.editprofile" /></a></li>
 				</ul>
 			</div>
 		</div>

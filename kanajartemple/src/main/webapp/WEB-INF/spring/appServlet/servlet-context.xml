@@ -135,7 +135,7 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 	<beans:bean id="expenseValidator" class="com.Admin.validator.ExpenseValidator" />
 	<beans:bean id="changePasswordValidator" class="com.Admin.validator.ChangePasswordValidator" />
 	<beans:bean id="editProfileValidator" class="com.Admin.validator.EditProfileValidator" />
-
+	<beans:bean id="addressValidator" class="com.Admin.validator.AddressValidator" />
 
 
 	<!-- Super Admin part starts -->
@@ -182,4 +182,17 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
 	<beans:alias name="defaultBankAccountDao" alias="bankAccountDao" />
 	<beans:bean id="defaultBankAccountDao" class="com.Admin.dao.impl.DefaultBankAccountDao" />
+	
+
+	<beans:alias name="defaultAddressService" alias="addressService" />
+	<beans:bean id="defaultAddressService"
+		class="com.Admin.Service.Impl.DefaultAddressService">
+		<beans:property name="addressDao" ref="addressDao" />
+	</beans:bean>
+
+	<beans:alias name="defaultAddressDao" alias="addressDao" />
+	<beans:bean id="defaultAddressDao" class="com.Admin.dao.impl.DefaultAddressDao">
+		<beans:property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate" />
+	</beans:bean>
+
 </beans:beans>
