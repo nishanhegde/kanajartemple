@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2018-12-21T12:54:58 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="IncomeReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43e0c141-5909-46d5-b2d4-bd3042c6f231">
 	<property name="net.sf.jasperreports.export.html.using.images.to.align" value="false"/>
 	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<field name="TodayDate" class="java.util.Date"/>
 	<field name="FromDate" class="java.lang.String"/>
 	<field name="ToDate" class="java.lang.String"/>
@@ -16,6 +18,7 @@
 	<field name="Amount" class="java.lang.Double"/>
 	<field name="SI" class="java.lang.Integer"/>
 	<field name="ExpenditureName" class="java.lang.String"/>
+	<field name="BDate" class="java.lang.String"/>
 	<title>
 		<band height="145" splitType="Stretch">
 			<staticText>
@@ -96,21 +99,21 @@
 				<text><![CDATA[RecNo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="99" y="121" width="123" height="19" uuid="c493d431-2e25-4482-b312-72dd8b57ce0e"/>
+				<reportElement x="99" y="121" width="111" height="19" uuid="c493d431-2e25-4482-b312-72dd8b57ce0e"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Title]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="232" y="121" width="166" height="20" uuid="511e4e2b-1257-4005-b01e-5ab9f8f9ff03"/>
+				<reportElement x="219" y="121" width="166" height="20" uuid="511e4e2b-1257-4005-b01e-5ab9f8f9ff03"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Description]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="415" y="121" width="83" height="20" uuid="4e969558-0295-4ad4-a4e0-f06bd6fa7b7d"/>
+				<reportElement x="480" y="121" width="73" height="20" uuid="4e969558-0295-4ad4-a4e0-f06bd6fa7b7d"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
@@ -136,10 +139,17 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ExpenditureName}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="389" y="121" width="89" height="19" uuid="aeb3ffc9-50d5-4151-a9ee-1f6a6ee90b74"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
 		</band>
 	</title>
 	<detail>
-		<band height="34">
+		<band height="33">
 			<textField isBlankWhenNull="true">
 				<reportElement x="43" y="0" width="46" height="20" isRemoveLineWhenBlank="true" uuid="7220108a-13c7-4d1a-a323-cfb3e6712d0d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -148,21 +158,21 @@
 				<textFieldExpression><![CDATA[$F{RecNo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="99" y="0" width="123" height="33" isRemoveLineWhenBlank="true" uuid="a0fc5453-df30-48e3-b55b-bf079b240aae"/>
+				<reportElement x="99" y="0" width="111" height="33" isRemoveLineWhenBlank="true" uuid="a0fc5453-df30-48e3-b55b-bf079b240aae"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Title}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="232" y="0" width="166" height="33" isRemoveLineWhenBlank="true" uuid="5f423817-a74d-48ab-8c18-03bbfacf0cc9"/>
+				<reportElement x="219" y="0" width="166" height="33" isRemoveLineWhenBlank="true" uuid="5f423817-a74d-48ab-8c18-03bbfacf0cc9"/>
 				<textElement>
 					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Description}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="415" y="0" width="83" height="20" isRemoveLineWhenBlank="true" uuid="d4c82e13-323c-46fd-8553-1cb41f9b65a8"/>
+				<reportElement x="490" y="2" width="65" height="20" isRemoveLineWhenBlank="true" uuid="d4c82e13-323c-46fd-8553-1cb41f9b65a8"/>
 				<textElement textAlignment="Right">
 					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
@@ -174,6 +184,13 @@
 					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="389" y="2" width="101" height="20" forecolor="#333333" uuid="d8bf26ea-b8ed-4f64-b0c4-c347ba25e7d2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BDate}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

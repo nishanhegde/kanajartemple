@@ -200,7 +200,7 @@ public class PoojeDao extends AbstractDao {
 		Map<String, Object> param = getReportParam(rbean);
 		param.put("amount", rbean.getAmount());
 		StringBuilder query=new StringBuilder();
-		query.append("select RecNo,Name,Address,Amount,mobile,email,BDate," + "Did from alldonationdata"
+		query.append("select RecNo,Name,Address,Amount,mobile,email,DATE_FORMAT(BDate, '%d-%m-%Y %h:%i %p') as BDate," + "Did from alldonationdata"
 				+ " where BDate>=:FromDate and BDate<=:ToDate and Amount>=:amount and Did=:id ");
 		
 		if(!Objects.equals(AmountType.ALL, rbean.getAmountType()))
@@ -254,7 +254,7 @@ public class PoojeDao extends AbstractDao {
 
 		Map<String, Object> param = getReportParam(rbean);
 		String str = "select RecNo,Title,Description,Amount," + "DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,"
-				+ "BDate from allexpendituredata where Eid=:id and " + rbean.getDates() + ">=:FromDate and "
+				+ "DATE_FORMAT(BDate, '%d-%m-%Y %h:%i %p') as BDate from allexpendituredata where Eid=:id and " + rbean.getDates() + ">=:FromDate and "
 				+ rbean.getDates() + "<=:ToDate  order by " + rbean.getSortby() + " " + rbean.getOrder();
 
 		return namedParameterJdbcTemplate.queryForList(str, param);

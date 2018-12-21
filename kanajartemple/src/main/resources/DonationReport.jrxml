@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2018-12-21T12:54:44 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="IncomeReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43e0c141-5909-46d5-b2d4-bd3042c6f231">
 	<property name="net.sf.jasperreports.export.html.using.images.to.align" value="false"/>
 	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
@@ -17,8 +18,9 @@
 	<field name="Total" class="java.lang.Double"/>
 	<field name="DonationName" class="java.lang.String"/>
 	<field name="SI" class="java.lang.Integer"/>
+	<field name="BDate" class="java.lang.String"/>
 	<title>
-		<band height="149" splitType="Stretch">
+		<band height="147" splitType="Stretch">
 			<staticText>
 				<reportElement x="102" y="0" width="350" height="31" uuid="784a70fd-e72b-4708-8a2d-0460f305f3ab"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
@@ -107,28 +109,28 @@
 				<text><![CDATA[S.I]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="37" y="121" width="66" height="25" uuid="bd9be0af-6b07-49a9-b585-8dda8be23a60"/>
+				<reportElement x="37" y="121" width="53" height="25" uuid="bd9be0af-6b07-49a9-b585-8dda8be23a60"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RecNo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="103" y="121" width="154" height="24" uuid="07733fd1-d7d2-43cd-8995-ef2af00741d8"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<reportElement x="100" y="122" width="120" height="24" uuid="07733fd1-d7d2-43cd-8995-ef2af00741d8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="257" y="121" width="196" height="25" uuid="4a578849-ba2f-4e87-a3e8-db44ae71de49"/>
+				<reportElement x="223" y="121" width="165" height="25" uuid="4a578849-ba2f-4e87-a3e8-db44ae71de49"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Address]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="453" y="121" width="92" height="25" uuid="44cca5ba-69db-41cc-96f8-453b804797ce"/>
+				<reportElement x="480" y="121" width="75" height="25" uuid="44cca5ba-69db-41cc-96f8-453b804797ce"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
@@ -137,33 +139,40 @@
 			<line>
 				<reportElement x="0" y="120" width="555" height="1" uuid="7c82ba40-0b56-4725-b25d-bcaa880c45e5"/>
 			</line>
+			<staticText>
+				<reportElement x="388" y="121" width="92" height="24" uuid="cbe448cd-765b-49bd-9bb3-ffc58be7ae59"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
 		</band>
 	</title>
 	<detail>
 		<band height="48">
 			<textField isBlankWhenNull="true">
-				<reportElement x="37" y="3" width="66" height="20" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="7220108a-13c7-4d1a-a323-cfb3e6712d0d"/>
+				<reportElement x="37" y="3" width="53" height="20" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="7220108a-13c7-4d1a-a323-cfb3e6712d0d"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{RecNo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="103" y="3" width="142" height="45" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="6b295d10-7c35-46b3-9343-d3ed083467f3"/>
+				<reportElement x="100" y="3" width="120" height="45" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="6b295d10-7c35-46b3-9343-d3ed083467f3"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="257" y="3" width="196" height="45" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="f46757c6-19d5-4e99-8962-bb6d25050dd6"/>
+				<reportElement x="222" y="3" width="166" height="45" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="f46757c6-19d5-4e99-8962-bb6d25050dd6"/>
 				<textElement>
 					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Address}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="453" y="3" width="92" height="20" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="9dda33c9-3991-4f40-bc87-e39b0f092d43"/>
+				<reportElement x="490" y="3" width="65" height="20" isRemoveLineWhenBlank="true" forecolor="#333333" uuid="9dda33c9-3991-4f40-bc87-e39b0f092d43"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
@@ -175,6 +184,13 @@
 					<font fontName="Nirmala UI"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="388" y="3" width="102" height="20" forecolor="#333333" uuid="001e575c-6b19-4261-bc95-1ddf08a3dfb0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BDate}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
