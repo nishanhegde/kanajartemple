@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -34,9 +32,10 @@ public class DefaultAddressDao implements AddressDao {
 
 	@Override
 	public List<Address> getAddress() {
-
+		Map<String, Object> param = new HashMap<String, Object>();
+	
 		String str = "select * from address order by creation_date";
-		return getNamedParameterJdbcTemplate().query(str, Collections.emptyMap(), new AddressRowMapper());
+		return namedParameterJdbcTemplate.query(str, param, new AddressRowMapper());
 	}
 
 	@Override
