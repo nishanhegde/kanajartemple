@@ -10,7 +10,7 @@
 			<spring:message code="label.pooje" />
 		</div>
 		<div class="padd">
-			<ul>
+			<ul >
 				<li><a href="#" class="big-link" data-reveal-id="myModal"><spring:message
 							code="label.poojereceipt" /> </a></li>
 				<li><a href="#" class="big-link" data-reveal-id="BookedPooje"><spring:message
@@ -85,6 +85,23 @@
 				<li><a href="#" class="big-link" data-reveal-id="BookedExpense"><spring:message
 							code="label.list" /></a></li>
 				<li><a href="<c:url value="/Admin/ExpenditureReport"/>"><spring:message
+							code="label.report" /></a></li>
+
+			</ul>
+		</div>
+	</div>
+
+	<div class="boxbody">
+		<div class="boxheader">
+			<spring:message code="label.cashdisbursement" />
+		</div>
+		<div class="padd">
+			<ul>
+				<li><a href="<c:url value="/cash/add"/>"><spring:message
+							code="label.add" /></a></li>
+				<li><a href="<c:url value="/cash/view"/>"><spring:message
+							code="label.list" /></a></li>
+				<li><a href="<c:url value="/cash/report"/>"><spring:message
 							code="label.report" /></a></li>
 
 			</ul>

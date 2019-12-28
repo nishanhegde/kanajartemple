@@ -198,7 +198,7 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 	<beans:alias name="defaultCashDisbursementService" alias="cashDisbursementService" />
 	<beans:bean id="defaultCashDisbursementService"
 		class="com.Admin.Service.Impl.DefaultCashDisbursementService">
-		<beans:property name="addressDao" ref="addressDao" />
+		<beans:property name="cashDisbursementDao" ref="cashDisbursementDao" />
 	</beans:bean>
 
 	<beans:alias name="defaultCashDisbursementDao" alias="cashDisbursementDao" />

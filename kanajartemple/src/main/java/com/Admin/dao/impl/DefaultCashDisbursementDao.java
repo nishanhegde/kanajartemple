@@ -8,16 +8,16 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-
 import com.Admin.RowMapper.CashDisbursementRowMapper;
 
 import com.Admin.bean.CashDisbursement;
-
+import com.Admin.bean.Reportbean;
 import com.Admin.dao.CashDisbursementDao;
 
+public class DefaultCashDisbursementDao extends AbstractDao implements CashDisbursementDao {
 
-public class DefaultCashDisbursementDao implements CashDisbursementDao {
-
+	private static final String REPORT_QUERY = "select  id,description,amount,DATE_FORMAT(creation_date, '%d-%m-%Y') as creation_date "
+			+ "from cashdisbursement where creation_date >=:FromDate and creation_date<=:ToDate";
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	@Override
@@ -32,7 +32,7 @@ public class DefaultCashDisbursementDao implements CashDisbursementDao {
 
 	@Override
 	public List<CashDisbursement> getCashDisbursement() {
-	
+
 		String str = "select * from cashdisbursement order by creation_date";
 		return namedParameterJdbcTemplate.query(str, Collections.emptyMap(), new CashDisbursementRowMapper());
 	}
@@ -42,15 +42,14 @@ public class DefaultCashDisbursementDao implements CashDisbursementDao {
 		Map<String, Object> param = new HashMap<String, Object>(1);
 		param.put("id", id);
 		String str = "select * from cashdisbursement  where id=:id";
-		return getNamedParameterJdbcTemplate().queryForObject(str,param, new CashDisbursementRowMapper());
+		return getNamedParameterJdbcTemplate().queryForObject(str, param, new CashDisbursementRowMapper());
 	}
 
 	@Override
 	public Integer update(CashDisbursement cashDisbursement) {
 		Map<String, Object> param = getCashDisbursementParam(cashDisbursement);
 		param.put("id", cashDisbursement.getId());
-		String sql = "update cashdisbursement set description=:description,amount=:amount"
-				+ " where id=:id";
+		String sql = "update cashdisbursement set description=:description,amount=:amount" + " where id=:id";
 
 		return getNamedParameterJdbcTemplate().update(sql, param);
 	}
@@ -62,6 +61,11 @@ public class DefaultCashDisbursementDao implements CashDisbursementDao {
 		String sql = "delete from cashdisbursement where id=:id";
 
 		getNamedParameterJdbcTemplate().update(sql, param);
+	}
+
+	public List<Map<String, Object>> getReport(Reportbean rbean) {
+
+		return getNamedParameterJdbcTemplate().queryForList(REPORT_QUERY, getReportParam(rbean));
 	}
 
 	private Map<String, Object> getCashDisbursementParam(CashDisbursement cashDisbursement) {

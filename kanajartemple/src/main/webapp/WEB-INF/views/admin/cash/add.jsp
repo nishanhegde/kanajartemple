@@ -20,7 +20,7 @@
 			</tr>
 			
 			<tr>
-					<th><spring:message code="label.amount" /></th>
+					<th><spring:message code="label.amount" /> *</th>
 					<td><core:bind path="cashDisbursement.amount">
 							<div class="error">${status.errorMessage}</div>
 							<input type="number" name="amount" required

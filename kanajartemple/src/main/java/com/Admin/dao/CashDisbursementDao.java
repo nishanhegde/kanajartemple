@@ -1,8 +1,10 @@
 package com.Admin.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.Admin.bean.CashDisbursement;
+import com.Admin.bean.Reportbean;
 
 public interface CashDisbursementDao {
 
@@ -15,4 +17,6 @@ public interface CashDisbursementDao {
 	public Integer update(CashDisbursement cashDisbursement);
 
 	public void delete(String id);
+	
+	public List<Map<String, Object>> getReport(Reportbean rbean);
 }

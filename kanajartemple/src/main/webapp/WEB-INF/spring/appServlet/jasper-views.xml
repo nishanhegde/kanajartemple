@@ -99,5 +99,17 @@
 			</props>
 		</property>
 	</bean>
+	
+	<bean id="CashDisbursementReport"
+		class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+		p:url="classpath:CashDisbursementReport.jrxml" p:reportDataKey="datasource">
+		<property name="contentDispositionMappings">
+			<props>
+				<prop key="pdf">attachment; filename=BankReport.pdf</prop>
+				<prop key="xls">attachment; filename=BankReport.xls</prop>
+				<prop key="csv">attachment; filename=BankReport.csv</prop>
+			</props>
+		</property>
+	</bean>
 
 </beans>

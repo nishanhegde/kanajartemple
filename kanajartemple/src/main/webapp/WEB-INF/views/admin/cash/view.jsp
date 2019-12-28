@@ -12,11 +12,6 @@
 	
 	<jsp:include page="../AdminPaginationheader.jsp"></jsp:include>
 
-<div style="float:right;margin:5px 5px 0px 0px;width:100px"><input type="submit"
-	onclick="popupCenter('../address/add', 'Kanajar Temple',350,310);"
-										value="<spring:message code="label.add"/>"/></div>
-
-								
 
 	<!-- data -->
 	<div class="box text-shadow">
@@ -24,14 +19,15 @@
 			<thead>
 				<tr>
 					<th><spring:message code="label.id"/></th>
-					<th><spring:message code="label.name"/></th>
+					<th><spring:message code="label.cash.description"/></th>
+					<th><spring:message code="label.amount"/></th>
 					<th><spring:message code="label.edit"/></th>
 					<th><spring:message code="label.delete"/></th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:if test="${fun:length(address) > 0}">
-					<c:forEach items="${address}" var="app">
+				<c:if test="${fun:length(cashDisbursement) > 0}">
+					<c:forEach items="${cashDisbursement}" var="app">
 
 						<tr class="tbl-item">
 
@@ -42,13 +38,13 @@
 								<p class="title">${app.id}</p>
 
 							</td>
-							<td><p class="desc">${app.fullname}</td>
-
+							<td><p class="desc">${app.description}</td>
+							<td class="td-block"><p>&#8377 ${app.amount}</p></td>
 							<td class="td-block">
 
 								<p>
 									<a
-										onclick="popupCenter('../address/edit/${app.id}', 'Kanajar Temple',350,275);"
+										onclick="popupCenter('../cash/edit/${app.id}', 'Kanajar Temple',350,165);"
 										href="javascript:void(0);"><spring:message code="label.edit"/></a>
 								</p>
 
@@ -56,15 +52,12 @@
 							<td class="td-block">
 
 								<p>
-									<a onclick="return confirmDelete()" href="<c:url value="../address/delete/${app.id}"/>"><spring:message code="label.delete"/></a>
+									<a onclick="return confirmDelete()" href="<c:url value="../cash/delete/${app.id}"/>"><spring:message code="label.delete"/></a>
 								</p>
 							</td>
 							
 
 						</tr>
-
-
-
 
 					</c:forEach>
 				</c:if>
