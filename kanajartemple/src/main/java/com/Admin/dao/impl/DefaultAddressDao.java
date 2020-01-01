@@ -64,6 +64,14 @@ public class DefaultAddressDao implements AddressDao {
 
 		getNamedParameterJdbcTemplate().update(sql, param);
 	}
+	
+	@Override
+	public List<Map<String, Object>> getInvitationAddress() {
+
+		String str = "select * from address  order by creation_date";
+		return getNamedParameterJdbcTemplate().queryForList(str, Collections.emptyMap());
+	}
+
 
 	private Map<String, Object> getAddressParam(Address address) {
 		Map<String, Object> param = new HashMap<String, Object>();

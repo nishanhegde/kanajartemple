@@ -62,5 +62,7 @@ public interface kanajarTempleMethodsDao {
 	public List<String> getEmails();
 	
 	public List<Map<String, Object>> getSashwathaPoojeAddress(String month);
+	
+	public List<Map<String, Object>> getInvitationAddress();
 
 }

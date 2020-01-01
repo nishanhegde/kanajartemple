@@ -123,6 +123,9 @@
 				<li><a href="#" class="big-link"
 					data-reveal-id="nithyapoojeaddress"><spring:message
 							code="label.nithyapooje.address" /></a></li>
+				<li><a href="#" class="big-link"
+					data-reveal-id="invitationaddress"><spring:message
+							code="label.invitation.address" /></a></li>
 
 			</ul>
 		</div>
@@ -552,6 +555,37 @@
 								<option value='NOV'>November</option>
 								<option value='DEC'>December</option>
 						</select></td>
+					</tr>
+
+					<tr>
+						<th></th>
+						<td><input type="submit"
+							value="<spring:message code="label.submit" />" /></td>
+					</tr>
+				</table>
+			</form>
+		</center>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<!-- Nithya Pooje Address -->
+	<div id="invitationaddress" class="reveal-modal">
+		<center>
+			<p class="headingfont">
+				<spring:message code="label.invitation.address" />
+			</p>
+			<hr />
+			<br/>
+			<form action="<c:url value="/Admin/invitationaddress"/>"
+				id="invitationaddress" name="invitationaddress"
+				required="required" method="get" target="_blank">
+				<h4>
+				<spring:message code="label.invitationaddress.note" />
+				</h4>
+				<table>
+					<tr>
+						<th><spring:message code="label.invitationaddress.filters" /> *</th>
+						<td><textarea  id="filters" name="filters"></textarea></td>
 					</tr>
 
 					<tr>

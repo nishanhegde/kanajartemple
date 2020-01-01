@@ -214,9 +214,17 @@ public class AdminHome {
 	}
 
 	@RequestMapping(value = "/Admin/nithyapoojeaddress")
+	
 	public String getAddressList(@RequestParam String month, Model model) {
 
 		model.addAttribute("PoojeDetails", defaultTempleMethods.getSashwathaPoojeAddress(month));
+		return "admin/nithyapoojeaddress";
+	}
+	
+	@RequestMapping(value = "/Admin/invitationaddress")
+	public String getInvidationAddressList(@RequestParam String filters, Model model) {
+
+		model.addAttribute("PoojeDetails", defaultTempleMethods.getInvitationAddress(filters));
 		return "admin/nithyapoojeaddress";
 	}
 }

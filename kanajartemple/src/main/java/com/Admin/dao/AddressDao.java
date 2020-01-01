@@ -1,6 +1,7 @@
 package com.Admin.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.Admin.bean.Address;
 
@@ -15,4 +16,6 @@ public interface AddressDao {
 	public Integer update(Address address);
 
 	public void delete(String id);
+	
+	public List<Map<String, Object>> getInvitationAddress();
 }
