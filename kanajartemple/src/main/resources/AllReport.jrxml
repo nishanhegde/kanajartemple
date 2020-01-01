@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2017-01-19T12:23:44 -->
+<!-- 2019-12-31T13:01:01 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="IncomeReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43e0c141-5909-46d5-b2d4-bd3042c6f231">
 	<property name="net.sf.jasperreports.export.html.using.images.to.align" value="false"/>
 	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="81"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<field name="TodayDate" class="java.util.Date"/>
 	<field name="FromDate" class="java.lang.String"/>
 	<field name="ToDate" class="java.lang.String"/>
@@ -15,6 +16,10 @@
 	<field name="Expenditure" class="java.lang.Double"/>
 	<field name="GrandTotal" class="java.lang.Double"/>
 	<field name="IncomeTotal" class="java.lang.Double"/>
+	<field name="CashDisbursementTotal" class="java.lang.Double"/>
+	<field name="Cash" class="java.lang.Double"/>
+	<field name="Bank" class="java.lang.Double"/>
+	<field name="CashGrandTotal" class="java.lang.Double"/>
 	<title>
 		<band height="80" splitType="Stretch">
 			<textField pattern="dd/MM/yyyy h.mm a">
@@ -72,7 +77,7 @@
 		</band>
 	</title>
 	<detail>
-		<band height="238">
+		<band height="677">
 			<staticText>
 				<reportElement x="205" y="14" width="150" height="20" uuid="84328fd7-37cd-465e-97ce-3544d5235a4c"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -102,28 +107,28 @@
 				<textFieldExpression><![CDATA[$F{DonationTotal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="205" y="150" width="150" height="20" uuid="ce307122-bf72-4734-970a-7e827cee4ae7"/>
+				<reportElement x="205" y="144" width="150" height="20" uuid="ce307122-bf72-4734-970a-7e827cee4ae7"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Expenditure Total]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="398" y="150" width="140" height="20" forecolor="#333333" uuid="0ba8b4f7-5c49-48b4-89dd-0632f09fd79f"/>
+				<reportElement x="398" y="145" width="140" height="20" forecolor="#333333" uuid="0ba8b4f7-5c49-48b4-89dd-0632f09fd79f"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Expenditure}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="205" y="207" width="150" height="20" uuid="21f516b8-b9d9-429f-ba5f-f2e868c1df68"/>
+				<reportElement x="205" y="227" width="150" height="20" uuid="21f516b8-b9d9-429f-ba5f-f2e868c1df68"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Grand Total]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="398" y="207" width="140" height="20" forecolor="#333333" uuid="5e78870e-a824-4408-995b-403dd454666f"/>
+				<reportElement x="398" y="228" width="140" height="20" forecolor="#333333" uuid="5e78870e-a824-4408-995b-403dd454666f"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Nirmala UI" size="10"/>
 				</textElement>
@@ -144,13 +149,72 @@
 				<text><![CDATA[Income Total]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="237" width="555" height="1" uuid="059d40b1-54d4-4dd8-8c87-1728e6ad6202"/>
+				<reportElement x="381" y="1" width="1" height="216" uuid="3b292a39-f0ef-4f0a-a394-a0737e9c063f"/>
+			</line>
+			<staticText>
+				<reportElement x="207" y="185" width="150" height="20" uuid="94f65b7a-410f-4963-b275-f9f5094fd9a6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cash Disbursed]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="400" y="186" width="140" height="20" forecolor="#333333" uuid="c0c2bddc-da69-4ba6-8c7f-4ce2061a4fa3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CashDisbursementTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="207" y="298" width="150" height="20" uuid="c18a2cae-7219-49c8-b414-cbb9cecbe69d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bank]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="263" width="150" height="20" uuid="fc18b7b5-a0d5-4d06-a022-635693a84627"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cash]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="331" width="177" height="20" uuid="ccb0d097-eb8b-497d-85e7-887e1efaec60"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grand Total Cash Only]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="398" y="263" width="140" height="20" forecolor="#333333" uuid="9a082fa7-7fa7-4049-a2c2-420c4a4c8f3d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cash}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="398" y="297" width="140" height="20" forecolor="#333333" uuid="3f147f02-614d-4bb6-9acd-e75dc58d62d4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Bank}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="397" y="331" width="140" height="20" forecolor="#333333" uuid="166c2df8-891d-4489-8c9a-1c680f61fa03"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Nirmala UI" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CashGrandTotal}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="351" width="550" height="1" uuid="930458dd-ea6d-4140-9532-0c321dcda60c"/>
 			</line>
 			<line>
-				<reportElement x="5" y="184" width="550" height="1" uuid="b70ab1ba-7d97-44e7-af3b-d647f9ca8814"/>
+				<reportElement x="0" y="217" width="554" height="1" uuid="257f571c-c98c-49b2-af6d-8c4610779667"/>
 			</line>
 			<line>
-				<reportElement x="380" y="0" width="1" height="180" uuid="3b292a39-f0ef-4f0a-a394-a0737e9c063f"/>
+				<reportElement x="380" y="221" width="1" height="123" uuid="6d735db6-ac2f-4e80-88a5-c3edb81a0630"/>
 			</line>
 		</band>
 	</detail>

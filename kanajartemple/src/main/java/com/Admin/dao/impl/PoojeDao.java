@@ -277,25 +277,38 @@ public class PoojeDao extends AbstractDao {
 		}
 
 		/* calculating Sashwatha pooje amount total */
-		String sashpoojesql = "select Amount from pooje p1,sashwathapooje s1 where s1.BDate>=:FromDate "
+		String sashpoojesql = "select SUM(Amount) from pooje p1,sashwathapooje s1 where s1.BDate>=:FromDate "
 				+ "and s1.BDate<=:ToDate and p1.pid=s1.Pid";
-		poojetotal +=poojeService.calculateGrandTotal(namedParameterJdbcTemplate.queryForList(sashpoojesql, param));
+		poojetotal +=execute(param, sashpoojesql);
 		
 		/* calculating all Donation amount total */
-		String donationsql = "select Amount from alldonationdata where BDate>=:FromDate and BDate<=:ToDate ";
-		double donationtotal =poojeService.calculateGrandTotal(namedParameterJdbcTemplate.queryForList(donationsql, param));
+		String donationsql = "select SUM(Amount) from alldonationdata where BDate>=:FromDate and BDate<=:ToDate ";
+		double donationtotal =execute(param, donationsql);
 
 		/* Expense Total */
-		String expensesql = "select Amount from allexpendituredata where BDate>=:FromDate and BDate<=:ToDate ";
-		double expensetotal = poojeService.calculateGrandTotal(namedParameterJdbcTemplate.queryForList(expensesql, param));
+		String expensesql = "select SUM(Amount) from allexpendituredata where BDate>=:FromDate and BDate<=:ToDate ";
+		double expensetotal = execute(param, expensesql);
 
 		/* income Total */
-		String incomesql = "select Amount from allincomedata where Bdate>=:FromDate and Bdate<=:ToDate ";
-		double incometotal = poojeService.calculateGrandTotal(namedParameterJdbcTemplate.queryForList(incomesql, param));
+		String incomesql = "select SUM(Amount) from allincomedata where Bdate>=:FromDate and Bdate<=:ToDate ";
+		double incometotal = execute(param, incomesql);
 
+		String donationbanksql = "select SUM(Amount) from alldonationdata where BDate>=:FromDate and BDate<=:ToDate and bankentryid IS NOT NULL ";
+		double donationbanktotal =execute(param, donationbanksql);
+
+		double cashdisbursementtotal=0.0;
+		if(rbean.isIncludeCashDisbursement())
+		{
+			String cashdisburzementsql = "select SUM(amount) from cashdisbursement where creation_date >=:FromDate and creation_date<=:ToDate";
+			cashdisbursementtotal =execute(param, cashdisburzementsql);
+
+		}
 		// Grand total
-		double grandtotal = poojetotal + donationtotal + incometotal - expensetotal;
-		List report = new ArrayList();
+		double grandtotal = poojetotal + donationtotal + incometotal-cashdisbursementtotal - expensetotal;
+		double cash=poojetotal + donationtotal + incometotal-donationbanktotal;
+		double cashgrandtotal =  cash-expensetotal-cashdisbursementtotal;
+		
+		List<Map<String, Object>> report = new ArrayList<>(1);
 		Map<String, Object> details = new HashMap<String, Object>();
 
 		details.put("TodayDate", new Date());
@@ -307,9 +320,24 @@ public class PoojeDao extends AbstractDao {
 		details.put("IncomeTotal", incometotal);
 		details.put("Expenditure", expensetotal);
 		details.put("GrandTotal", grandtotal);
+		details.put("Cash", cash);
+		details.put("Bank", donationbanktotal);
+		details.put("CashGrandTotal",cashgrandtotal);
+		details.put("CashDisbursementTotal",cashdisbursementtotal);
 
 		report.add(details);
 		return report;
+	}
+
+
+
+	private Double execute(Map<String, Object> param, String sashpoojesql) {
+		Double result= namedParameterJdbcTemplate.queryForObject(sashpoojesql, param,Double.class);
+		if(Objects.nonNull(result))
+		{
+			return result.doubleValue();
+		}
+		return 0.0;
 	}
 
 	public Integer updatePooje(Poojebean pbean) {

@@ -27,7 +27,13 @@
 					<td><input type="text" id="date" name="ToDate"
 						required="required" id="date" class="tcal" /></td>
 				</tr>
-
+				
+				<tr>
+					<th><spring:message code="label.includecashdisbursement" /></th> 
+					<td><input type="checkbox"  name="includeCashDisbursement" 
+						 id="includeCashDisbursement" /></td>
+				</tr>
+				
 				<tr>
 					<th><spring:message code="label.saveas" /></th>
 					<td><select name="SaveAs" required="required">
@@ -48,7 +54,6 @@
 			</table>
 		</form>
 	</center>
-
 
 </div>
 

@@ -15,6 +15,7 @@ public class Reportbean {
 	private String name;
 	private Double Amount;
 	private AmountType amountType;
+	private boolean includeCashDisbursement ;
 	
 	public String getDates() {
 		return dates;
@@ -75,6 +76,13 @@ public class Reportbean {
 	}
 	public void setAmountType(AmountType amountType) {
 		this.amountType = amountType;
-	}	
+	}
+	public boolean isIncludeCashDisbursement() {
+		return includeCashDisbursement;
+	}
+	public void setIncludeCashDisbursement(boolean includeCashDisbursement) {
+		this.includeCashDisbursement = includeCashDisbursement;
+	}
+	
 	
 }

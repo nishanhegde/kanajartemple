@@ -16,15 +16,22 @@ $(document).ready(function () {
 	$('#bankentry').hide();
 	  $('#amounttype').change(function(){
 		$('#bankentry').hide();
-	    if($(this).val()== 'BANK'){
+	    if($('#amounttype').val()== 'BANK'){
 	    	
 	    	 $.ajax({url: "${searchbankentry}", success: function(result){
 	    	        $("#bankentry").replaceWith(result);
 	    	    }});
 	    	$('#bankentry').show();
 	    }
-	  });
+	  });  
 	});
+	
+function refresh(){	
+	 $.ajax({url: "${searchbankentry}", success: function(result){
+	        $("#bankentry").replaceWith(result);
+	    }});
+	$('#bankentry').show();
+}
 </script>
 
 

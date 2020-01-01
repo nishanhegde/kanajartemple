@@ -49,7 +49,7 @@ public class DefaultBankAccountService implements BankAccountService {
 	}
 
 	@Override
-	public synchronized void save(BankAccountEntry bae) {
+	public synchronized Integer save(BankAccountEntry bae) {
 
 		Double openingBalance = bankAccountDao.getBalance(bae.getBankAccountId());
 		if (openingBalance == null) {
@@ -59,7 +59,7 @@ public class DefaultBankAccountService implements BankAccountService {
 		double amount = bae.getAmount().doubleValue();
 		balance = bae.getTransaction().equals(TransactionEnum.DEPOSIT) ? balance + amount : balance - amount;
 		bae.setBalance(balance);
-		bankAccountDao.save(bae);
+		return bankAccountDao.save(bae);
 	}
 
 	@Override

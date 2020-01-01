@@ -10,7 +10,7 @@
 		<form action="<c:url value="../cash/report"/>"
 			method="post" target="_blank">
 			<table>
-				
+				<input type="hidden" name="dates" value="BDate" />
 				<tr>
 					<th><spring:message code="label.datefrom" /></th>
 					<td><input type="text" id="date" name="FromDate" id="date"

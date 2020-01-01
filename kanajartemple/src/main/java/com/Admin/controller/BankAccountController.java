@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.Admin.Service.BankAccountService;
 import com.Admin.bean.BankAccount;
 import com.Admin.bean.BankAccountEntry;
@@ -81,11 +83,35 @@ public class BankAccountController {
 		model.addAttribute("bankAccounts", bankAccountService.getBankAccounts());
 		return KanajarTempleConstants.BANK_ACC_VIEW + "/addaccountentry";
 	}
+	
+	@RequestMapping(value = "/addaccountentrypopup", method = RequestMethod.GET)
+	public String addAccountEntryPopup(Model model) {
+		model.addAttribute(new BankAccountEntry());
+		return getPopupView(model);
+	}
+
+	private String getPopupView(Model model) {
+		model.addAttribute("transactions", TransactionEnum.values());
+		model.addAttribute("types", TypeEnum.values());
+		model.addAttribute("bankAccounts", bankAccountService.getBankAccounts());
+		return KanajarTempleConstants.BANK_ACC_VIEW + "/addaccountentrypopup";
+	}
+
 
 	@RequestMapping(value = "/addaccountentry", method = RequestMethod.POST)
 	public String saveAccountEntry(@ModelAttribute BankAccountEntry bae, Model model) {
 		bankAccountService.save(bae);
 		return KanajarTempleConstants.REDIRECT_PRIFIX + "/Admin/viewaccountentry/" + bae.getBankAccountId();
+	}
+	
+	@RequestMapping(value = "/addaccountentrypopup", method = RequestMethod.POST)
+	public String saveAccountEntryPopup(@ModelAttribute BankAccountEntry bae, Model model,Locale locale) {
+		
+		if (bankAccountService.save(bae) == 1) {
+			model.addAttribute("message", messageSource.getMessage("save.success", null, locale));
+		}
+		model.addAttribute(bae);
+		return getPopupView(model);
 	}
 
 	@RequestMapping(value = "/viewaccountentry/{bankId}", method = RequestMethod.GET)
