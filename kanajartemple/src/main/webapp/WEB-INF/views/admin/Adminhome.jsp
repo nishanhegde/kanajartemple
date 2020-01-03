@@ -8,6 +8,7 @@
 	<div class="boxbody">
 		<div class="boxheader">
 			<spring:message code="label.pooje" />
+			
 		</div>
 		<div class="padd">
 			<ul >
@@ -20,6 +21,7 @@
 
 			</ul>
 		</div>
+		
 	</div>
 
 

@@ -258,11 +258,21 @@ h6 {
 	position: relative;
 }
 
-.padd {
+.boxheader:hover+ .padd{
+	display:block;
 	padding: 5px 0px 0px 25px;
+}
+.padd:hover {
+	display:block;
+	padding: 5px 0px 0px 25px;
+}
+.padd {
+	display:none;
+	
 }
 
 .padd a {
+	
 	color: #000;
 	text-decoration: none;
 	font-family: arial;
