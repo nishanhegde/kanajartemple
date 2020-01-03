@@ -191,7 +191,7 @@ public class kanajarTempleMethodsImpl implements kanajarTempleMethods {
 		List<String> filterList = StringUtils.isNotEmpty(filters) ? Arrays.asList(filters.split(","))
 				: Collections.emptyList();
 		
-		List<Map<String, Object>> filteredResult = result.stream()
+		List<Map<String, Object>> filteredResult = result.stream().filter(rest->StringUtils.isNotEmpty((String) rest.get("address")))
 
 				.filter(rest -> isValidAddress(addressFilters, rest, filterList)).map(rest -> {
 
