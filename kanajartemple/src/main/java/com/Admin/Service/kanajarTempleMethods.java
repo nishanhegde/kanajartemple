@@ -67,4 +67,6 @@ public interface kanajarTempleMethods {
 	
 	public List<Map<String, Object>> getSashwathaPoojeAddress(String month);
 	
+	public List<Map<String, Object>> getInvitationAddress(String filters);
+	
 }

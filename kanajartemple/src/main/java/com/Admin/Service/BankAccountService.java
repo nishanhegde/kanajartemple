@@ -19,7 +19,7 @@ public interface BankAccountService {
 	
 	public void delete(String id);
 	
-	public void save(BankAccountEntry bae);
+	public Integer save(BankAccountEntry bae);
 	
 	public List<BankAccountEntry> getBankAccountEntries(String bankId);
 	

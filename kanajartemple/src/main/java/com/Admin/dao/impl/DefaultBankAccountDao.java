@@ -85,7 +85,7 @@ public class DefaultBankAccountDao extends AbstractDao implements BankAccountDao
 	}
 
 	@Override
-	public void save(BankAccountEntry bae) {
+	public Integer save(BankAccountEntry bae) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("bankaccount_id", bae.getBankAccountId());
 		param.put("amount", bae.getAmount());
@@ -99,7 +99,7 @@ public class DefaultBankAccountDao extends AbstractDao implements BankAccountDao
 				+ " values(:bankaccount_id,(SELECT IFNULL(MAX(bae.bankaccountentry_id), 0) + 1 FROM bankaccountentry bae where bae.bankaccount_id=:bankaccount_id)"
 				+ " ,:amount,:balance,:transaction,:chequeorrefno,:transaction_date,:description)";
 
-		namedParameterJdbcTemplate.update(sql, param);
+		return namedParameterJdbcTemplate.update(sql, param);
 	}
 
 	@Override

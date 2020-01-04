@@ -1,6 +1,7 @@
 package com.Admin.Service.Impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Required;
 
@@ -17,6 +18,7 @@ public class DefaultAddressService implements AddressService {
 		getAddressDao().save(address);
 		
 	}
+	
 
 	@Override
 	public List<Address> getAddress() {
@@ -45,6 +47,12 @@ public class DefaultAddressService implements AddressService {
 	@Required
 	public void setAddressDao(AddressDao addressDao) {
 		this.addressDao = addressDao;
+	}
+
+
+	@Override
+	public List<Map<String, Object>> getInvitationAddress() {
+		return getAddressDao().getInvitationAddress();
 	}
 	
 	

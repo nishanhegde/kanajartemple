@@ -14,7 +14,7 @@ public class GlobalExceptionController {
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleAllException(Exception ex) {
 
-		logger.error(ex);
+		logger.error(ex.getStackTrace());
 				
 		ModelAndView model = new ModelAndView("admin/errorpage");
 		

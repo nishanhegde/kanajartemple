@@ -194,5 +194,16 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 	<beans:bean id="defaultAddressDao" class="com.Admin.dao.impl.DefaultAddressDao">
 		<beans:property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate" />
 	</beans:bean>
+	
+	<beans:alias name="defaultCashDisbursementService" alias="cashDisbursementService" />
+	<beans:bean id="defaultCashDisbursementService"
+		class="com.Admin.Service.Impl.DefaultCashDisbursementService">
+		<beans:property name="cashDisbursementDao" ref="cashDisbursementDao" />
+	</beans:bean>
+
+	<beans:alias name="defaultCashDisbursementDao" alias="cashDisbursementDao" />
+	<beans:bean id="defaultCashDisbursementDao" class="com.Admin.dao.impl.DefaultCashDisbursementDao">
+		<beans:property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate" />
+	</beans:bean>
 
 </beans:beans>

@@ -78,7 +78,7 @@ h6 {
 	font-size: 14px;
 	width: 100%;
 	margin-bottom: 5px;
-	-webkit-appearance: none;
+	
 	border: 1px solid #d9d9d9;
 	border-top: 1px solid #c0c0c0;
 	/* border-radius: 2px; */
@@ -110,7 +110,7 @@ h6 {
 	font-size: 14px;
 	width: 100%;
 	margin-bottom: 5px;
-	-webkit-appearance: none;
+	
 	border: 1px solid #d9d9d9;
 	border-top: 1px solid #c0c0c0;
 	/* border-radius: 2px; */
@@ -119,12 +119,20 @@ h6 {
 	-moz-box-sizing: border-box;
 }
 
+.mainbody input[type=checkbox] {
+	/*all: unset;*/
+	height: 30px;
+	font-size: 14px;
+	width: 10%;
+	
+	}
+
 .login-card input[type=text], input[type=password] {
 	height: 44px;
 	font-size: 16px;
 	width: 100%;
 	margin-bottom: 10px;
-	-webkit-appearance: none;
+	
 	background: #fff;
 	border: 1px solid #d9d9d9;
 	border-top: 1px solid #c0c0c0;
@@ -228,7 +236,7 @@ h6 {
 .boxheader {
 	width: 250px;
 	height: 30px;
-	background-color: #00B4FF;
+	background-color:#009999;
 	-webkit-border-radius: 10px;
 	text-align: center;
 	padding-top: 10px;
@@ -250,11 +258,21 @@ h6 {
 	position: relative;
 }
 
-.padd {
+.boxheader:hover+ .padd{
+	display:block;
 	padding: 5px 0px 0px 25px;
+}
+.padd:hover {
+	display:block;
+	padding: 5px 0px 0px 25px;
+}
+.padd {
+	display:none;
+	
 }
 
 .padd a {
+	
 	color: #000;
 	text-decoration: none;
 	font-family: arial;

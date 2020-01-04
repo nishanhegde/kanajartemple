@@ -8,18 +8,20 @@
 	<div class="boxbody">
 		<div class="boxheader">
 			<spring:message code="label.pooje" />
+			
 		</div>
 		<div class="padd">
-			<ul>
+			<ul >
 				<li><a href="#" class="big-link" data-reveal-id="myModal"><spring:message
-							code="label.poojereceipt" /> </a></li>
+							code="label.create" /> </a></li>
 				<li><a href="#" class="big-link" data-reveal-id="BookedPooje"><spring:message
-							code="label.bookedpooje" /> </a></li>
+							code="label.view" /> </a></li>
 				<li><a href="<c:url value="/Admin/PoojeReport"/>"><spring:message
 							code="label.report" /></a></li>
 
 			</ul>
 		</div>
+		
 	</div>
 
 
@@ -30,9 +32,9 @@
 		<div class="padd">
 			<ul>
 				<li><a href="<c:url value="/Admin/SashwathaPooje"/>"><spring:message
-							code="label.poojereceipt" /></a></li>
+							code="label.create" /></a></li>
 				<li><a href="<c:url value="/Admin/SashwathaPoojeReceiptList"/>"><spring:message
-							code="label.bookedpooje" /></a></li>
+							code="label.view" /></a></li>
 				<li><a href="<c:url value="/Admin/SashwathaPoojeReport"/>"><spring:message
 							code="label.report" /></a></li>
 			</ul>
@@ -46,10 +48,10 @@
 		<div class="padd">
 			<ul>
 				<li><a href="<c:url value="/Admin/Donation"/> "><spring:message
-							code="label.donationreceipt" /></a></li>
+							code="label.create" /></a></li>
 				<li><a href="#" class="big-link"
 					data-reveal-id="DonationReceipt"><spring:message
-							code="label.list" /></a></li>
+							code="label.view" /></a></li>
 				<li><a href="<c:url value="/Admin/DonationReport"/>"><spring:message
 							code="label.report" /></a></li>
 
@@ -64,9 +66,9 @@
 		<div class="padd">
 			<ul>
 				<li><a href="<c:url value="/Admin/income"/>"><spring:message
-							code="label.add" /></a></li>
+							code="label.create" /></a></li>
 				<li><a href="#" class="big-link" data-reveal-id="BookedIncome"><spring:message
-							code="label.list" /></a></li>
+							code="label.view" /></a></li>
 				<li><a href="<c:url value="/Admin/IncomeReport"/>"><spring:message
 							code="label.report" /></a></li>
 
@@ -81,10 +83,27 @@
 		<div class="padd">
 			<ul>
 				<li><a href="<c:url value="/Admin/Expenditure"/>"><spring:message
-							code="label.add" /></a></li>
+							code="label.create" /></a></li>
 				<li><a href="#" class="big-link" data-reveal-id="BookedExpense"><spring:message
-							code="label.list" /></a></li>
+							code="label.view" /></a></li>
 				<li><a href="<c:url value="/Admin/ExpenditureReport"/>"><spring:message
+							code="label.report" /></a></li>
+
+			</ul>
+		</div>
+	</div>
+
+	<div class="boxbody">
+		<div class="boxheader">
+			<spring:message code="label.cashdisbursement" />
+		</div>
+		<div class="padd">
+			<ul>
+				<li><a href="<c:url value="/cash/add"/>"><spring:message
+							code="label.create" /></a></li>
+				<li><a href="<c:url value="/cash/view"/>"><spring:message
+							code="label.view" /></a></li>
+				<li><a href="<c:url value="/cash/report"/>"><spring:message
 							code="label.report" /></a></li>
 
 			</ul>
@@ -106,6 +125,9 @@
 				<li><a href="#" class="big-link"
 					data-reveal-id="nithyapoojeaddress"><spring:message
 							code="label.nithyapooje.address" /></a></li>
+				<li><a href="#" class="big-link"
+					data-reveal-id="invitationaddress"><spring:message
+							code="label.invitation.address" /></a></li>
 
 			</ul>
 		</div>
@@ -535,6 +557,37 @@
 								<option value='NOV'>November</option>
 								<option value='DEC'>December</option>
 						</select></td>
+					</tr>
+
+					<tr>
+						<th></th>
+						<td><input type="submit"
+							value="<spring:message code="label.submit" />" /></td>
+					</tr>
+				</table>
+			</form>
+		</center>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	<!-- Nithya Pooje Address -->
+	<div id="invitationaddress" class="reveal-modal">
+		<center>
+			<p class="headingfont">
+				<spring:message code="label.invitation.address" />
+			</p>
+			<hr />
+			<br/>
+			<form action="<c:url value="/Admin/invitationaddress"/>"
+				id="invitationaddress" name="invitationaddress"
+				required="required" method="get" target="_blank">
+				<h4>
+				<spring:message code="label.invitationaddress.note" />
+				</h4>
+				<table>
+					<tr>
+						<th><spring:message code="label.invitationaddress.filters" /> *</th>
+						<td><textarea  id="filters" name="filters"></textarea></td>
 					</tr>
 
 					<tr>

@@ -1,5 +1,6 @@
 package com.Admin.dao.impl;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import com.Admin.RowMapper.IncomeRowMapper;
 import com.Admin.RowMapper.PoojeDataRowMapper;
 import com.Admin.RowMapper.PoojeRowMapper;
 import com.Admin.RowMapper.SashwathaPoojeRowMapper;
+import com.Admin.Service.AddressService;
 import com.Admin.bean.Donation;
 import com.Admin.bean.DonationDetail;
 import com.Admin.bean.Expense;
@@ -36,7 +38,7 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 
 	@Autowired
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
+	
 	@Override
 	public Pooje getPooje(String PoojeId) {
 
@@ -279,8 +281,15 @@ public class kanajarTempleMethodsDaoImpl implements kanajarTempleMethodsDao {
 	public List<Map<String, Object>> getSashwathaPoojeAddress(String month) {
 
 		Map<String, Object> param = new HashMap<String, Object>();
-		String str = "select * from sashwathapooje where Pdate LIKE '%" + month + "' order by Pdate";
+		String str = "select * from sashwathapooje where address IS NOT NULL and address != '' and Pdate LIKE '%" + month + "' order by Pdate";
 		return namedParameterJdbcTemplate.queryForList(str, param);
+	}
+	
+	@Override
+	public List<Map<String, Object>> getInvitationAddress() {
+
+		String str = "select * from sashwathapooje  order by Pdate";
+		return namedParameterJdbcTemplate.queryForList(str, Collections.emptyMap());
 	}
 
 }

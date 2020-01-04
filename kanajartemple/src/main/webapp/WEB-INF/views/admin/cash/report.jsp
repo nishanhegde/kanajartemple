@@ -3,40 +3,27 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<jsp:include page="Adminheader.jsp"></jsp:include>
+<jsp:include page="../Adminheader.jsp"></jsp:include>
 <div class="mainbody">
 
-
 	<center>
-		<h1>
-			<spring:message code="label.allreport" />
-		</h1>
-		<form action="<c:url value="../Admin/AllReportSuccess"/>"
+		<form action="<c:url value="../cash/report"/>"
 			method="post" target="_blank">
-			<table cellspacing="15" cellpadding="20">
-
-<input type="hidden" name="dates" value="BDate" />
-
+			<table>
+				<input type="hidden" name="dates" value="BDate" />
 				<tr>
 					<th><spring:message code="label.datefrom" /></th>
-					<td><input type="text" id="date" name="FromDate"
-						required="required" id="date" class="tcal" /></td>
+					<td><input type="text" id="date" name="FromDate" id="date"
+						class="tcal" required /></td>
 				</tr>
 				<tr>
 					<th><spring:message code="label.dateto" /></th>
-					<td><input type="text" id="date" name="ToDate"
-						required="required" id="date" class="tcal" /></td>
+					<td><input type="text" id="date" name="ToDate" id="date"
+						class="tcal" required /></td>
 				</tr>
-				
-				<tr>
-					<th><spring:message code="label.includecashdisbursement" /></th> 
-					<td><input type="checkbox"  name="includeCashDisbursement" 
-						 id="includeCashDisbursement" /></td>
-				</tr>
-				
 				<tr>
 					<th><spring:message code="label.saveas" /></th>
-					<td><select name="SaveAs" required="required">
+					<td><select name="SaveAs">
 							<option value="html">HTML</option>
 							<option value="pdf">Pdf</option>
 							<option value="xls">Excel</option>
@@ -54,7 +41,5 @@
 			</table>
 		</form>
 	</center>
-
 </div>
-
-<jsp:include page="Adminfooter.jsp"></jsp:include>
+<jsp:include page="../Adminfooter.jsp"></jsp:include>
