@@ -13,9 +13,9 @@
 		<div class="padd">
 			<ul >
 				<li><a href="#" class="big-link" data-reveal-id="myModal"><spring:message
-							code="label.poojereceipt" /> </a></li>
+							code="label.create" /> </a></li>
 				<li><a href="#" class="big-link" data-reveal-id="BookedPooje"><spring:message
-							code="label.bookedpooje" /> </a></li>
+							code="label.view" /> </a></li>
 				<li><a href="<c:url value="/Admin/PoojeReport"/>"><spring:message
 							code="label.report" /></a></li>
 
@@ -32,9 +32,9 @@
 		<div class="padd">
 			<ul>
 				<li><a href="<c:url value="/Admin/SashwathaPooje"/>"><spring:message
-							code="label.poojereceipt" /></a></li>
+							code="label.create" /></a></li>
 				<li><a href="<c:url value="/Admin/SashwathaPoojeReceiptList"/>"><spring:message
-							code="label.bookedpooje" /></a></li>
+							code="label.view" /></a></li>
 				<li><a href="<c:url value="/Admin/SashwathaPoojeReport"/>"><spring:message
 							code="label.report" /></a></li>
 			</ul>
@@ -48,10 +48,10 @@
 		<div class="padd">
 			<ul>
 				<li><a href="<c:url value="/Admin/Donation"/> "><spring:message
-							code="label.donationreceipt" /></a></li>
+							code="label.create" /></a></li>
 				<li><a href="#" class="big-link"
 					data-reveal-id="DonationReceipt"><spring:message
-							code="label.list" /></a></li>
+							code="label.view" /></a></li>
 				<li><a href="<c:url value="/Admin/DonationReport"/>"><spring:message
 							code="label.report" /></a></li>
 
@@ -66,9 +66,9 @@
 		<div class="padd">
 			<ul>
 				<li><a href="<c:url value="/Admin/income"/>"><spring:message
-							code="label.add" /></a></li>
+							code="label.create" /></a></li>
 				<li><a href="#" class="big-link" data-reveal-id="BookedIncome"><spring:message
-							code="label.list" /></a></li>
+							code="label.view" /></a></li>
 				<li><a href="<c:url value="/Admin/IncomeReport"/>"><spring:message
 							code="label.report" /></a></li>
 
@@ -83,9 +83,9 @@
 		<div class="padd">
 			<ul>
 				<li><a href="<c:url value="/Admin/Expenditure"/>"><spring:message
-							code="label.add" /></a></li>
+							code="label.create" /></a></li>
 				<li><a href="#" class="big-link" data-reveal-id="BookedExpense"><spring:message
-							code="label.list" /></a></li>
+							code="label.view" /></a></li>
 				<li><a href="<c:url value="/Admin/ExpenditureReport"/>"><spring:message
 							code="label.report" /></a></li>
 
@@ -100,9 +100,9 @@
 		<div class="padd">
 			<ul>
 				<li><a href="<c:url value="/cash/add"/>"><spring:message
-							code="label.add" /></a></li>
+							code="label.create" /></a></li>
 				<li><a href="<c:url value="/cash/view"/>"><spring:message
-							code="label.list" /></a></li>
+							code="label.view" /></a></li>
 				<li><a href="<c:url value="/cash/report"/>"><spring:message
 							code="label.report" /></a></li>
 
