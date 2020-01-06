@@ -24,7 +24,7 @@ public class DefaultAddressDao implements AddressDao {
 	public void save(Address address) {
 		Map<String, Object> param = getAddressParam(address);
 
-		String sql = "insert into address(fullname,address,email,mobile)" + "values(:fullname,:address,:email,:mobile)";
+		String sql = "insert into address(fullname,address,email,mobile,modified_date)" + "values(:fullname,:address,:email,:mobile,(select now()))";
 
 		getNamedParameterJdbcTemplate().update(sql, param);
 
@@ -50,7 +50,7 @@ public class DefaultAddressDao implements AddressDao {
 	public Integer update(Address address) {
 		Map<String, Object> param = getAddressParam(address);
 		param.put("id", address.getId());
-		String sql = "update address set fullname=:fullname,address=:address,email=:email,mobile=:mobile"
+		String sql = "update address set fullname=:fullname,address=:address,email=:email,mobile=:mobile,modified_date=(select now())"
 				+ " where id=:id";
 
 		return getNamedParameterJdbcTemplate().update(sql, param);
