@@ -5,37 +5,16 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="core" uri="http://www.springframework.org/tags"%>
 
-<c:url var="searchbankentry" value="/Admin/searchbankentry" />
+
 
 <script type="text/javascript"
 	src="<c:url value="/resources/js/admin/jquery-1.6.min.js"/>"></script>	
 	
-<script type="text/javascript">
-
-$(document).ready(function () {
-	$('#bankentry').hide();
-	  $('#amounttype').change(function(){
-		$('#bankentry').hide();
-	    if($('#amounttype').val()== 'BANK'){
-	    	
-	    	 $.ajax({url: "${searchbankentry}", success: function(result){
-	    	        $("#bankentry").replaceWith(result);
-	    	    }});
-	    	$('#bankentry').show();
-	    }
-	  });  
-	});
-	
-function refresh(){	
-	 $.ajax({url: "${searchbankentry}", success: function(result){
-	        $("#bankentry").replaceWith(result);
-	    }});
-	$('#bankentry').show();
-}
-</script>
 
 
 <jsp:include page="Adminheader.jsp"></jsp:include>
+
+
 <div class="mainbody">
 	<center>
 		<h1>

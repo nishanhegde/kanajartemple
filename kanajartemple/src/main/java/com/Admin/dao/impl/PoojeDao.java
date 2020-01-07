@@ -119,8 +119,8 @@ public class PoojeDao extends AbstractDao {
 		}
 		param.put("RecNo", RecNo);
 
-		String str = "insert into allincomedata(RecNo,Iid,title,Amount,EDate,BDate) "
-				+ "values(:RecNo,:Iid,:title,:Amount,:EDate,(select now()))";
+		String str = "insert into allincomedata(RecNo,Iid,title,Amount,EDate,BDate,bankentryid) "
+				+ "values(:RecNo,:Iid,:title,:Amount,:EDate,(select now()),:bankentryid)";
 		Integer i = namedParameterJdbcTemplate.update(str, param);
 		if (i == 1) {
 			return RecNo;
@@ -134,6 +134,7 @@ public class PoojeDao extends AbstractDao {
 		param.put("title", Utills.replaceWhiteSpace(ibean.getTitle()));
 		param.put("Amount", ibean.getAmount());
 		param.put("EDate", getCustomDate(ibean.getEdate()));
+		param.put("bankentryid", ibean.getBankentryid());
 		return param;
 	}
 
@@ -141,11 +142,21 @@ public class PoojeDao extends AbstractDao {
 
 		Map<String, Object> param = getReportParam(rbean);
 
-		String str = "select RecNo,title,DATE_FORMAT(Bdate, '%d-%m-%Y %h:%i %p') as Bdate,Amount from allincomedata where Iid=:id and "
-				+ rbean.getDates() + ">=:FromDate and " + rbean.getDates() + "<=:ToDate order by " + rbean.getSortby()
-				+ " " + rbean.getOrder();
+		StringBuilder query=new StringBuilder();
+		query.append("select RecNo,title,DATE_FORMAT(Bdate, '%d-%m-%Y %h:%i %p') as Bdate,Amount from allincomedata where Iid=:id and "
+				+ rbean.getDates() + ">=:FromDate and " + rbean.getDates() + "<=:ToDate ");
+		
+		if(!Objects.equals(AmountType.ALL, rbean.getAmountType()))
+		{
+			query.append("AND bankentryid IS ");
+			query.append(Objects.equals(AmountType.BANK, rbean.getAmountType())?"NOT ":"");
+			query.append("NULL ");
+		}
+		
+		query.append("order by "
+				+ rbean.getSortby() + " " + rbean.getOrder());
 
-		return namedParameterJdbcTemplate.queryForList(str, param);
+		return namedParameterJdbcTemplate.queryForList(query.toString(), param);
 	}
 
 	public List getSashwathaReport(Reportbean rbean) {
@@ -229,7 +240,7 @@ public class PoojeDao extends AbstractDao {
 			RecNo = 1;
 		}
 		param.put("RecNo", RecNo);
-		String str = "insert into allexpendituredata(RecNo,Eid,Title,Description,Amount,EDate,BDate) values(:RecNo,:Eid,:Title,:Description,:Amount,:EDate,(select now()))";
+		String str = "insert into allexpendituredata(RecNo,Eid,Title,Description,Amount,EDate,BDate,bankentryid) values(:RecNo,:Eid,:Title,:Description,:Amount,:EDate,(select now()),:bankentryid)";
 
 		Integer i = namedParameterJdbcTemplate.update(str, param);
 
@@ -247,17 +258,29 @@ public class PoojeDao extends AbstractDao {
 		param.put("Description", Utills.replaceWhiteSpace(ebean.getDescription()));
 		param.put("Amount", ebean.getAmount());
 		param.put("EDate", getCustomDate(ebean.getEDate()));
+		param.put("bankentryid", ebean.getBankentryid());
 		return param;
 	}
 
 	public List getExpenditureReport(Reportbean rbean) {
 
 		Map<String, Object> param = getReportParam(rbean);
-		String str = "select RecNo,Title,Description,Amount," + "DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,"
+		
+		StringBuilder query=new StringBuilder();
+		query.append("select RecNo,Title,Description,Amount," + "DATE_FORMAT(EDate, '%d-%m-%Y') as EDate,"
 				+ "DATE_FORMAT(BDate, '%d-%m-%Y %h:%i %p') as BDate from allexpendituredata where Eid=:id and " + rbean.getDates() + ">=:FromDate and "
-				+ rbean.getDates() + "<=:ToDate  order by " + rbean.getSortby() + " " + rbean.getOrder();
-
-		return namedParameterJdbcTemplate.queryForList(str, param);
+				+ rbean.getDates() + "<=:ToDate ");
+		
+		if(!Objects.equals(AmountType.ALL, rbean.getAmountType()))
+		{
+			query.append("AND bankentryid IS ");
+			query.append(Objects.equals(AmountType.BANK, rbean.getAmountType())?"NOT ":"");
+			query.append("NULL ");
+		}
+		
+		query.append("order by "
+				+ rbean.getSortby() + " " + rbean.getOrder());
+		return namedParameterJdbcTemplate.queryForList(query.toString(), param);
 	}
 
 	public List getAllReport(Reportbean rbean) {
@@ -276,7 +299,7 @@ public class PoojeDao extends AbstractDao {
 			poojetotal += (amount * quantity);
 		}
 
-		/* calculating Sashwatha pooje amount total */
+		/* calculating Sashwatha pooje amouparam.put("bankentryid", ebean.getBankentryid());nt total */
 		String sashpoojesql = "select SUM(Amount) from pooje p1,sashwathapooje s1 where s1.BDate>=:FromDate "
 				+ "and s1.BDate<=:ToDate and p1.pid=s1.Pid";
 		poojetotal +=execute(param, sashpoojesql);
@@ -296,6 +319,12 @@ public class PoojeDao extends AbstractDao {
 		String donationbanksql = "select SUM(Amount) from alldonationdata where BDate>=:FromDate and BDate<=:ToDate and bankentryid IS NOT NULL ";
 		double donationbanktotal =execute(param, donationbanksql);
 
+		String expensebanksql = "select SUM(Amount) from allexpendituredata where BDate>=:FromDate and BDate<=:ToDate and bankentryid IS NOT NULL ";
+		double expensebanktotal =execute(param, expensebanksql);
+
+		String incomebanksql = "select SUM(Amount) from allincomedata where BDate>=:FromDate and BDate<=:ToDate and bankentryid IS NOT NULL ";
+		double incomebanktotal =execute(param, incomebanksql);
+
 		double cashdisbursementtotal=0.0;
 		if(rbean.isIncludeCashDisbursement())
 		{
@@ -305,8 +334,8 @@ public class PoojeDao extends AbstractDao {
 		}
 		// Grand total
 		double grandtotal = poojetotal + donationtotal + incometotal-cashdisbursementtotal - expensetotal;
-		double cash=poojetotal + donationtotal + incometotal-donationbanktotal;
-		double cashgrandtotal =  cash-expensetotal-cashdisbursementtotal;
+		double cash=poojetotal + donationtotal + incometotal-donationbanktotal-incomebanktotal;
+		double cashgrandtotal =  cash-(expensetotal-expensebanktotal)-cashdisbursementtotal;
 		
 		List<Map<String, Object>> report = new ArrayList<>(1);
 		Map<String, Object> details = new HashMap<String, Object>();
@@ -321,7 +350,7 @@ public class PoojeDao extends AbstractDao {
 		details.put("Expenditure", expensetotal);
 		details.put("GrandTotal", grandtotal);
 		details.put("Cash", cash);
-		details.put("Bank", donationbanktotal);
+		details.put("Bank", donationbanktotal+incomebanktotal);
 		details.put("CashGrandTotal",cashgrandtotal);
 		details.put("CashDisbursementTotal",cashdisbursementtotal);
 
@@ -380,7 +409,7 @@ public class PoojeDao extends AbstractDao {
 		param.put("RecNo", dbean.getRecNO());
 
 		String str = "update alldonationdata set Name=:Name,Address=:Address,Amount=:Amount,"
-				+ "mobile=:mobile,email=:email where Did=:Did and RecNo=:RecNo";
+				+ "mobile=:mobile,email=:email,bankentryid=:bankentryid where Did=:Did and RecNo=:RecNo";
 		return namedParameterJdbcTemplate.update(str, param);
 	}
 
@@ -390,7 +419,7 @@ public class PoojeDao extends AbstractDao {
 		param.put("RecNo", ebean.getRecNo());
 
 		String str = "update allexpendituredata set Title=:Title,Description=:Description,Amount=:Amount,"
-				+ "EDate=:EDate where RecNo=:RecNo and Eid=:Eid";
+				+ "EDate=:EDate,bankentryid=:bankentryid where RecNo=:RecNo and Eid=:Eid";
 
 		return namedParameterJdbcTemplate.update(str, param);
 
@@ -402,7 +431,7 @@ public class PoojeDao extends AbstractDao {
 		param.put("RecNo", ibean.getRecNo());
 		
 		String str = "update allincomedata set title=:title,Amount=:Amount,"
-				+ "Edate=:EDate where RecNo=:RecNo and Iid=:Iid";
+				+ "Edate=:EDate,bankentryid=:bankentryid where RecNo=:RecNo and Iid=:Iid";
 
 		return namedParameterJdbcTemplate.update(str, param);
 	}

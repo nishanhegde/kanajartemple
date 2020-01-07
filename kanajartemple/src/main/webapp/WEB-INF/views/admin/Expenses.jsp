@@ -5,6 +5,9 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="core" uri="http://www.springframework.org/tags"%>
 
+
+<script type="text/javascript"
+	src="<c:url value="/resources/js/admin/jquery-1.6.min.js"/>"></script>	
 <jsp:include page="Adminheader.jsp"></jsp:include>
 <div class="mainbody">
 	<center>
@@ -48,7 +51,18 @@
 								value='${status.value}' placeholder="&#8377" />
 						</core:bind></td>
 				</tr>
+				<tr>
+					<th><spring:message code="label.amounttype" /></th>
+					<td><select name="amountType" id="amounttype">
+							<option value="CASH">CASH</option>
+							<option value="BANK">BANK</option>
 
+					</select></td>
+				</tr>
+				
+				<tr id="bankentry" class="bankentry">
+					
+				</tr>
 				<tr>
 					<th><spring:message code="label.date" /></th>
 					<td><core:bind path="expenseData.EDate">
