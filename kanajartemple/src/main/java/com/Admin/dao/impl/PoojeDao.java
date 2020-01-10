@@ -409,7 +409,7 @@ public class PoojeDao extends AbstractDao {
 		param.put("RecNo", dbean.getRecNO());
 
 		String str = "update alldonationdata set Name=:Name,Address=:Address,Amount=:Amount,"
-				+ "mobile=:mobile,email=:email,bankentryid=:bankentryid where Did=:Did and RecNo=:RecNo";
+				+ "mobile=:mobile,email=:email where Did=:Did and RecNo=:RecNo";
 		return namedParameterJdbcTemplate.update(str, param);
 	}
 
@@ -419,7 +419,7 @@ public class PoojeDao extends AbstractDao {
 		param.put("RecNo", ebean.getRecNo());
 
 		String str = "update allexpendituredata set Title=:Title,Description=:Description,Amount=:Amount,"
-				+ "EDate=:EDate,bankentryid=:bankentryid where RecNo=:RecNo and Eid=:Eid";
+				+ "EDate=:EDate where RecNo=:RecNo and Eid=:Eid";
 
 		return namedParameterJdbcTemplate.update(str, param);
 
@@ -431,7 +431,7 @@ public class PoojeDao extends AbstractDao {
 		param.put("RecNo", ibean.getRecNo());
 		
 		String str = "update allincomedata set title=:title,Amount=:Amount,"
-				+ "Edate=:EDate,bankentryid=:bankentryid where RecNo=:RecNo and Iid=:Iid";
+				+ "Edate=:EDate where RecNo=:RecNo and Iid=:Iid";
 
 		return namedParameterJdbcTemplate.update(str, param);
 	}

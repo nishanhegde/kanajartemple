@@ -25,7 +25,7 @@
 
 				<tr>
 					<th><spring:message code="label.bankaccountentry.amount" /> *</th>
-					<td><input type="number" name="amount" id="amount" placeholder="&#8377"
+					<td><input type="double" name="amount" id="amount" placeholder="&#8377"
 						required="required" /></td>
 				</tr>
 

@@ -1,8 +1,10 @@
 package com.Admin.Service.Impl;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
@@ -51,20 +53,33 @@ public class DefaultBankAccountService implements BankAccountService {
 	@Override
 	public synchronized Integer save(BankAccountEntry bae) {
 
-		Double openingBalance = bankAccountDao.getBalance(bae.getBankAccountId());
-		if (openingBalance == null) {
-			openingBalance = getBankAccount(bae.getBankAccountId().toString()).getOpeningBalance();
-		}
-		double balance = openingBalance.doubleValue();
-		double amount = bae.getAmount().doubleValue();
-		balance = bae.getTransaction().equals(TransactionEnum.DEPOSIT) ? balance + amount : balance - amount;
-		bae.setBalance(balance);
+//		Double openingBalance = bankAccountDao.getBalance(bae.getBankAccountId());
+//		if (openingBalance == null) {
+//			openingBalance = getBankAccount(bae.getBankAccountId().toString()).getOpeningBalance();
+//		}
+//		double balance = openingBalance.doubleValue();
+//		double amount = bae.getAmount().doubleValue();
+//		balance = bae.getTransaction().equals(TransactionEnum.DEPOSIT) ? balance + amount : balance - amount;
+//		bae.setBalance(balance);
 		return bankAccountDao.save(bae);
 	}
 
 	@Override
 	public List<BankAccountEntry> getBankAccountEntries(String bankId) {
-		return bankAccountDao.getBankAccountEntries(bankId);
+		List<BankAccountEntry> entries= bankAccountDao.getBankAccountEntries(bankId);
+		return getEntriesWithBalance(this.getBankAccount(bankId).getOpeningBalance(), entries);
+	}
+
+	protected List<BankAccountEntry> getEntriesWithBalance(double balance, List<BankAccountEntry> entries) {
+		if(CollectionUtils.isNotEmpty(entries))
+		{
+			for( BankAccountEntry entry:entries){
+				balance=entry.getTransaction().equals(TransactionEnum.DEPOSIT) ? balance + entry.getAmount() : balance - entry.getAmount();
+				entry.setBalance(balance);
+			}
+		}
+		
+		return entries;
 	}
 
 	@Override
@@ -74,8 +89,12 @@ public class DefaultBankAccountService implements BankAccountService {
 
 	@Override
 	public Map<String, Object> getBankEntryReport(Reportbean rbean) {
-		List<BankAccountEntry> entryList = bankAccountDao.getBankEntryReport(rbean);
+		
+		double openingBalance=getOpeningBalance(rbean);
+		
+		List<BankAccountEntry> entryList =getEntriesWithBalance(openingBalance, bankAccountDao.getBankEntryReport(rbean));
 
+		
 		JRDataSource datasource = new JRBeanCollectionDataSource(entryList);
 
 		BankAccount bankAccount = getBankAccount(rbean.getId());
@@ -86,22 +105,23 @@ public class DefaultBankAccountService implements BankAccountService {
 		parameterMap.put("accountNo", bankAccount.getAccountNo());
 		parameterMap.put("FromDate", rbean.getFromDate());
 		parameterMap.put("ToDate", rbean.getToDate());
-		parameterMap.put("openingBalance", getOpeningBalance(entryList));
+		parameterMap.put("openingBalance",openingBalance);
 
 		return parameterMap;
 	}
 
-	private double getOpeningBalance(List<BankAccountEntry> entryList) {
-		if (CollectionUtils.isNotEmpty(entryList)) {
+	private double getOpeningBalance(Reportbean rbean) {
+		List<BankAccountEntry> entries=bankAccountDao.getBankEntries(rbean);
+		double balance=this.getBankAccount(rbean.getId()).getOpeningBalance();
+		if(CollectionUtils.isNotEmpty(entries))
+		{
+			for( BankAccountEntry entry:entries){
+				balance=entry.getTransaction().equals(TransactionEnum.DEPOSIT) ? balance + entry.getAmount() : balance - entry.getAmount();
 
-			BankAccountEntry firstEntry = entryList.get(0);
-			double balance = firstEntry.getBalance().doubleValue();
-			double amount = firstEntry.getAmount().doubleValue();
-			double openingBalance = firstEntry.getTransaction().equals(TransactionEnum.DEPOSIT) ? balance - amount
-					: balance + amount;
-			return openingBalance;
+			}
 		}
-		return 0.0;
+		return balance;
 	}
 
+	
 }

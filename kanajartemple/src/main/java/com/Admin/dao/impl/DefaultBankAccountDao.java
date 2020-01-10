@@ -89,15 +89,15 @@ public class DefaultBankAccountDao extends AbstractDao implements BankAccountDao
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("bankaccount_id", bae.getBankAccountId());
 		param.put("amount", bae.getAmount());
-		param.put("balance", bae.getBalance());
+		// param.put("balance", bae.getBalance());
 		param.put("transaction", bae.getTransaction().toString());
 		param.put("chequeorrefno", bae.getChequeOrRefNo().trim());
 		param.put("description", bae.getDescription().trim());
 		param.put("transaction_date", kanajarTempleMethods.getCustomDate(bae.getTransactionDate().trim()));
 
-		String sql = "insert into bankaccountentry(bankaccount_id,bankaccountentry_id,amount,balance,transaction,chequeorrefno,transaction_date,description)"
+		String sql = "insert into bankaccountentry(bankaccount_id,bankaccountentry_id,amount,transaction,chequeorrefno,transaction_date,description)"
 				+ " values(:bankaccount_id,(SELECT IFNULL(MAX(bae.bankaccountentry_id), 0) + 1 FROM bankaccountentry bae where bae.bankaccount_id=:bankaccount_id)"
-				+ " ,:amount,:balance,:transaction,:chequeorrefno,:transaction_date,:description)";
+				+ " ,:amount,:transaction,:chequeorrefno,:transaction_date,:description)";
 
 		return namedParameterJdbcTemplate.update(sql, param);
 	}
@@ -106,14 +106,14 @@ public class DefaultBankAccountDao extends AbstractDao implements BankAccountDao
 	public List<BankAccountEntry> getBankAccountEntries(String bankId) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("bankaccount_id", bankId);
-		String str = "select * from bankaccountentry  where bankaccount_id=:bankaccount_id";
+		String str = "select * from bankaccountentry  where bankaccount_id=:bankaccount_id order by transaction_date ";
 		return namedParameterJdbcTemplate.query(str, param, new BankAccountEntryRowMapper());
 	}
-	
+
 	@Override
 	public List<BankAccountEntry> getBankAccountEntries() {
 		Map<String, Object> param = new HashMap<String, Object>();
-		String str = "select * from bankaccountentry where transaction='DEPOSIT'";
+		String str = "select * from bankaccountentry order by transaction_date";
 		return namedParameterJdbcTemplate.query(str, param, new BankAccountEntryRowMapper());
 	}
 
@@ -136,12 +136,20 @@ public class DefaultBankAccountDao extends AbstractDao implements BankAccountDao
 	public List<BankAccountEntry> getBankEntryReport(Reportbean rbean) {
 		Map<String, Object> param = getReportParam(rbean);
 
-		String str = "select * from bankaccountentry where bankaccount_id=:id and "
-				+ rbean.getDates() + ">=:FromDate and " + rbean.getDates() + "<=:ToDate order by creation_date";
+		String str = "select * from bankaccountentry where bankaccount_id=:id and " + rbean.getDates()
+				+ ">=:FromDate and " + rbean.getDates() + "<=:ToDate order by " + rbean.getDates();
 
-		return namedParameterJdbcTemplate.query(str, param,new BankAccountEntryRowMapper());
+		return namedParameterJdbcTemplate.query(str, param, new BankAccountEntryRowMapper());
 	}
 	
-	
+	@Override
+	public List<BankAccountEntry> getBankEntries(Reportbean rbean) {
+		Map<String, Object> param = getReportParam(rbean);
+
+		String str = "select * from bankaccountentry where bankaccount_id=:id and " + rbean.getDates()
+				+ "<=:FromDate order by " + rbean.getDates();
+
+		return namedParameterJdbcTemplate.query(str, param, new BankAccountEntryRowMapper());
+	}
 
 }

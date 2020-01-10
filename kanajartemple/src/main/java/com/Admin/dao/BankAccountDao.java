@@ -27,4 +27,6 @@ public interface BankAccountDao {
 	public Double getBalance(Integer bankAccountId);
 	
 	public List<BankAccountEntry> getBankEntryReport(Reportbean rbean);
+	
+	public List<BankAccountEntry> getBankEntries(Reportbean rbean) ;
 }

@@ -32,7 +32,7 @@ public class BankAccountEntryRowMapper implements RowMapper<BankAccountEntry> {
 		} else {
 			ba.setDebit(amount);
 		}
-		ba.setBalance(rs.getDouble("balance"));
+		//ba.setBalance(rs.getDouble("balance"));
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		ba.setTransactionDate(formatter.format(rs.getDate("transaction_date")));
 

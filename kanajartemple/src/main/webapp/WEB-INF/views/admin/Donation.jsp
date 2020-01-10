@@ -10,6 +10,9 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/js/admin/jquery-1.6.min.js"/>"></script>	
 	
+<script type="text/javascript"
+	src="<c:url value="/resources/js/admin/bank.js"/>"></script>	
+	
 
 
 <jsp:include page="Adminheader.jsp"></jsp:include>
