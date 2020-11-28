@@ -41,4 +41,3 @@ function stickIt() {
 	    $('.original').css('visibility','visible');
 	  }
 	}
-

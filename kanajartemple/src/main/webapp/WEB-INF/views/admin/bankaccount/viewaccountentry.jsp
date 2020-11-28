@@ -19,7 +19,7 @@
 		<table class="demo-tbl">
 			<thead>
 				<tr>
-					<th><spring:message code="label.bankaccount.id" /></th>
+					<%-- <th><spring:message code="label.bankaccount.id" /></th> --%>
 					<th><spring:message
 							code="label.bankaccountentry.transactiondate" /></th>
 					<th><spring:message code="label.bankaccountentry.description" /></th>
@@ -39,11 +39,11 @@
 
 
 							<!-- data -->
-							<td class="td-block">
+							<%-- <td class="td-block">
 
 								<p class="title">${app.bankAccountEntryId}</p>
 
-							</td>
+							</td> --%>
 							<td><p>${app.transactionDate}</td>
 							<td >
 								<p class="desc">${app.description}

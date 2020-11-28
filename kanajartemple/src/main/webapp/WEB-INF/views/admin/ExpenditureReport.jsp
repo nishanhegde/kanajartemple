@@ -19,6 +19,15 @@
 					</select></td>
 				</tr>
 				<tr>
+					<th><spring:message code="label.amounttype" /></th>
+					<td><select name="amountType" required>
+							<option value="ALL">ALL</option>
+							<option value="CASH">CASH</option>
+							<option value="BANK">BANK</option>
+
+					</select></td>
+				</tr>
+				<tr>
 					<th><spring:message code="label.date" /></th>
 					<td><select name="dates">
 							<option selected="selected" value="BDate">Booked Date</option>

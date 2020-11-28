@@ -11,6 +11,7 @@ public class IncomeData {
 	private Double Amount;
 	private String Edate;
 	private Timestamp Bdate;
+	private Integer bankentryid;
 
 	public Integer getIid() {
 		return Iid;
@@ -60,4 +61,11 @@ public class IncomeData {
 		Bdate = bdate;
 	}
 
+	public Integer getBankentryid() {
+		return bankentryid;
+	}
+
+	public void setBankentryid(Integer bankentryid) {
+		this.bankentryid = bankentryid;
+	}
 }

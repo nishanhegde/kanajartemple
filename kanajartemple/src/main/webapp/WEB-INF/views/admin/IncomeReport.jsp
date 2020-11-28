@@ -25,6 +25,15 @@
 							<option value="EDate">Entered Date</option>
 					</select></td>
 				</tr>
+						<tr>
+					<th><spring:message code="label.amounttype" /></th>
+					<td><select name="amountType" required>
+							<option value="ALL">ALL</option>
+							<option value="CASH">CASH</option>
+							<option value="BANK">BANK</option>
+
+					</select></td>
+				</tr>
 				<tr>
 					<th><spring:message code="label.datefrom" /></th>
 					<td><input type="text" id="date" name="FromDate" id="date"

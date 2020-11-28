@@ -24,7 +24,7 @@ public class DefaultCashDisbursementDao extends AbstractDao implements CashDisbu
 	public void save(CashDisbursement cashDisbursement) {
 		Map<String, Object> param = getCashDisbursementParam(cashDisbursement);
 
-		String sql = "insert into cashdisbursement(description,amount)" + "values(:description,:amount)";
+		String sql = "insert into cashdisbursement(description,amount,modified_date)" + "values(:description,:amount,(select now()))";
 
 		getNamedParameterJdbcTemplate().update(sql, param);
 
@@ -49,7 +49,7 @@ public class DefaultCashDisbursementDao extends AbstractDao implements CashDisbu
 	public Integer update(CashDisbursement cashDisbursement) {
 		Map<String, Object> param = getCashDisbursementParam(cashDisbursement);
 		param.put("id", cashDisbursement.getId());
-		String sql = "update cashdisbursement set description=:description,amount=:amount" + " where id=:id";
+		String sql = "update cashdisbursement set description=:description,amount=:amount,modified_date=(select now())" + " where id=:id";
 
 		return getNamedParameterJdbcTemplate().update(sql, param);
 	}

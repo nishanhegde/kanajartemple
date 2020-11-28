@@ -12,6 +12,7 @@ public class ExpenseData {
 	private Double Amount;
 	private String EDate;
 	private Timestamp BDate;
+	private Integer bankentryid;
 
 	public Integer getEid() {
 		return Eid;
@@ -68,5 +69,14 @@ public class ExpenseData {
 	public void setBDate(Timestamp bDate) {
 		BDate = bDate;
 	}
+
+	public Integer getBankentryid() {
+		return bankentryid;
+	}
+
+	public void setBankentryid(Integer bankentryid) {
+		this.bankentryid = bankentryid;
+	}
+	
 
 }
