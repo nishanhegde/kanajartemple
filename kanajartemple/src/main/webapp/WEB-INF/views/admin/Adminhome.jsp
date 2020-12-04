@@ -283,6 +283,9 @@
 								code="label.melbanta-daiva" /></a></li>
 					<li><a href="<c:url value="/SuperAdmin/CMS/6"/>"><spring:message
 								code="label.contactus" /></a></li>
+
+								<li><a href="<c:url value="/SuperAdmin/kannadaeditor"/>"><spring:message
+                                								code="label.kannadaeditor" /></a></li>
 				</ul>
 			</div>
 		</div>

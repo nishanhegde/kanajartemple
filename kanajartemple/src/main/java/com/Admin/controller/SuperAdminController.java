@@ -238,6 +238,13 @@ public class SuperAdminController {
 		return null;
 	}
 
+	@RequestMapping(value = "/kannadaeditor", method = RequestMethod.GET)
+	public String CMSEditor(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		return "admin/kannadaeditor";
+	}
+
+
 	@RequestMapping(value = "/address", method = RequestMethod.GET)
 	public String getAddress(Model model) throws IOException {
 		model.addAttribute("data", adminHomeservice.getUserSashwathaPoojeDetails());
