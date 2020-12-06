@@ -16,7 +16,7 @@ public class CustomSpringSecurity extends JdbcDaoImpl {
 
 	@Override
 	protected List<GrantedAuthority> loadUserAuthorities(String username) {
-		return getJdbcTemplate().query("select EmailId,role from register where EmailId =? or PhoneNumber =? and Status='Active'", new String[] {username,username}, new RowMapper<GrantedAuthority>() {
+		return getJdbcTemplate().query("select EmailId,role from register where (EmailId =? or PhoneNumber =?) and Status='Active'", new String[] {username,username}, new RowMapper<GrantedAuthority>() {
             public GrantedAuthority mapRow(ResultSet rs, int rowNum) throws SQLException {
                 String roleName = "" + rs.getString(2);
 
@@ -27,7 +27,7 @@ public class CustomSpringSecurity extends JdbcDaoImpl {
 	
 	@Override
 	protected List<UserDetails> loadUsersByUsername(String username) {
-		return getJdbcTemplate().query("select EmailId,Password,'TRUE' as enabled from register where EmailId=? or PhoneNumber=? and Status='Active'", new String[] {username,username}, new RowMapper<UserDetails>() {
+		return getJdbcTemplate().query("select EmailId,Password,'TRUE' as enabled from register where (EmailId=? or PhoneNumber=?) and Status='Active'", new String[] {username,username}, new RowMapper<UserDetails>() {
             public UserDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
                 String username = rs.getString(1);
                 String password = rs.getString(2);
