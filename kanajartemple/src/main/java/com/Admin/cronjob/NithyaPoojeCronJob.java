@@ -22,7 +22,7 @@ public class NithyaPoojeCronJob {
 
 		logger.info("Nithya Pooje cron job triggered at :: " + new Date());
 
-		poojeService.sendNithyaPoojeSMS();
+		//poojeService.sendNithyaPoojeSMS();
 		poojeService.sendNithyaPoojeEmail();
 	}
 
